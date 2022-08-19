@@ -1,11 +1,10 @@
-## My Project
+## Bottlerocket Project Website
 
-TODO: Fill this README out!
+This project is the source to the Bottlerocket project website. It contains the content (as [Markdown](https://commonmark.org/) files), templates (HTML), stylesheets (CSS), and [Hugo](https://gohugo.io/) configurations (mostly [TOML](https://toml.io/en/), some [YAML](https://yaml.org/)).
 
-Be sure to:
 
-* Change the title in this README
-* Edit your repository description on GitHub
+
+
 
 ## Security
 
