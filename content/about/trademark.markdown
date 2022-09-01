@@ -26,6 +26,8 @@ Provided your use complies with this policy, you may use the Bottlerocket logos 
 
 Use the official versions of the Bottlerocket logos available for download here. You may transform the file format itself for ease of use and modify the colors.
 
+: add logo :
+
 Provided your use complies with this policy, you may use the "Bottlerocket" word mark to accurately reference the Bottlerocket software, including on your website, in presentations and publications, at events, in advertising and marketing material, etc., for commercial and noncommercial purposes. You may use the "Bottlerocket" word mark and any logos we placed on the software in connection with a redistribution of an official distribution of the Bottlerocket software that has not been modified or changed in any way.
 
 Those taking full advantage of the open source nature of the Bottlerocket code may make modifications in accordance with the applicable open source license to create Derivative Works (as defined in the Apache License, version 2.0) of Bottlerocket. You may use the "Bottlerocket" word mark to refer to your Derivative Works of Bottlerocket provided (a) you include an additional identifier indicating you as the source of the Derivative Works (e.g., "Foocorp’s Bottlerocket Derivative"), (b) you clearly identify your modifications and indicate you are the source of the modifications, (c) your use does not suggest any affiliation between Bottlerocket or the Bottlerocket Community and you or your Derivative Works of Bottlerocket, and (d) your use of the "Bottlerocket" word mark should not be more prominent than your additional identifier.

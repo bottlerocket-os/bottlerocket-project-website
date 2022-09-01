@@ -1,3 +1,7 @@
 baseURL = 'http://example.org/'
 languageCode = 'en-us'
 title = 'The Bottlerocket Project'
+
+
+[params]
+    bottlerocket_gh_path = 'bottlerocket'

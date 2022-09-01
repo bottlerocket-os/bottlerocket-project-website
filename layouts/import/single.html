@@ -1,0 +1,17 @@
+{{ define "main" }}
+
+    {{ $include_path := path.Join .Site.Params.bottlerocket_gh_path .Params.markdown_file }}
+
+    {{ if eq (os.FileExists $include_path) true }}
+        {{ $include_path | readFile | markdownify }}
+    {{ else }}
+        <pre>
+            This page is a placeholder for a missing imported file.
+
+            One of three thing are most likely wrong:
+            - `params.bottlerocket_gh_path` in `config.toml` is incorrect
+            - `markdown_file` in the front matter of this file is incorrect
+            - You haven't set cloned bottlerocket-os/bottlerocket into the website repo
+        </pre>
+    {{ end }}
+{{ end }}
