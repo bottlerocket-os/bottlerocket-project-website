@@ -66,7 +66,7 @@ This policy is based in part on the open source trademark policy defined by the 
 
 3. **What can I do if I see abuse of the Bottlerocket Trademarks?** If you are aware of confusing or misleading use or other misuse of the Bottlerocket Trademarks, you may contact us as described above at trademarks@amazon.com so we can investigate further.
 
-4 **This Policy requires modifications and their source to be identified for Derivative Works of Bottlerocket, where should I put this information?** You may put this information in any location that is commonly used to convey differences from an upstream open source project, such as a NOTICE text or end-user documentation.
+4. **This Policy requires modifications and their source to be identified for Derivative Works of Bottlerocket, where should I put this information?** You may put this information in any location that is commonly used to convey differences from an upstream open source project, such as a NOTICE text or end-user documentation.
 
 
 
