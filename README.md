@@ -6,6 +6,39 @@ This repository is the source to the Bottlerocket project website. It contains t
 
 The Bottlerocket website is open to contribution and collaboration. See [CONTRIBUTING](CONTRIBUTING.md) for specific instructions.
 
+### Rendering Locally
+
+This site uses [Hugo](https://github.com/gohugoio/hugo) for rendering.
+You may run `hugo` locally to validate your changes render properly.
+
+#### Rendering
+
+If [`hugo` is installed](#hugo-installation), you may view the rendered site by running:
+
+```sh
+# To render everything, including draft posts
+hugo server -D
+
+# To render the site as it will appear when being published
+hugo server
+```
+
+If you use `make`, have `docker`, and do not have `hugo` installed, you may also use the following `make` target as a convenience:
+
+```sh
+make preview
+```
+
+#### Hugo Installation
+
+Hugo is available for many platforms.
+
+- Linux: most native package managers
+- macOS: `brew install hugo`
+- Windows: `choco install hugo`
+
+See the [Hugo installation instructions](https://gohugo.io/getting-started/installing/) for additional options.
+
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
