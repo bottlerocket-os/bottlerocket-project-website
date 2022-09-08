@@ -1,4 +1,5 @@
 {{ define "main" }}
+    {{ .Params.title }}
     {{ .Content }}
 {{ end }}
-{{ define "title" }} {{ .Params.title }} {{end}}
+{{ define "title" }} hello {{ .Params.title }} {{end}}

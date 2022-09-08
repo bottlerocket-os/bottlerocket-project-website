@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{ block "title" . }} {{ .Site.Title }} {{ end }}</title>
+        <title>{{ block "title" . }} 
+            {{ cond (isset .Params "title") .Params.title "" }}
+            {{ cond (isset .Params "title") "|" "" }}
+            {{ .Site.Title }} 
+        {{ end }}</title>
         <meta charset="utf-8">
     </head>
     <body>
