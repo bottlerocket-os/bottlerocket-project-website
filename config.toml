@@ -5,3 +5,7 @@ title = 'The Bottlerocket Project'
 
 [params]
     bottlerocket_gh_path = 'bottlerocket'
+[params.imports.bottlerocket]
+    repo_path = 'bottlerocket'
+    repo_human_readable = 'bottlerocket/bottlerocket-os'
+    import_url_fragment = "https://github.com/bottlerocket-os/bottlerocket/blob/develop/"

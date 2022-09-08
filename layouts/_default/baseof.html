@@ -9,9 +9,10 @@
         <meta charset="utf-8">
     </head>
     <body>
+        {{ partial "header.html" . }}
         {{ block "main" . }} {{ end }}
-        <hr />
-        Copyright Amazon.com, Inc., its affiliates, or other contributors. All Rights Reserved.
+        {{ partial "footer-start.html" . }}
         {{ block "footer" . }} {{ end }}
+        {{ partial "footer-end.html" . }}
     </body>
 </html>
