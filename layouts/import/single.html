@@ -1,20 +1,22 @@
 {{ define "main" }}
-    {{ $import := index .Site.Params.imports .Params.source }}
+    <div class="td-content br-import">
 
-    {{ $include_path := path.Join $import.repo_path  .Params.markdown_file}}
-    {{ if eq (os.FileExists $include_path) true }}
-        {{ $include_path | readFile | markdownify }}
-    {{ else }}
-        <pre>
-            This page is a placeholder for a missing imported file.
+        {{ $import := index .Site.Params.imports .Params.source }}
 
-            One of three thing are most likely wrong:
-            - `params.imports.bottlerocket.source.repo_path` in `config.toml` is incorrect
-            - `source` in the front matter of this file is incorrect
-            - You haven't cloned bottlerocket-os/bottlerocket into the website repo
-        </pre>
-    {{ end }}
-    
+        {{ $include_path := path.Join $import.repo_path  .Params.markdown_file}}
+        {{ if eq (os.FileExists $include_path) true }}
+            {{ $include_path | readFile | markdownify }}
+        {{ else }}
+            <pre>
+                This page is a placeholder for a missing imported file.
+
+                One of three thing are most likely wrong:
+                - `params.imports.bottlerocket.source.repo_path` in `config.toml` is incorrect
+                - `source` in the front matter of this file is incorrect
+                - You haven't cloned bottlerocket-os/bottlerocket into the website repo
+            </pre>
+        {{ end }}
+    </div>
 {{ end }}
 {{ define "footer"}}
     {{ $import := index .Site.Params.imports .Params.source }}
