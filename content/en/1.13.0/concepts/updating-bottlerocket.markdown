@@ -1,19 +1,19 @@
 # Updating Bottlerocket
 
-# 1. Ways To Launch
+## 1. Ways To Launch
 
-## Managed Node Groups
+### Managed Node Groups
 
-## Karpenter
+### Karpenter
 
-## Terraform
+### Terraform
 
-# 1. Ways To Update
+## 1. Ways To Update
 
-## Safest: Brupop
+### Safest: Brupop
 
-## Easiest: EKS - Node Replacement
+### Easiest: EKS - Node Replacement
 
-## Manual: SSM Automation Documents
+### Manual: SSM Automation Documents
 
-# 1. Locking To A Specific Release
+## 1. Locking To A Specific Release
