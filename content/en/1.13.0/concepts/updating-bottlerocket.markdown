@@ -12,6 +12,14 @@
 
 ### Safest: Brupop
 
+#### What is Brupop?
+
+#### Why should I use Brupop?
+
+#### When would I use Brupop?
+
+#### How do I use brupop?
+
 ### Easiest: EKS - Node Replacement
 
 ### Manual: SSM Automation Documents
