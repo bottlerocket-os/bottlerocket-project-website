@@ -13,7 +13,7 @@ Hosting containers doesn’t require much from an operating system and hosting c
 
 Bottlerocket manages complexity and requirements for different orchestrators, platforms, and architectures into specific builds for every compatible combination called **variants**. This ensures that your operating system is tailor made for that set of requirements.
 
-[Image: Image.jpg]
+![animation of variants](/assets/homepage/variant-animation.gif)
 *Bottlerocket variants assemble everything needed to run in a given environment. Pick the appropriate variant and nothing else is needed to join the cluster.*
 
 Bottlerocket itself **does not have a shell**. It doesn’t need one. You can still interact with the system through privileged “host” containers (that do have shells). From host containers, you can explore the underlying operating system and even make changes to the running system’s settings via an API. 
