@@ -1,28 +1,14 @@
 # Updating Bottlerocket
 
-## 1. Ways To Launch
+## Ways To Update
 
-### AWS ECS
-
-?
-
-### AWS EKS/Kubernetes
-
-#### Managed Node Groups
-
-#### Karpenter
-
-#### Terraform
-
-## 1. Ways To Update
-
-### AWS ECS
+### ECS
 
 https://github.com/bottlerocket-os/bottlerocket-ecs-updater#how-it-works
 
-### AWS EKS/Kubernetes
+### Kubernetes
 
-#### Safe and Convenient: Brupop
+#### Brupop
 
 ##### What is Brupop?
 
@@ -34,13 +20,17 @@ The **B**ottle**r**ocket **up**date **op**erator (Brupop) is a [Kubernetes Opera
 
 ##### How do I use brupop?
 
-#### Easiest: node replacement via EKS GUI/`eksctl`
+#### EKS
 
-### Both ECS and EKS/Kubernetes
+##### EKS Console
 
-#### Manual: in-place updates via SSM Automation Documents
+##### `eksctl`
 
-## 1. Locking To A Specific Release
+### SSM
+
+#### SSM Automation Documents
+
+## Locking To A Specific Release
 
 ### AWS ECS
 
