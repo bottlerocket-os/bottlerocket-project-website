@@ -32,6 +32,6 @@ The **B**ottle**r**ocket **up**date **op**erator (Brupop) is a [Kubernetes Opera
 
 ## Locking To A Specific Release
 
-### AWS ECS
+### ECS
 
-### AWS EKS/Kubernetes
+### Kubernetes
