@@ -10,15 +10,15 @@ There are a few ways to update Bottlerocket. The method you choose depends on th
 
 ### ECS
 
-For the `aws-ecs` variant of Bottlerocket, 
-
-https://github.com/bottlerocket-os/bottlerocket-ecs-updater#how-it-works
+For the `aws-ecs-*` variants of Bottlerocket, we provide an [ECS updater](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#how-it-works). Please see the [ECS updater installation documentation](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#installation) for more information on how to install and use the ECS updater.
 
 ### Kubernetes
 
-For the `aws-k8s` variants of Bottlerocket,
+For the `aws-k8s-*` variants of Bottlerocket, there are a few possible ways to update Bottlerocket. The recommended method is to use Brupop, however there are alternatives in case you do not want to use Brupop.
 
 #### Brupop
+
+This is the recommended method to update Bottlerocket on Kubernetes. The following sections should help you understand why, when, and how to use Brupop.
 
 ##### What is Brupop?
 
