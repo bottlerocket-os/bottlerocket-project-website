@@ -15,10 +15,11 @@ The method you choose depends on the [Bottlerocket variant](https://github.com/b
 
 For the `aws-ecs-*` variants of Bottlerocket, we provide an [ECS updater](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#how-it-works).
 Please see the [ECS updater installation documentation](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#installation) for more information on how to install and use the ECS updater.
+Essentially, you will use a CloudFormation template to install the Bottlerocket ECS updater.
 
 ### Kubernetes
 
-For the `aws-k8s-*` variants of Bottlerocket, there are a few possible ways to update Bottlerocket: Brupop, the EKS Console, `eksctl`, and SSM Automation Documents.
+For the `aws-k8s-*` variants of Bottlerocket, there are a handful of possible ways to update Bottlerocket: Brupop, the EKS Console, `eksctl`, and SSM Automation Documents.
 The following sections discuss each of these methods.
 
 #### Brupop
@@ -66,7 +67,7 @@ In most cases, you will want to use `bottlerocket.aws/updater-interface-version=
 
 #### EKS
 
-When running the `aws-k8s-*` variants of Bottlerocket on EKS, you can use either the EKS Console or `eksctl` to update your Bottlerocket nodes.
+When running the `aws-k8s-*` variants of Bottlerocket on EKS, you can use either the EKS Console or `eksctl` to update your Bottlerocket nodes if you do not want to use Brupop.
 
 ##### EKS Console
 
