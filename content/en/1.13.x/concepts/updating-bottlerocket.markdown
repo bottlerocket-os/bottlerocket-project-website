@@ -1,6 +1,6 @@
 # Updating Bottlerocket
 
-This document covers the different ways to update Bottlerocket, as well as how to lock your nodes to a specific release.
+This document covers the different ways to update Bottlerocket (for [ECS](#ecs), [Kubernetes](#kubernetes), and [SSM](#ssm)), as well as how to lock your nodes to a specific release.
 
 ## Introduction
 
@@ -17,7 +17,14 @@ The method you choose depends on the [Bottlerocket variant](https://github.com/b
 
 For the `aws-ecs-*` variants of Bottlerocket, we provide an [ECS updater](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#how-it-works).
 Please see the [ECS updater installation documentation](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#installation) for more information on how to install and use the ECS updater.
-Essentially, you will use a CloudFormation template to install the Bottlerocket ECS updater.
+
+Essentially, you will need to do the following:
+
+1. Get the ID of the VPC you want to use for the ECS updater.
+2. Get the Subnet ID from the VPC you found in the previous step (remember, the subnet must have internet access).
+3. Get the name of the CloudWatch Logs log group where the Bottlerocket ECS updater will send its logs.
+4. Get the name of the ECS cluster where you are running Bottlerocket container instances.
+5. Install the Bottlerocket ECS updater using a CloudFormation template (provided in the full ECS updater installation instructions, linked above).
 
 ### Kubernetes
 
