@@ -20,11 +20,14 @@ Please see the [ECS updater installation documentation](https://github.com/bottl
 
 Essentially, you will need to do the following:
 
-1. Get the ID of the VPC you want to use for the ECS updater.
-2. Get the Subnet ID from the VPC you found in the previous step (remember, the subnet must have internet access).
-3. Get the name of the CloudWatch Logs log group where the Bottlerocket ECS updater will send its logs.
-4. Get the name of the ECS cluster where you are running Bottlerocket container instances.
-5. Install the Bottlerocket ECS updater using a CloudFormation template (provided in the full ECS updater installation documentation, linked above).
+1. [Get subnet information](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#subnet-info) for your cluster:
+    - Get the ID of the VPC you want to use for the ECS updater.
+    - Get the Subnet ID from the VPC you found in the previous step (remember, the subnet must have internet access).
+2. [Get the name of the CloudWatch Logs log group](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#log-group) where the Bottlerocket ECS updater will send its logs.
+3. Get the name of the ECS cluster where you are running Bottlerocket container instances.
+4. [Install the Bottlerocket ECS updater](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#install) using a CloudFormation template (provided in the full ECS updater installation documentation, linked above).
+
+Detailed steps, including commands to run, are provided in the ECS updater documentation, linked above.
 
 ### Kubernetes
 
@@ -74,13 +77,32 @@ Essentially, you will need to do the following:
 3. Label your Bottlerocket nodes with the appropriate label.
 In most cases, you will want to use `bottlerocket.aws/updater-interface-version=2.0.0`.
 
+Detailed steps, including commands to run, are provided in the Brupop documentation, linked above.
+
 #### EKS
 
 When running the `aws-k8s-*` variants of Bottlerocket on EKS, you can use either the EKS Console or `eksctl` to update your Bottlerocket nodes if you do not want to use Brupop.
 
 ##### EKS Console
 
+In order to update your Bottlerocket nodes in an EKS cluster using the EKS Console, you will need to do the following:
+
+1. Go to the EKS Console.
+For example, for `us-west-2`, it is: https://us-west-2.console.aws.amazon.com/eks/home?region=us-west-2#/clusters
+2. Click on the cluster name that you want to update.
+3. Go to the "Compute" tab.
+4. Under "Node groups", look for the node group that you want to update.
+5. In the "AMI Release Version" column, click on "Update now".
+6. A modal box will pop up.
+Choose your desired update strategy (e.g. "Rolling update") and press the "Update" button.
+
+This will update your Bottlerocket nodegroup, and subsequently your Bottlerocket nodes, to the latest version of Bottlerocket.
+
+Detailed instructions can be found in the [EKS documentation, on the "AWS Management Console" tab](https://docs.aws.amazon.com/eks/latest/userguide/update-managed-node-group.html#mng-update).
+
 ##### `eksctl`
+
+
 
 ### SSM
 
