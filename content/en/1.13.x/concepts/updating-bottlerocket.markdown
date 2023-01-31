@@ -10,7 +10,7 @@ This is a departure from the traditional package-based Linux update model such a
 
 ## Ways To Update
 
-There are a few ways to update Bottlerocket. 
+There are a few ways to update Bottlerocket.
 The method you choose depends on the [Bottlerocket variant](https://github.com/bottlerocket-os/bottlerocket#variants) you are using and your environment.
 
 ### ECS
@@ -64,7 +64,7 @@ Essentially, you will need to do the following:
 
 1. Install `cert-manager`.
 2. Install `brupop`.
-3. Label your Bottlerocket nodes with the appropriate label. 
+3. Label your Bottlerocket nodes with the appropriate label.
 In most cases, you will want to use `bottlerocket.aws/updater-interface-version=2.0.0`.
 
 #### EKS
