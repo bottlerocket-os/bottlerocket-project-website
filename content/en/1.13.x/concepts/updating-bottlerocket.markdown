@@ -38,6 +38,8 @@ In some cases, like with heavily restricted network environments, you may not be
 
 ##### How do I use brupop?
 
+How to install Brupop is covered in the [Brupop documentation](https://github.com/bottlerocket-os/bottlerocket-update-operator#installation). 
+
 #### EKS
 
 When running the `aws-k8s-*` variants of Bottlerocket on EKS, you can use either the EKS Console or `eksctl` to update your Bottlerocket nodes.
