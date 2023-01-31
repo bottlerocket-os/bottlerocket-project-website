@@ -38,7 +38,13 @@ In some cases, like with heavily restricted network environments, you may not be
 
 ##### How do I use brupop?
 
-How to install Brupop is covered in the [Brupop documentation](https://github.com/bottlerocket-os/bottlerocket-update-operator#installation). 
+How to install Brupop is covered in the [Brupop documentation](https://github.com/bottlerocket-os/bottlerocket-update-operator#installation).
+
+Essentially, you will need to do the following:
+
+1. Install `cert-manager`
+2. Install `brupop`
+3. Label your Bottlerocket nodes with the appropriate label. In most cases, you will want to use `bottlerocket.aws/updater-interface-version=2.0.0`.
 
 #### EKS
 
