@@ -1,5 +1,7 @@
 # Updating Bottlerocket
 
+This document covers the different ways to update Bottlerocket, as well as how to lock your nodes to a specific release.
+
 ## Introduction
 
 Bottlerocket is designed to be updated in an [image-based fashion](https://github.com/bottlerocket-os/bottlerocket#updates).
