@@ -14,7 +14,7 @@ For the `aws-ecs-*` variants of Bottlerocket, we provide an [ECS updater](https:
 
 ### Kubernetes
 
-For the `aws-k8s-*` variants of Bottlerocket, there are a few possible ways to update Bottlerocket. The recommended method is to use Brupop, however there are alternatives in case you do not want to use Brupop.
+For the `aws-k8s-*` variants of Bottlerocket, there are a few possible ways to update Bottlerocket: Brupop, the EKS Console, `eksctl`, and SSM Automation Documents. The following sections discuss each of these methods.
 
 #### Brupop
 
@@ -26,11 +26,21 @@ The **B**ottle**r**ocket **up**date **op**erator (Brupop) is a [Kubernetes Opera
 
 ##### Why should I use Brupop?
 
+Brupop was designed to be a great catch-all solution to the often tricky operator task of updating operating systems on Kubernetes cluster nodes. Brupop abstracts away and automates the node OS update process. This means that you can update your Bottlerocket nodes without having to worry about the details of the update process. As Bottlerocket updates roll out, Brupop will drain your nodes, prepare them for update, update them, and then schedule your workloads back onto the nodes. This means that you should not see any disruption to your cluster workloads.
+
+For example, if you have a cluster with 5 nodes, you can simply apply the appropriate Brupop label to those nodes and `kubectl apply` our manifest to have the Brupop stack installed.
+
 ##### When would I use Brupop?
+
+Ideally, you would always use Brupop for your Bottlerocket updates on Kubernetes. If your cluster is allowed to access the public internet, then you should be able to use Brupop.
+
+In some cases, like with heavily restricted network environments, you may not be able to use Brupop. In particular, Brupop uses a public endpoint, `updates.bottlerocket.aws`, to get the TUF metadata. It may or may not be acceptable in your usecase to punch a small hole in your firewall to access that public endpoint. There is a good [discussion on this topic in the Brupop repository](https://github.com/bottlerocket-os/bottlerocket-update-operator/pull/387). In this case, if you are using EKS, you can use the EKS Console or `eksctl` to update your Bottlerocket nodes as discussed below.
 
 ##### How do I use brupop?
 
 #### EKS
+
+When running the `aws-k8s-*` variants of Bottlerocket on EKS, you can use either the EKS Console or `eksctl` to update your Bottlerocket nodes.
 
 ##### EKS Console
 
