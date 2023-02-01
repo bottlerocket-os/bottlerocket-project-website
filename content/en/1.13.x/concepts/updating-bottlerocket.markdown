@@ -98,15 +98,44 @@ Choose your desired update strategy (e.g. "Rolling update") and press the "Updat
 
 This will update your Bottlerocket nodegroup, and subsequently your Bottlerocket nodes, to the latest version of Bottlerocket.
 
-Detailed instructions can be found in the [EKS documentation, on the "AWS Management Console" tab](https://docs.aws.amazon.com/eks/latest/userguide/update-managed-node-group.html#mng-update).
+Detailed instructions can be found in the [EKS User Guide, in the "AWS Management Console" tab](https://docs.aws.amazon.com/eks/latest/userguide/update-managed-node-group.html#mng-update).
 
 ##### `eksctl`
 
+As described in the [EKS User Guide](https://docs.aws.amazon.com/eks/latest/userguide/update-managed-node-group.html#mng-update), you can also use `eksctl` to update your Bottlerocket nodes.
+For example, you can run the following command to update your Bottlerocket nodes to the latest version of Bottlerocket, replacing `NODEGROUP_NAME`, `CLUSTER_NAME`, and `REGION_CODE` with your own values:
 
+```bash
+eksctl upgrade nodegroup \
+  --name=NODEGROUP_NAME \
+  --cluster=CLUSTER_NAME \
+  --region=REGION_CODE
+```
+
+Further details and notes are available in the EKS User Guide linked above.
 
 ### SSM
 
+If your Bottlerocket nodes are registered with AWS Systems Manager (SSM), you can use SSM Automation Documents to update your Bottlerocket nodes.
+
 #### SSM Automation Documents
+
+SSM Automation Documents allow you to specify shell commands to run on target nodes.
+In our case, we will use the `aws:runShellScript` SSM Action to run the `apiclient update` command on our Bottlerocket nodes.
+Please see the [`apiclient` documentation](https://github.com/bottlerocket-os/bottlerocket/blob/develop/sources/api/apiclient/README.md#update-mode) to learn more about `apiclient update`.
+
+```yaml
+---
+schemaVersion: "2.2"
+description: "Update the Bottlerocket host via the Bottlerocket Update API"
+mainSteps:
+  - name: "updateBottlerocket"
+    action: "aws:runShellScript"
+    inputs:
+      timeoutSeconds: '120'
+      runCommand:
+        - "apiclient update apply --check"
+```
 
 ## Locking To A Specific Release
 
