@@ -118,16 +118,21 @@ Further details and notes are available in the EKS User Guide linked above.
 
 If your Bottlerocket nodes are registered with AWS Systems Manager (SSM), you can use SSM Automation Documents to update your Bottlerocket nodes.
 
-#### SSM Automation Documents
+#### SSM Automation Document: Update Bottlerocket
 
 SSM Automation Documents allow you to specify shell commands to run on target nodes.
 In our case, we will use the `aws:runShellScript` SSM Action to run the `apiclient update` command on our Bottlerocket nodes.
 Please see the [`apiclient` documentation](https://github.com/bottlerocket-os/bottlerocket/blob/develop/sources/api/apiclient/README.md#update-mode) to learn more about `apiclient update`.
 
+SCRATCH NOTES
+
+- create ssm document
+- apply ssm document to target nodes
+
 ```yaml
 ---
 schemaVersion: "2.2"
-description: "Update the Bottlerocket host via the Bottlerocket Update API"
+description: "Update a Bottlerocket host via the Bottlerocket Update API"
 mainSteps:
   - name: "updateBottlerocket"
     action: "aws:runShellScript"
@@ -139,6 +144,25 @@ mainSteps:
 
 ## Locking To A Specific Release
 
-### ECS
+### SSM Automation Document: Lock to a specific release
 
-### Kubernetes
+```yaml
+---
+schemaVersion: "2.2"
+description: "Lock a Bottlerocket host to a specific version via the Bottlerocket Settings API"
+parameters:
+  TargetVersion:
+    type: "String"
+    description: "The target version of Bottlerocket to lock to (e.g. 1.12.0)"
+mainSteps:
+  - name: "setTargetVersion"
+    action: "aws:runShellScript"
+    inputs:
+      timeoutSeconds: '20'
+      runCommand:
+        - "apiclient set updates.version-lock=\"{{ TargetVersion }}\" updates.ignore-waves=true"
+```
+
+SCRATCH NOTES
+
+- then run the ssm doc from before to move the nodes to the target version
