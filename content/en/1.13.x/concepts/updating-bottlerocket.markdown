@@ -166,3 +166,4 @@ mainSteps:
 SCRATCH NOTES
 
 - then run the ssm doc from before to move the nodes to the target version
+- explain what each setting does
