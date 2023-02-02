@@ -39,6 +39,10 @@ The following sections discuss each of these methods.
 This is the recommended method to update Bottlerocket on Kubernetes.
 The following sections should help you understand why, when, and how to use Brupop.
 
+//TODO SCRATCH NOTES
+
+- take what, why, and when out of this document and add to a new doc about comparing the different ways to update Bottlerocket
+
 ##### What is Brupop?
 
 The **B**ottle**r**ocket **up**date **op**erator (Brupop) is a [Kubernetes Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) that manages the Bottlerocket update process for you.
@@ -124,7 +128,7 @@ SSM Automation Documents allow you to specify shell commands to run on target no
 In our case, we will use the `aws:runShellScript` SSM Action to run the `apiclient update` command on our Bottlerocket nodes.
 Please see the [`apiclient` documentation](https://github.com/bottlerocket-os/bottlerocket/blob/develop/sources/api/apiclient/README.md#update-mode) to learn more about `apiclient update`.
 
-SCRATCH NOTES
+//TODO SCRATCH NOTES
 
 - create ssm document
 - apply ssm document to target nodes
@@ -163,7 +167,8 @@ mainSteps:
         - "apiclient set updates.version-lock=\"{{ TargetVersion }}\" updates.ignore-waves=true"
 ```
 
-SCRATCH NOTES
+//TODO SCRATCH NOTES
 
 - then run the ssm doc from before to move the nodes to the target version
 - explain what each setting does
+- also add a kubectl section: https://opensearch.org/blog/bottlerocket-k8s-fluent-bit/ -- "Typically, you would run apiclient from the control container" (find the `container` spec and see how to run it with kubectl exec) -- FIND OUT HOW TO oneshot run or --rm the container or terminate after exit
