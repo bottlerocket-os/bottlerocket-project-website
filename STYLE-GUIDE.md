@@ -5,7 +5,7 @@ The Bottlerocket content style largely follows the [OpenStack General Writing Gu
 Take the time to read through the OpenStack General Writing Guidelines and adapt these appropriately to the context of Bottlerocket as needed.
 At a high level, these guidelines state that you should write in:
 
-* [Active voice](http://Active voice)
+* [Active voice](https://owl.purdue.edu/owl/general_writing/academic_writing/active_and_passive_voice/active_versus_passive_voice.html)
 * [Present tense](https://writing-rag.com/2872/the-present-tense-in-technical-writing/#:~:text=Here's%20the%20rule%3A,you%20do%20something%2C%20something%20happens.)
 * [Second person](https://ddbeck.com/second-person-is-ok/)
 * [Imperative mood](https://www.grammarbook.com/blog/verbs/imperative-mood/)
