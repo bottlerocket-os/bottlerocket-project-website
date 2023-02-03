@@ -37,7 +37,6 @@ The following sections discuss each of these methods.
 #### Brupop
 
 This is the recommended method to update Bottlerocket on Kubernetes.
-The following sections should help you understand why, when, and how to use Brupop.
 
 ##### Brupop: Release YAML
 
@@ -51,12 +50,6 @@ Essentially, you will need to do the following:
 In most cases, you will want to use `bottlerocket.aws/updater-interface-version=2.0.0`.
 
 Detailed steps, including commands to run, are provided in the Brupop documentation, linked above.
-
-##### Brupop: Helm Chart
-
-//TODO SCRATCH NOTES
-
-- helm chart instructions here
 
 #### EKS
 
