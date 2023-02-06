@@ -31,7 +31,7 @@ Detailed steps, including commands to run, are provided in the ECS updater docum
 
 ### Kubernetes
 
-For the `aws-k8s-*` variants of Bottlerocket, there are a handful of possible ways to update Bottlerocket: Brupop, the EKS Console, `eksctl`, and SSM Automation Documents.
+For the `aws-k8s-*` variants of Bottlerocket, there are a handful of possible ways to update Bottlerocket: Brupop, the EKS Console, `eksctl`, and SSM Command Documents.
 The following sections discuss each of these methods.
 
 #### Brupop
@@ -88,11 +88,11 @@ Further details and notes are available in the EKS User Guide linked above.
 
 ### SSM
 
-If your Bottlerocket nodes are registered with AWS Systems Manager (SSM), you can use SSM Automation Documents to update your Bottlerocket nodes.
+If your Bottlerocket nodes are registered with AWS Systems Manager (SSM), you can use SSM Command Documents to update your Bottlerocket nodes.
 
-#### SSM Automation Document: Update Bottlerocket
+#### SSM Command Document: Update Bottlerocket
 
-SSM Automation Documents allow you to specify shell commands to run on target nodes.
+SSM Command Documents allow you to specify shell commands to run on target nodes.
 In our case, we will use the `aws:runShellScript` SSM Action to run the `apiclient update` command on our Bottlerocket nodes.
 Please see the [`apiclient` documentation](https://github.com/bottlerocket-os/bottlerocket/blob/develop/sources/api/apiclient/README.md#update-mode) to learn more about `apiclient update`.
 
@@ -116,7 +116,7 @@ mainSteps:
 
 ## Locking To A Specific Release
 
-### SSM Automation Document: Lock to a specific release
+### SSM Command Document: Lock to a specific release
 
 ```yaml
 ---
