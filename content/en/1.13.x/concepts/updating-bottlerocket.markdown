@@ -134,7 +134,7 @@ mainSteps:
 10. Click on "Create document".
 
 Congratulations!
-You now have an SSM Command Document that will update your Bottlerocket nodes to the latest version of Bottlerocket.
+You now have an SSM Command Document that will update a Bottlerocket node to the latest version of Bottlerocket.
 
 A quick overview of what `apiclient update apply --check` does:
 
@@ -170,6 +170,11 @@ mainSteps:
       runCommand:
         - "apiclient reboot"
 ```
+
+10. Click on "Create document".
+
+Congratulations!
+You now have an SSM Command Document that will reboot a Bottlerocket node.
 
 ##### 3. Apply the SSM Command Documents to Your Bottlerocket Nodes
 
