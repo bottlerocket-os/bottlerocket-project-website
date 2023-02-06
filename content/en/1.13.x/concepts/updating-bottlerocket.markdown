@@ -185,7 +185,7 @@ The following steps will apply the first SSM Command Document (named `update-bot
 1. Go to the [SSM Console](https://console.aws.amazon.com/systems-manager/).
 2. Click on "Documents" in the left-hand menu.
 3. Click on the "Owned by me" tab.
-4. Select the `update-bottlerocket-node` SSM Command Document.
+4. Select the `update-bottlerocket-node` SSM Command Document created using steps above.
 5. Click on the "Run command" button in the top-right corner.
 6. In the "Target selection" section of the page, select the Bottlerocket nodes that you want to update using one of the available methods (by instance tag, manually, or by resource group).
 If you are using EKS, you can select all nodes in a given EKS cluster by Instance Tag: specify `eks:cluster-name` as the Tag key, with the Tag value set to your cluster name.
