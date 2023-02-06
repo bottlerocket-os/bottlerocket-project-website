@@ -111,7 +111,7 @@ The following steps will create an SSM Command Document that will update a Bottl
 4. Click on "Command or Session" in the drop-down menu that appears.
 5. Name your document.
 For example, let's name the document `update-bottlerocket-node`.
-6. Optional: select a Target type (e.g. `/AWS::EC2::Instance`).
+6. _Optional:_ select a Target type (e.g. `/AWS::EC2::Instance`).
 7. Document type: select "Command document".
 8. In the "Content" box, select "YAML".
 9. Paste the following YAML into the "Content" box:
