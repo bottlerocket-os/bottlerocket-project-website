@@ -178,7 +178,25 @@ You now have an SSM Command Document that will reboot a Bottlerocket node.
 
 ##### 3. Apply the SSM Command Documents to Your Bottlerocket Nodes
 
-- apply SSM documents to target nodes
+After creating the two SSM Command Documents, you can apply them to your Bottlerocket nodes.
+
+The following steps will apply the first SSM Command Document (named `update-bottlerocket-node` above) to your Bottlerocket nodes.
+
+1. Go to the [SSM Console](https://console.aws.amazon.com/systems-manager/).
+2. Click on "Documents" in the left-hand menu.
+3. Click on the "Owned by me" tab.
+4. Select the `update-bottlerocket-node` SSM Command Document.
+5. Click on the "Run command" button in the top-right corner.
+6. In the "Target selection" section of the page, select the Bottlerocket nodes that you want to update using one of the available methods (by instance tag, manually, or by resource group).
+If you are using EKS, you can select all nodes in a given EKS cluster by Instance Tag: specify `eks:cluster-name` as the Tag key, with the Tag value set to your cluster name.
+7. For simplicity in this example, we will _uncheck_ "Enable an S3 bucket" in the "Output options" section of the page.
+(You may want to check this option if you want to store the output of the SSM Command Document in an S3 bucket for later inspection or auditing reasons.)
+8. Click on the "Run" button in the bottom-right corner.
+
+After running the SSM Command Document, you will be taken to the SSM Command status page.
+If you would like to see the output of the SSM Command Document that you just ran, you can click on an Instance ID in the "Targets and outputs" section of the page and see any output or errors.
+
+Once the SSM Command Document has finished running, you can apply the second SSM Command Document (named `reboot-bottlerocket-node` above) to your Bottlerocket nodes using the same process as above.
 
 ## Locking To A Specific Release
 
