@@ -188,7 +188,9 @@ The following steps will apply the first SSM Command Document (named `update-bot
 4. Select the `update-bottlerocket-node` SSM Command Document created using steps above.
 5. Click on the "Run command" button in the top-right corner.
 6. In the "Target selection" section of the page, select the Bottlerocket nodes that you want to update using one of the available methods (by instance tag, manually, or by resource group).
-If you are using EKS, you can select all nodes in a given EKS cluster by Instance Tag: specify `eks:cluster-name` as the Tag key, with the Tag value set to your cluster name.
+
+    - If you are using EKS, you can select all nodes in a given EKS cluster by Instance Tag: specify `eks:cluster-name` as the Tag key, with the Tag value set to your cluster name.
+
 7. For simplicity in this example, we will _uncheck_ "Enable an S3 bucket" in the "Output options" section of the page.
 (You may want to check this option if you want to store the output of the SSM Command Document in an S3 bucket for later inspection or auditing reasons.)
 8. Click on the "Run" button in the bottom-right corner.
