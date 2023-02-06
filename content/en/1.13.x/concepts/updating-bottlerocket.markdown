@@ -145,7 +145,16 @@ A quick overview of what `apiclient update apply --check` does:
 
 The following steps will create an SSM Command Document that will reboot a Bottlerocket node.
 
-//TODO - steps
+1. Go to the [SSM Console](https://console.aws.amazon.com/systems-manager/).
+2. Click on "Documents" in the left-hand menu.
+3. Click on the "Create document" button in the top-right corner.
+4. Click on "Command or Session" in the drop-down menu that appears.
+5. Name your document.
+For example, let's name the document `reboot-bottlerocket-node`.
+6. _Optional:_ select a Target type (e.g. `/AWS::EC2::Instance`).
+7. Document type: select "Command document".
+8. In the "Content" box, select "YAML".
+9. Paste the following YAML into the "Content" box:
 
 ###### SSM Command Document: Reboot a Bottlerocket Node
 
