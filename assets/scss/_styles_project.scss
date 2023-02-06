@@ -1,0 +1,23 @@
+.td-main .br-import {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+    @include media-breakpoint-up(md) { 
+        padding-top: 5.5rem; 
+    }
+    &.td-content {
+        pre,
+        .highlight,
+        .lead,
+        h1,
+        h2,
+        ul,
+        ol,
+        p,
+        blockquote,
+        dl dd,
+        .footnotes,
+        .alert {
+            max-width: inherit;
+        }
+    }
+}

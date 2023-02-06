@@ -1,5 +1,6 @@
 # Garbage
 .DS_Store
+node_modules
 
 # Generated files by hugo
 /public/

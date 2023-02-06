@@ -4,4 +4,33 @@ title = 'The Bottlerocket Project'
 
 
 [params]
-    bottlerocket_gh_path = 'bottlerocket'
+copyright = "Copyright Amazon.com, Inc., its affiliates, or other contributors. All Rights Reserved."
+
+[params.ui]
+footer_about_disable = true
+
+[params.imports.bottlerocket]
+    repo_path = 'bottlerocket'
+    repo_human_readable = 'bottlerocket/bottlerocket-os'
+    import_url_fragment = "https://github.com/bottlerocket-os/bottlerocket/blob/develop/"
+
+
+[params.links]
+
+[[params.links.developer]]
+	name = "GitHub"
+	url = "https://github.com/bottlerocket-os"
+	icon = "fab fa-github"
+        desc = "The Bottlerocket GitHub Organization"
+
+[module]
+  proxy = "direct"
+  [module.hugoVersion]
+    extended = true
+    min = "0.73.0"
+  [[module.imports]]
+    path = "github.com/google/docsy"
+    disable = false
+  [[module.imports]]
+    path = "github.com/google/docsy/dependencies"
+    disable = false

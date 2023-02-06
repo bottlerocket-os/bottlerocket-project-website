@@ -1,17 +1,25 @@
 {{ define "main" }}
+    <div class="td-content br-import">
 
-    {{ $include_path := path.Join .Site.Params.bottlerocket_gh_path .Params.markdown_file }}
+        {{ $import := index .Site.Params.imports .Params.source }}
 
-    {{ if eq (os.FileExists $include_path) true }}
-        {{ $include_path | readFile | markdownify }}
-    {{ else }}
-        <pre>
-            This page is a placeholder for a missing imported file.
+        {{ $include_path := path.Join $import.repo_path  .Params.markdown_file}}
+        {{ if eq (os.FileExists $include_path) true }}
+            {{ $include_path | readFile | markdownify }}
+        {{ else }}
+            <pre>
+                This page is a placeholder for a missing imported file.
 
-            One of three thing are most likely wrong:
-            - `params.bottlerocket_gh_path` in `config.toml` is incorrect
-            - `markdown_file` in the front matter of this file is incorrect
-            - You haven't cloned bottlerocket-os/bottlerocket into the website repo
-        </pre>
-    {{ end }}
+                One of three thing are most likely wrong:
+                - `params.imports.bottlerocket.source.repo_path` in `config.toml` is incorrect
+                - `source` in the front matter of this file is incorrect
+                - You haven't cloned bottlerocket-os/bottlerocket into the website repo
+            </pre>
+        {{ end }}
+    </div>
+{{ end }}
+{{ define "footer"}}
+    {{ $import := index .Site.Params.imports .Params.source }}
+
+    <p>This file was sourced from the <a href="{{ $import.import_url_fragment }}{{ .Params.markdown_file }}" target="_blank">{{ $import.repo_human_readable }}</a> repo.</p>
 {{ end }}
