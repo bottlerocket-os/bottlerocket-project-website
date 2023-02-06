@@ -96,10 +96,27 @@ SSM Command Documents allow you to specify shell commands to run on target nodes
 In our case, we will use the `aws:runShellScript` SSM Action to run the `apiclient update` command on our Bottlerocket nodes.
 Please see the [`apiclient` documentation](https://github.com/bottlerocket-os/bottlerocket/blob/develop/sources/api/apiclient/README.md#update-mode) to learn more about `apiclient update`.
 
-//TODO SCRATCH NOTES
+The following two subsections will cover how to create two SSM Command Documents: one Command Document for preparing a Bottlerocket node to use the latest available version of the Bottlerocket OS image, and one Command Document for rebooting a Bottlerocket node (in order to reboot into and use that latest acquired Bottlerocket OS image).
 
-- create ssm document
-- apply ssm document to target nodes
+Both steps can be combined into a single SSM Command Document, however keeping the two steps separate allows you to apply updates and reboot your Bottlerocket nodes in separate patterns, if needed.
+For example, you may want to apply updates to your Bottlerocket nodes in groups, but reboot them in a rolling pattern.
+
+##### 1. Create the SSM Command Document for Updating
+
+The following steps will create an SSM Command Document that will update a Bottlerocket node to the latest version of Bottlerocket.
+
+1. Go to the [SSM Console](https://console.aws.amazon.com/systems-manager/).
+2. Click on "Documents" in the left-hand menu.
+3. Click on the "Create document" button in the top-right corner.
+4. Click on "Command or Session" in the drop-down menu that appears.
+5. Name your document.
+For example, let's name the document `update-bottlerocket-node`.
+6. Optional: select a Target type (e.g. `/AWS::EC2::Instance`).
+7. Document type: select "Command document".
+8. In the "Content" box, select "YAML".
+9. Paste the following YAML into the "Content" box:
+
+###### SSM Command Document: Check For and Apply Updates to a Bottlerocket Node
 
 ```yaml
 ---
@@ -114,9 +131,44 @@ mainSteps:
         - "apiclient update apply --check"
 ```
 
+10. Click on "Create document".
+
+Congratulations!
+You now have an SSM Command Document that will update your Bottlerocket nodes to the latest version of Bottlerocket.
+
+A quick overview of what `apiclient update apply --check` does:
+
+1. First, the `--check` flag executes: `apiclient` checks for the available Bottlerocket OS images and selects the latest one.
+2. Next, the `apply` subcommand executes: `apiclient` downloads the latest Bottlerocket OS image and prepares the Bottlerocket node to use it.
+
+##### 2. Create the SSM Command Document for Rebooting
+
+The following steps will create an SSM Command Document that will reboot a Bottlerocket node.
+
+//TODO - steps
+
+###### SSM Command Document: Reboot a Bottlerocket Node
+
+```yaml
+---
+schemaVersion: "2.2"
+description: "Reboot a Bottlerocket host via the Bottlerocket API"
+mainSteps:
+  - name: "updateBottlerocket"
+    action: "aws:runShellScript"
+    inputs:
+      timeoutSeconds: '120'
+      runCommand:
+        - "apiclient reboot"
+```
+
+##### 3. Apply the SSM Command Documents to Your Bottlerocket Nodes
+
+- apply SSM documents to target nodes
+
 ## Locking To A Specific Release
 
-### SSM Command Document: Lock to a specific release
+### SSM Command Document: Lock to a Specific Release
 
 ```yaml
 ---
