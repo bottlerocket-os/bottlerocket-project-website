@@ -90,7 +90,7 @@ Further details and notes are available in the EKS User Guide linked above.
 
 If your Bottlerocket nodes are registered with AWS Systems Manager (SSM), you can use SSM Command Documents to update your Bottlerocket nodes.
 
-**Important:** when using the SSM instructions below to update Bottlerocket nodes, workloads will NOT be drained from the node before the reboot (unlike when using Brupop, for example).
+**Important:** when using the SSM instructions below to update Bottlerocket nodes, workloads will NOT be drained from the node before rebooting the node (unlike when using Brupop, for example).
 
 #### SSM Command Document: Update Bottlerocket
 
@@ -105,7 +105,7 @@ For example, you may want to apply updates to your Bottlerocket nodes in groups,
 
 ##### 1. Create the SSM Command Document for Updating
 
-The following steps will create an SSM Command Document that will update a Bottlerocket node to the latest version of Bottlerocket.
+The following steps create an SSM Command Document that will update a Bottlerocket node to the latest version of Bottlerocket.
 
 1. Go to the [SSM Console](https://console.aws.amazon.com/systems-manager/).
 2. Click on "Documents" in the left-hand menu.
@@ -145,7 +145,7 @@ A quick overview of what `apiclient update apply --check` does:
 
 ##### 2. Create the SSM Command Document for Rebooting
 
-The following steps will create an SSM Command Document that will reboot a Bottlerocket node.
+The following steps create an SSM Command Document that will reboot a Bottlerocket node.
 
 1. Go to the [SSM Console](https://console.aws.amazon.com/systems-manager/).
 2. Click on "Documents" in the left-hand menu.
@@ -182,7 +182,7 @@ You now have an SSM Command Document that will reboot a Bottlerocket node.
 
 After creating the two SSM Command Documents, you can apply them to your Bottlerocket nodes.
 
-The following steps will apply the first SSM Command Document (named `update-bottlerocket-node` above) to your Bottlerocket nodes.
+The following steps apply the first SSM Command Document (named `update-bottlerocket-node` above) to your Bottlerocket nodes.
 
 1. Go to the [SSM Console](https://console.aws.amazon.com/systems-manager/).
 2. Click on "Documents" in the left-hand menu.
@@ -205,7 +205,7 @@ Once the SSM Command Document has finished running, you can apply the second SSM
 ## Locking To A Specific Release
 
 You can also lock your Bottlerocket nodes to a specific release using the Bottlerocket Settings API.
-The following steps will show you how to use an SSM Command Document to call `apiclient` and achieve that.
+The following steps use an SSM Command Document to call `apiclient` and achieve that.
 
 1. Go to the [SSM Console](https://console.aws.amazon.com/systems-manager/).
 2. Click on "Documents" in the left-hand menu.
@@ -260,7 +260,7 @@ In order to apply a version lock using SSM, follow these steps:
 
 #### Applying the `version-lock-bottlerocket-node` SSM Command Document
 
-The steps to apply the `version-lock-bottlerocket-node` SSM Command Document to your nodes are:
+In order to apply the `version-lock-bottlerocket-node` SSM Command Document to your nodes, you will need to:
 
 1. Go to the [SSM Console](https://console.aws.amazon.com/systems-manager/).
 2. Click on "Documents" in the left-hand menu.
