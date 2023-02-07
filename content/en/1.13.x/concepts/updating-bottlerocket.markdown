@@ -185,7 +185,7 @@ The following steps will apply the first SSM Command Document (named `update-bot
 1. Go to the [SSM Console](https://console.aws.amazon.com/systems-manager/).
 2. Click on "Documents" in the left-hand menu.
 3. Click on the "Owned by me" tab.
-4. Select the `update-bottlerocket-node` SSM Command Document created using steps above.
+4. Select the `update-bottlerocket-node` SSM Command Document (created using steps above.)
 5. Click on the "Run command" button in the top-right corner.
 6. In the "Target selection" section of the page, select the Bottlerocket nodes that you want to update using one of the available methods (by instance tag, manually, or by resource group).
 
@@ -201,6 +201,20 @@ If you would like to see the output of the SSM Command Document that you just ra
 Once the SSM Command Document has finished running, you can apply the second SSM Command Document (named `reboot-bottlerocket-node` above) to your Bottlerocket nodes using the same process as above.
 
 ## Locking To A Specific Release
+
+You can also lock your Bottlerocket nodes to a specific release using the Bottlerocket Settings API.
+The following steps will show how to use an SSM Command Document to call `apiclient` and achieve that.
+
+1. Go to the [SSM Console](https://console.aws.amazon.com/systems-manager/).
+2. Click on "Documents" in the left-hand menu.
+3. Click on the "Create document" button in the top-right corner.
+4. Click on "Command or Session" in the drop-down menu that appears.
+5. Name your document.
+For example, let's name the document `version-lock-bottlerocket-node`.
+6. _Optional:_ select a Target type (e.g. `/AWS::EC2::Instance`).
+7. Document type: select "Command document".
+8. In the "Content" box, select "YAML".
+9. Paste the following YAML into the "Content" box:
 
 ### SSM Command Document: Lock to a Specific Release
 
@@ -221,8 +235,40 @@ mainSteps:
         - "apiclient set updates.version-lock=\"{{ TargetVersion }}\" updates.ignore-waves=true"
 ```
 
-//TODO SCRATCH NOTES
+10. Click on "Create document".
+You should now have the `version-lock-bottlerocket-node` SSM Command Document available in the SSM "Owned by me" tab in the "Documents" section of the SSM Console.
 
-- then run the ssm doc from before to move the nodes to the target version
-- explain what each setting does
-- also add a kubectl section: https://opensearch.org/blog/bottlerocket-k8s-fluent-bit/ -- "Typically, you would run apiclient from the control container" (find the `container` spec and see how to run it with kubectl exec) -- FIND OUT HOW TO oneshot run or --rm the container or terminate after exit
+_A quick explanation of the `apiclient` command used above:_
+
+Two settings are set: `updates.version-lock` and `updates.ignore-waves`.
+
+- `updates.version-lock`: which version of Bottlerocket to lock to when `apiclient` checks for updates.
+- `updates.ignore-waves`: ignore the [update waves behavior](https://github.com/bottlerocket-os/bottlerocket/tree/develop/sources/updater/waves) and update the Bottlerocket node immediately.
+
+### Applying a Version Lock
+
+In order to apply a version lock using SSM, follow these steps:
+
+1. First, tell your Bottlerocket nodes that you want them to lock to a specific version.
+    - Apply the `version-lock-bottlerocket-node` SSM Command Document previously described.
+1. Next, tell your Bottlerocket nodes to prepare to boot into that specific version.
+    - Apply the `update-bottlerocket-node` SSM Command Document previously described.
+1. Finally, reboot your Bottlerocket nodes into the version you locked to.
+    - Apply the `reboot-bottlerocket-node` SSM Command Document previously described.
+
+#### Applying the `version-lock-bottlerocket-node` SSM Command Document
+
+The steps to apply the `version-lock-bottlerocket-node` SSM Command Document to your nodes are:
+
+1. Go to the [SSM Console](https://console.aws.amazon.com/systems-manager/).
+2. Click on "Documents" in the left-hand menu.
+3. Click on the "Owned by me" tab.
+4. Select the `version-lock-bottlerocket-node` SSM Command Document (created using steps above.)
+5. Click on the "Run command" button in the top-right corner.
+6. In the "Target selection" section of the page, select the Bottlerocket nodes that you want to update using one of the available methods (by instance tag, manually, or by resource group).
+
+    - If you are using EKS, you can select all nodes in a given EKS cluster by Instance Tag: specify `eks:cluster-name` as the Tag key, with the Tag value set to your cluster name.
+
+7. For simplicity in this example, we will _uncheck_ "Enable an S3 bucket" in the "Output options" section of the page.
+(You may want to check this option if you want to store the output of the SSM Command Document in an S3 bucket for later inspection or auditing reasons.)
+8. Click on the "Run" button in the bottom-right corner.
