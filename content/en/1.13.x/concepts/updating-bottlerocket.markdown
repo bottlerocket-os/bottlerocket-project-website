@@ -1,6 +1,6 @@
 # Updating Bottlerocket
 
-This document covers the different ways to update Bottlerocket (for [ECS](#ecs), [Kubernetes](#kubernetes), and [SSM](#ssm)), as well as how to lock your nodes to a specific release.
+This document covers the different ways to update Bottlerocket (for [ECS](#ecs), [Kubernetes](#kubernetes), and [SSM](#ssm)), as well as how to [lock your nodes to a specific release](#locking-to-a-specific-release).
 
 ## Introduction
 
@@ -89,6 +89,8 @@ Further details and notes are available in the EKS User Guide linked above.
 ### SSM
 
 If your Bottlerocket nodes are registered with AWS Systems Manager (SSM), you can use SSM Command Documents to update your Bottlerocket nodes.
+
+**Important:** when using the SSM instructions below to update Bottlerocket nodes, workloads will NOT be drained from the node before the reboot (unlike when using Brupop, for example).
 
 #### SSM Command Document: Update Bottlerocket
 
