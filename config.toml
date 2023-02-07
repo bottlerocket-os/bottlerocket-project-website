@@ -34,3 +34,8 @@ footer_about_disable = true
   [[module.imports]]
     path = "github.com/google/docsy/dependencies"
     disable = false
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
