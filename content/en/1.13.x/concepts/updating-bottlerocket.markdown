@@ -29,6 +29,8 @@ Essentially, you will need to do the following:
 
 Detailed steps, including commands to run, are provided in the ECS updater documentation, linked above.
 
+**Note:** By default, the ECS updater checks for updates every 12 hours.
+
 ### Kubernetes
 
 For the `aws-k8s-*` variants of Bottlerocket, there are a handful of possible ways to update Bottlerocket: Brupop, the EKS Console, `eksctl`, and SSM Command Documents.
