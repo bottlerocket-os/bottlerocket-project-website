@@ -7,15 +7,14 @@ By excluding these extraneous pieces of software, your **operational and securit
 Bottlerocket manages complexity and requirements for different orchestrators, platforms, and architectures into specific builds for every compatible combination called **variants**.
 This ensures that your operating system is tailor made for that set of requirements.
 
-![animation of variants](/assets/homepage/variant-animation.gif)
-*Bottlerocket variants assemble everything needed to run in a given environment.
-Pick the appropriate variant and nothing else is needed to join the cluster.*
+{{< twocolfigure  alt="Diagram of variants"  caption="Bottlerocket variants assemble everything needed to run in a given environment. Pick the appropriate variant and nothing else is needed to join the cluster." >}}
+    {{% readfile "includes/homepage/variants.svg" %}}
+{{</ twocolfigure>}}
+
 
 Bottlerocket itself **does not have a shell**.
 It doesn’t need one.
 You can still interact with the system through privileged “host” containers (that do have shells).
 From host containers, you can explore the underlying operating system and even make changes to the running system’s settings via an API.
 
-![container with privileged access](/assets/homepage/priv-container.png)
-
-*You can totally login to a Bottlerocket node, the shell you’re logging into is actually in a container with privileged access to the resources of the underlying operating system.*
+{{< twocolfigure src="/assets/homepage/priv-container.png" alt="container with privileged access"  caption="You can totally login to a Bottlerocket node, the shell you’re logging into is actually in a container with privileged access to the resources of the underlying operating system." />}}

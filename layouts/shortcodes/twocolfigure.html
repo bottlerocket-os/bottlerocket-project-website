@@ -1,0 +1,17 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" -}}
+{{- $caption := .Get "caption" -}}
+
+<div class="container-fluid">
+  <div class="row align-items-center">
+    <div class="col">
+      {{ if isset .Params `src` }}
+      <img src="{{$src}}" class="img-fluid" alt="{{$alt}}" />
+      {{ end }}
+      {{ .Inner }}
+    </div>
+    <div class="col-4">
+      <span class="align-middle"><em >{{$caption}}</em></span>
+    </div>
+  </div>
+</div>
