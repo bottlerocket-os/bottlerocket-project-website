@@ -26,7 +26,7 @@ _In-place updates_ are updates that are applied to the same node (no infrastruct
 
 The following table shows whether a given update method is an _in-place update_ or a _node replacement_.
 
-In-Place Update | Node Replacement
+In-Place Updates | Node Replacement
 --- | ---
 [`apiclient` commands](#apiclient-commands) | [EKS Console](#eks-console)
 [ECS updater](#ecs) | [`eksctl`](#eksctl)
@@ -77,41 +77,6 @@ The steps cover the following:
 In most cases, you will want to use `bottlerocket.aws/updater-interface-version=2.0.0`.
 
 Detailed steps, including commands to run, are provided in the Brupop documentation, linked above.
-
-#### EKS
-
-When running the `aws-k8s-*` variants of Bottlerocket on EKS, you can use either the EKS Console or `eksctl` to update your Bottlerocket nodes if you do not want to use Brupop.
-
-##### EKS Console
-
-In order to update your Bottlerocket nodes in an EKS cluster using the EKS Console, you will need to do the following:
-
-1. Go to the EKS Console.
-For example, for `us-west-2`, it is: https://us-west-2.console.aws.amazon.com/eks/home?region=us-west-2#/clusters
-2. Click on the cluster name that you want to update.
-3. Go to the "Compute" tab.
-4. Under "Node groups", look for the node group that you want to update.
-5. In the "AMI Release Version" column, click on "Update now".
-6. A modal box will pop up.
-Choose your desired update strategy (e.g. "Rolling update") and press the "Update" button.
-
-This will update your Bottlerocket nodegroup, and subsequently your Bottlerocket nodes, to the latest version of Bottlerocket.
-
-Detailed instructions can be found in the [EKS User Guide, in the "AWS Management Console" tab](https://docs.aws.amazon.com/eks/latest/userguide/update-managed-node-group.html#mng-update).
-
-##### `eksctl`
-
-As described in the [EKS User Guide](https://docs.aws.amazon.com/eks/latest/userguide/update-managed-node-group.html#mng-update), you can also use `eksctl` to update your Bottlerocket nodes.
-For example, you can run the following command to update your Bottlerocket nodes to the latest version of Bottlerocket, replacing `NODEGROUP_NAME`, `CLUSTER_NAME`, and `REGION_CODE` with your own values:
-
-```bash
-eksctl upgrade nodegroup \
-  --name=NODEGROUP_NAME \
-  --cluster=CLUSTER_NAME \
-  --region=REGION_CODE
-```
-
-Further details and notes are available in the EKS User Guide linked above.
 
 ### SSM
 
@@ -228,6 +193,44 @@ After running the SSM Command Document, you will be taken to the SSM Command sta
 If you would like to see the output of the SSM Command Document that you just ran, you can click on an Instance ID in the "Targets and outputs" section of the page and see any output or errors.
 
 Once the SSM Command Document has finished running, you can apply the second SSM Command Document (named `reboot-bottlerocket-node` above) to your Bottlerocket nodes using the same process as above.
+
+## Node Replacement
+
+### EKS
+
+When running the `aws-k8s-*` variants of Bottlerocket on EKS, you can use either the EKS Console or `eksctl` to update your Bottlerocket nodes using the _node replacement_ method.
+This means that you will be replacing your existing Bottlerocket nodes with new Bottlerocket nodes, rather than updating your existing Bottlerocket nodes in-place.
+
+#### EKS Console
+
+In order to update your Bottlerocket nodes in an EKS cluster using the EKS Console, you will need to do the following:
+
+1. Go to the EKS Console.
+For example, for `us-west-2`, it is: https://us-west-2.console.aws.amazon.com/eks/home?region=us-west-2#/clusters
+2. Click on the cluster name that you want to update.
+3. Go to the "Compute" tab.
+4. Under "Node groups", look for the node group that you want to update.
+5. In the "AMI Release Version" column, click on "Update now".
+6. A modal box will pop up.
+Choose your desired update strategy (e.g. "Rolling update") and press the "Update" button.
+
+This will update your Bottlerocket nodegroup, and subsequently your Bottlerocket nodes, to the latest version of Bottlerocket.
+
+Detailed instructions can be found in the [EKS User Guide, in the "AWS Management Console" tab](https://docs.aws.amazon.com/eks/latest/userguide/update-managed-node-group.html#mng-update).
+
+#### `eksctl`
+
+As described in the [EKS User Guide](https://docs.aws.amazon.com/eks/latest/userguide/update-managed-node-group.html#mng-update), you can also use `eksctl` to update your Bottlerocket nodes.
+For example, you can run the following command to update your Bottlerocket nodes to the latest version of Bottlerocket, replacing `NODEGROUP_NAME`, `CLUSTER_NAME`, and `REGION_CODE` with your own values:
+
+```bash
+eksctl upgrade nodegroup \
+  --name=NODEGROUP_NAME \
+  --cluster=CLUSTER_NAME \
+  --region=REGION_CODE
+```
+
+Further details and notes are available in the EKS User Guide linked above.
 
 ## Locking To A Specific Release
 
