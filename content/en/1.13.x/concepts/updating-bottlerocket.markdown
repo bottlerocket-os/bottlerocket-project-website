@@ -21,6 +21,23 @@ This is a departure from the traditional package-based Linux update model such a
 There are a few ways to update Bottlerocket.
 The method you choose depends on the [Bottlerocket variant](https://github.com/bottlerocket-os/bottlerocket#variants) you are using and your environment.
 
+The ways to update Bottlerocket can be classified into two main categories: _in-place updates_ and _node replacement_.
+_In-place updates_ are updates that are applied to the same node (no infrastructure reprovisioning), while _node replacement_ is when you replace an existing node with a new node that is running the updated version of Bottlerocket.
+
+The following table shows whether a given update method is an _in-place update_ or a _node replacement_.
+
+In-Place Update | Node Replacement
+--- | ---
+`apiclient` commands | EKS Console
+ECS updater | `eksctl`
+Brupop |
+SSM command documents |
+
+
+## In-Place Updates
+
+### `apiclient` commands
+
 ### ECS
 
 For the `aws-ecs-*` variants of Bottlerocket, you can use the [ECS updater](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#how-it-works).
@@ -28,7 +45,7 @@ See the [ECS updater installation documentation](https://github.com/bottlerocket
 
 By default, the ECS updater checks for updates every 12 hours.
 
-You will need to do the following:
+In summary, you are doing the following:
 
 1. [Get subnet information](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#subnet-info) for your cluster:
     - Get the ID of the VPC you want to use for the ECS updater.
@@ -52,7 +69,7 @@ This is the recommended method to update Bottlerocket on Kubernetes.
 
 How to install Brupop is covered in the [Brupop documentation](https://github.com/bottlerocket-os/bottlerocket-update-operator#installation).
 
-You will need to do the following:
+The steps cover the following:
 
 1. Install `cert-manager`.
 2. Install `brupop`.
