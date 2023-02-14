@@ -26,18 +26,18 @@ The method you choose depends on the [Bottlerocket variant](https://github.com/b
 For the `aws-ecs-*` variants of Bottlerocket, you can use the [ECS updater](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#how-it-works).
 See the [ECS updater installation documentation](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#installation) for more information on how to install and use the ECS updater.
 
-Essentially, you will need to do the following:
+By default, the ECS updater checks for updates every 12 hours.
+
+You will need to do the following:
 
 1. [Get subnet information](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#subnet-info) for your cluster:
     - Get the ID of the VPC you want to use for the ECS updater.
     - Get the Subnet ID from the VPC you found in the previous step (remember, the subnet must have internet access).
 2. [Get the name of the CloudWatch Logs log group](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#log-group) where the Bottlerocket ECS updater will send its logs.
 3. Get the name of the ECS cluster where you are running Bottlerocket container instances.
-4. [Install the Bottlerocket ECS updater](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#install) using a CloudFormation template (provided in the full ECS updater installation documentation, linked above).
+4. [Install the Bottlerocket ECS updater](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#install) using a CloudFormation template (provided in the full [ECS updater installation documentation](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#installation)).
 
-Detailed steps, including commands to run, are provided in the ECS updater documentation, linked above.
-
-**Note:** By default, the ECS updater checks for updates every 12 hours.
+Detailed steps, including commands to run, are provided in the [ECS updater documentation](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#installation).
 
 ### Kubernetes
 
@@ -52,7 +52,7 @@ This is the recommended method to update Bottlerocket on Kubernetes.
 
 How to install Brupop is covered in the [Brupop documentation](https://github.com/bottlerocket-os/bottlerocket-update-operator#installation).
 
-Essentially, you will need to do the following:
+You will need to do the following:
 
 1. Install `cert-manager`.
 2. Install `brupop`.
