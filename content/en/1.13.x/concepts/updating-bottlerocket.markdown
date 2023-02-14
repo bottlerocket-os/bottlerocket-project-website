@@ -28,10 +28,10 @@ The following table shows whether a given update method is an _in-place update_ 
 
 In-Place Update | Node Replacement
 --- | ---
-`apiclient` commands | EKS Console
-ECS updater | `eksctl`
-Brupop |
-SSM command documents |
+[`apiclient` commands](#apiclient-commands) | [EKS Console](#eks-console)
+[ECS updater](#ecs) | [`eksctl`](#eksctl)
+[Brupop](#brupop) |
+[SSM command documents](#ssm) |
 
 
 ## In-Place Updates
