@@ -1,11 +1,19 @@
 # Updating Bottlerocket
 
-This document covers the different ways to update Bottlerocket (for [ECS](#ecs), [Kubernetes](#kubernetes), and [SSM](#ssm)), as well as how to [lock your nodes to a specific release](#locking-to-a-specific-release).
+There are many ways to update Bottlerocket, including:
+
+- Running `apiclient` commands directly in the control container
+- [Using the ECS updater](#ecs)
+- [Brupop](#brupop), using the [EKS Console](#eks-console), and [`eksctl`](#eksctl) on Kubernetes
+- [Applying SSM Command Documents](#ssm) to your nodes
+
+It is also possible to [lock your nodes to a specific release](#locking-to-a-specific-release).
 
 ## Introduction
 
 Bottlerocket is designed to be updated in an [image-based fashion](https://github.com/bottlerocket-os/bottlerocket#updates).
-This means that updates are applied by replacing the entire image on disk, rather than applying a series of individual package updates.
+This means that updates are applied by downloading an image of the entire operating system to a different partition on disk, then switching to using that partition when the system is rebooted.
+This is done instead of a series of individual package updates on the current operating system partition.
 This is a departure from the traditional package-based Linux update model such as `apt` or `yum`, which are what you would find in Ubuntu or Amazon Linux.
 
 ## Ways To Update
