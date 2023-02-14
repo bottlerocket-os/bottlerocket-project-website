@@ -23,8 +23,8 @@ The method you choose depends on the [Bottlerocket variant](https://github.com/b
 
 ### ECS
 
-For the `aws-ecs-*` variants of Bottlerocket, we provide an [ECS updater](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#how-it-works).
-Please see the [ECS updater installation documentation](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#installation) for more information on how to install and use the ECS updater.
+For the `aws-ecs-*` variants of Bottlerocket, you can use the [ECS updater](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#how-it-works).
+See the [ECS updater installation documentation](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#installation) for more information on how to install and use the ECS updater.
 
 Essentially, you will need to do the following:
 
