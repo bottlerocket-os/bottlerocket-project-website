@@ -45,7 +45,7 @@ See the [ECS updater installation documentation](https://github.com/bottlerocket
 
 By default, the ECS updater checks for updates every 12 hours.
 
-In summary, you are doing the following:
+In summary, installing the ECS updater involves the following steps:
 
 1. [Get subnet information](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#subnet-info) for your cluster:
     - Get the ID of the VPC you want to use for the ECS updater.
