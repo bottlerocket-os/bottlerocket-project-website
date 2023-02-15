@@ -10,7 +10,7 @@ Bottlerocket's documentation is placed in the `os` directory with subdirectories
 Every directory or page in the versioned tree is intended to have clear meaning without much pre-existing Bottlerocket context (e.g. `introduction`, `install`, `update`, etc.).
 
 Other user-facing repos (`control-container`, `brupop`, etc.) and components are in their own versioned trees with links provided to relevant versions of the OS as required.
-This decouples versioning from the OS andallows for documentation of out-of-phase releases.
+This decouples versioning from the OS and allows for documentation of out-of-phase releases.
 
 This may not be comprehensive for every file, but should be considered a living document and updated as needed for clarity.
 
