@@ -1,6 +1,7 @@
 {{- $src := .Get "src" -}}
 {{- $alt := .Get "alt" -}}
 {{- $caption := .Get "caption" -}}
+{{- $second_col_width := .Get "colsplit" | default "4" -}}
 
 <div class="container-fluid">
   <div class="row align-items-center">
@@ -10,7 +11,7 @@
       {{ end }}
       {{ .Inner }}
     </div>
-    <div class="col-4">
+    <div class="col-{{ $second_col_width }}">
       <span class="align-middle"><em >{{$caption}}</em></span>
     </div>
   </div>

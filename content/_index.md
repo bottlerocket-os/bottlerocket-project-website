@@ -10,9 +10,8 @@
 {{% readfile "includes/homepage/worker-node-diagram.markdown" %}}
 {{< /blocks/section >}}
 {{< blocks/section >}}
-{{% readfile "includes/homepage/variants.svg" %}}
-
 {{% readfile "includes/homepage/minimal.markdown" %}}
+
 {{< /blocks/section >}}
 {{< blocks/section >}}
 {{% readfile "includes/homepage/safe-update.markdown" %}}

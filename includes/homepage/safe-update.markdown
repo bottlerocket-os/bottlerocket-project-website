@@ -7,7 +7,9 @@ Updates are delivered via an image that is downloaded to an specific partition.
 When you’re ready to update, let your orchestrator drain the node and then tell Bottlerocket to apply the update and reboot when ready.
 Bottlerocket will swap the partitions and boot with the new version atomically.
 
-{{< twocolfigure src="/assets/homepage/update.png" alt="Changeover occurs atomically at reboot"  caption="Bottlerocket uses multiple partitions to manage updates. Changeover occurs atomically at reboot." />}}
+{{< twocolfigure caption="Bottlerocket uses multiple partitions to manage updates. Changeover occurs atomically at reboot." >}}
+    {{% readfile "includes/homepage/update.svg" %}}
+{{</ twocolfigure>}}
 
 Because system settings are accomplished through an API, Bottlerocket knows how to migrate these settings between versions.
 Should something go awry during an update, Bottlerocket has built in logic to revert to the previously working version with your settings intact.
