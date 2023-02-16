@@ -23,6 +23,9 @@ This may not be comprehensive for every file, but should be considered a living 
 │   └── [... more non-localized content]
 ├── en [localized content, each language get a directory named by ISO-639-1]
 │   ├── faq [Bottlerocket's Frequently Asked Questions]
+│   │   ├── 01-01-what-is-bottlerocket.markdown
+│   │   ├── 01-02-why-was-bottlerocket-created.markdown
+│   │   └── [... more FAQs]
 │   ├── os [Bottlerocket's documentation]
 │   │   ├── 1.12.x [versioned content, each new minor version gets a new directrory]
 │   │   │   ├── introduction.markdown
