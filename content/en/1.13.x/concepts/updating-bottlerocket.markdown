@@ -54,25 +54,27 @@ apiclient update check
 
 #### Apply Update
 
-If an update was found while checking for an update, you can apply the update using the following command:
+If an update is found while checking for an update, apply the update using the following command:
 
 ```bash
 apiclient update apply
 ```
 
-That command will download the updated Bottlerocket image, apply it to a separate partition on disk, and prepare the system to use the new version of Bottlerocket. In particular, [the partition that was just updated with the new Bottlerocket image will be marked as the "active" next boot partition](https://github.com/bottlerocket-os/bottlerocket#updates-1).
+That command downloads the updated Bottlerocket image, apply it to a separate partition on disk, and prepare the system to use the new version of Bottlerocket.
+In particular, [the partition that was just updated with the new Bottlerocket image is marked as the "active" next boot partition](https://github.com/bottlerocket-os/bottlerocket#updates-1).
 
-You can also combine the Check and Apply steps into a single command:
+It is also possible to combine the Check and Apply steps into a single command:
 
 ```bash
 apiclient update apply --check
 ```
 
-That command will first check for an update, and then apply the update if one was found.
+That command first checks for an update, and then applies the update if one is found.
 
 #### Reboot Into the New Version
 
-After applying the update, you will need to reboot the system in order to begin using the new version of Bottlerocket. You can do so with the following command:
+After applying the update, reboot the system in order to begin using the new version of Bottlerocket.
+That can be done with the following command:
 
 ```bash
 apiclient reboot
@@ -87,7 +89,7 @@ By default, the ECS updater checks for updates every 12 hours.
 
 In order to install the ECS updater, you need a few different pieces of information: the subnet information for your cluster, the name of the CloudWatch Logs log group where you want logs stored, and the name of the ECS cluster you want the ECS updater to keep updated.
 Further information on how to get that information can be found in the [Getting Started section of the ECS updater documentation](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#getting-started).
-After you've gathered those three values, you can install the ECS updater.
+After you've gathered those three values, you are ready to install the ECS updater.
 
 Detailed installation steps, including commands to run, are provided in the [Install section of the ECS updater documentation](https://github.com/bottlerocket-os/bottlerocket-ecs-updater#install).
 
@@ -106,14 +108,14 @@ Brupop installation via the released YAML file is covered in the [Brupop documen
 
 ### SSM
 
-If your Bottlerocket nodes are registered with AWS Systems Manager (SSM), you can use SSM Command Documents to update your Bottlerocket nodes.
+If your Bottlerocket nodes are registered with AWS Systems Manager (SSM), it is possible to use SSM Command Documents to update your Bottlerocket nodes.
 
-**Important:** when using the SSM instructions below to update Bottlerocket nodes, workloads will _not_ be drained from the node before rebooting the node (unlike when using Brupop, for example).
+**Important:** when using the SSM instructions below to update Bottlerocket nodes, workloads are _not_ be drained from the node before rebooting the node (unlike when using Brupop, for example).
 
 #### SSM Command Document Method
 
 SSM Command Documents allow you to specify shell commands to run on target nodes.
-You can use the `aws:runShellScript` SSM Action inside SSM Command Documents to run the `apiclient update` command on your Bottlerocket nodes.
+Use the `aws:runShellScript` SSM Action inside SSM Command Documents to run the `apiclient update` command on your Bottlerocket nodes.
 See the [`apiclient` documentation](https://github.com/bottlerocket-os/bottlerocket/blob/develop/sources/api/apiclient/README.md#update-mode) to learn more about `apiclient update`.
 
 The following three subsections cover how to create two SSM Command Documents and apply them to your Bottlerocket nodes: one Command Document updates and prepares a Bottlerocket node to use the latest available version of the Bottlerocket image, and the other Command Document reboots a Bottlerocket node in order to use that latest acquired Bottlerocket image.
@@ -133,7 +135,7 @@ A quick overview of what `apiclient update apply --check` does:
 
 ###### SSM Command Document: Check For and Apply Updates to a Bottlerocket Node
 
-The following SSM Command Document will be referred to in this documentation as `update-bottlerocket-node`:
+The following SSM Command Document is referred to in this documentation as `update-bottlerocket-node`:
 
 ```yaml
 ---
@@ -149,7 +151,7 @@ mainSteps:
 ```
 
 Congratulations!
-You now have an SSM Command Document that will update a Bottlerocket node to the latest version of Bottlerocket.
+You now have an SSM Command Document that updates a Bottlerocket node to the latest version of Bottlerocket.
 
 ##### 2. Create the SSM Command Document for Rebooting Nodes
 
@@ -158,7 +160,7 @@ Remember to select "YAML" in the "Content" box, since the [SSM Command Document 
 
 ###### SSM Command Document: Reboot a Bottlerocket Node
 
-The following SSM Command Document will be referred to in this documentation as `reboot-bottlerocket-node`:
+The following SSM Command Document is referred to in this documentation as `reboot-bottlerocket-node`:
 
 ```yaml
 ---
@@ -174,28 +176,28 @@ mainSteps:
 ```
 
 Congratulations!
-You now have an SSM Command Document that will reboot a Bottlerocket node.
+You now have an SSM Command Document that reboots a Bottlerocket node.
 
 ##### 3. Apply the SSM Command Documents to Your Bottlerocket Nodes
 
-After creating the two SSM Command Documents above ([`update-bottlerocket-node`](#ssm-command-document-check-for-and-apply-updates-to-a-bottlerocket-node) and [`reboot-bottlerocket-node`](#ssm-command-document-reboot-a-bottlerocket-node)), you can apply them to your Bottlerocket nodes.
+After creating the two SSM Command Documents above ([`update-bottlerocket-node`](#ssm-command-document-check-for-and-apply-updates-to-a-bottlerocket-node) and [`reboot-bottlerocket-node`](#ssm-command-document-reboot-a-bottlerocket-node)), apply them to your Bottlerocket nodes.
 
 To apply SSM Command Documents to your Bottlerocket nodes, follow the steps in the [AWS Systems Manager User Guide: "To send a command using Run Command"](https://docs.aws.amazon.com/systems-manager/latest/userguide/running-commands-console.html).
 
-If you are using EKS, you can select all nodes in a given EKS cluster by specifying an instance tag in the "Target selection" section of the page.
+If you are using EKS, it is possible to select all nodes in a given EKS cluster by specifying an instance tag in the "Target selection" section of the page.
 Specify `eks:cluster-name` as the tag key, with the tag value set to your cluster name.
 
-After running the SSM Command Document, you will be taken to the SSM Command status page.
-If you would like to see the output of the SSM Command Document that you just ran, you can click on an Instance ID in the "Targets and outputs" section of the page and see any output or errors.
+After running the SSM Command Document, you are taken to the SSM Command status page.
+If you would like to see the output of the SSM Command Document that you just ran, click on an Instance ID in the "Targets and outputs" section of the page and see any output or errors.
 
-Once the [first SSM Command Document (`update-bottlerocket-node`)](#ssm-command-document-check-for-and-apply-updates-to-a-bottlerocket-node) has finished running, you can apply the [second SSM Command Document (`reboot-bottlerocket-node`)](#ssm-command-document-reboot-a-bottlerocket-node) to your Bottlerocket nodes using the same process as above.
+Once the [first SSM Command Document (`update-bottlerocket-node`)](#ssm-command-document-check-for-and-apply-updates-to-a-bottlerocket-node) has finished running, apply the [second SSM Command Document (`reboot-bottlerocket-node`)](#ssm-command-document-reboot-a-bottlerocket-node) to your Bottlerocket nodes using the same process as above.
 
 ## Node Replacement
 
 ### EKS
 
-When running the `aws-k8s-*` variants of Bottlerocket on EKS, you can use either the EKS Console or [`eksctl`](https://eksctl.io/) to update your Bottlerocket nodes using the _node replacement_ method.
-This means that you will be replacing your existing Bottlerocket nodes with new Bottlerocket nodes, rather than updating your existing Bottlerocket nodes in-place.
+When running the `aws-k8s-*` variants of Bottlerocket on EKS, use either the EKS Console or [`eksctl`](https://eksctl.io/) to update your Bottlerocket nodes using the _node replacement_ method.
+This means that you are replacing your existing Bottlerocket nodes with new Bottlerocket nodes, rather than updating your existing Bottlerocket nodes in-place.
 
 #### EKS Console
 
@@ -203,12 +205,12 @@ In order to update your Bottlerocket nodes in an EKS cluster using the EKS Conso
 
 #### `eksctl`
 
-You can also use [`eksctl`](https://eksctl.io/) to update your Bottlerocket nodes.
+It is possible to use [`eksctl`](https://eksctl.io/) to update your Bottlerocket nodes.
 Specific commands can be found in the [EKS User Guide: "Update a node group version", on the `eksctl` tab](https://docs.aws.amazon.com/eks/latest/userguide/update-managed-node-group.html#mng-update).
 
 ## Locking To A Specific Release
 
-You can also lock your Bottlerocket nodes to a specific release using the Bottlerocket Settings API.
+It is possible to lock your Bottlerocket nodes to a specific release using the Bottlerocket Settings API.
 
 _A quick explanation of the `apiclient` command used below:_
 
@@ -222,7 +224,7 @@ Remember to select "YAML" in the "Content" box, since the [SSM Command Document 
 
 ### SSM Command Document: Lock to a Specific Release
 
-The following SSM Command Document will be referred to in this documentation as `version-lock-bottlerocket-node`:
+The following SSM Command Document is referred to in this documentation as `version-lock-bottlerocket-node`:
 
 ```yaml
 ---
@@ -250,7 +252,7 @@ In order to apply a version lock using SSM, follow these steps:
 1. First, tell your Bottlerocket nodes that you want them to lock to a specific version.
     - Apply the [`version-lock-bottlerocket-node` SSM Command Document previously described](#ssm-command-document-lock-to-a-specific-release).
         - In the "Command parameters" section of the Run Command page, remember to specify the full version of Bottlerocket that you want to lock to (e.g. `1.12.0`, not `1.12`).
-        - If you are using EKS, you can select all nodes in a given EKS cluster by specifying an instance tag in the "Target selection" section of the page.
+        - If you are using EKS, it is possible to select all nodes in a given EKS cluster by specifying an instance tag in the "Target selection" section of the page.
         Specify `eks:cluster-name` as the tag key, with the tag value set to your cluster name.
 2. Next, tell your Bottlerocket nodes to prepare to boot into that specific version.
     - Apply the [`update-bottlerocket-node` SSM Command Document previously described](#ssm-command-document-check-for-and-apply-updates-to-a-bottlerocket-node).
