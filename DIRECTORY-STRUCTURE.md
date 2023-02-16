@@ -22,6 +22,7 @@ This may not be comprehensive for every file, but should be considered a living 
 │   ├── trademark.markdown
 │   └── [... more non-localized content]
 ├── en [localized content, each language get a directory named by ISO-639-1]
+│   ├── faq [Bottlerocket's Frequently Asked Questions]
 │   ├── os [Bottlerocket's documentation]
 │   │   ├── 1.12.x [versioned content, each new minor version gets a new directrory]
 │   │   │   ├── introduction.markdown
