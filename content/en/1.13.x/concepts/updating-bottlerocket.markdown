@@ -108,12 +108,13 @@ Brupop installation via the released YAML file is covered in the [Brupop documen
 
 ### SSM
 
-If your Bottlerocket nodes are registered with AWS Systems Manager (SSM), it is possible to use SSM Command Documents to update your Bottlerocket nodes.
+If your Bottlerocket nodes are registered with AWS Systems Manager (SSM), it may be convenient for you to use SSM Command Documents to update your Bottlerocket nodes.
 
 **Important:** when using the SSM instructions below to update Bottlerocket nodes, workloads are _not_ be drained from the node before rebooting the node (unlike when using Brupop, for example).
 
 #### SSM Command Document Method
 
+This method performs the same action as the [`apiclient` commands](#apiclient-commands) method above, but uses SSM Command Documents rather than interactively running the `apiclient` commands from the [control container](https://github.com/bottlerocket-os/bottlerocket#control-container).
 SSM Command Documents allow you to specify shell commands to run on target nodes.
 Use the `aws:runShellScript` SSM Action inside SSM Command Documents to run the `apiclient update` command on your Bottlerocket nodes.
 See the [`apiclient` documentation](https://github.com/bottlerocket-os/bottlerocket/blob/develop/sources/api/apiclient/README.md#update-mode) to learn more about `apiclient update`.
@@ -184,7 +185,7 @@ After creating the two SSM Command Documents above ([`update-bottlerocket-node`]
 
 To apply SSM Command Documents to your Bottlerocket nodes, follow the steps in the [AWS Systems Manager User Guide: "To send a command using Run Command"](https://docs.aws.amazon.com/systems-manager/latest/userguide/running-commands-console.html).
 
-If you are using EKS, it is possible to select all nodes in a given EKS cluster by specifying an instance tag in the "Target selection" section of the page.
+If you are using EKS, select all nodes in a given EKS cluster by specifying an instance tag in the "Target selection" section of the page.
 Specify `eks:cluster-name` as the tag key, with the tag value set to your cluster name.
 
 After running the SSM Command Document, you are taken to the SSM Command status page.
@@ -205,12 +206,12 @@ In order to update your Bottlerocket nodes in an EKS cluster using the EKS Conso
 
 #### `eksctl`
 
-It is possible to use [`eksctl`](https://eksctl.io/) to update your Bottlerocket nodes.
+Using [`eksctl`](https://eksctl.io/) is another option to update your Bottlerocket nodes.
 Specific commands can be found in the [EKS User Guide: "Update a node group version", on the `eksctl` tab](https://docs.aws.amazon.com/eks/latest/userguide/update-managed-node-group.html#mng-update).
 
 ## Locking To A Specific Release
 
-It is possible to lock your Bottlerocket nodes to a specific release using the Bottlerocket Settings API.
+Locking your Bottlerocket nodes to a specific release is possible using the Bottlerocket Settings API.
 
 _A quick explanation of the `apiclient` command used below:_
 
@@ -252,7 +253,7 @@ In order to apply a version lock using SSM, follow these steps:
 1. First, tell your Bottlerocket nodes that you want them to lock to a specific version.
     - Apply the [`version-lock-bottlerocket-node` SSM Command Document previously described](#ssm-command-document-lock-to-a-specific-release).
         - In the "Command parameters" section of the Run Command page, remember to specify the full version of Bottlerocket that you want to lock to (e.g. `1.12.0`, not `1.12`).
-        - If you are using EKS, it is possible to select all nodes in a given EKS cluster by specifying an instance tag in the "Target selection" section of the page.
+        - If you are using EKS, select all nodes in a given EKS cluster by specifying an instance tag in the "Target selection" section of the page.
         Specify `eks:cluster-name` as the tag key, with the tag value set to your cluster name.
 2. Next, tell your Bottlerocket nodes to prepare to boot into that specific version.
     - Apply the [`update-bottlerocket-node` SSM Command Document previously described](#ssm-command-document-check-for-and-apply-updates-to-a-bottlerocket-node).
