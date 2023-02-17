@@ -72,86 +72,13 @@
        id="guide13068"
        inkscape:locked="false" />
   </sodipodi:namedview>
-  <style>
-      .os_outline,
-      .node_outline,
-      .container_outline,
-      .host_container_outline {
-         stroke-width:0.835521;
-         stroke-dasharray:none;
-      }
-      .os_outline,
-      .node_outline,
-      .container_outline {
-         fill:none;
-      }
-
-      .os_outline,
-      .node_outline,
-      .container_outline,
-      .host_container_outline {
-         stroke:#000;
-         stroke-opacity: 0.47;
-      }
-      .host_container_outline {
-         fill:#000;
-         fill-opacity: 0.47;
-      }
-
-      .os_label,
-      .os_label tspan  {
-         font-size:7.05556px;
-      }
-      .os_label {
-         text-align:middle;text-anchor:start;fill:#b0b0b0;fill-opacity:1;stroke:none;stroke-width:1.265;stroke-dasharray:none;stroke-opacity:1;
-      }
-      .os_label tspan {
-         fill:#101010;
-         fill-opacity:1;
-      }
-      .os_outline {
-         opacity:1;fill:none;fill-opacity:1;
-      }
-      .container_outline {
-         fill:none;
-      }
-      .host_container_label,
-      .container_label {
-         font-size:3.52778px;text-align:center;text-anchor:middle;fill:#101010;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;
-      }
-      .host_container_label tspan,
-      .container_label tspan {
-         font-size:3.52778px;text-align:center;text-anchor:middle;fill:#101010;fill-opacity:1;stroke:none;stroke-width:1;
-      }
-      .host_container_label tspan {
-         fill: #fff;
-      }
-      .shell_connector {
-         fill:none;
-         fill-opacity:1;
-         stroke:#fff;stroke-width:0.916384;
-         stroke-dasharray:0.916384, 0.916384;
-         stroke-dashoffset:10;
-         stroke-opacity:1;
-         animation: movingdash 5s linear alternate infinite
-      }
-
-      @keyframes movingdash {
-         from {
-            stroke-dashoffset: 10;
-         }
-         to {
-            stroke-dashoffset: 0;
-         }
-      }
-
-  </style>
   <defs
      id="defs7879" />
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     class="priv_container white_base">
     <g
        id="g2896"
        transform="matrix(0.54562257,0,0,0.54562257,104.50675,44.968545)">
@@ -260,7 +187,7 @@
          sodipodi:nodetypes="ccc" />
       <text
          xml:space="preserve"
-         class="container_label"
+         class="connector_label"
          x="37.18713"
          y="-179.10564"
          id="text9907"
@@ -314,7 +241,7 @@
          inkscape:export-ydpi="182.68306">
         <text
            xml:space="preserve"
-           class="container_label"
+           class="connector_label"
            x="-32.645676"
            y="-98.744576"
            id="text13280"

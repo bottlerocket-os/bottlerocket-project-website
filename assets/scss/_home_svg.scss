@@ -1,0 +1,460 @@
+
+.priv_container {  
+    .os_outline,
+    .node_outline,
+    .container_outline,
+    .host_container_outline {
+        stroke-width:0.835521;
+        stroke-dasharray:none;
+    }
+    .os_outline,
+    .node_outline,
+    .container_outline {
+        fill:none;
+    }
+
+    &.white_base .os_outline,
+    &.white_base .node_outline,
+    &.white_base .container_outline,
+    &.white_base .host_container_outline {
+        stroke:#fff;
+        stroke-opacity: 0.47;
+    }
+
+    .os_outline,
+    .node_outline,
+    .container_outline,
+    .host_container_outline {
+        stroke:#000;
+        stroke-opacity: 0.47;
+    }
+    .host_container_outline {
+        fill:#000;
+        fill-opacity: 0.47;
+    }
+
+    &.white_base .host_container_outline {
+        fill:#fff;
+        fill-opacity: 0.53;
+    }
+
+    .os_label,
+    .os_label tspan  {
+        font-size:7.05556px;
+    }
+    .os_label {
+        text-align:middle;text-anchor:start;
+        fill:#b0b0b0;fill-opacity:1;
+        stroke:none;stroke-width:1.265;stroke-dasharray:none;stroke-opacity:1;
+    }
+    .os_label tspan {
+        fill:#101010;
+        fill-opacity:1;
+    }
+    &.white_base .connector_label tpan,
+    &.white_base .host_container_label tspan {
+        fill:#000;
+    }
+    &.white_base .container_label tspan,
+    &.white_base .os_label tspan,
+    &.white_base .os_label {
+        fill:#fff;
+    }
+    .os_outline {
+        opacity:1;fill:none;fill-opacity:1;
+    }
+    .container_outline {
+        fill:none;
+    }
+    .connector_label,
+    .host_container_label,
+    .container_label {
+        font-size:3.52778px;text-align:center;text-anchor:middle;
+        fill:#101010;fill-opacity:1;
+        stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;
+    }
+    .host_container_label tspan,
+    .container_label tspan {
+        font-size:3.52778px;text-align:center;text-anchor:middle;fill:#101010;fill-opacity:1;stroke:none;stroke-width:1;
+    }
+    .host_container_label tspan {
+        fill: #fff;
+    }
+    .shell_connector {
+        fill:none;
+        fill-opacity:1;
+        stroke:#fff;stroke-width:0.916384;
+        stroke-dasharray:0.916384, 0.916384;
+        stroke-dashoffset:10;
+        stroke-opacity:1;
+        animation: movingdash 5s linear alternate infinite;
+    }
+
+    &.white_base .shell_connector {
+        stroke:#000;
+        stroke-opacity:0.6;
+    }
+
+    @keyframes movingdash {
+        from {
+            stroke-dashoffset: 10;
+        }
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+}
+
+
+.dm_v_selinux {
+
+    .dividing_line {
+        fill:#000000;
+        fill-opacity:1;
+        stroke-width:1;
+        stroke-linecap:round;
+        stroke-dasharray:1.99999, 4.00002;
+        stroke-dashoffset:0;
+        stroke-opacity:1;
+    }
+    .storage_label {
+    font-size:2.64583px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;
+    }
+    .storage_label tspan {
+        text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;
+    }
+    .storage_label.selinux tspan {
+        text-align:middle;text-anchor:middle;
+    }
+    .use_label {
+        font-size:5.29169px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;   }
+    .use_label tspan {
+        font-size:5.29169px;
+    }
+    .use_label.selinux tspan {
+        text-anchor:middle;
+    }
+    text.padlock {
+        font-size:2.46944px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;
+    }
+    text.padlock tspan {
+        font-size:2.46944px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;
+    }
+    g.padlock {
+        fill:none;
+    }
+    .properties {
+        font-size:2.64583px;text-align:start;text-anchor:start;fill:#999999;fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-dasharray:2.41218, 1.20609;stroke-dashoffset:0;stroke-opacity:1;
+    }
+    .properties tspan {
+        font-size:2.64583px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1;
+    }
+    .outline {
+        fill:none;fill-opacity:1;stroke-width:1.556;stroke-linecap:butt;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;
+    }
+    .outline_label {
+        font-size:2.64583px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.556;stroke-linecap:butt;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;
+    }
+    .outline_label tspan {
+        fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.556;
+    }
+
+    g.padlock,
+    .outline {
+        stroke-width: 1;
+        
+    }
+    .dividing_line,
+    g.padlock,
+    .outline {
+        stroke:#000;
+        stroke-opacity:0.55; 
+    }
+}
+
+.cluster-diagram-svg {
+    .container-text {
+        font-size:3.52778px;
+        text-align:center;
+        text-anchor:middle;
+        fill:#000;
+        fill-opacity:0.455879;
+        stroke:none;
+    }
+    .node-outline {
+        fill: #fff;
+        fill-opacity: 0.91;
+        stroke: #000;
+        stroke-width: 0.455879;
+        stroke-dasharray: none;
+        stroke-opacity: 0.47;
+    }
+    .container-outline {
+        fill:none;
+
+        stroke-width:0.643704;
+        stroke: #000;
+        stroke-dasharray: none;
+        stroke-opacity: 0.47;
+
+    }
+    .bottlerocket-outline {
+        fill:none;
+        stroke:#000;
+        stroke-width:0.455879;
+        stroke-dasharray:none;
+        stroke-opacity: 0.47;
+    }
+    .bottlerocket-outline-label {
+        font-size:3.84967px;
+        text-align:start;
+        text-anchor:start;
+        fill:#000;
+        fill-opacity:0.455879;
+        stroke:none;
+    }
+    .bottlerocket-outline-label tspan {
+        font-size:3.84967px;
+        fill:#000;
+        fill-opacity:0.455879;
+        stroke:none;
+    }
+    .data-plane {
+        fill:#fff;
+        fill-opacity:0.91;
+        stroke: none;
+    }
+    .data-plane-label {
+        font-size:6.58265px;
+        text-align:center;
+        text-anchor:start;
+        fill:#000;
+        fill-opacity:0.455879;
+        stroke: none;
+    }
+    .diagram-outline {
+        fill:none;
+        stroke:#fff;
+        stroke-width:1.10647;
+        stroke-dasharray:none;
+        stroke-opacity:0.69;
+    }
+    .diagram-label tspan {
+        font-size:4.23333px;
+        text-align:start;
+        text-anchor:start;
+        opacity:1;
+        fill:#fff;
+        fill-opacity:1;
+        stroke:none;
+    }
+    .control-plane-outline {
+        fill:#fff;
+        fill-opacity:0.69;
+        stroke:none;
+    }
+    .control-plane-label {
+        font-size:6.58265px;
+        text-align:start;
+        text-anchor:start;
+        fill:#ffffff;
+        fill-opacity:1;
+        stroke:none;
+    }
+}
+
+.update_svg {
+    .update_node {
+    fill:none;
+        stroke-dasharray:none;
+    }
+    .version_label {
+        font-size:3.84967px;text-align:center;text-anchor:middle;
+        fill:#b0b0b0;fill-opacity:1;stroke:none;
+    }
+    .version_label tspan {
+        font-size:3.84967px;text-align:center;text-anchor:middle;
+        fill:#101010;fill-opacity:1;stroke-width:0.690213;
+    }
+    .container_label {
+        font-size:2.64583px;text-align:center;text-anchor:middle;
+        fill:#101010;fill-opacity:1;stroke:none;stroke-width:0.545623;stroke-dasharray:none;stroke-opacity:1;
+    }
+    .container_label tspan {
+        font-size:2.64583px;text-align:center;text-anchor:middle;fill:#101010;fill-opacity:1;stroke:none;stroke-width:0.545623;
+    }
+    .version_outline,
+    .update_node,
+    .container_outline {
+        stroke:#000;
+        stroke-opacity:0.47;
+        stroke-width:0.351219;
+    }
+    
+    .container_outline {
+        fill:none;
+        stroke-dasharray:none;
+    }
+    .connecting_line {
+        fill:none;
+        stroke-width:0.499999;
+        stroke-dasharray:0.499999, 0.499999;
+        stroke-opacity:1;
+    }
+    .connecting_line.running_old_crossover,
+    .connecting_line.download_line {
+        stroke:#acacac;
+    }
+    .connecting_line.new_running_crossover {
+        stroke:#009307;
+    }
+    .download_label {
+        font-size:1.92484px;text-align:center;text-anchor:middle;fill:#101010;fill-opacity:1;stroke:none;stroke-width:0.545623;stroke-dasharray:none;stroke-opacity:1;
+    }
+    .version_outline {
+        fill:none;
+        stroke-dasharray:none;
+    }
+    .version_outline.inactive {
+        fill:#000;
+        fill-opacity:0.31;
+    }
+    .reboot_label {
+        font-size:3.84528px;text-align:center;text-anchor:middle;
+        fill:#101010;
+        fill-opacity:1;stroke:none;stroke-width:0.545623;stroke-dasharray:none;stroke-opacity:1;
+    }
+    .reboot_label tspan {
+        font-size:3.84528px;text-align:center;text-anchor:middle;
+        fill:#101010;
+        fill-opacity:1;stroke:none;stroke-width:0.545623;
+    }
+    
+    &.stage1 .connecting_line.download_line {
+        stroke:#009307;
+    }
+    
+    &.stage1 .connecting_line.download_line,
+    &.stage2 .connecting_line.new_running_crossover,
+    &.stage2 .connecting_line.running_old_crossover {
+        animation: movingdash 5s linear normal infinite;
+    }
+    
+    &.stage3 .connecting_line.new_running_crossover,
+    &.stage3 .connecting_line.running_old_crossover {
+        stroke-dasharray:none;
+    }
+    
+    &.stage1 .new_node,
+    &.stage1 .reboot_label,
+    &.stage1 .connecting_line.running_old_crossover,
+    &.stage1 .connecting_line.new_running_crossover {
+        display: none;
+    }
+    &.stage3 .old_node.version_label tspan,
+    &.stage3 .old_node .container_label tspan,
+    &.stage2 .old_node.version_label tspan,
+    &.stage2 .old_node .container_label tspan {
+        fill: #000;
+        fill-opacity:0.5;
+    }
+    &.stage3 .version_outline.old_node,
+    &.stage3 .update_node.old_node,
+    &.stage3 .old_node  .container_outline,
+    &.stage2 .version_outline.old_node,
+    &.stage2 .update_node.old_node,
+    &.stage2 .old_node  .container_outline{
+        stroke:#000;
+        stroke-opacity:0.2;
+        stroke-width:0.351219;
+    }
+    &.stage3 .inactive.old_node,
+    &.stage2 .inactive.old_node {
+        fill: #000;
+        fill-opacity: 0.1;
+    }
+    &.stage2 .new_node.version_label tspan,
+    &.stage2 .new_node .version_label,
+    &.stage2 .new_node .container_label,
+    &.stage2 .new_node .container_outline,
+    &.stage2 .update_node.new_node,
+    &.stage2 .version_outline.new_node,
+    &.stage2 .connecting_line.new_node {
+        display: none;
+    }
+    
+    
+    @keyframes movingdash {
+        from {
+            stroke-dashoffset: 10;
+        }
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+}
+
+.variant_animation {
+    .grid_position {
+        fill:#fff;
+        fill-opacity: 0.5;
+        stroke-width:1;
+    }
+    .dot {
+        fill:#fff;
+        fill-opacity: 0.5;
+        
+        stroke-width:1;
+    }
+    .variant_label {
+        font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.52777px;
+        -inkscape-font-specification:'Courier New Bold';text-align:center;text-anchor:middle;
+        fill:#101010;
+        stroke-width:1;
+    }
+    .variant_label tspan {
+        font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;
+    }
+    .column_heading {
+        font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.93888889px;
+        -inkscape-font-specification:'Courier New Bold';text-align:center;text-anchor:middle;fill:#101010;stroke-width:1
+    }
+    .column_heading tspan {
+        font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;stroke-width:1;font-size:4.93888889px;
+    }
+    .column_item {
+        font-size:4.93888889px;
+        -inkscape-font-specification:'Courier New';text-align:center;text-anchor:middle;
+        fill:#101010;
+        stroke-width:1;
+    }
+    .column_continue {
+        font-size:4.93888889px;
+        -inkscape-font-specification:'Courier New';text-align:center;text-anchor:middle;
+        fill:#101010;
+        stroke-width:1;
+    }
+    .column_continue tspan {
+        stroke-width:1;font-size:4.93888889px;
+    }
+
+    .variant_outline,
+    .variant_connection {
+        fill:none;
+        stroke:#000;
+        stroke-opacity:0.3;
+        stroke-width:1;
+    }
+    .variant_layer {
+        display: none;
+    }
+    
+    &.white_base .variant_label,
+    &.white_base .column_heading,
+    &.white_base .column_item {
+        fill: #fff;
+    }
+    &.white_base .dot {
+        fill:#000;
+    }
+}

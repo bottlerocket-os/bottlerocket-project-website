@@ -8,92 +8,26 @@
    id="svg17206"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <style>
-      .update_svg .update_node {
-         fill:none;
-         stroke-dasharray:none;
-      }
-      .update_svg .version_label {
-         font-size:3.84967px;text-align:center;text-anchor:middle;
-         fill:#b0b0b0;fill-opacity:1;stroke:none;
-      }
-      .update_svg .version_label tspan {
-         font-size:3.84967px;text-align:center;text-anchor:middle;
-         fill:#101010;fill-opacity:1;stroke-width:0.690213;
-      }
-      .update_svg .container_label {
-         font-size:2.64583px;text-align:center;text-anchor:middle;
-         fill:#101010;fill-opacity:1;stroke:none;stroke-width:0.545623;stroke-dasharray:none;stroke-opacity:1;
-      }
-      .update_svg .container_label tspan {
-         font-size:2.64583px;text-align:center;text-anchor:middle;fill:#101010;fill-opacity:1;stroke:none;stroke-width:0.545623;
-      }
-      .update_svg .version_outline,
-      .update_svg .update_node,
-      .update_svg .container_outline {
-         stroke:#000;
-         stroke-opacity:0.47;
-         stroke-width:0.351219;
-      }
+  <script>
+$(document).ready(function() {
+   var $updateSvgDiagram = $('#update_svg_diagram'),
+   stages = 3,
+   currentStage = 0;
 
-      .update_svg .container_outline {
-         fill:none;
-         stroke-dasharray:none;
-      }
-      .update_svg .connecting_line {
-         fill:none;
-         stroke-width:0.499999;
-         stroke-dasharray:0.499999, 0.499999;
-         stroke-opacity:1;
-      }
-      .update_svg .connecting_line.running_old_crossover,
-      .update_svg .connecting_line.download_line {
-         stroke:#acacac;
-      }
-      .update_svg .connecting_line.new_running_crossover {
-         stroke:#009307;
-      }
-      .update_svg .download_label {
-         font-size:1.92484px;text-align:center;text-anchor:middle;fill:#101010;fill-opacity:1;stroke:none;stroke-width:0.545623;stroke-dasharray:none;stroke-opacity:1;
-      }
-      .update_svg .version_outline {
-         fill:none;
-         stroke-dasharray:none;
-      }
-      .update_svg .version_outline.inactive {
-         fill:#000;
-         fill-opacity:0.31;
-      }
-      .update_svg .reboot_label {
-         font-size:3.84528px;text-align:center;text-anchor:middle;
-         fill:#101010;
-         fill-opacity:1;stroke:none;stroke-width:0.545623;stroke-dasharray:none;stroke-opacity:1;
-      }
-      .update_svg .reboot_label tspan {
-         font-size:3.84528px;text-align:center;text-anchor:middle;
-         fill:#101010;
-         fill-opacity:1;stroke:none;stroke-width:0.545623;
-      }
+   setInterval(function() { 
+      $updateSvgDiagram.removeClass('stage'+currentStage); 
+      currentStage = currentStage == stages ? 0 : currentStage + 1;
+      $updateSvgDiagram.addClass('stage'+currentStage);  
+   }, 3000);
 
-      .update_svg.stage1 .connecting_line.download_line {
-         stroke:#009307;
-         animation: movingdash 5s linear normal infinite;
-      }
+});
+  </script>
 
-      @keyframes movingdash {
-         from {
-            stroke-dashoffset: 10;
-         }
-         to {
-            stroke-dashoffset: 0;
-         }
-      }
-  </style>
   <g
      class="update_svg"
-     id="layer1">
+     id="update_svg_diagram">
     <rect
-       class="version_outline inactive"
+       class="version_outline inactive new_node"
        id="rect19353"
        width="48.530731"
        height="13.065266"
@@ -101,7 +35,7 @@
        y="46.649117"
        rx="2" />
     <rect
-       class="version_outline inactive"
+       class="version_outline inactive old_node"
        id="rect18004"
        width="48.530731"
        height="13.065266"
@@ -109,7 +43,7 @@
        y="46.649117"
        rx="2" />
     <rect
-       class="update_node"
+       class="update_node old_node"
        id="rect2357"
        width="54.025093"
        height="56.266937"
@@ -118,7 +52,7 @@
        rx="2" />
     <text
        xml:space="preserve"
-       class="version_label"
+       class="version_label old_node"
        x="43.163525"
        y="36.081306"
        id="text2363"><tspan
@@ -132,7 +66,7 @@
          y="45.705482"
          id="tspan18042" /></text>
     <rect
-       class="version_outline"
+       class="version_outline old_node"
        id="rect2631"
        width="48.530731"
        height="13.065266"
@@ -140,6 +74,7 @@
        y="30.766722"
        rx="2" />
     <g
+       class="old_node"
        id="g8818"
        transform="translate(-26.182722,-67.753808)">
       <g
@@ -255,7 +190,7 @@
     </g>
     <text
        xml:space="preserve"
-       class="version_label"
+       class="version_label old_node"
        x="43.203938"
        y="51.61319"
        id="text18002"><tspan
@@ -280,7 +215,7 @@
          y="3.3296657"
          id="tspan18057">Download</tspan></text>
     <rect
-       class="update_node"
+       class="update_node new_node"
        id="rect19295"
        width="54.025093"
        height="56.266937"
@@ -288,7 +223,7 @@
        y="6.1946402"
        rx="2" />
     <rect
-       class="version_outline"
+       class="version_outline new_node"
        id="rect19305"
        width="48.530731"
        height="13.065266"
@@ -297,7 +232,8 @@
        rx="2" />
     <g
        id="g19360"
-       transform="translate(-26.182722,-67.753808)">
+       transform="translate(-26.182722,-67.753808)"
+       class="new_node">
       <text
          xml:space="preserve"
          class="version_label"
@@ -316,7 +252,7 @@
     </g>
     <text
        xml:space="preserve"
-       class="version_label"
+       class="version_label new_node"
        x="140.79526"
        y="51.729805"
        id="text19351"><tspan
@@ -329,13 +265,14 @@
     <path
        d="m 96.301208,49.029797 5.490912,4.447175 h 14.35426"
        id="path20104"
-       class="connecting_line running_old_crossover" />
+       class="connecting_line running_old_crossover new_node" />
     <path
        d="m 96.301208,41.985573 5.490912,-4.447171 h 14.35426"
-       class="connecting_line new_running_crossover" />
+       class="connecting_line new_running_crossover new_node" />
     <g
        id="g8860"
-       transform="translate(71.408598,-67.753808)">
+       transform="translate(71.408598,-67.753808)"
+       class="new_node">
       <g
          id="g8826">
         <rect

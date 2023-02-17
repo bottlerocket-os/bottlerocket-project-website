@@ -1,103 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <svg
-   width="154.315mm"
-   height="109.844mm"
+   width="100%"
    viewBox="0 0 154.315 109.844"
    version="1.1"
    id="clustersvg"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-    <style type="text/css"> 
-        .cluster-diagram-svg .container-text {
-            font-size:3.52778px;
-            text-align:center;
-            text-anchor:middle;
-            fill:#000;
-            fill-opacity:0.455879;
-            stroke:none;
-        }
-        .cluster-diagram-svg .node-outline {
-            fill: #fff;
-            fill-opacity: 0.91;
-            stroke: #000;
-            stroke-width: 0.455879;
-            stroke-dasharray: none;
-            stroke-opacity: 0.47;
-        }
-        .cluster-diagram-svg .container-outline {
-            fill:none;
-
-            stroke-width:0.643704;
-            stroke: #000;
-            stroke-dasharray: none;
-            stroke-opacity: 0.47;
-
-        }
-        .cluster-diagram-svg .bottlerocket-outline {
-            fill:none;
-            stroke:#000;
-            stroke-width:0.455879;
-            stroke-dasharray:none;
-            stroke-opacity: 0.47;
-        }
-        .cluster-diagram-svg .bottlerocket-outline-label {
-            font-size:3.84967px;
-            text-align:start;
-            text-anchor:start;
-            fill:#000;
-            fill-opacity:0.455879;
-            stroke:none;
-        }
-        .cluster-diagram-svg .bottlerocket-outline-label tspan {
-            font-size:3.84967px;
-            fill:#000;
-            fill-opacity:0.455879;
-            stroke:none;
-        }
-        .cluster-diagram-svg .data-plane {
-            fill:#fff;
-            fill-opacity:0.91;
-            stroke: none;
-        }
-        .cluster-diagram-svg .data-plane-label {
-            font-size:6.58265px;
-            text-align:center;
-            text-anchor:start;
-            fill:#000;
-            fill-opacity:0.455879;
-            stroke: none;
-        }
-        .cluster-diagram-svg .diagram-outline {
-            fill:none;
-            stroke:#fff;
-            stroke-width:1.10647;
-            stroke-dasharray:none;
-            stroke-opacity:0.69;
-        }
-        .cluster-diagram-svg .diagram-label tspan {
-            font-size:4.23333px;
-            text-align:start;
-            text-anchor:start;
-            opacity:1;
-            fill:#fff;
-            fill-opacity:1;
-            stroke:none;
-        }
-        .cluster-diagram-svg .control-plane-outline {
-            fill:#fff;
-            fill-opacity:0.69;
-            stroke:none;
-        }
-        .cluster-diagram-svg .control-plane-label {
-            font-size:6.58265px;
-            text-align:start;
-            text-anchor:start;
-            fill:#ffffff;
-            fill-opacity:1;
-            stroke:none;
-        }
-    </style>
     <defs
         id="defs2" />
     <g

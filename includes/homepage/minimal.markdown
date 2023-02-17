@@ -7,10 +7,9 @@ By excluding these extraneous pieces of software, your **operational and securit
 Bottlerocket manages complexity and requirements for different orchestrators, platforms, and architectures into specific builds for every compatible combination called **variants**.
 This ensures that your operating system is tailor made for that set of requirements.
 
-{{< twocolfigure  alt="Diagram of variants"  caption="Bottlerocket variants assemble everything needed to run in a given environment. Pick the appropriate variant and nothing else is needed to join the cluster." >}}
+{{< stackedfigure  alt="Diagram of variants"  caption="Bottlerocket variants assemble everything needed to run in a given environment. Pick the appropriate variant and nothing else is needed to join the cluster." >}}
     {{% readfile "includes/homepage/variants.svg" %}}
-{{</ twocolfigure>}}
-
+{{</ stackedfigure>}}
 
 Bottlerocket itself **does not have a shell**.
 It doesn’t need one.

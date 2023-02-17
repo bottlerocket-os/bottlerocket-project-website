@@ -1,4 +1,3 @@
-
 ## Security Focused
 
 Being both minimal and updatable underlie important aspects of Bottlerocket’s focus on security.
@@ -12,6 +11,6 @@ The root filesystem of Bottlerocket is immutable.
 [`dm-verity`](https://docs.kernel.org/admin-guide/device-mapper/verity.html) provides transparent integrity checking of the root filesystem and the kernel will restart if any changes to the underlying block device are detected.
 Additionally, Bottlerocket has an always-enabled, enforced, restrictive [SELinux](https://selinuxproject.org/page/Main_Page) policy for the mutable filesystem that helps prevent containers from executing dangerous operations, even when running as root.
 
-![Changeover occurs atomically at reboot](/assets/homepage/selinux-dmverity.png)
-
-*Bottlerocket has many layers of protection against unintended changes to the system.*
+{{< twocolfigure  alt="Diagram of storage security"  caption="Bottlerocket has many layers of protection against unintended changes to the system." >}}
+    {{% readfile "includes/homepage/dm-verity-selinux.svg" %}}
+{{</ twocolfigure>}}
