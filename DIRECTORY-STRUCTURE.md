@@ -60,7 +60,8 @@ This may not be comprehensive for every file, but should be considered a living 
 │   │   │   │       └── [... more settings]
 │   │   │   ├── login
 │   │   │   │   ├── control-container.markdown
-│   │   │   │   └── admin-container.markdown
+│   │   │   │   ├── admin-container.markdown
+│   │   │   │   └── regaining-access.markdown
 │   │   └── [... more versions]
 │   ├── control-container
 │   │   ├── 0.7.x
