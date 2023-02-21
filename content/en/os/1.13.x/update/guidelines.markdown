@@ -11,7 +11,7 @@ Certain movements between releases of Bottlerocket are accessible through an _in
 
 ### Between Minor or Patch Versions of the Same Variant
 
-With the exception of major versions, it is possible to update from one released version of a variant to another released version of the same variant.
+With the exception of moving between major versions and a [caveat discussed below](#too-many-releases-between-versions), it is possible to update _in-place_ from one released version of a variant to another released version of the same variant.
 In particular, the following update paths work:
 
 - Minor version to minor version (e.g. `1.10.0` to `1.11.0`)
@@ -20,18 +20,14 @@ In particular, the following update paths work:
 - Patch version to minor version (e.g. `1.10.1` to `1.11.0`)
 
 Furthermore, skipping minor or patch versions of the same variant is allowed.
-There is a [caveat discussed below](#too-many-releases-between-versions), however, if there are too many minor or patch releases between your initial and target version.
-For example, a possible update path is `aws-k8s-1.23` version `1.10.1` to `aws-k8s-1.23` version `1.12.0`.
 Bottlerocket runs all update [settings migrations](https://github.com/bottlerocket-os/bottlerocket/tree/develop/sources/api/migration#data-store-migration) between the initial and target versions in sequence if a version is skipped.
 So, for the `1.10.1` to `1.12.0` example, the [settings migrations](https://github.com/bottlerocket-os/bottlerocket/tree/develop/sources/api/migration#data-store-migration) from `1.11.0` and `1.11.1` are run as part of the update to `1.12.0`.
 
-## Limits
-
-### Caveats
+## Caveats and Limits
 
 You may need to consider the following caveats when updating your Bottlerocket nodes.
 
-#### Too Many Releases Between Versions
+### Too Many Releases Between Versions
 
 There is a [known issue](https://github.com/bottlerocket-os/bottlerocket/issues/2589) where Bottlerocket boots into a "no space left on device" error when updating between versions that are "too far apart" (too many intermediate releases -- minor or patch -- between the initial and target).
 For example, updating between versions `1.7.2` and `1.11.0` fails in this way.
