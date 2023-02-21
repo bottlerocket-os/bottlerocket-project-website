@@ -42,6 +42,7 @@ This may not be comprehensive for every file, but should be considered a living 
 │   │   │   │       └── [... more platforms]
 │   │   │   ├── update [how to move to newer versions]
 │   │   │   │   ├── methods.markdown [methods and instructions to update]
+│   │   │   │   ├── guidelines.markdown [guidelines and caveats around updating]
 │   │   │   │   └── comparison.markdown [how each method is different]
 │   │   │   ├── hardware [topics specific to underlying hardware]
 │   │   │   │   ├── requirements.markdown
