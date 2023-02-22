@@ -44,6 +44,6 @@ footer_about_disable = true
     languageName = 'all'
     weight = 10
   [languages.en]
-    contentDir = 'content/english'
+    contentDir = 'content/en'
     languageName = 'English'
     weight = 11
