@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100%"
+   viewBox="0 0 330 150"
+   version="1.1"
+   id="svg3585"
+   class="variant_animation white_base"
+   inkscape:version="1.2.1 (9c6d41e, 2022-07-14)"
+   sodipodi:docname="variants.svg"
+   inkscape:export-filename="variants.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+<script>
+$(document).ready(function() {
+   var
+      currentLayer = 0,
+      $layers = $('.variant_layer'),
+      switchLayer = function() { $layers.css("display","none").eq(currentLayer).css("display","inline"); },
+      switchSpeed = 2000;
+
+   switchLayer();
+   setInterval(function() {  
+         currentLayer = currentLayer === ($layers.length - 1) ? 0 : currentLayer + 1; 
+         switchLayer(); 
+      }, 
+      switchSpeed
+   );
+});
+</script>
+
+      <sodipodi:namedview
+         id="namedview3587"
+         pagecolor="#ffffff"
+         bordercolor="#000000"
+         borderopacity="0.25"
+         inkscape:showpageshadow="2"
+         inkscape:pageopacity="0.0"
+         inkscape:pagecheckerboard="0"
+         inkscape:deskcolor="#d1d1d1"
+         inkscape:document-units="mm"
+         showgrid="false"
+         showguides="true"
+         inkscape:zoom="1.0561998"
+         inkscape:cx="417.53464"
+         inkscape:cy="144.38556"
+         inkscape:window-width="1440"
+         inkscape:window-height="768"
+         inkscape:window-x="0"
+         inkscape:window-y="25"
+         inkscape:window-maximized="0"
+         inkscape:current-layer="layer3" />
+  <defs
+     id="defs3582" />
+  <g
+     inkscape:groupmode="layer"
+     id="grid_layer"
+     inkscape:label="Layer 2"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <rect
+       class="grid_position"
+       id="rect6034"
+       width="52.856556"
+       height="21.292925"
+       x="3.1531131"
+       y="70.141403"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6036"
+       width="52.856556"
+       height="21.292925"
+       x="3.1531131"
+       y="94.440384"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6038"
+       width="52.856556"
+       height="21.292925"
+       x="3.4036181"
+       y="118.73937"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6142"
+       width="52.856556"
+       height="21.292925"
+       x="58.471573"
+       y="70.141403"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6144"
+       width="52.856556"
+       height="21.292925"
+       x="113.79003"
+       y="70.141403"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6146"
+       width="52.856556"
+       height="21.292925"
+       x="169.10849"
+       y="70.141403"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6148"
+       width="52.856556"
+       height="21.292925"
+       x="169.10849"
+       y="94.440384"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6150"
+       width="52.856556"
+       height="21.292925"
+       x="169.10849"
+       y="118.73937"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6152"
+       width="52.856556"
+       height="21.292925"
+       x="58.471573"
+       y="94.440384"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6154"
+       width="52.856556"
+       height="21.292925"
+       x="113.79003"
+       y="94.440384"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6156"
+       width="52.856556"
+       height="21.292925"
+       x="58.638577"
+       y="118.73937"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6158"
+       width="52.856556"
+       height="21.292925"
+       x="113.87354"
+       y="118.73937"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6016"
+       width="52.856556"
+       height="21.292925"
+       x="169.10849"
+       y="45.341404"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6018"
+       width="52.856556"
+       height="21.292925"
+       x="113.68636"
+       y="45.341404"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6020"
+       width="52.856556"
+       height="21.292925"
+       x="58.264214"
+       y="45.341404"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6022"
+       width="52.856556"
+       height="21.292925"
+       x="2.8420689"
+       y="45.842415"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect5655"
+       width="52.856556"
+       height="21.292925"
+       x="169.10849"
+       y="21.54343"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect5657"
+       width="52.856556"
+       height="21.292925"
+       x="113.68636"
+       y="21.54343"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect5659"
+       width="52.856556"
+       height="21.292925"
+       x="58.264214"
+       y="21.54343"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect5661"
+       width="52.856556"
+       height="21.292925"
+       x="2.8420689"
+       y="21.54343"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6339"
+       width="52.856556"
+       height="21.292925"
+       x="3.4036181"
+       y="143.03836"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6341"
+       width="52.856556"
+       height="21.292925"
+       x="58.638577"
+       y="143.03836"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6343"
+       width="52.856556"
+       height="21.292925"
+       x="113.87354"
+       y="143.03836"
+       rx="4.1716633" />
+    <rect
+       class="grid_position"
+       id="rect6347"
+       width="52.856556"
+       height="21.292925"
+       x="169.10849"
+       y="143.03836"
+       rx="4.1716633" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="k8s_layer"
+     inkscape:label="ec2-k8s"
+     class="variant_layer">
+    <path
+       class="variant_connection"
+       d="m 29.058579,56.614128 56.363625,25.050501 54.610086,-25.551511 55.1111,25.050501 h 34.06868"
+       id="path6431" />
+    <rect
+       class="variant_outline"
+       id="rect6487"
+       width="89.346672"
+       height="17.702255"
+       x="229.25388"
+       y="72.187241"
+       rx="2" />
+    <text
+       xml:space="preserve"
+       class="variant_label"
+       x="274.08826"
+       y="82.151993"
+       id="text6494"><tspan
+         sodipodi:role="line"
+         id="tspan6490"
+         class="variant_label"
+         x="274.08826"
+         y="82.151993">bottlerocket-aws-k8s-1.23-aarch64-1.11</tspan></text>
+    <circle
+       class="dot"
+       id="path6309"
+       cx="29.270346"
+       cy="56.48888"
+       r="4.1333323" />
+    <circle
+       class="dot"
+       id="circle6311"
+       cx="84.936028"
+       cy="80.787865"
+       r="4.1333323" />
+    <circle
+       class="dot"
+       id="circle6313"
+       cx="140.11464"
+       cy="56.48888"
+       r="4.1333323" />
+    <circle
+       class="dot"
+       id="circle6315"
+       cx="195.22574"
+       cy="80.537361"
+       r="4.1333323" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="ecs_layer"
+     inkscape:label="ec2-ecs"
+     class="variant_layer">
+    <path
+       class="variant_connection"
+       d="M 29.058579,56.614128 85.422204,129.26058 140.28279,32.565648 195.8949,56.864634 h 33.31717"
+       id="path6696"
+       sodipodi:nodetypes="ccccc" />
+    <rect
+       class="variant_outline"
+       id="rect6698"
+       width="89.346672"
+       height="17.702255"
+       x="229.25388"
+       y="47.888256"
+       rx="2" />
+    <text
+       xml:space="preserve"
+       class="variant_label"
+       x="274.08826"
+       y="57.853008"
+       id="text6704"><tspan
+         sodipodi:role="line"
+         id="tspan6700"
+         class="variant_label"
+         x="274.08826"
+         y="57.853008">bottlerocket-aws-ecs-1-x86_64-1.12</tspan></text>
+    <circle
+       class="dot"
+       id="circle6706"
+       cx="29.270346"
+       cy="56.48888"
+       r="4.1333323" />
+    <circle
+       class="dot"
+       id="circle6708"
+       cx="85.066856"
+       cy="129.38583"
+       r="4.1333323" />
+    <circle
+       class="dot"
+       id="circle6710"
+       cx="140.11465"
+       cy="32.189892"
+       r="4.1333323" />
+    <circle
+       class="dot"
+       id="circle6712"
+       cx="195.53677"
+       cy="56.48888"
+       r="4.1333323" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="metal_layer"
+     inkscape:label="metal"
+     class="variant_layer">
+    <path
+       class="variant_connection"
+       d="M 29.559589,81.414123 C 66.264969,64.670854 103.28152,48.638603 140.28279,32.565648 l 55.61211,24.298986 33.31717,-0.250505"
+       id="path6568"
+       sodipodi:nodetypes="cccc" />
+    <g
+       id="g6694"
+       transform="translate(0,-24.54949)"
+       style="display:inline">
+      <rect
+         class="variant_outline"
+         id="rect6570"
+         width="89.346672"
+         height="17.702255"
+         x="229.25388"
+         y="72.187241"
+         rx="2" />
+      <text
+         xml:space="preserve"
+         class="variant_label"
+         x="274.08826"
+         y="82.151993"
+         id="text6576"><tspan
+           sodipodi:role="line"
+           id="tspan6572"
+           class="variant_label"
+           x="274.08826"
+           y="82.151993">bottlerocket-metal-k8s-1.24-x86_64-1.12</tspan></text>
+    </g>
+    <circle
+       class="dot"
+       id="circle6578"
+       cx="29.581392"
+       cy="80.787865"
+       r="4.1333323" />
+    <circle
+       class="dot"
+       id="circle6580"
+       cx="84.658905"
+       cy="55.962029"
+       r="4.1333323" />
+    <circle
+       class="dot"
+       id="circle6582"
+       cx="140.11465"
+       cy="32.189892"
+       r="4.1333323" />
+    <circle
+       class="dot"
+       id="circle6584"
+       cx="195.53677"
+       cy="56.48888"
+       r="4.1333323" />
+  </g>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="grid_labels">
+    <text
+       xml:space="preserve"
+       class="column_heading"
+       x="29.228144"
+       y="14.508884"
+       id="text4799"><tspan
+         sodipodi:role="line"
+         id="tspan4797"
+         x="29.228144"
+         y="14.508884">Platform</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_heading"
+       x="84.714882"
+       y="14.508884"
+       id="text4807"><tspan
+         sodipodi:role="line"
+         id="tspan4803"
+         x="84.714882"
+         y="14.508884">Orchestrator</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_heading"
+       x="140.23608"
+       y="14.508884"
+       id="text4819"><tspan
+         sodipodi:role="line"
+         x="140.23608"
+         y="14.508884"
+         id="tspan4817">Architecture</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_heading"
+       x="195.56346"
+       y="8.3376837"
+       id="text4825"><tspan
+         sodipodi:role="line"
+         x="195.56346"
+         y="8.3376837"
+         id="tspan6875">Bottlerocket</tspan><tspan
+         sodipodi:role="line"
+         x="195.56346"
+         y="14.511296"
+         id="tspan6879">Version</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_item"
+       x="29.392647"
+       y="32.938339"
+       id="text5559"><tspan
+         sodipodi:role="line"
+         x="29.392647"
+         y="32.938339"
+         id="tspan5561">VMWare VSphere</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_item"
+       x="29.467577"
+       y="57.539631"
+       id="text5567"><tspan
+         sodipodi:role="line"
+         x="29.467577"
+         y="57.539631"
+         id="tspan5565">AWS/EC2</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_item"
+       x="29.665796"
+       y="81.84034"
+       id="text5571"><tspan
+         sodipodi:role="line"
+         x="29.665796"
+         y="81.84034"
+         id="tspan5569">Bare Metal</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_item"
+       x="84.794121"
+       y="57.04034"
+       id="text5575"><tspan
+         sodipodi:role="line"
+         x="84.794121"
+         y="57.04034"
+         id="tspan5573">Kubernetes 1.24</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_item"
+       x="85.150398"
+       y="130.38835"
+       id="text5579"><tspan
+         sodipodi:role="line"
+         x="85.150398"
+         y="130.38835"
+         id="tspan5577">ECS</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_item"
+       x="140.23953"
+       y="32.813454"
+       id="text5583"><tspan
+         sodipodi:role="line"
+         x="140.23953"
+         y="32.813454"
+         id="tspan5581">x86_64</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_item"
+       x="140.31187"
+       y="57.539631"
+       id="text5587"><tspan
+         sodipodi:role="line"
+         x="140.31187"
+         y="57.539631"
+         id="tspan5585">ARM/aarch64</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_item"
+       x="195.55228"
+       y="57.569775"
+       id="text5591"><tspan
+         sodipodi:role="line"
+         id="tspan5589"
+         x="195.55228"
+         y="57.569775">1.12</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_item"
+       x="195.53763"
+       y="81.857567"
+       id="text5595"><tspan
+         sodipodi:role="line"
+         x="195.53763"
+         y="81.857567"
+         id="tspan5597">1.11</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_item"
+       x="195.53763"
+       y="106.16774"
+       id="text5603"><tspan
+         sodipodi:role="line"
+         x="195.53763"
+         y="106.16774"
+         id="tspan5601">1.10</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_continue"
+       x="29.58053"
+       y="100.85886"
+       id="text5607"><tspan
+         sodipodi:role="line"
+         id="tspan5605"
+         x="29.58053"
+         y="100.85886">.</tspan><tspan
+         sodipodi:role="line"
+         x="29.58053"
+         y="105.26858"
+         id="tspan5611">.</tspan><tspan
+         sodipodi:role="line"
+         x="29.58053"
+         y="109.67829"
+         id="tspan5613">.</tspan><tspan
+         sodipodi:role="line"
+         x="29.58053"
+         y="114.08801"
+         id="tspan5609" /></text>
+    <text
+       xml:space="preserve"
+       class="column_continue"
+       x="195.5359"
+       y="27.96191"
+       id="text5623"><tspan
+         sodipodi:role="line"
+         id="tspan5615"
+         x="195.5359"
+         y="27.96191">.</tspan><tspan
+         sodipodi:role="line"
+         x="195.5359"
+         y="32.37162"
+         id="tspan5617">.</tspan><tspan
+         sodipodi:role="line"
+         x="195.5359"
+         y="36.781334"
+         id="tspan5619">.</tspan><tspan
+         sodipodi:role="line"
+         x="195.5359"
+         y="41.191048"
+         id="tspan5621" /></text>
+    <text
+       xml:space="preserve"
+       class="column_continue"
+       x="195.5359"
+       y="125.15785"
+       id="text5633"><tspan
+         sodipodi:role="line"
+         id="tspan5625"
+         x="195.5359"
+         y="125.15785">.</tspan><tspan
+         sodipodi:role="line"
+         x="195.5359"
+         y="129.56757"
+         id="tspan5627">.</tspan><tspan
+         sodipodi:role="line"
+         x="195.5359"
+         y="133.97728"
+         id="tspan5629">.</tspan><tspan
+         sodipodi:role="line"
+         x="195.5359"
+         y="138.38699"
+         id="tspan5631" /></text>
+    <text
+       xml:space="preserve"
+       class="column_continue"
+       x="140.21745"
+       y="76.559883"
+       id="text5643"><tspan
+         sodipodi:role="line"
+         id="tspan5635"
+         x="140.21745"
+         y="76.559883">.</tspan><tspan
+         sodipodi:role="line"
+         x="140.21745"
+         y="80.969597"
+         id="tspan5637">.</tspan><tspan
+         sodipodi:role="line"
+         x="140.21745"
+         y="85.379311"
+         id="tspan5639">.</tspan><tspan
+         sodipodi:role="line"
+         x="140.21745"
+         y="89.789024"
+         id="tspan5641" /></text>
+    <text
+       xml:space="preserve"
+       class="column_continue"
+       x="84.691628"
+       y="27.961908"
+       id="text5653"><tspan
+         sodipodi:role="line"
+         id="tspan5645"
+         x="84.691628"
+         y="27.961908">.</tspan><tspan
+         sodipodi:role="line"
+         x="84.691628"
+         y="32.371624"
+         id="tspan5647">.</tspan><tspan
+         sodipodi:role="line"
+         x="84.691628"
+         y="36.781338"
+         id="tspan5649">.</tspan><tspan
+         sodipodi:role="line"
+         x="84.691628"
+         y="41.191051"
+         id="tspan5651" /></text>
+    <text
+       xml:space="preserve"
+       class="column_continue"
+       x="85.065994"
+       y="149.45683"
+       id="text6361"><tspan
+         sodipodi:role="line"
+         id="tspan6353"
+         x="85.065994"
+         y="149.45683">.</tspan><tspan
+         sodipodi:role="line"
+         x="85.065994"
+         y="153.86655"
+         id="tspan6355">.</tspan><tspan
+         sodipodi:role="line"
+         x="85.065994"
+         y="158.27626"
+         id="tspan6357">.</tspan><tspan
+         sodipodi:role="line"
+         x="85.065994"
+         y="162.68597"
+         id="tspan6359" /></text>
+    <text
+       xml:space="preserve"
+       class="column_item"
+       x="85.035072"
+       y="81.86618"
+       id="text6365"><tspan
+         sodipodi:role="line"
+         x="85.035072"
+         y="81.86618"
+         id="tspan6363">Kubernetes 1.23</tspan></text>
+    <text
+       xml:space="preserve"
+       class="column_continue"
+       x="84.898987"
+       y="100.85886"
+       id="text6375"><tspan
+         sodipodi:role="line"
+         id="tspan6367"
+         x="84.898987"
+         y="100.85886">.</tspan><tspan
+         sodipodi:role="line"
+         x="84.898987"
+         y="105.26858"
+         id="tspan6369">.</tspan><tspan
+         sodipodi:role="line"
+         x="84.898987"
+         y="109.67829"
+         id="tspan6371">.</tspan><tspan
+         sodipodi:role="line"
+         x="84.898987"
+         y="114.08801"
+         id="tspan6373" /></text>
+  </g>
+</svg>

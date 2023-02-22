@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="165.5mm"
+   height="84.300003mm"
+   viewBox="0 0 165.5 84.300003"
+   version="1.1"
+   id="svg11993"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs11990">
+    <rect
+       x="717.57697"
+       y="729.73926"
+       width="740.96606"
+       height="448.13477"
+       id="rect20627" />
+  </defs>
+  <g
+     id="layer1" class="dm_v_selinux">
+    <path
+       class="dividing_line"
+       d="M 82.739997,14.410886 V 75.265829"
+       id="path18672" />
+    <text
+       class="storage_label"
+       xml:space="preserve"
+       x="60.255489"
+       y="14.700235"
+       id="text17779"><tspan
+         id="tspan17777"
+         x="60.255489"
+         y="14.700235">← immutable</tspan></text>
+    <text
+       xml:space="preserve"
+       class="padlock"
+       x="6.8610215"
+       y="66.713005"
+       id="text14104"><tspan
+         id="tspan14102"
+         x="8"
+         y="66.713005">dm-verity</tspan></text>
+    <g
+       id="g21846"
+       transform="matrix(0.99999854,0,0,1,-11.358409,3.4084036)"
+       class="padlock">
+      <path
+         id="path21786"
+         d="m 18.35931,55.891724 a 6.5727296,6.5727296 0 0 1 6.572729,-6.57273 6.5727296,6.5727296 0 0 1 6.57273,6.57273" />
+      <rect
+         id="rect21842"
+         width="15.804"
+         height="12.44283"
+         x="17.030039"
+         y="56.49477" />
+    </g>
+    <text
+       xml:space="preserve"
+       class="storage_label selinux"
+       x="95.846634"
+       y="14.700235"
+       id="text15470"><tspan
+         id="tspan15468"
+         x="95.846634"
+         y="14.700235">mutable →</tspan></text>
+    <text
+       xml:space="preserve"
+       class="padlock"
+       x="146.66801"
+       y="67.41114"
+       id="text17944"><tspan
+         id="tspan17942"
+         x="147.5"
+         y="67.41114">SELinux</tspan></text>
+    <g
+       id="g21969"
+       transform="matrix(0.99999854,0,0,1,39.161873,-3.9485725)"
+       class="padlock">
+      <rect
+         id="rect21850"
+         width="15.804"
+         height="12.44283"
+         x="104.8427"
+         y="63.851746" />
+      <path
+         id="path21848"
+         d="m 106.17197,63.248699 a 6.5727296,6.5727296 0 0 1 6.57273,-6.572729 6.5727296,6.5727296 0 0 1 6.57273,6.572729" />
+    </g>
+    <text
+       xml:space="preserve"
+       class="properties"
+       x="31.486387"
+       y="59.721489"
+       id="text22101"><tspan
+         id="tspan22099"
+         x="31.486387"
+         y="59.721489">✔ Atomically replaceable</tspan><tspan
+         x="31.486387"
+         y="63.042038"
+         id="tspan22935">✔ Cryptographically signed</tspan><tspan
+         x="31.486387"
+         y="66.362587"
+         id="tspan22937">✔ Protected to block level</tspan><tspan
+         x="31.486387"
+         y="69.683136"
+         id="tspan27133">✗ Alterable at run-time </tspan><tspan
+         x="31.486387"
+         y="73.003685"
+         id="tspan22933" /><tspan
+         x="31.486387"
+         y="76.310966"
+         id="tspan22931"> </tspan></text>
+    <text
+       xml:space="preserve"
+       class="properties"
+       x="88.893219"
+       y="59.964573"
+       id="text25136"><tspan
+         id="tspan25124"
+         x="88.893219"
+         y="59.964573">✔ Persistency on per file basis</tspan><tspan
+         x="88.893219"
+         y="63.285122"
+         id="tspan25126">✔ Protection on per file basis</tspan><tspan
+         x="88.893219"
+         y="66.605667"
+         id="tspan25864">✔ Policies cannot be altered</tspan><tspan
+         x="88.893219"
+         y="69.926216"
+         id="tspan25128" /><tspan
+         x="88.893219"
+         y="73.233505"
+         id="tspan25130" /><tspan
+         x="88.893219"
+         y="76.540794"
+         id="tspan25132" /><tspan
+         x="88.893219"
+         y="79.848076"
+         id="tspan25134"> </tspan></text>
+    <rect
+class="outline"
+       id="rect26592"
+       width="163.924"
+       height="77.236984"
+       x="0.77799934"
+       y="6.2198715"
+       rx="2" />
+    <text
+       xml:space="preserve"
+       class="outline_label"
+       x="7.9660177"
+       y="2.6213455"
+       id="text26648"><tspan
+         id="tspan26646"
+         x="7.9660177"
+         y="2.6213455">Bottlerocket Storage</tspan></text>
+    <text
+       xml:space="preserve"
+       class="use_label"
+       x="30.036951"
+       y="36.430649"
+       id="text26678"><tspan
+         id="tspan26676"
+         x="30.036951"
+         y="36.430649">rootfs</tspan></text>
+    <text
+       xml:space="preserve"
+       class="use_label selinux"
+       x="121.39465"
+       y="34.385563"
+       id="text26682"><tspan
+         id="tspan26680"
+         x="121.39465"
+         y="34.385563">logs, images,</tspan><tspan
+         x="121.39465"
+         y="41.000175"
+         id="tspan27131">configs</tspan></text>
+     </g>
+</svg>
