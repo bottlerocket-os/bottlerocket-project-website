@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   width="100%"
+   viewBox="0 0 154.315 109.844"
+   version="1.1"
+   id="clustersvg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+    <defs
+        id="defs2" />
+    <g
+        id="layer1" class="cluster-diagram-svg">
+        <g
+        class="diagram-outline"
+        transform="translate(221.4593,-86.934146)">
+        <rect
+            id="rect111"
+            width="153.20853"
+            height="99.152504"
+            x="-220.90607"
+            y="87.487381"
+            rx="2" rxn="4.7292275" />
+        <text
+            xml:space="preserve"
+            class="diagram-label"
+            x="-217.8253"
+            y="191.41835"
+            id="text1049"><tspan
+            id="tspan1047"
+            x="-217.8253"
+            y="191.41835">Orchestrated Cluster </tspan><tspan
+            x="-217.8253"
+            y="196.71001"
+            id="tspan1827">Kubernetes or ECS</tspan></text>
+        <rect
+            class="data-plane"
+            id="rect4044"
+            width="93.539085"
+            height="121.01913"
+            x="-183.83311"
+            y="-191.69792"
+            rx="2" rxn="4.8329635"
+            transform="rotate(-90)" />
+        <rect
+            class="node-outline"
+            id="rect2898"
+            width="54.106377"
+            height="40.465816"
+            x="-128.58029"
+            y="93.824402"
+            rx="2" rxn="3.0244436" />
+        <rect
+            class="control-plane-outline"
+            id="rect2043"
+            width="94.491089"
+            height="23.269241"
+            x="-184.30913"
+            y="-217.64133"
+            rx="2" rxn="4.8821516"
+            transform="rotate(-90)" />
+        <text
+            xml:space="preserve"
+            class="control-plane-label"
+            x="-162.69028"
+            y="-204.04283"
+            id="text2146"
+            transform="rotate(-90)"><tspan
+            id="tspan2144"
+            x="-158"
+            y="-204.04283">Control Plane</tspan></text>
+        <g
+            id="g3279"
+            transform="matrix(0.54562257,0,0,0.54562257,-128.19796,93.601389)">
+            <g
+            id="g3237">
+            <rect
+                class="container-outline"
+                id="rect3229"
+                width="35.356297"
+                height="14.356296"
+                x="-39.907585"
+                y="5.3218513"
+                rx="2" rxn="5"
+                transform="rotate(-90)" />
+            <text
+                xml:space="preserve"
+                class="container-text"
+                x="-22.277668"
+                y="13.58865"
+                id="text3235"
+                transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.277668"
+                y="13.58865"
+                id="tspan3231">container</tspan></text>
+            </g>
+            <g
+            id="g3247"
+            transform="translate(1.2459184)">
+            <rect
+                class="container-outline"
+                id="rect3239"
+                width="35.356297"
+                height="14.356296"
+                x="-39.889519"
+                y="22.497284"
+                rx="2" rxn="5"
+                transform="rotate(-90)" />
+            <text
+                xml:space="preserve"
+                class="container-text"
+                x="-22.277668"
+                y="31.171864"
+                id="text3245"
+                transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.277668"
+                y="31.171864"
+                id="tspan3241">container</tspan></text>
+            </g>
+            <g
+            id="g3257"
+            transform="translate(-0.65730023)">
+            <rect
+                class="container-outline"
+                id="rect3249"
+                width="35.356297"
+                height="14.356296"
+                x="-39.907589"
+                y="42.821854"
+                rx="2" rxn="5"
+                transform="rotate(-90)" />
+            <text
+                xml:space="preserve"
+                class="container-text"
+                x="-22.295738"
+                y="51.496433"
+                id="text3255"
+                transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.295738"
+                y="51.496433"
+                id="tspan3251">container</tspan></text>
+            </g>
+            <g
+            id="g3267"
+            transform="translate(-0.98594916)">
+            <rect
+                class="container-outline"
+                id="rect3259"
+                width="35.356297"
+                height="14.356296"
+                x="-39.907589"
+                y="61.571854"
+                rx="2" rxn="5"
+                transform="rotate(-90)" />
+            <text
+                xml:space="preserve"
+                class="container-text"
+                x="-22.295738"
+                y="70.246437"
+                id="text3265"
+                transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.295738"
+                y="70.246437"
+                id="tspan3261">container</tspan></text>
+            </g>
+            <g
+            id="g3277">
+            <rect
+                class="container-outline"
+                id="rect3269"
+                width="35.356297"
+                height="14.356296"
+                x="-39.907585"
+                y="79.007256"
+                rx="2" rxn="5"
+                transform="rotate(-90)" />
+            <text
+                xml:space="preserve"
+                class="container-text"
+                x="-22.295734"
+                y="87.681839"
+                id="text3275"
+                transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.295734"
+                y="87.681839"
+                id="tspan3271">container</tspan></text>
+            </g>
+        </g>
+        <text
+            xml:space="preserve"
+            class="bottlerocket-outline-label"
+            x="-115.33273"
+            y="126.11827"
+            id="text2902"><tspan
+            id="tspan2900"
+            x="-112"
+            y="126.11827">Bottlerocket</tspan></text>
+        <rect
+            class="bottlerocket-outline"
+            id="rect2904"
+            width="48.530731"
+            height="13.065266"
+            x="-125.79247"
+            y="118.43713"
+            rx="2" rxn="2.7281129" />
+        <rect
+            class="node-outline"
+            id="rect2357"
+            width="54.106377"
+            height="40.465816"
+            x="-188.27664"
+            y="93.824402"
+            rx="2" rxn="3.0244436" />
+        <text
+            xml:space="preserve"
+            class="bottlerocket-outline-label"
+            x="-175.02908"
+            y="126.11828"
+            id="text2363"><tspan
+            id="tspan2361"
+            x="-172" 
+            y="126.11828">Bottlerocket</tspan></text>
+        <rect
+            class="bottlerocket-outline"
+            id="rect2631"
+            width="48.530731"
+            height="13.065266"
+            x="-185.48883"
+            y="118.43713"
+            rx="2" rxn="2.7281129" />
+        <g
+            id="g3227"
+            transform="matrix(0.54562257,0,0,0.54562257,-188.50459,93.596461)">
+            <g
+            id="g3200">
+            <rect
+                class="container-outline"
+                id="rect2626"
+                width="35.356297"
+                height="14.356296"
+                x="-39.907585"
+                y="5.3218513"
+                rx="2" rxn="5"
+                transform="rotate(-90)" />
+            <text
+                xml:space="preserve"
+                class="container-text"
+                x="-22.277668"
+                y="13.58865"
+                id="text2635"
+                transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.277668"
+                y="13.58865"
+                id="tspan2753">container</tspan></text>
+            </g>
+            <g
+            id="g3194"
+            transform="translate(1.2459184)">
+            <rect
+                class="container-outline"
+                id="rect2767"
+                width="35.356297"
+                height="14.356296"
+                x="-39.889519"
+                y="22.497284"
+                rx="2" rxn="5"
+                transform="rotate(-90)" />
+            <text
+                xml:space="preserve"
+                class="container-text"
+                x="-22.277668"
+                y="31.171864"
+                id="text3152"
+                transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.277668"
+                y="31.171864"
+                id="tspan3148">container</tspan></text>
+            </g>
+            <g
+            id="g3188"
+            transform="translate(-0.65730023)">
+            <rect
+                class="container-outline"
+                id="rect2777"
+                width="35.356297"
+                height="14.356296"
+                x="-39.907589"
+                y="42.821854"
+                rx="2" rxn="5"
+                transform="rotate(-90)" />
+            <text
+                xml:space="preserve"
+                class="container-text"
+                x="-22.295738"
+                y="51.496433"
+                id="text3158"
+                transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.295738"
+                y="51.496433"
+                id="tspan3154">container</tspan></text>
+            </g>
+            <g
+            id="g3182"
+            transform="translate(-0.98594916)">
+            <rect
+                class="container-outline"
+                id="rect2797"
+                width="35.356297"
+                height="14.356296"
+                x="-39.907589"
+                y="61.571854"
+                rx="2" rxn="5"
+                transform="rotate(-90)" />
+            <text
+                xml:space="preserve"
+                class="container-text"
+                x="-22.295738"
+                y="70.246437"
+                id="text3164"
+                transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.295738"
+                y="70.246437"
+                id="tspan3160">container</tspan></text>
+            </g>
+            <g
+            id="g3176">
+            <rect
+                class="container-outline"
+                id="rect2787"
+                width="35.356297"
+                height="14.356296"
+                x="-39.907585"
+                y="79.007256"
+                rx="2" rxn="5"
+                transform="rotate(-90)" />
+            <text
+                xml:space="preserve"
+                class="container-text"
+                x="-22.295734"
+                y="87.681839"
+                id="text3170"
+                transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.295734"
+                y="87.681839"
+                id="tspan3166">container</tspan></text>
+            </g>
+        </g>
+        <rect
+            class="node-outline"
+            id="rect3413"
+            width="54.106377"
+            height="40.465816"
+            x="-188.27664"
+            y="139.94281"
+            rx="2" rxn="3.0244436" />
+        <text
+            xml:space="preserve"
+            class="bottlerocket-outline-label"
+            x="-175.0291"
+            y="172.23669"
+            id="text3417"><tspan
+            id="tspan3415"
+            x="-172"
+            y="172.23669">Bottlerocket</tspan></text>
+        <rect
+            class="bottlerocket-outline"
+            id="rect3419"
+            width="48.530731"
+            height="13.065266"
+            x="-185.48885"
+            y="164.55554"
+            rx="2" rxn="2.7281129" />
+        <g
+            id="g3439"
+            transform="matrix(0.54562257,0,0,0.54562257,-187.82479,139.71487)">
+            <rect
+            class="container-outline"
+            id="rect3431"
+            width="35.356297"
+            height="14.356296"
+            x="-39.889519"
+            y="22.497284"
+            rx="2" rxn="5"
+            transform="rotate(-90)" />
+            <text
+            xml:space="preserve"
+            class="container-text"
+            x="-22.277668"
+            y="31.171864"
+            id="text3437"
+            transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.277668"
+                y="31.171864"
+                id="tspan3433">container</tspan></text>
+        </g>
+        <g
+            id="g3449"
+            transform="matrix(0.54562257,0,0,0.54562257,-188.86323,139.71487)">
+            <rect
+            class="container-outline"
+            id="rect3441"
+            width="35.356297"
+            height="14.356296"
+            x="-39.907589"
+            y="42.821854"
+            rx="2" rxn="5"
+            transform="rotate(-90)" />
+            <text
+            xml:space="preserve"
+            class="container-text"
+            x="-22.295738"
+            y="51.496433"
+            id="text3447"
+            transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.295738"
+                y="51.496433"
+                id="tspan3443">container</tspan></text>
+        </g>
+       
+        <g
+            id="g3469"
+            transform="matrix(0.54562257,0,0,0.54562257,-188.50459,139.71487)">
+            <rect
+            class="container-outline"
+            id="rect3461"
+            width="35.356297"
+            height="14.356296"
+            x="-39.907585"
+            y="79.007256"
+            rx="2" rxn="5"
+            transform="rotate(-90)" />
+            <text
+            xml:space="preserve"
+            class="container-text"
+            x="-22.295734"
+            y="87.681839"
+            id="text3467"
+            transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.295734"
+                y="87.681839"
+                id="tspan3463">container</tspan></text>
+        </g>
+        <g
+            id="g3481"
+            transform="matrix(0.54562257,0,0,0.54562257,-188.50459,139.71487)">
+            <rect
+            class="container-outline"
+            id="rect3473"
+            width="35.356297"
+            height="14.356296"
+            x="-39.907585"
+            y="5.3218513"
+            rx="2" rxn="5"
+            transform="rotate(-90)" />
+            <text
+            xml:space="preserve"
+            class="container-text"
+            x="-22.277668"
+            y="13.58865"
+            id="text3479"
+            transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.277668"
+                y="13.58865"
+                id="tspan3475">container</tspan></text>
+        </g>
+        <g
+            id="g3511"
+            transform="matrix(0.54562257,0,0,0.54562257,-189.04255,139.71487)">
+            <rect
+            class="container-outline"
+            id="rect3503"
+            width="35.356297"
+            height="14.356296"
+            x="-39.907589"
+            y="61.571854"
+            rx="2" rxn="5"
+            transform="rotate(-90)" />
+            <text
+            xml:space="preserve"
+            class="container-text"
+            x="-22.295738"
+            y="70.246437"
+            id="text3509"
+            transform="rotate(-90)"><tspan
+                class="container-text-x"
+                x="-22.295738"
+                y="70.246437"
+                id="tspan3505">container</tspan></text>
+        </g>
+        <text
+            xml:space="preserve"
+            class="data-plane-label"
+            x="-120"
+            y="180.5305"
+            id="text3940"><tspan
+            id="tspan3938"
+            x="-121.27827"
+            y="180.5305">Data Plane</tspan></text>
+        </g>
+    </g>
+
+</svg>

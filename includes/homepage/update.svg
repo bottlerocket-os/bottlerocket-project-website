@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100%"
+   viewBox="0 0 167.981 65"
+   version="1.1"
+   id="svg17206"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <script>
+$(document).ready(function() {
+   var $updateSvgDiagram = $('#update_svg_diagram'),
+   stages = 3,
+   currentStage = 0;
+
+   setInterval(function() { 
+      $updateSvgDiagram.removeClass('stage'+currentStage); 
+      currentStage = currentStage == stages ? 0 : currentStage + 1;
+      $updateSvgDiagram.addClass('stage'+currentStage);  
+   }, 3000);
+
+});
+  </script>
+
+  <g
+     class="update_svg"
+     id="update_svg_diagram">
+    <rect
+       class="version_outline inactive new_node"
+       id="rect19353"
+       width="48.530731"
+       height="13.065266"
+       x="116.43402"
+       y="46.649117"
+       rx="2" />
+    <rect
+       class="version_outline inactive old_node"
+       id="rect18004"
+       width="48.530731"
+       height="13.065266"
+       x="18.842707"
+       y="46.649117"
+       rx="2" />
+    <rect
+       class="update_node old_node"
+       id="rect2357"
+       width="54.025093"
+       height="56.266937"
+       x="16.095526"
+       y="6.1946402"
+       rx="2" />
+    <text
+       xml:space="preserve"
+       class="version_label old_node"
+       x="43.163525"
+       y="36.081306"
+       id="text2363"><tspan
+         id="tspan2361"
+         x="43.163525"
+         y="36.081306">Running</tspan><tspan
+         x="43.163525"
+         y="40.893394"
+         id="tspan18044">version</tspan><tspan
+         x="43.163525"
+         y="45.705482"
+         id="tspan18042" /></text>
+    <rect
+       class="version_outline old_node"
+       id="rect2631"
+       width="48.530731"
+       height="13.065266"
+       x="18.842707"
+       y="30.766722"
+       rx="2" />
+    <g
+       class="old_node"
+       id="g8818"
+       transform="translate(-26.182722,-67.753808)">
+      <g
+         id="g8756">
+        <rect
+           class="container_outline"
+           id="rect2626"
+           width="19.291193"
+           height="7.8331189"
+           x="-95.454346"
+           y="44.913387"
+           rx="1"
+           transform="rotate(-90)" />
+        <text
+           xml:space="preserve"
+           class="container_label"
+           x="-85.873131"
+           y="49.646435"
+           id="text2635"
+           transform="rotate(-90)"><tspan
+             x="-85.873131"
+             y="49.646435"
+             id="tspan2759">container</tspan></text>
+      </g>
+      <g
+         id="g8751">
+        <rect
+           id="rect2767"
+           width="19.291193"
+           height="7.8331189"
+           x="-95.454346"
+           y="55.14381"
+           rx="1"
+           class="container_outline"
+           transform="rotate(-90)" />
+        <text
+           xml:space="preserve"
+           class="container_label"
+           x="-85.816498"
+           y="59.876858"
+           id="text2773"
+           transform="rotate(-90)"><tspan
+             x="-85.816498"
+             y="59.876858"
+             id="tspan2771">container</tspan></text>
+      </g>
+      <g
+         id="g8746">
+        <rect
+           class="container_outline"
+           id="rect2777"
+           width="19.291193"
+           height="7.8331189"
+           x="-95.454346"
+           y="65.374237"
+           rx="1"
+           transform="rotate(-90)" />
+        <text
+           xml:space="preserve"
+           class="container_label"
+           x="-85.816498"
+           y="70.107285"
+           id="text2783"
+           transform="rotate(-90)"><tspan
+             x="-85.816498"
+             y="70.107285"
+             id="tspan2781">container</tspan></text>
+      </g>
+      <g
+         id="g8736">
+        <rect
+           class="container_outline"
+           id="rect2787"
+           width="19.291193"
+           height="7.8331189"
+           x="-95.454346"
+           y="85.835083"
+           rx="1"
+           transform="rotate(-90)" />
+        <text
+           xml:space="preserve"
+           class="container_label"
+           x="-85.816498"
+           y="90.56813"
+           id="text2793"
+           transform="rotate(-90)"><tspan
+             x="-85.816498"
+             y="90.56813"
+             id="tspan2791">container</tspan></text>
+      </g>
+      <g
+         id="g8741">
+        <rect
+           class="container_outline"
+           id="rect2797"
+           width="19.291193"
+           height="7.8331189"
+           x="-95.454346"
+           y="75.60466"
+           rx="1"
+           transform="rotate(-90)" />
+        <text
+           xml:space="preserve"
+           class="container_label"
+           x="-85.816498"
+           y="80.337708"
+           id="text2803"
+           transform="rotate(-90)"><tspan
+             x="-85.816498"
+             y="80.337708"
+             id="tspan2801">container</tspan></text>
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       class="version_label old_node"
+       x="43.203938"
+       y="51.61319"
+       id="text18002"><tspan
+         id="tspan18000"
+         x="43.203938"
+         y="51.61319">New</tspan><tspan
+         x="43.203938"
+         y="56.425278"
+         id="tspan20112">version</tspan></text>
+    <path
+       class="connecting_line download_line"
+       d="m 2.7554092,32.997894 0.045091,20.183855 H 18.842707"
+       id="path18554" />
+    <text
+       xml:space="preserve"
+       x="-26.863489"
+       y="3.3296657"
+       id="text18059"
+       transform="rotate(-90)"><tspan
+         class="download_label"
+         x="-26.863489"
+         y="3.3296657"
+         id="tspan18057">Download</tspan></text>
+    <rect
+       class="update_node new_node"
+       id="rect19295"
+       width="54.025093"
+       height="56.266937"
+       x="113.68684"
+       y="6.1946402"
+       rx="2" />
+    <rect
+       class="version_outline new_node"
+       id="rect19305"
+       width="48.530731"
+       height="13.065266"
+       x="116.43402"
+       y="30.766722"
+       rx="2" />
+    <g
+       id="g19360"
+       transform="translate(-26.182722,-67.753808)"
+       class="new_node">
+      <text
+         xml:space="preserve"
+         class="version_label"
+         x="166.93756"
+         y="103.83511"
+         id="text19303"><tspan
+           x="166.93756"
+           y="103.83511"
+           id="tspan19299">New running</tspan><tspan
+           x="166.93756"
+           y="108.6472"
+           id="tspan20110">version</tspan><tspan
+           x="166.93756"
+           y="113.45929"
+           id="tspan19301" /></text>
+    </g>
+    <text
+       xml:space="preserve"
+       class="version_label new_node"
+       x="140.79526"
+       y="51.729805"
+       id="text19351"><tspan
+         id="tspan19349"
+         x="140.79526"
+         y="51.729805">Old</tspan><tspan
+         x="140.79526"
+         y="56.541893"
+         id="tspan20114">version</tspan></text>
+    <path
+       d="m 96.301208,49.029797 5.490912,4.447175 h 14.35426"
+       id="path20104"
+       class="connecting_line running_old_crossover new_node" />
+    <path
+       d="m 96.301208,41.985573 5.490912,-4.447171 h 14.35426"
+       class="connecting_line new_running_crossover new_node" />
+    <g
+       id="g8860"
+       transform="translate(71.408598,-67.753808)"
+       class="new_node">
+      <g
+         id="g8826">
+        <rect
+           class="container_outline"
+           id="rect8820"
+           width="19.291193"
+           height="7.8331189"
+           x="-95.454346"
+           y="44.913387"
+           rx="1"
+           transform="rotate(-90)" />
+        <text
+           xml:space="preserve"
+           class="container_label"
+           x="-85.873131"
+           y="49.646435"
+           id="text8824"
+           transform="rotate(-90)"><tspan
+             x="-85.873131"
+             y="49.646435"
+             id="tspan8822">container</tspan></text>
+      </g>
+      <g
+         id="g8834">
+        <rect
+           class="container_outline"
+           id="rect8828"
+           width="19.291193"
+           height="7.8331189"
+           x="-95.454346"
+           y="55.14381"
+           rx="1"
+           transform="rotate(-90)" />
+        <text
+           xml:space="preserve"
+           class="container_label"
+           x="-85.816498"
+           y="59.876858"
+           id="text8832"
+           transform="rotate(-90)"><tspan
+             x="-85.816498"
+             y="59.876858"
+             id="tspan8830">container</tspan></text>
+      </g>
+      <g
+         id="g8842">
+        <rect
+           class="container_outline"
+           id="rect8836"
+           width="19.291193"
+           height="7.8331189"
+           x="-95.454346"
+           y="65.374237"
+           rx="1"
+           transform="rotate(-90)" />
+        <text
+           xml:space="preserve"
+           class="container_label"
+           x="-85.816498"
+           y="70.107285"
+           id="text8840"
+           transform="rotate(-90)"><tspan
+             x="-85.816498"
+             y="70.107285"
+             id="tspan8838">container</tspan></text>
+      </g>
+      <g
+         id="g8850">
+        <rect
+           class="container_outline"
+           id="rect8844"
+           width="19.291193"
+           height="7.8331189"
+           x="-95.454346"
+           y="85.835083"
+           rx="1"
+           transform="rotate(-90)" />
+        <text
+           xml:space="preserve"
+           class="container_label"
+           x="-85.816498"
+           y="90.56813"
+           id="text8848"
+           transform="rotate(-90)"><tspan
+             x="-85.816498"
+             y="90.56813"
+             id="tspan8846">container</tspan></text>
+      </g>
+      <g
+         id="g8858">
+        <rect
+           class="container_outline"
+           id="rect8852"
+           width="19.291193"
+           height="7.8331189"
+           x="-95.454346"
+           y="75.60466"
+           rx="1"
+           transform="rotate(-90)" />
+        <text
+           xml:space="preserve"
+           class="container_label"
+           x="-85.816498"
+           y="80.337708"
+           id="text8856"
+           transform="rotate(-90)"><tspan
+             x="-85.816498"
+             y="80.337708"
+             id="tspan8854">container</tspan></text>
+      </g>
+    </g>
+    <path
+       class="connecting_line download_line"
+       d="M 2.8004999,0 2.7554092,20.612539"
+       id="path18951" />
+    <path
+       style="display: none;"
+       class="connecting_line new_running_crossover"
+       d="m 87.603714,49.029797 8.697494,-7.044224"
+       id="path18956" />
+    <path
+       class="connecting_line new_running_crossover"
+       d="m 67.661085,53.476972 h 14.451713 l 5.490916,-4.447175"
+       id="path18958" />
+    <path
+       style="display:none;"
+       class="connecting_line running_old_crossover"
+       d="m 87.603714,41.985573 8.697494,7.044224"
+       id="path18960" />
+    <path
+       class="connecting_line running_old_crossover"
+       d="m 67.661085,37.538402 h 14.451713 l 5.490916,4.447171"
+       id="path18962" />
+    <text
+       class="reboot_label"
+       xml:space="preserve"
+       x="92.006912"
+       y="46.654884"
+       id="text19286"><tspan
+         x="92.006912"
+         y="46.654884"
+         id="tspan19284">Reboot</tspan></text>
+  </g>
+</svg>

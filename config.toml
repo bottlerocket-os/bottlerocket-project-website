@@ -37,7 +37,6 @@ footer_about_disable = true
     disable = false
 
 
-
 [languages]
   [languages.all]
     contentDir = 'content/all'
@@ -47,3 +46,8 @@ footer_about_disable = true
     contentDir = 'content/en'
     languageName = 'English'
     weight = 11
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
