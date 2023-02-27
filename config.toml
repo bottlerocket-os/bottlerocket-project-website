@@ -6,6 +6,8 @@ defaultContentLanguage = 'all'
 
 [params]
 copyright = "Copyright Amazon.com, Inc., its affiliates, or other contributors. All Rights Reserved."
+languageOverride = 'all'
+languageOverrideRepresentation = 'en-x'
 
 [params.ui]
 footer_about_disable = true
