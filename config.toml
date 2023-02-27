@@ -7,7 +7,6 @@ defaultContentLanguage = 'all'
 [params]
 copyright = "Copyright Amazon.com, Inc., its affiliates, or other contributors. All Rights Reserved."
 languageOverride = 'all'
-languageOverrideRepresentation = 'en-x'
 
 [params.ui]
 footer_about_disable = true
@@ -42,11 +41,11 @@ footer_about_disable = true
 [languages]
   [languages.all]
     contentDir = 'content/all'
-    languageName = 'all'
+    languageName = 'Home'
     weight = 10
   [languages.en]
     contentDir = 'content/en'
-    languageName = 'English'
+    languageName = 'Docs in English'
     weight = 11
 
 [markup]
