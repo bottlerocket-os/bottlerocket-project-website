@@ -15,17 +15,19 @@ This decouples versioning from the OS and allows for documentation of out-of-pha
 This may not be comprehensive for every file, but should be considered a living document and updated as needed for clarity.
 
 ```. index [homepage]
-├── about [top level documents that do not get localized]
+├── all [top level documents that do not get localized]
+│   ├── about [top level documents about the OS]
 │   ├── charter.markdown
 │   ├── code-of-conduct.markdown
 │   ├── security.markdown
 │   ├── trademark.markdown
 │   └── [... more non-localized content]
 ├── en [localized content, each language get a directory named by ISO-639-1]
-│   ├── faq [Bottlerocket's Frequently Asked Questions]
-│   │   ├── 01-01-what-is-bottlerocket.markdown
-│   │   ├── 01-02-why-was-bottlerocket-created.markdown
+│   ├── faqitems [Bottlerocket's Frequently Asked Questions (headless, see faq.markdown)]
+│   │   ├── general-01-what-is-bottlerocket.markdown
+│   │   ├── release-02-why-was-bottlerocket-created.markdown
 │   │   └── [... more FAQs]
+│   ├── faq.markdown [Single page rendering for faqitems bundle]
 │   ├── os [Bottlerocket's documentation]
 │   │   ├── 1.12.x [versioned content, each new minor version gets a new directrory]
 │   │   │   ├── introduction.markdown
