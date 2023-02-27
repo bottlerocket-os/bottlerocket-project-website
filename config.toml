@@ -2,6 +2,7 @@ baseURL = 'http://example.org/'
 languageCode = 'en-us'
 title = 'The Bottlerocket Project'
 
+defaultContentLanguage = 'all'
 
 [params]
 copyright = "Copyright Amazon.com, Inc., its affiliates, or other contributors. All Rights Reserved."
@@ -34,6 +35,17 @@ footer_about_disable = true
   [[module.imports]]
     path = "github.com/google/docsy/dependencies"
     disable = false
+
+
+[languages]
+  [languages.all]
+    contentDir = 'content/all'
+    languageName = 'all'
+    weight = 10
+  [languages.en]
+    contentDir = 'content/en'
+    languageName = 'English'
+    weight = 11
 
 [markup]
   [markup.goldmark]
