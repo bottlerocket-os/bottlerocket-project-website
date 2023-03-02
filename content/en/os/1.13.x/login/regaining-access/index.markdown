@@ -1,23 +1,19 @@
 +++
-title = "Regaining Access to a Bottlerocket Node After Disabling the Control and Admin Containers"
+title = "Regaining Access to a Bottlerocket Node"
+description = "How to Regain Access to a Bottlerocket Node After Disabling the Control and Admin Containers"
 type = "docs"
 +++
 
 ## Introduction
 
 The standard way to access a shell on a Bottlerocket node is to use either the admin container or the control container.
-In some cases, both the admin and control containers may be disabled.
-There is a way to regain access to a Bottlerocket node in such a scenario.
+In some cases where both the admin and control containers are disabled, it is still possible to regain access to a Bottlerocket node.
 
 ## Solution Description
 
 In general, the solution is to mount the [API client](https://github.com/bottlerocket-os/bottlerocket/blob/develop/sources/api/apiclient/README.md) and API socket into a container on the Bottlerocket node and use the API client to re-enable the admin container, control container, or both.
 
-## Solution Steps
-
-There are different ways to implement the solution depending on the container orchestrator used to manage the Bottlerocket nodes.
-
-### Steps to Regain Access on Kubernetes
+## Steps to Regain Access on Kubernetes
 
 1. Create a pod that mounts the API client and API socket with the correct SELinux labels.
 
@@ -85,6 +81,6 @@ apiclient set host-containers.control.enabled=true
 4. Exit the shell and delete the `regain-access` pod.
 The Bottlerocket node should be accessible again.
 
-### Steps to Regain Access on ECS
+## Steps to Regain Access on ECS
 
 Bottlerocket does not _yet_ support `ecs exec`, so this solution to regain access does not yet work on ECS.
