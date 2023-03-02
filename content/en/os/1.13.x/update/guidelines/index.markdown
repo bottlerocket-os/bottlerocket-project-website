@@ -1,4 +1,7 @@
-# Guidelines for Updating In-Place
++++
+title="Guidelines for Updating In-Place"
+type="docs"
++++
 
 ## Introduction
 

@@ -1,4 +1,7 @@
-# Updating Bottlerocket
++++
+title = "Updating Bottlerocket"
+type = "docs"
++++
 
 There are many ways to update Bottlerocket, including:
 

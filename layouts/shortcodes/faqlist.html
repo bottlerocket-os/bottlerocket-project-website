@@ -1,0 +1,20 @@
+{{ $groups := slice }}
+{{ $headless := .Site.GetPage "/faqitems" }}
+{{ $faqItems := $headless.Resources.Match "*" }}
+{{ range $faqItems }}
+    {{ $groups = $groups | append .Params.group }}
+{{ end }}
+{{ $groups = uniq $groups }}
+{{ range $groups }} 
+    {{ $group := . }}
+    <h2>{{ $group }}</h2>
+    <ol>
+    {{ range where $faqItems "Params.group" $group }}
+        <li>
+            <h3>{{ .Params.question }}</h3>
+            {{ .Content }}
+        </li>
+    {{ end }}
+    </ol>
+    <hr />
+{{ end }}
