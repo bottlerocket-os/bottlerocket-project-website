@@ -1,6 +1,7 @@
 +++
 title = "Updating Bottlerocket"
 type = "docs"
+description = "Overview of different methods to update Bottlerocket" 
 +++
 
 There are many ways to update Bottlerocket, including:

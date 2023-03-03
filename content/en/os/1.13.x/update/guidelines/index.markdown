@@ -1,6 +1,7 @@
 +++
 title="Guidelines for Updating In-Place"
 type="docs"
+description="Moving to newer versions without replacing nodes"
 +++
 
 ## Introduction
