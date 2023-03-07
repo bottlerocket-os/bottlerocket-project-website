@@ -7,7 +7,7 @@
 {{< /blocks/lead >}}
 {{< blocks/section color="dark" >}}
 
-{{% readfile "includes/homepage/worker-node-diagram.markdown" %}}
+{{% readfile file="includes/homepage/worker-node-diagram.markdown" %}}
 {{< /blocks/section >}}
 {{< blocks/section >}}
 {{% readfile "includes/homepage/minimal.markdown" %}}
