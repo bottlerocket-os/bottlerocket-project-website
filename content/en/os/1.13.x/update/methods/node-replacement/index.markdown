@@ -4,6 +4,9 @@ type = "docs"
 description = "How to update a Bottlerocket cluster by replacing nodes"
 +++
 
+Bottlerocket clusters can be updated via node replacement, meaning that the existing Bottlerocket nodes will be replaced by new Bottlerocket nodes that run updated software.
+This requires nodes to be reprovisioned.
+
 ## EKS
 
 When running the `aws-k8s-*` variants of Bottlerocket on EKS, use either the EKS Console or [`eksctl`](https://eksctl.io/) to update your Bottlerocket nodes using the _node replacement_ method.

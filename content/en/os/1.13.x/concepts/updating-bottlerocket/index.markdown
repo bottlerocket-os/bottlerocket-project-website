@@ -1,7 +1,7 @@
 +++
 title = "Updating Bottlerocket"
 type = "docs"
-description = "Overview of different methods to update Bottlerocket" 
+description = "Overview of different methods to update Bottlerocket"
 +++
 
 Bottlerocket is designed to be updated in an [image-based fashion](https://github.com/bottlerocket-os/bottlerocket#updates).

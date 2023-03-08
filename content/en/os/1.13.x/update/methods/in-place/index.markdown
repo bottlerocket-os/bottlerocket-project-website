@@ -4,6 +4,9 @@ type = "docs"
 description = "How to update a Bottlerocket node in-place"
 +++
 
+Bottlerocket clusters can be updated in-place, meaning that the existing Bottlerocket nodes will download updated software to use, without re-provisioning the nodes.
+There are different ways to update in-place depending on your environment.
+
 ## `apiclient` Commands
 
 At its core, updating Bottlerocket consists of three steps: checking for an update, applying an update, and rebooting into the new Bottlerocket version.
