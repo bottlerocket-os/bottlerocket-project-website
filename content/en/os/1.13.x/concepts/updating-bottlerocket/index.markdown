@@ -38,4 +38,4 @@ There are many ways to update Bottlerocket, including:
 - [Brupop](../../update/methods/in-place/#brupop), the [EKS Console](../../update/methods/node-replacement/#eks-console), and [`eksctl`](../../update/methods/node-replacement/#eksctl) on Kubernetes
 - [Applying SSM Command Documents](../../update/methods/in-place/#ssm) to your nodes
 
-It is also possible to [lock your nodes to a specific release](../../update/methods/locking-to-a-specific-release).
+It is also possible to [lock your nodes to a specific release](../../update/locking-to-a-specific-release).
