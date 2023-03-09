@@ -4,14 +4,15 @@ type="docs"
 description="Variants are the basis for environment-specific, ready-to-run images."
 +++
 
-In a general purpose distribution of Linux there is the concept of packages that are delivered by a package manager.
-This allows the distribution to ship a limited set of drivers, tools, and applications with the kernel and then the user of the distribution can select additional packages that suits the workload after the operating system is installed.
+General purpose distributions of Linux have "packages" that are delivered by a package manager.
+This allows the distribution to ship a limited set of drivers, tools, and applications with the kernel; the user then adds additional packages that suits the workload after the operating system is installed.
 
-Bottlerocket is not a general purpose Linux distribution and intentionally doesn’t have a package manager and instead provides *variants*.
+Bottlerocket is not a general purpose Linux distribution and intentionally doesn’t have a package manager. Instead Bottlerocket has *variants*.
 Variants are pre-defined sets of drivers, tools, and applications that are tailored to a specific architecture, platform, and orchestrator (as well as a “flavor,” more on that later).
 For example, there is a variant that consists of everything needed to run as a Kubernetes (orchestrator) node on an arm64 (architecture) processor in AWS EC2 (platform). Bottlerocket delivers the variant as a complete, ready-to-run image.
 
-Variants may be specific to particular versions of the orchestrator. For example, the variant for Kubernetes 1.25 is distinct from the variant for Kubernetes 1.24.
+Variants may be specific to particular versions of the orchestrator. 
+For example, the variant for Kubernetes 1.25 is distinct from the variant for Kubernetes 1.24.
 
 ## Variants and images
 
@@ -25,19 +26,20 @@ Keep in mind that Kubernetes variants are only compatible with specific versions
 
 ## Artifact file names
 
-The file name for any Bottlerocket image artifact begins with `bottlerocket` and is followed by a [kebab case](https://www.alexhyett.com/snake-case-vs-camel-case-vs-pascal-case-vs-kebab-case/#kebab-case-kebab-case) delimited list of components. The components in the file name follow a specific order:
+The file name for any Bottlerocket image artifact begins with `bottlerocket` and is followed by a [kebab case](https://www.alexhyett.com/snake-case-vs-camel-case-vs-pascal-case-vs-kebab-case/#kebab-case-kebab-case) delimited list of components.
+The components in the file name follow a specific order:
 
 ```text
 [platform]-[orchestrator]-[orchestrator version](optional:-[ flavour])-[Architecture]-[version]-[commit]
 ```
 
-Example: `bottlerocket-aws-k8s-1.25-nvidia-1.13.0-...`
+Example: `bottlerocket-aws-k8s-1.25-nvidia-arm64-1.13.0...`
 
 |Platform|Orchestrator|Orchestrator Version|Flavor|Architecture|Bottlerocket version|
 |---|---|---|---|---|---|
 |`aws`|`k8s`|`1.25`|`nvidia`|`arm64`|`1.13.0`|
 
-Example: `bottlerocket-vmware-k8s-1.24-x86_64-1.12.0...`
+Example: `bottlerocket-vmware-k8s-1.24-x86_64-1.12...`
 
 |Platform|Orchestrator|Orchestrator Version|Flavor|Architecture|Bottlerocket version|
 |---|---|---|---|---|---|
@@ -47,9 +49,9 @@ When referencing variants in writing, `bottlerocket-` and the commit are typical
 
 ## Flavors
 
-Variants may also package in drivers for specific hardware called a “flavor.” Currently, the only flavor is used to support Nvidia GPUs
+Variants may also package in drivers for specific hardware called a “flavor.” Currently, the only flavor is 'nvidia', which adds support vor Nvidia GPUs.
 
-## Variants, updating & migrating
+## Variants, updating, & migrating
 
 You can update to a newer Bottlerocket version of the same variant (an ‘in-place update’).
 However, you cannot update to a different variant: that is a migration (which involves replacing a node in the orchestrated cluster).
