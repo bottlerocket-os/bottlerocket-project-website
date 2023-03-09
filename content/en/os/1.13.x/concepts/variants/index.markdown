@@ -9,7 +9,8 @@ This allows the distribution to ship a limited set of drivers, tools, and applic
 
 Bottlerocket is not a general purpose Linux distribution and intentionally doesn’t have a package manager. Instead Bottlerocket has *variants*.
 Variants are pre-defined sets of drivers, tools, and applications that are tailored to a specific architecture, platform, and orchestrator (as well as a “flavor,” more on that later).
-For example, there is a variant that consists of everything needed to run as a Kubernetes (orchestrator) node on an arm64 (architecture) processor in AWS EC2 (platform). Bottlerocket delivers the variant as a complete, ready-to-run image.
+For example, there is a variant that consists of everything needed to run as a Kubernetes (orchestrator) node on an arm64 (architecture) processor in AWS EC2 (platform).
+Bottlerocket delivers the variant as a complete, ready-to-run image.
 
 Variants may be specific to particular versions of the orchestrator. 
 For example, the variant for Kubernetes 1.25 is distinct from the variant for Kubernetes 1.24.
