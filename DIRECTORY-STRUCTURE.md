@@ -37,6 +37,7 @@ This may not be comprehensive for every file, but should be considered a living 
 │   ├── os [Bottlerocket's documentation]
 │   │   ├── 1.12.x [versioned content, each new minor version gets a new directrory]
 │   │   │   ├── introduction
+│   │   │   ├── packages [which packages (and which versions) are included in this release]
 │   │   │   ├── install [how to put Bottlerocket on a node]
 │   │   │   │   ├── manual [install instructions without high level tools]
 │   │   │   │   │   ├── aws [each platform gets an directory]
