@@ -8,12 +8,12 @@ Bottlerocket is an API-driven operating system.
 This is a departure from general purpose Linux distributions where you install packages, configure services through individual configuration files, and use commands from the shell to perform administrative tasks.
 
 With the concept of variants, all installed software for any given image is a known quantity and an included API enables you to configure everything from a single interface.
-Additionally, administrative task like checking for updates and rebooting as well as executing commands on the host are all accomplished with API calls.
+Additionally, administrative tasks like checking for updates and rebooting as well as executing commands on the host are all accomplished with API calls.
 
 ## Accessing the API
 
 The Bottlerocket API is only accessible by containers running on the same host with specific SELinux labels.
-The API is a Unix domain socket accessible by a mountable volume; containers running on the host or orchestrated containerd instance can access the API as long as they have both the correct SELinux labels and mount the socket.
+The API Unix domain socket is accessible by mounting; containers running on the host or orchestrated containerd instances can access the API as long as they have both the correct SELinux labels and mount the socket.
 Both the Admin and Control containers have the requisite SELinux labels and socket pre-mounted.
 Because access to the API socket is through explicit mounts and SELinux labels there is no authentication required.
 
@@ -25,7 +25,7 @@ Access to the `apiclient` binary is typically provided as a read-only mount from
 
 ## Settings
 
-You can view and alter Bottlerocket through the API.
+You can view and alter Bottlerocket settings through the API.
 The API is able to `set` or `get`  one or many *settings*.
 A setting is accessible by a path and contains a value.
 
@@ -64,7 +64,7 @@ Laterally, if you `get` a path and a setting, it returns only the value of that 
 +---------+---------+
 |                   | 
 host-containers.admin.enabled --> Value of: 
-                      |     |        eanbled   
+                      |     |        enabled   
                       +--+--+
                          |
                       Setting
