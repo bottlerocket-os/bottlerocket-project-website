@@ -11,13 +11,12 @@ Still, there are some resources like logs, container images, and configuration f
 Bottlerocket splits the difference by having some storage that is immutable and some that is mutable, using different protection mechanisms for each filesystem.
 Additionally, some mutable storage in Bottlerocket only exists ephemerally and any changes will not survive a reboot.
 
-
 ## Immutable Filesystem
 
 Bottlerocket’s root filesystem is a dm-verity device: all dm-verity devices are read-only.
 In context of Bottlerocket, it means that modification of the root filesystem is not possible by userspace processes.
 
-### Block-level protection[](http://localhost:1313/en/os/1.13.x/concepts/restricted-filesystem/#block-level-protection)
+### Block-level protection
 
 dm-verity also protects the root filesystem from unintended changes at the block level: it uses a hash tree to provide transparent integrity checking.
 At a high level, dm-verity works like this:
@@ -51,7 +50,7 @@ Also unlike the immutable filesystem, a sufficiently privileged user can alter t
 ## Ephemeral Storage
 
 Part of the mutable filesystem, `/etc` , does not persist through a reboot.
-The use of ephemeral storage in this area provides  two advantages: 
+The use of ephemeral storage in this area provides  two advantages:
 
-* it creates more reliable pathways for configuration changes (through the API and/or with special containers specifications like [CNI](https://github.com/containernetworking/cni) or [CSI](https://github.com/container-storage-interface/spec)), 
+* it creates more reliable pathways for configuration changes (through the API and/or with special containers specifications like [CNI](https://github.com/containernetworking/cni) or [CSI](https://github.com/container-storage-interface/spec)),
 * it makes it more difficult for attackers to make changes that persist.
