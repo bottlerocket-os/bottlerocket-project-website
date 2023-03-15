@@ -38,6 +38,9 @@ This may not be comprehensive for every file, but should be considered a living 
 │   │   ├── 1.12.x [versioned content, each new minor version gets a new directrory]
 │   │   │   ├── introduction
 │   │   │   ├── packages [which packages (and which versions) are included in this release]
+│   │   │   │   ├── 1.12.0 [packages and package versions specifically for release 1.12.0]
+│   │   │   │   ├── 1.12.1 [packages and package versions specifically for release 1.12.1]
+│   │   │   │   └── [... more patch releases]
 │   │   │   ├── install [how to put Bottlerocket on a node]
 │   │   │   │   ├── manual [install instructions without high level tools]
 │   │   │   │   │   ├── aws [each platform gets an directory]
