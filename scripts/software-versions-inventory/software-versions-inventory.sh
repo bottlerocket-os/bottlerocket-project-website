@@ -10,24 +10,28 @@ for d in $(find $1/packages -maxdepth 1 -type d)
 do
     if [ $d != $1/packages ]; then
         base=$(basename $d)
-        version=$(rpmspec -q --qf "%{Version}:" $d/$base.spec  --define="_cross_os _" --nodebuginfo)
+        rpmspec -q --qf "%{Version}:" $d/$base.spec  --define="_cross_os _" --nodebuginfo --quiet &> /dev/null
 
-        printf "%2s" " "
-        printf "%s\r\n" "- package: $base"
-        printf "%4s" " " 
-        printf "%s" "version: "
-        printf "%s\n" "$version" | cut -d":" -f1
-        patch_count=`find $d -type f -name "*.patch" | wc -l`
-        if [ $patch_count -gt 0 ]; then
-            patches=`find $d -type f -name "*.patch"`
-            printf "%4s" " "
-            printf "%s\n" "patches:"
-            for patch in $patches
-            do
-                patch_file=$(basename $patch)
-                printf "%6s" " " 
-                printf "%s\n" "- \"$patch_file\""
-            done
+        if [ $? -eq 0 ]; then
+            version=$(rpmspec -q --qf "%{Version}:" $d/$base.spec  --define="_cross_os _" --nodebuginfo)
+
+            printf "%2s" " "
+            printf "%s\r\n" "- package: $base"
+            printf "%4s" " " 
+            printf "%s" "version: "
+            printf "%s\n" "$version" | cut -d":" -f1
+            patch_count=`find $d -type f -name "*.patch" | wc -l`
+            if [ $patch_count -gt 0 ]; then
+                patches=`find $d -type f -name "*.patch"`
+                printf "%4s" " "
+                printf "%s\n" "patches:"
+                for patch in $patches
+                do
+                    patch_file=$(basename $patch)
+                    printf "%6s" " " 
+                    printf "%s\n" "- \"$patch_file\""
+                done
+            fi
         fi
     fi
 done
