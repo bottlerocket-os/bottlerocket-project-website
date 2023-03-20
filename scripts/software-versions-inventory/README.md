@@ -1,5 +1,9 @@
 # Script: Software Versions Inventory
 
+## Important note about packages with custom licenses
+
+This script will _not_ pick up packages that require `bottlerocket-license-tool` usage (i.e. RPM spec that calls out to `bottlerocket-license-tool` in order to resolve the `License` tag.)
+
 ## Prerequisites
 
 ### `cargo`
