@@ -2,9 +2,10 @@
 {{- $alt := .Get "alt" -}}
 {{- $caption := .Get "caption" -}}
 {{- $second_col_width := .Get "colsplit" | default "4" -}}
-
-<div class="container-fluid featured-figure">
-  <div class="row align-items-center">
+{{- $rowclass := .Get "rowclass" | default "align-items-center"}}
+{{- $container_class := .Get "containerclass"}}
+<div class="container-fluid featured-figure {{$container_class}}">
+  <div class="row {{$rowclass}}">
     <div class="col">
       {{ if isset .Params `src` }}
       <img src="{{$src}}" class="img-fluid" alt="{{$alt}}" />
@@ -12,7 +13,7 @@
       {{ .Inner }}
     </div>
     <div class="col-{{ $second_col_width }}">
-      <span class="align-middle"><em >{{$caption}}</em></span>
+      <span class="align-middle"><em >{{$caption | markdownify}}</em></span>
     </div>
   </div>
 </div>

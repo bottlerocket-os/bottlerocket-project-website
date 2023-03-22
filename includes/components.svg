@@ -50,7 +50,6 @@
       fill:#ffffff;
    }
 
-
 </style>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
@@ -222,5 +221,13 @@
          id="tspan13182"
          x="50.347958"
          y="121.8546">Admin</tspan></text>
+   <rect
+       class="containers"
+       id="ecs_agent"
+       width="40"
+       height="100"
+       x="110"
+       y="50"
+       rx="2" />
   </g>
 </svg>

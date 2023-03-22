@@ -1,0 +1,8 @@
+{{- $second_col_width := .Get "colsplit" | default "4" -}}
+{{- $rowclass := .Get "rowclass" | default "align-items-center"}}
+{{- $container_class := .Get "containerclass"}}
+<div class="container-fluid featured-figure {{$container_class}}">
+  <div class="row {{$rowclass}}">
+    {{ .Inner }}
+  </div>
+</div>

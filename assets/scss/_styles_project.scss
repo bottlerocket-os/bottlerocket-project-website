@@ -31,4 +31,44 @@
     margin-bottom: 1em;
     padding-top: 1em;
     padding-bottom: 1em;
+    &.docs-figure {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+@mixin svg-disabled-container {
+    fill: none;
+    stroke: #fff;
+    stroke-dasharray:0.916384, 0.916384;
+}
+#svg_admin { @include svg-disabled-container; }
+
+@mixin svg-disabled-container-label {
+    fill-opacity: 0.50;
+}
+
+#svg_admin_label tspan { @include svg-disabled-container-label; }
+
+@mixin svg-disabled-component { fill-opacity: 0.25; }
+.disabled-diagram-component-systemd { #svg_systemd { @include svg-disabled-component; } }
+.disabled-diagram-component-kernel { #svg_kernel { @include svg-disabled-component; } }
+.disabled-diagram-component-containerd-left { #svg_containerd_left  { @include svg-disabled-component; } }
+.disabled-diagram-component-containerd-right { #svg_containerd_right { @include svg-disabled-component; } }
+.disabled-diagram-component-kubelet { #svg_kubelet  { @include svg-disabled-component; } }
+.disabled-diagram-component-pods { 
+    #svg_pods_label, #svg_pods { @include svg-disabled-component; } 
+}
+    
+.disabled-diagram-component-host-containers { 
+    #svg_control_label,
+    #svg_admin_label tspan,
+    #svg_host_container_label, 
+    #svg_host_container { @include svg-disabled-component; } 
+}
+
+.diagram-eks-a {
+    #svg_control_label tspan { @include svg-disabled-container-label; }
+    #svg_admin_label tspan { fill-opacity: 1; }
+    #svg_admin { fill: #fff; opacity: 1; stroke: none }
+    #svg_control { @include svg-disabled-container; }
 }

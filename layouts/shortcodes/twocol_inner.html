@@ -1,0 +1,4 @@
+{{- $col_width := .Get "colsplit" | default "4" -}}
+<div class="col{{ if isset .Params "colsplit" }}-{{$col_width}}{{end}}">
+    {{ .Inner }}
+</div>
