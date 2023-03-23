@@ -1,10 +1,10 @@
 +++
-title="Getting Started: Amazon EKS"
+title="Amazon EKS"
 type="docs"
 description="How to get started with Bottlerocket on Amazon EKS"
 +++
 
-## Dependencies
+## Prerequisites
 
 In order to set up a Bottlerocket cluster on EKS, you will need the latest versions of the following tools installed:
 
@@ -73,56 +73,47 @@ Start the cluster creation process using the configuration file you created in t
 eksctl create cluster --config-file ./bottlerocket-quickstart-eks.yaml
 ```
 
-Get a cup of coffee, it will take a while to provision your control plane and cluster nodes. ☕️
+Get a cup of coffee ☕️, it will take a while to provision your control plane and cluster nodes.
 
-## Test Your Cluster
+## Confirm Your Cluster is Running
 
-To confirm that Bottlerocket nodes are running in your cluster, you can run the following command to get an instance ID from any one of the nodes in the cluster:
-
-```bash
-kubectl describe nodes | grep ProviderID
-```
-
-The instance IDs will start with `i-`.
-Pick any one of the instance IDs you see since all the nodes in the cluster should be the same.
-
-Then, run the following command to enter an SSM session on the node:
+To confirm that Bottlerocket nodes are running in your cluster, you can run the following command to list your cluster nodes and what operating system they are running:
 
 ```bash
-aws ssm start-session --target INSTANCE_ID
+kubectl get nodes -o=wide
 ```
 
-Replace `INSTANCE_ID` with the instance ID you picked earlier.
-
-Entering the SSM session will place you in the control container.
-Enter the admin container:
+You should see output that contains a column similar to the following:
 
 ```bash
-enter-admin-container
+... OS-IMAGE                              ...
+    Bottlerocket OS 1.12.0 (aws-k8s-1.25)
+    Bottlerocket OS 1.12.0 (aws-k8s-1.25)
+    Bottlerocket OS 1.12.0 (aws-k8s-1.25)
 ```
 
-Then, enter a shell on the Bottlerocket host:
+Next, get an instance ID from any one of the nodes in the cluster (remember that `$EKS_CLUSTER_NAME` is set to the name of your EKS cluster):
 
 ```bash
-sudo sheltie
+aws ec2 describe-instances  --no-cli-pager --filters "Name=tag:aws:eks:cluster-name,Values=$EKS_CLUSTER_NAME" --query "Reservations[*].Instances[*].{PrivateDNS:PrivateDnsName,InstanceID:InstanceId,Cluster:Tags[?Key=='aws:eks:cluster-name']|[0].Value,State:State.Name}" --output=table
 ```
 
-Confirm you're running Bottlerocket with the following command in the Bottlerocket host shell:
+You should see output that contains a column similar to the following:
 
 ```bash
-cat /etc/os-release
+    +----------------------+
+... |     InstanceID       | ...
+    +----------------------+
+    |  i-04c2b2087...      |
+    |  i-0e61e2b0a...      |
+    |  i-022aca952...      |
+    +----------------------+
 ```
 
-You should see output similar to the following:
+## Interacting With Your Cluster
 
-```bash
-NAME=Bottlerocket
-ID=bottlerocket
-VERSION="1.12.0 (aws-k8s-1.25)"
-PRETTY_NAME="Bottlerocket OS 1.12.0 (aws-k8s-1.25)"
-VARIANT_ID=aws-k8s-1.25
-...
-```
+To confirm in depth that an instance is running Bottlerocket, pick an instance ID and follow the steps in the [Host Containers Quickstart](../host-containers).
+Any of the instance IDs listed for the `bottlerocket-quickstart-eks` cluster should work.
 
 Congratulations!
 You now have a Bottlerocket cluster running on EKS.
