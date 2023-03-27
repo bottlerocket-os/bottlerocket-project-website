@@ -1,0 +1,26 @@
+{{ $project_version := .Page.Scratch.Get "projectVer" }}
+{{ $release_version := replace $project_version "x" "*" }}
+{{ with  $.Site.Data.variants }}
+    {{ $release_variants := index $.Site.Data.variants $project_version }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Variant</th>
+                <th scope="col">Kernel Version</th>
+                <th scope="col">Kernel Parameters</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ range $release_variants }}
+            <tr>
+                <td><code>{{ replace .package.name "_" "." }}-*-{{ $release_version }}</code></td>
+                {{ range .package.metadata }}
+                <td>{{ $packages := index . "included-packages" }}{{ range $packages }}{{ substr (cond (hasPrefix . "kernel") . "") 7 }}{{ end }}</td>
+                <td>{{ $parameters := index . "kernel-parameters"}}
+                    {{ range $parameters }}<code>{{ . }}</code></br>{{end}}</td>
+                {{ end }}
+            </tr>
+            {{ end }}
+        </tbody>
+    </table>
+{{ end }}

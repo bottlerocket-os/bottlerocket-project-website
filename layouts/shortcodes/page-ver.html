@@ -1,0 +1,3 @@
+{{ $pathParts := split .Page.File.Path "/" }}
+{{ .Page.Scratch.Set "projectDocs" (index $pathParts 0) }}
+{{ .Page.Scratch.Set "projectVer" (index $pathParts 1) }}
