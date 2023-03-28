@@ -11,66 +11,6 @@
 {{- $ecs_tasks_label :=  .Get "ecs_tasks_label" | default "Tasks" }}
 
 
-<style>
-    .show_ecs .ecs {
-        display: inherit;
-    }
-    .show_ecs #svg_pods_label,
-    .show_ecs #svg_pods {
-        display: none;
-    }
-    .ecs {
-        display: none;
-    }
-    .containers {
-       fill:#ff9636;
-    }
-    .host-containers {
-       fill: #ffffff;
-       fill-opacity: 0.25;
-    }
-    .container-labels {
-       font-size:14.1111px;
-       text-align:center;
-       text-anchor:middle;
-       fill:#000000;
-    }
-    .container-labels tspan {
-       font-size:14.1111px;
-       fill:#000000;
-       stroke-width:1.556;
-    }
-   
-    .containers.user-containers {
-       fill:#e96f00;
-    }
-    .containers.containerd {
-       fill: #ff9636;
-    }
-    #svg_kubelet {
-       fill: #468378;
-    }
-    #svg_systemd {
-       fill: #12749d;
-    }
-    #svg_kernel {
-       fill:#0a4158;
-    }
-
-
-    #svg_ecs_agent {
-       fill: #6eaca0;
-    }
-    #svg_ecs_agent_label tspan,
-    #svg_containerd_left_label tspan,
-    #svg_containerd_right_label tspan,
-    #svg_kubelet_label tspan,
-    #svg_systemd_label tspan,
-    #svg_kernel_label tspan {
-       fill:#ffffff;
-    }
- 
- </style>
  <svg
     width="100%"
     viewBox="0 0 210 297"
@@ -90,6 +30,7 @@
     {{ if isset .Params "disable_kubelet"}} disabled-diagram-component-kubelet {{ end }}
     {{ if isset .Params "disable_pods"}} disabled-diagram-component-pods {{ end }}
     {{ if isset .Params "disable_host_containers"}} disabled-diagram-component-host-containers {{ end }}
+    {{ if isset .Params "disable_control_container"}} disabled-diagram-component-control-container {{ end }}
     ">
      <rect
         class="containers user-containers"

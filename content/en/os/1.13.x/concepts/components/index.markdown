@@ -138,7 +138,9 @@ Bottlerocket ECS variants function in roughly the same way but differ subtly in 
     containerclass="td-max-width-on-larger-screens docs-figure"
     rowclass="docs-figure" >}}
     {{< twocol_inner >}}
-        {{< components_diagram >}}
+        {{< components_diagram 
+            disable_control_container="true"
+        >}}
     {{</ twocol_inner >}}
     {{% twocol_inner colsplit="7"%}}
 

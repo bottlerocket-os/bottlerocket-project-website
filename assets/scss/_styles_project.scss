@@ -1,5 +1,41 @@
 @import '_home_svg.scss';
 
+/* project colours */
+$dark-blue: #0a4158;
+$dark-blue-text: #fff;
+$dark-blue-link: #ff9636;
+
+$light-blue: #12749d;
+$light-blue-text: #fff;
+$light-blue-link: #ff9636;
+
+$dark-teal: #4b8378;
+$dark-teal-text: #fff;
+$dark-teal-link: #ff9636;
+
+$light-teal: #6eaca0;
+$light-teal-text: #fff;
+$light-teal-link: #0a4158;
+
+$dark-orange: #e96f00;
+$dark-orange-text: #fff;
+$dark-orange-link: #0a4158;
+
+$light-orange: #ff9636;
+$light-orange-text: #fff;
+$light-orange-link: #0a4158;
+
+$tan: #e4d7d0;
+$tan-text: #0a4158;
+$tan-link: #e96f00;
+
+$light: #fff;
+$light-text: #0a4158;
+$light-link: #e96f00;
+
+/* replacement for black */
+$dark: #020e13;
+
 
 .td-main .br-import {
     padding-top: 1.5rem;
@@ -36,6 +72,7 @@
         margin-right: 0;
     }
 }
+/* component diagram syles */
 @mixin svg-disabled-container {
     fill: none;
     stroke: #fff;
@@ -55,8 +92,74 @@
 .disabled-diagram-component-containerd-left { #svg_containerd_left  { @include svg-disabled-component; } }
 .disabled-diagram-component-containerd-right { #svg_containerd_right { @include svg-disabled-component; } }
 .disabled-diagram-component-kubelet { #svg_kubelet  { @include svg-disabled-component; } }
+.disabled-diagram-component-control-container { 
+    #svg_control  { @include svg-disabled-component; @include svg-disabled-container; } 
+    #svg_control_label tspan { @include svg-disabled-container-label; }
+}
 .disabled-diagram-component-pods { 
     #svg_pods_label, #svg_pods { @include svg-disabled-component; } 
+}
+
+.show_ecs {
+    .ecs {
+        display: inherit;
+    }
+    #svg_pods_label,
+    #svg_pods {
+        display: none;
+    }
+}
+.ecs {
+    display: none;
+}
+.containers {
+   fill:#ff9636;
+}
+.host-containers {
+   fill: #ffffff;
+   fill-opacity: 0.25;
+}
+.container-labels {
+    font-size:14.1111px;
+    text-align:center;
+    text-anchor:middle;
+    fill:#000000;
+    tspan {
+        font-size:14.1111px;
+        fill:#000000;
+        stroke-width:1.556;
+    }
+}
+
+.containers {
+    &.user-containers {
+        fill: $dark-orange;
+    }
+    &.containerd {
+        fill: $light-orange;
+    }
+}
+#svg_kubelet {
+   fill: $dark-teal;
+}
+#svg_systemd {
+   fill: $light-blue;
+}
+#svg_kernel {
+   fill: $dark-blue;
+}
+
+
+#svg_ecs_agent {
+   fill: $light-teal;
+}
+#svg_ecs_agent_label tspan,
+#svg_containerd_left_label tspan,
+#svg_containerd_right_label tspan,
+#svg_kubelet_label tspan,
+#svg_systemd_label tspan,
+#svg_kernel_label tspan {
+   fill: $light;
 }
     
 .disabled-diagram-component-host-containers { 
@@ -69,6 +172,6 @@
 .diagram-eks-a {
     #svg_control_label tspan { @include svg-disabled-container-label; }
     #svg_admin_label tspan { fill-opacity: 1; }
-    #svg_admin { fill: #fff; opacity: 1; stroke: none }
+    #svg_admin { fill: $light; opacity: 1; stroke: none }
     #svg_control { @include svg-disabled-container; }
 }
