@@ -5,16 +5,45 @@
     {{ $groups = $groups | append .Params.group }}
 {{ end }}
 {{ $groups = uniq $groups }}
+<ul>
+    {{ $.Scratch.Set "groupindex" 0 }}
+    {{ range $groups }} 
+        
+        {{ $group := . }}
+        {{ $.Scratch.Set "groupindex" 
+            (add ($.Scratch.Get "groupindex") 1) 
+        }}
+            <li> {{ $.Scratch.Get "groupindex" }}. {{ $group }}
+                <ol>
+                    {{ $.Scratch.Set "qindex" 0 }}
+                    {{ range where $faqItems "Params.group" $group }}
+                        {{ $.Scratch.Set "qindex" 
+                            (add ($.Scratch.Get "qindex") 1) 
+                        }}
+                        <li><a href="#{{$.Scratch.Get "groupindex"}}_{{$.Scratch.Get "qindex"}}">{{ .Params.question }}</a></li>
+                    {{ end }}
+                </ol>
+            </li>
+    {{ end }}
+</ul>
+<hr />
+{{ $.Scratch.Set "groupindex" 0 }}
 {{ range $groups }} 
     {{ $group := . }}
-    <h2>{{ $group }}</h2>
-    <ol>
-    {{ range where $faqItems "Params.group" $group }}
-        <li>
-            <h3>{{ .Params.question }}</h3>
+    {{ $.Scratch.Set "groupindex" 
+        (add ($.Scratch.Get "groupindex") 1) 
+    }}
+    <h2>{{ $.Scratch.Get "groupindex" }}. {{ $group }}</h2>
+    <div class="pl-5">
+        {{ $.Scratch.Set "qindex" 0 }}
+        {{ range where $faqItems "Params.group" $group }}
+            {{ $.Scratch.Set "qindex" 
+                (add ($.Scratch.Get "qindex") 1) 
+            }}
+            <h3 id="{{ $.Scratch.Get "groupindex" }}_{{ $.Scratch.Get "qindex" }}">{{ $.Scratch.Get "groupindex" }}.{{ $.Scratch.Get "qindex" }} {{ .Params.question }}</h3>
             {{ .Content }}
-        </li>
-    {{ end }}
-    </ol>
+        {{ end }}
+    </div>
+    
     <hr />
 {{ end }}
