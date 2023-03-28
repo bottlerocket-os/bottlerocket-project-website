@@ -1,0 +1,227 @@
+{{- $control_container_label := .Get "control_container_label" | default "Control" -}}
+{{- $host_containers_label_1 := .Get "host_containers_label_1" | default "Host" -}}
+{{- $host_containers_label_2 := .Get "host_containers_label_2" | default "Containers" -}}
+{{- $admin_label := .Get "admin_label" | default "Admin" -}}
+{{- $pods_label := .Get "pods_label" | default "Pods" -}}
+{{- $kubelet_label := .Get "kubelet_label" | default "kubelet" -}}
+{{- $containerd_label := .Get "containerd_label" | default "containerd" -}}
+{{- $systemd_label := .Get "systemd_label" | default "systemd" -}}
+{{- $kernel_label := .Get "kernel_label" | default "Linux Kernel" -}}
+{{- $ecs_agent_label :=  .Get "ecs_agent_label" | default "ecs-agent" }}
+{{- $ecs_tasks_label :=  .Get "ecs_tasks_label" | default "Tasks" }}
+
+
+ <svg
+    width="100%"
+    viewBox="0 0 210 297"
+    version="1.1"
+    id="components_diagram"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:svg="http://www.w3.org/2000/svg">
+   <defs
+      id="defs8426" />
+   <g class="
+    {{ if isset .Params "show_ecs" }} show_ecs {{ end }}
+    {{ if isset .Params "disable_kubelet" }} disabled-diagram-component-kubelet {{ end }}
+    {{ if isset .Params "disable_systemd" }} disabled-diagram-component-systemd {{ end }}
+    {{ if isset .Params "disable_kernel" }} disabled-diagram-component-kernel {{ end }}
+    {{ if isset .Params "disable_containerd_left"}} disabled-diagram-component-containerd-left {{ end }}
+    {{ if isset .Params "disable_containerd_right"}} disabled-diagram-component-containerd-right {{ end }}
+    {{ if isset .Params "disable_kubelet"}} disabled-diagram-component-kubelet {{ end }}
+    {{ if isset .Params "disable_pods"}} disabled-diagram-component-pods {{ end }}
+    {{ if isset .Params "disable_host_containers"}} disabled-diagram-component-host-containers {{ end }}
+    {{ if isset .Params "disable_control_container"}} disabled-diagram-component-control-container {{ end }}
+    ">
+     <rect
+        class="containers user-containers"
+        id="svg_host_container"
+        width="100"
+        height="140"
+        x="0"
+        y="0"
+        rx="2" />
+     <rect
+        class="containers containerd"
+        id="svg_containerd_left"
+        width="100"
+        height="40"
+        x="0"
+        y="150"
+        rx="2" />
+     <rect
+        class="containers"
+        id="svg_systemd"
+        width="210"
+        height="40"
+        x="0"
+        y="200"
+        rx="2" />
+     <rect
+        class="containers"
+        id="svg_kernel"
+        width="210"
+        height="40"
+        x="0"
+        y="250"
+        rx="2" />
+     <rect
+        class="containers user-containers"
+        id="svg_pods"
+        width="100"
+        height="90"
+        x="110"
+        y="0"
+        rx="2" />
+     <rect
+        class="containers"
+        id="svg_kubelet"
+        width="100"
+        height="40"
+        x="110"
+        y="100"
+        rx="2" />
+     <rect
+        class="containers containerd"
+        id="svg_containerd_right"
+        width="100"
+        height="40"
+        x="110"
+        y="150"
+        rx="2" />
+     <text
+        xml:space="preserve"
+        class="container-labels"
+        x="160.09647"
+        y="49.209904"
+        id="svg_pods_label"><tspan
+          id="tspan12986"
+          x="160.09647"
+          y="49.209904">{{ $pods_label }} </tspan></text>
+     <text
+        xml:space="preserve"
+        class="container-labels"
+        x="159.84497"
+        y="124.2099"
+        id="svg_kubelet_label"><tspan
+          id="tspan13044"
+          x="159.84497"
+          y="124.2099">{{ $kubelet_label }}</tspan></text>
+     <text
+        xml:space="preserve"
+        class="container-labels"
+        x="159.52802"
+        y="174.3546"
+        id="svg_containerd_right_label"><tspan
+          id="tspan13048"
+          x="159.52802"
+          y="174.3546">{{ $containerd_label }}</tspan></text>
+     <text
+        xml:space="preserve"
+        class="container-labels"
+        x="49.528019"
+        y="174.3546"
+        id="svg_containerd_left_label"><tspan
+          id="tspan13052"
+          x="49.528023"
+          y="174.3546">{{ $containerd_label }}</tspan></text>
+     <text
+        xml:space="preserve"
+        class="container-labels"
+        x="104.404"
+        y="222.99379"
+        id="svg_systemd_label"><tspan
+          id="tspan13058"
+          x="104.404"
+          y="222.99379">{{ $systemd_label }}</tspan></text>
+     <text
+        xml:space="preserve"
+        class="container-labels"
+        x="105.19637"
+        y="274.35458"
+        id="svg_kernel_label"><tspan
+          id="tspan13062"
+          x="105.19637"
+          y="274.35458">{{ $kernel_label }}</tspan></text>
+     <text
+        xml:space="preserve"
+        class="container-labels"
+        x="50.275604"
+        y="65.097633"
+        id="svg_host_container_label"><tspan
+          id="tspan13066"
+          x="50.275604"
+          y="65.097633">{{ $host_containers_label_1 }}</tspan><tspan
+          x="50.275608"
+          y="82.736511"
+          id="tspan13070">{{ $host_containers_label_2 }}</tspan></text>
+     <rect
+        class="host-containers"
+        id="svg_control"
+        width="90"
+        height="35"
+        x="5"
+        y="5"
+        rx="2" />
+     <text
+        xml:space="preserve"
+        class="container-labels"
+        x="50.199814"
+        y="26.709904"
+        id="svg_control_label"><tspan
+          id="tspan13176"
+          x="50.199814"
+          y="26.709904">{{ $control_container_label }}</tspan></text>
+     <rect
+        class="host-containers"
+        id="svg_admin"
+        width="90"
+        height="35"
+        x="5"
+        y="100"
+        rx="2" />
+     <text
+        xml:space="preserve"
+        class="container-labels"
+        x="50.347954"
+        y="121.8546"
+        id="svg_admin_label"><tspan
+          id="tspan13182"
+          x="50.347958"
+          y="121.8546">{{ $admin_label }}</tspan></text>
+     <rect
+          class="ecs containers"
+          id="svg_ecs_agent"
+          width="100"
+          height="40"
+          x="110"
+          y="50"
+          rx="2" />
+     <text
+          xml:space="preserve"
+          class="ecs container-labels"
+          y="74.20999"
+          x="159.84497"
+          id="svg_ecs_agent_label"><tspan
+            id="tspan13176"
+            y="74.20999"
+            x="159.84497">{{ $ecs_agent_label }}</tspan></text>
+     <rect
+            class="ecs containers user-containers"
+            id="svg_ecs_tasks"
+            width="100"
+            height="40"
+            x="110"
+            y="0"
+            rx="2" />
+     <text
+        xml:space="preserve"
+        class="ecs container-labels"
+        y="24.20999"
+        x="159.84497"
+        id="svg_ecs_tasks_label"><tspan
+            id="tspan13176"
+            y="24.20999"
+            x="159.84497">{{ $ecs_tasks_label }}</tspan></text>
+   </g>
+ </svg>
+ 
