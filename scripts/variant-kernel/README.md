@@ -1,7 +1,6 @@
 # Script: Variant Kernel Information
 
-This script is used to generate the data for `[lang]/os/[version]]/version-information/variants/`. You will need to run it on ever minor version.
-
+This script is used to generate the data for `[lang]/os/[version]/version-information/variants/`. You will need to run it on every minor version.
 
 ## Prerequisites
 
@@ -26,7 +25,7 @@ As an example, if you want to create a hugo data file for the `aws-k8s-1.26` var
 ./create_data_file_from_cargo.sh /path/to/bottlerocket-repo/variants/aws-k8s-1.26/Cargo.toml /path/to/website/data/variants/1.13.x/
 ```
 
-The last part (`/data/variants/1.13.x/`) is relevant and should only be changed based on the version. The trailing slash is also required. This will put a single file `path/to/website/data/variants/1.13.x/aws-k8s-1.26.toml` that is an annoated version of `/path/to/bottlerocket-repo/variants/aws-k8s-1.26/Cargo.toml`.
+The last part (`/data/variants/1.13.x/`) is relevant and should only be changed based on the version. The trailing slash is also required. This will put a single file `path/to/website/data/variants/1.13.x/aws-k8s-1.26.toml` that is an annotated version of `/path/to/bottlerocket-repo/variants/aws-k8s-1.26/Cargo.toml`.
 
 ### Copy/transform all `Cargo.toml` files into a hugo data files
 
