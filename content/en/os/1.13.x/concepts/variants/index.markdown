@@ -50,7 +50,7 @@ When referencing variants in writing, `bottlerocket-` and the commit are typical
 
 ## Flavors
 
-Variants may also package in drivers for specific hardware called a “flavor.” Currently, the only flavor is 'nvidia', which adds support vor Nvidia GPUs.
+Variants may also package in drivers for specific hardware called a “flavor.” Currently, the only flavor is 'nvidia', which adds support for Nvidia GPUs.
 
 ## Variants, updating, & migrating
 

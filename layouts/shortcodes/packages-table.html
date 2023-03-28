@@ -1,0 +1,20 @@
+<table>
+	<th>package</th>
+	<th>version</th>
+	<th>patches</th>
+	{{ range .Page.Params.packages }}
+	<tr>
+		<td>{{ .package }}</td>
+		<td>{{ .version }}</td>
+		<td>
+			{{ with .patches }}
+				<ul>
+					{{ range $patch := . }}
+						<li>{{ $patch }}</li>
+					{{ end }}
+				</ul>
+			{{ end }}
+		</td>
+	</tr>
+	{{ end }}
+</table>

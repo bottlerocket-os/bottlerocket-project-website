@@ -175,3 +175,13 @@ $dark: #020e13;
     #svg_admin { fill: $light; opacity: 1; stroke: none }
     #svg_control { @include svg-disabled-container; }
 }
+
+.td-sidebar-nav .td-sidebar-link__page {
+    font-family: $td-fonts-serif
+}
+
+.td-sidebar-nav__section-title,
+header,
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+}
