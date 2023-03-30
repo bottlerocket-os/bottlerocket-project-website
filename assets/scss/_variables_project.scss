@@ -1,3 +1,63 @@
 $google_font_name: "IBM Plex Sans";
 $google_font_family: "IBM+Plex+Sans+Condensed:ital,wght@0,300;0,600;1,300;1,600&family=IBM+Plex+Sans:ital,wght@0,100;0,300;0,600;1,100;1,300;1,600";
 
+/* project colours */
+$dark-blue: #0a4158;
+$dark-blue-text: #fff;
+$dark-blue-link: #ff9636;
+
+$light-blue: #12749d;
+$light-blue-text: #fff;
+$light-blue-link: #ff9636;
+
+$dark-teal: #4b8378;
+$dark-teal-text: #fff;
+$dark-teal-link: #ff9636;
+
+$light-teal: #6eaca0;
+$light-teal-text: #fff;
+$light-teal-link: #0a4158;
+
+$dark-orange: #e96f00;
+$dark-orange-text: #fff;
+$dark-orange-link: #0a4158;
+
+$light-orange: #ff9636;
+$light-orange-text: #fff;
+$light-orange-link: #0a4158;
+
+$tan: #e4d7d0;
+$tan-text: #0a4158;
+$tan-link: #e96f00;
+
+$light: #fff;
+$light-text: #0a4158;
+$light-link: #e96f00;
+
+/* replacement for black */
+$dark: #020e13;
+
+/* brand styles */
+
+$enable-gradients: false;
+$enable-shadows: false;
+
+$font-weight-light: 300;
+$font-weight-bold: 600;
+
+
+$primary: $light;
+$body-color: $dark;
+
+
+$td-sidebar-bg-color: $light;
+$td-sidebar-tree-root-color: $dark;
+$td-sidebar-border-color: $light;
+
+
+
+$navbar-dark-brand-color: $light;
+$navbar-dark-brand-hover-color: $light-blue;
+$navbar-dark-color: $light;
+$navbar-dark-hover-color: $light-blue;
+$navbar-dark-active-color: $light-blue;

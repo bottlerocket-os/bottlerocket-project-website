@@ -15,7 +15,7 @@
         class="diagram-outline"
         transform="translate(221.4593,-86.934146)">
         <rect
-            id="rect111"
+            class="cluster_outline"
             width="153.20853"
             height="99.152504"
             x="-220.90607"

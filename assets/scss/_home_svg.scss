@@ -33,11 +33,11 @@
     .node_outline,
     .container_outline,
     .host_container_outline {
-        stroke:#000;
+        stroke:$dark-blue;
         stroke-opacity: 0.47;
     }
     .host_container_outline {
-        fill:#000;
+        fill:$dark-blue;
         fill-opacity: 0.47;
     }
 
@@ -56,12 +56,12 @@
         stroke:none;stroke-width:1.265;stroke-dasharray:none;stroke-opacity:1;
     }
     .os_label tspan {
-        fill:#101010;
+        fill:$dark-blue;
         fill-opacity:1;
     }
     &.white_base .connector_label tpan,
     &.white_base .host_container_label tspan {
-        fill:#000;
+        fill: $dark-blue;
     }
     &.white_base .container_label tspan,
     &.white_base .os_label tspan,
@@ -78,7 +78,7 @@
     .host_container_label,
     .container_label {
         font-size:3.52778px;text-align:center;text-anchor:middle;
-        fill:#101010;fill-opacity:1;
+        fill:$dark-blue;fill-opacity:1;
         stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;
     }
     .host_container_label tspan,
@@ -99,7 +99,7 @@
     }
 
     &.white_base .shell_connector {
-        stroke:#000;
+        stroke:$dark-blue;
         stroke-opacity:0.6;
     }
 
@@ -115,9 +115,7 @@
 
 
 .dm_v_selinux {
-
     .dividing_line {
-        fill:#000000;
         fill-opacity:1;
         stroke-width:1;
         stroke-linecap:round;
@@ -126,10 +124,12 @@
         stroke-opacity:1;
     }
     .storage_label {
-    font-size:2.64583px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;
+    font-size:2.64583px;text-align:start;text-anchor:start;fill-opacity:1;stroke:none;
     }
     .storage_label tspan {
-        text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;
+        text-align:start;text-anchor:start;
+        fill:$dark-orange-text;
+        fill-opacity:1;stroke:none;
     }
     .storage_label.selinux tspan {
         text-align:middle;text-anchor:middle;
@@ -138,33 +138,39 @@
         font-size:5.29169px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;   }
     .use_label tspan {
         font-size:5.29169px;
+        fill: $dark-orange-text;
     }
     .use_label.selinux tspan {
         text-anchor:middle;
     }
     text.padlock {
-        font-size:2.46944px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;
+        font-size:2.46944px;text-align:start;text-anchor:start;fill-opacity:1;stroke:none;
     }
     text.padlock tspan {
-        font-size:2.46944px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;
+        font-size:2.46944px;text-align:start;text-anchor:start;
+        fill:$dark-orange-text;
+        fill-opacity:1;stroke:none;
     }
     g.padlock {
         fill:none;
     }
     .properties {
-        font-size:2.64583px;text-align:start;text-anchor:start;fill:#999999;fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-dasharray:2.41218, 1.20609;stroke-dashoffset:0;stroke-opacity:1;
+        font-size:2.64583px;text-align:start;text-anchor:start;
+        fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-dasharray:2.41218, 1.20609;stroke-dashoffset:0;stroke-opacity:1;
     }
     .properties tspan {
-        font-size:2.64583px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1;
+        font-size:2.64583px;
+        fill: $dark-orange-text;
+        fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1;
     }
     .outline {
         fill:none;fill-opacity:1;stroke-width:1.556;stroke-linecap:butt;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;
     }
     .outline_label {
-        font-size:2.64583px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.556;stroke-linecap:butt;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;
+        font-size:2.64583px;text-align:start;text-anchor:start;fill-opacity:1;stroke:none;stroke-width:1.556;stroke-linecap:butt;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;
     }
     .outline_label tspan {
-        fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.556;
+        fill:$dark-orange-text;fill-opacity:1;stroke:none;stroke-width:1.556;
     }
 
     g.padlock,
@@ -175,11 +181,49 @@
     .dividing_line,
     g.padlock,
     .outline {
-        stroke:#000;
+        stroke:$dark-orange-text;
         stroke-opacity:0.55; 
     }
 }
 
+.td-box--tan  .cluster-diagram-svg {
+    .node-outline {
+        fill-opacity: 0.1;
+    }
+    
+    .diagram-label tspan,
+    .control-plane-label tspan,
+    .data-plane-label tspan,
+    .container-text tspan,
+    .bottlerocket-outline-label tspan {
+        fill: $tan-text;
+        fill-opacity: 1;
+    }
+    .diagram-label tspan,
+    .control-plane-label tspan,
+    .data-plane-label tspan {
+        fill-opacity: 0.5;
+    }
+    .data-plane {
+        opacity: 0.5;
+    }
+    .control-plane-outline,
+    .container-outline {
+        fill-opacity: 0.3;
+    }
+    .bottlerocket-outline,
+    .container-outline,
+    .node-outline {
+        stroke: $light-blue;
+        stroke-opacity: 0.5;
+    }
+    .diagram-outline {
+        stroke: $dark;
+        stroke-opacity: 0.15;
+        stroke-dasharray: 1,1;
+    }
+
+}
 .cluster-diagram-svg {
     .container-text {
         font-size:3.52778px;
@@ -282,11 +326,12 @@
     }
     .version_label tspan {
         font-size:3.84967px;text-align:center;text-anchor:middle;
-        fill:#101010;fill-opacity:1;stroke-width:0.690213;
+        fill-opacity:1;stroke-width:0.690213;
     }
+
     .container_label {
         font-size:2.64583px;text-align:center;text-anchor:middle;
-        fill:#101010;fill-opacity:1;stroke:none;stroke-width:0.545623;stroke-dasharray:none;stroke-opacity:1;
+        fill-opacity:1;stroke:none;stroke-width:0.545623;stroke-dasharray:none;stroke-opacity:1;
     }
     .container_label tspan {
         font-size:2.64583px;text-align:center;text-anchor:middle;fill:#101010;fill-opacity:1;stroke:none;stroke-width:0.545623;
@@ -294,7 +339,7 @@
     .version_outline,
     .update_node,
     .container_outline {
-        stroke:#000;
+        stroke:$dark-blue-text;
         stroke-opacity:0.47;
         stroke-width:0.351219;
     }
@@ -311,35 +356,36 @@
     }
     .connecting_line.running_old_crossover,
     .connecting_line.download_line {
-        stroke:#acacac;
+        stroke:$tan;
     }
     .connecting_line.new_running_crossover {
-        stroke:#009307;
+        stroke: $light-orange;
     }
     .download_label {
-        font-size:1.92484px;text-align:center;text-anchor:middle;fill:#101010;fill-opacity:1;stroke:none;stroke-width:0.545623;stroke-dasharray:none;stroke-opacity:1;
+        font-size:1.92484px;text-align:center;text-anchor:middle;
+        fill:$light;
+        fill-opacity:1;stroke:none;stroke-width:0.545623;stroke-dasharray:none;stroke-opacity:1;
     }
     .version_outline {
         fill:none;
         stroke-dasharray:none;
     }
     .version_outline.inactive {
-        fill:#000;
+        fill: $light-blue;
         fill-opacity:0.31;
     }
     .reboot_label {
         font-size:3.84528px;text-align:center;text-anchor:middle;
-        fill:#101010;
         fill-opacity:1;stroke:none;stroke-width:0.545623;stroke-dasharray:none;stroke-opacity:1;
     }
     .reboot_label tspan {
         font-size:3.84528px;text-align:center;text-anchor:middle;
-        fill:#101010;
+        fill:$light;
         fill-opacity:1;stroke:none;stroke-width:0.545623;
     }
     
     &.stage1 .connecting_line.download_line {
-        stroke:#009307;
+        stroke:$light-orange;
     }
     
     &.stage1 .connecting_line.download_line,
@@ -363,7 +409,7 @@
     &.stage3 .old_node .container_label tspan,
     &.stage2 .old_node.version_label tspan,
     &.stage2 .old_node .container_label tspan {
-        fill: #000;
+        fill: $dark;
         fill-opacity:0.5;
     }
     &.stage3 .version_outline.old_node,
@@ -372,7 +418,7 @@
     &.stage2 .version_outline.old_node,
     &.stage2 .update_node.old_node,
     &.stage2 .old_node  .container_outline{
-        stroke:#000;
+        stroke:$dark;
         stroke-opacity:0.2;
         stroke-width:0.351219;
     }
@@ -389,6 +435,11 @@
     &.stage2 .version_outline.new_node,
     &.stage2 .connecting_line.new_node {
         display: none;
+    }
+
+    .version_label tspan,
+    .container_label tspan {
+        fill: $light;
     }
     
     
@@ -449,7 +500,7 @@
     .variant_outline,
     .variant_connection {
         fill:none;
-        stroke:#000;
+        stroke: $dark-blue;
         stroke-opacity:0.3;
         stroke-width:1;
     }
@@ -463,6 +514,16 @@
         fill: #fff;
     }
     &.white_base .dot {
-        fill:#000;
+        fill: $dark-blue;
     }
+}
+.td-home .row.td-box + p {
+    display: none;;
+}
+
+.td-home .row.td-box:has(h2) {
+    padding-top: 0;
+}
+.td-home .row.td-box h2 {
+    padding-top: $td-block-space-top-base;
 }
