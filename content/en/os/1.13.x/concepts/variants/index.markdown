@@ -61,10 +61,10 @@ A few examples:
 
 |Original|New|In-Place Update|Node Replacement / Migration|Explaination|
 |---|---|---|---|---|
-|aws-k8s-1.24-**1.12.0**|aws-k8s-1.24-**1.13.0**|✓|✓|This is moving between versions of the same variant, so this can be accomplished by an update|
-|aws-k8s-**1.24**-1.12.0|aws-k8s-**1.25**-1.12.0|✗|✓|The orchestrator version is part of the variant, so this is a migration.|
-|aws-k8s-**1.24**-**1.12.0**|aws-k8s-**1.25**-**1.13.0**|✗|✓|Both the Bottlerocket version and the variant are changing so this must be accomplished by a migration.|
-|aws-k8s-1.24-1.13.0|aws-k8s-1.24-**nvidia**-1.13.0|✗|✓|The flavor is part of the variant, so this change must be accomplished by a migration|
-|aws-**ecs-1**-1.13.0|aws-**k8s-1.25**-1.13.0|✗|✗|The orchestrator has changed. The cluster must be rebuilt.|
+|aws-k8s-1.24-x86_64-**1.12.0**|aws-k8s-1.24-x86_64-**1.13.0**|✓|✓|This is moving between versions of the same variant, so this can be accomplished by an update|
+|aws-k8s-**1.24**-x86_64-1.12.0|aws-k8s-**1.25**-x86_64-1.12.0|✗|✓|The orchestrator version is part of the variant, so this is a migration.|
+|aws-k8s-**1.24**-x86_64-**1.12.0**|aws-k8s-**1.25**-x86_64-**1.13.0**|✗|✓|Both the Bottlerocket version and the variant are changing so this must be accomplished by a migration.|
+|aws-k8s-1.24-x86_64-1.13.0|aws-k8s-1.24-**nvidia**-x86_64-1.13.0|✗|✓|The flavor is part of the variant, so this change must be accomplished by a migration|
+|aws-**ecs-1**-x86_64-1.13.0|aws-**k8s-1.25**-x86_64-1.13.0|✗|✗|The orchestrator has changed. The cluster must be rebuilt.|
 
 If you are using a node replacement strategy, the distinction between migrating and updating is less important as any change is effectively a migration.
