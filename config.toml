@@ -1,6 +1,6 @@
 baseURL = 'http://example.org/'
 languageCode = 'en-us'
-title = 'The Bottlerocket Project'
+title = 'Bottlerocket'
 
 defaultContentLanguage = 'all'
 

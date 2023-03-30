@@ -1,40 +1,78 @@
 @import '_home_svg.scss';
 
-/* project colours */
-$dark-blue: #0a4158;
-$dark-blue-text: #fff;
-$dark-blue-link: #ff9636;
 
-$light-blue: #12749d;
-$light-blue-text: #fff;
-$light-blue-link: #ff9636;
 
-$dark-teal: #4b8378;
-$dark-teal-text: #fff;
-$dark-teal-link: #ff9636;
+._td-navbar {
+    background-color: $dark-teal;
+}
+._td-sidebar {
+    background-color: $tan;
+}
+._td-sidebar-nav .td-sidebar-link.tree-root {
+    color: $tan-link;
+}
+.td-main, .td-section, .td-page {
+    .td-sidebar {
+        border-right: 2px solid $tan;
+    }
+    .td-sidebar-nav .td-sidebar-link.tree-root {
+        border-color: $dark-teal;
+    }
+    .td-sidebar-nav__section-title a {
+        color: $dark;
+    }
+    .td-sidebar-nav a:hover { color: $dark-teal; }
+}
+.navbar-brand .font-weight-bold { font-weight: 600 !important; }
+.td-home, .td-main, .td-section, .td-page {
+    .td-navbar { 
+        background: linear-gradient($dark 0%, $dark-blue 10%, $dark-blue 100%);
+        //border-bottom: 1px dotted $light-blue;  
+    }
+}
 
-$light-teal: #6eaca0;
-$light-teal-text: #fff;
-$light-teal-link: #0a4158;
+$link-color: $light-link;
+.td-home, .td-main, .td-section, .td-page {
+    footer.bg-dark {
+        background-color: $dark-teal !important;
+    }
+} 
 
-$dark-orange: #e96f00;
-$dark-orange-text: #fff;
-$dark-orange-link: #0a4158;
-
-$light-orange: #ff9636;
-$light-orange-text: #fff;
-$light-orange-link: #0a4158;
-
-$tan: #e4d7d0;
-$tan-text: #0a4158;
-$tan-link: #e96f00;
-
-$light: #fff;
-$light-text: #0a4158;
-$light-link: #e96f00;
-
-/* replacement for black */
-$dark: #020e13;
+.td-box--dark-blue {
+    background-color: $dark-blue;
+    color: $light;
+    a {
+        color: $dark-blue-link;
+    }
+}
+.td-box--light-teal {
+    background-color: $light-teal;
+    color: $light-teal-text;
+    a {
+        color: $light-teal-link;
+    }
+}
+.td-box--tan {
+    background-color: $tan;
+    color: $tan-text;
+    a {
+        color: $tan-link;
+    }
+}
+.td-box--dark-orange {
+    background-color: $dark-orange;
+    color: $dark-orange-text;
+    a {
+        color: $dark-orange-link;
+    }
+}
+.td-box--light-blue {
+    background-color: $light-blue;
+    color: $light-blue-text;
+    a {
+        color: $light-blue-link;
+    }
+}
 
 
 .td-main .br-import {
