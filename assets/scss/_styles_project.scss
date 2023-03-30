@@ -185,3 +185,11 @@ header,
 h1,h2,h3,h4,h5,h6 {
     font-family: 'IBM Plex Sans Condensed', sans-serif;
 }
+
+/* this is used to replace the existing section index on section listing pages. Only the explicit one will be shown. */
+.suppress_section_listing .section-index {
+    display: none;
+    &.subsection-list {
+        display: inherit;
+    }
+}

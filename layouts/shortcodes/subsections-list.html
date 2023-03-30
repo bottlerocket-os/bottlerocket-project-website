@@ -1,0 +1,8 @@
+
+<div class="section-index subsection-list">
+    <div class="entry">
+        {{ range (.Page.Pages)  }}
+            <h5><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h5>
+        {{ end }}
+    </div>
+</div>
