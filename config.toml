@@ -5,7 +5,7 @@ title = 'The Bottlerocket Project'
 defaultContentLanguage = 'all'
 
 [params]
-copyright = "Copyright Amazon.com, Inc., its affiliates, or other contributors."
+copyright = "Copyright Amazon.com, Inc., its affiliates, or other contributors. All Rights Reserved."
 languageOverride = 'all'
 
 [params.ui]
