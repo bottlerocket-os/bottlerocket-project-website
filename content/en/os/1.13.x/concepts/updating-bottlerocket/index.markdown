@@ -1,5 +1,5 @@
 +++
-title = "Updating Bottlerocket"
+title = "Updates"
 type = "docs"
 description = "Overview of different methods to update Bottlerocket"
 +++
