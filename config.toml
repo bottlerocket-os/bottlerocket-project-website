@@ -1,4 +1,4 @@
-baseURL = 'http://example.org/'
+baseURL = 'http://example.org/foox/'
 languageCode = 'en-us'
 title = 'Bottlerocket'
 
@@ -60,9 +60,9 @@ navbar_logo = false
   # to re-enable, you'll need to uncomment the drop down in /layouts/partials/navbar.html
   name = "Documentation"
   weight = 50
-  url = "/en/"
+  url = "en/"
 
 [[menu.main]]
   name = "FAQ"
   weight = 20
-  url = "/en/faq/"
+  url = "en/faq/"
