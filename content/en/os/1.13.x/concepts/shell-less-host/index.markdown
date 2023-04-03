@@ -24,7 +24,7 @@ The control container is also the path to enable or enter the admin container.
 
 The admin container is designed to provide out-of-band access with elevated privileges.
 On `aws-k8s-*` and `aws-ecs-*` variants, the admin container is not enabled by default but can be turned on or entered through the control container.
-For on-prem variants (`metal-*` or `vmware-*`), the admin container is enabled by default but best security practice is to disable it and only enable it as-needed.
+The best security practice is to disable the admin container and only enable it as-needed.
 
 The admin container has read-only mount to the host file system, unrestricted an SELinux label as well as all of the capabilities of the control container.
 Using the admin container should be rare: only used as-needed and by those required.
