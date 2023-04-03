@@ -1,5 +1,8 @@
 @import '_home_svg.scss';
 
+.btn-lg, .btn-group-lg > .btn {
+    border-radius: 6px;
+}
 
 
 ._td-navbar {
@@ -220,8 +223,19 @@ $link-color: $light-link;
 
 .td-sidebar-nav__section-title,
 header,
+.h1,.h2,.h3,.h4,.h5,.h6,
 h1,h2,h3,h4,h5,h6 {
     font-family: 'IBM Plex Sans Condensed', sans-serif;
+}
+
+.td-box--dark-blue {
+    a.btn {
+        background-color: transparent;
+        color: $light;
+        border: 2px solid $light;
+        font-weight: 300 !important;
+        font-family: 'IBM Plex Sans Condensed', sans-serif;
+    }
 }
 
 /* this is used to replace the existing section index on section listing pages. Only the explicit one will be shown. */

@@ -5,3 +5,5 @@ It is specifically designed to work with your container orchestrator (like [Kube
 Bottlerocket runs in the cloud or in your datacenter.
 
 Bottlerocket has three primary goals: [Minimal](#minimal) · [Safe Updates](#safe-updates) · [Security Focused](#security-focused).
+
+{{< center-button link="/en/" label="Get Started">}}
