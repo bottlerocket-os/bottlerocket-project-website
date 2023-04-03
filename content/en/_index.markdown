@@ -5,22 +5,23 @@ title="Documentation"
 
 You may be familiar with general purpose Linux distributions like Ubuntu, Fedora, or Amazon Linux.
 With these Linux distributions, you can run a variety of workloads, setup in a variety of ways.
-While Bottlerocket is also a Linux distribution, Bottlerocket stands in stark contrast by being specifically optimized to host containers and interoperate directly with container orchestrators such as Kubernetes or ECS.
-Additionally, when compare to general purpose operating systems, Bottlerocket has several operational differences which minimize the security footprint, lower maintenance burden, and enforce container best practices.
+While Bottlerocket is also a Linux distribution, Bottlerocket stands in stark contrast to general purpose disributions by being specifically optimized to host containers and interoperate directly with container orchestrators such as Kubernetes or ECS.
+Additionally, when compared to general purpose operating systems, Bottlerocket has several operational differences which minimize the security footprint, lower maintenance burden, and enforce container best practices.
 
 ## Getting to know Bottlerocket
 
 This documentation provides context to understand the operating system at a high-level, practical how-to guides, and reference material.
 
-The {{< ver-ref project="os" page="/concepts" >}}Concepts section{{< /ver-ref >}} is a good starting point if you’re entirely unfamiliar with Bottlerocket. This section, like the rest of the documentation, is non-linear.
+The {{< ver-ref project="os" page="/concepts" >}}Concepts section{{< /ver-ref >}} is a good starting point if you’re entirely unfamiliar with Bottlerocket. 
+This section, like the rest of the documentation, is non-linear.
 However, the most fundamental building blocks needed to understand Bottlerocket can be found on the {{< ver-ref project="os" page="/concepts/components" >}}Components{{< /ver-ref >}} and {{< ver-ref project="os" page="/concepts/variants" >}}Variants{{< /ver-ref >}} pages.
 
 ## Organization
 
 This documentation is divided by project and largely mirrors the repository boundaries of the Bottlerocket GitHub organization.
-The primary documentation for the operating system is in the OS section and correlates with bottlerocket-os/bottlerocket on GitHub.
+The primary documentation for the operating system is in the OS section and correlates with `bottlerocket-os/bottlerocket` on GitHub.
 
-Inside each section, the documentation is further scoped to minor versions of each project with the most recent release being marked as (*Current).*
+Inside each section, the documentation is further scoped to minor versions of each project with the most recent release being marked as (*Current*).
 
 Version Information sections contain reference metadata about the documented release.
 
