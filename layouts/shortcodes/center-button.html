@@ -1,5 +1,8 @@
 {{- $class := .Get "class" | default ""  -}}
 {{- $link := .Get "link" -}}
-<a class="btn btn-lg col-sm-3 mb-3 font-weight-bold {{ $class }} " href="{{ $link }}">
+{{- $lang := .Get "lang" -}}
+{{- $refLink := ref . (dict "path" $link "lang" $lang) }}
+
+<a class="btn btn-lg col-sm-3 mb-3 font-weight-bold {{ $class }} " href="{{ $refLink }}">
    {{ .Get "label" }}
 </a>

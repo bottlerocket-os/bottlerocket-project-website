@@ -6,4 +6,4 @@ Bottlerocket runs in the cloud or in your datacenter.
 
 Bottlerocket has three primary goals: [Minimal](#minimal) · [Safe Updates](#safe-updates) · [Security Focused](#security-focused).
 
-{{< center-button link="/en/" label="Get Started">}}
+{{< center-button link="/_index.markdown" label="Get Started" lang="en" >}}
