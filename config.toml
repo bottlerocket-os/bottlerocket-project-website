@@ -7,9 +7,11 @@ defaultContentLanguage = 'all'
 [params]
 copyright = "Copyright Amazon.com, Inc., its affiliates, or other contributors. All Rights Reserved."
 languageOverride = 'all'
+brand_link = "../"
 
 [params.ui]
 footer_about_disable = true
+navbar_logo = false
 
 [params.imports.bottlerocket]
     repo_path = 'bottlerocket'
@@ -52,3 +54,15 @@ footer_about_disable = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+[[menu.main]]
+  # This was added to support mutliple languages eventually but start with one only
+  # to re-enable, you'll need to uncomment the drop down in /layouts/partials/navbar.html
+  name = "Documentation"
+  weight = 50
+  url = "/en/"
+
+[[menu.main]]
+  name = "FAQ"
+  weight = 20
+  url = "/en/faq/"

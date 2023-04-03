@@ -1,4 +1,4 @@
 +++
 type="docs"
-title="Docs in English"
+title="Documentation"
 +++

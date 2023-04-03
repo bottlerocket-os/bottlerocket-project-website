@@ -1,7 +1,6 @@
 +++
 title= "Bottlerocket"
 +++
-<div class="td-content">
 {{< blocks/lead color="dark-blue" >}}
 {{% readfile "includes/homepage/intro.markdown" %}}
 {{< /blocks/lead >}}
@@ -17,4 +16,3 @@ title= "Bottlerocket"
 {{< blocks/section color="dark-orange">}}
 {{% readfile "includes/homepage/security-focused.markdown" %}}
 {{< /blocks/section >}}
-</div>
