@@ -49,9 +49,9 @@ In order to apply a version lock using SSM, follow these steps:
         - If you are using EKS, select all nodes in a given EKS cluster by specifying an instance tag in the "Target selection" section of the page.
         Specify `eks:cluster-name` as the tag key, with the tag value set to your cluster name.
 2. Next, tell your Bottlerocket nodes to prepare to boot into that specific version.
-    - Apply the [`update-bottlerocket-node` SSM Command Document](../in-place/#ssm-command-document-check-for-and-apply-updates-to-a-bottlerocket-node), described in the [in-place update documentation](../in-place/).
+    - Apply the [`update-bottlerocket-node` SSM Command Document](../methods/in-place/#ssm-command-document-check-for-and-apply-updates-to-a-bottlerocket-node), described in the [in-place update documentation](../methods/in-place/).
 3. Finally, reboot your Bottlerocket nodes into the version you locked to.
-    - Apply the [`reboot-bottlerocket-node` SSM Command Document](../in-place/#ssm-command-document-reboot-a-bottlerocket-node), described in the [in-place update documentation](../in-place/).
+    - Apply the [`reboot-bottlerocket-node` SSM Command Document](../methods/in-place/#ssm-command-document-reboot-a-bottlerocket-node), described in the [in-place update documentation](../methods/in-place/).
 
 ## Removing a Version Lock
 
