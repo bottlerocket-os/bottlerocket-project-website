@@ -2,10 +2,12 @@
     (.HasShortcode "blocks/cover")
     (not .Site.Params.ui.navbar_translucent_over_cover_disable)
 -}}
+{{- $navbar_link := ref . (dict "path" "/_index.md" "lang" "all") -}}
+
 
 <nav class="js-navbar-scroll navbar navbar-expand navbar-dark
             {{- if $cover }} td-navbar-cover {{- end }} flex-column flex-md-row td-navbar">
-  <a class="navbar-brand" href="{{ .Site.Params.brand_link | default .Site.Home.RelPermalink }}">
+  <a class="navbar-brand" href="{{- $navbar_link -}}">
     {{- /**/ -}}
     <span class="navbar-brand__logo navbar-logo">
       {{- if ne .Site.Params.ui.navbar_logo false -}}

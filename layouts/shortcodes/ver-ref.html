@@ -3,4 +3,7 @@
 {{- $projectVersion := index $.Site.Data.versions.current $project -}}
 {{- $version := cond (eq (len $versionParam) 0 ) (print $projectVersion.major "." $projectVersion.minor ".x" ) $versionParam -}}
 {{- $refpage := .Get "page" }}
-<a href="/{{ $.Page.Language }}/{{$project}}/{{$version}}{{$refpage}}">{{.Inner}}</a>
+{{- $concatenated_page := print "/" $project "/" $version $refpage }}
+{{- $lang := print $.Page.Language }}
+{{- $ref_link :=  relref . (dict "path" $concatenated_page "lang" $lang) }}
+<a href="{{ $ref_link }}">{{.Inner}}</a>
