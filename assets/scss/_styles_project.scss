@@ -248,6 +248,7 @@ h1,h2,h3,h4,h5,h6 {
 
 /* swagger ui pages show some confusing references, we can hide them with CSS */
 .swagger-ui {
+    pre.errors-wrapper,
     hgroup.main a {
         display: none;
     }
