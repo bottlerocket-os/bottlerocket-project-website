@@ -245,3 +245,13 @@ h1,h2,h3,h4,h5,h6 {
         display: inherit;
     }
 }
+
+/* swagger ui pages show some confusing references, we can hide them with CSS */
+.swagger-ui {
+    hgroup.main a {
+        display: none;
+    }
+    pre {
+        background-color: transparent;
+    }
+}
