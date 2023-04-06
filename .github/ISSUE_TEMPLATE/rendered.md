@@ -3,10 +3,10 @@ name: Visual/rendering Issue
 about: The site looks wrong
 ---
 
-** Path to the page with the problem (_do not_ include domain name): **
+**Path to the page with the problem (_do not_ include domain name):**
 
-** Describe the problem **
+**Describe the problem:**
 
-** Screen Shot, if possible **
+**Screen Shot, if possible**
 
-** Describe how the site should look? **
+**Describe how the site should look?**
