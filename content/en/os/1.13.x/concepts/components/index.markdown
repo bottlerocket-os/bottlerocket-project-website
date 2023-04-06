@@ -4,7 +4,7 @@ type = "docs"
 description = "The pieces that constitute Bottlerocket"
 +++
 
-The constituent components of Bottlerocket differ substantially from most Linux distributions. By providing ready-to-run images, some software typically considered as workloads of an operating system are integral to Bottlerocket.
+The components of Bottlerocket differ substantially from most Linux distributions. By providing ready-to-run images, some software typically considered as workloads of an operating system are integral to Bottlerocket.
 
 {{< twocol
     containerclass="td-max-width-on-larger-screens docs-figure"
@@ -65,7 +65,7 @@ systemd serves as the initialization and service management layer. systemd unifi
         {{% twocol_inner  colsplit="7" %}}
 Bottlerocket runs two instances of the container runtime, containerd. Containers used for operational and administrative purposes have a devoted containerd instance, whilst orchestrator-managed workloads have a separate containerd instance. 
 
-On Kubernetes variants, Bottlerocket uses Kubelet to communicate with the Kubernetes control plane and, in turn, interfaces with containerd for container lifecycle tasks.
+On Kubernetes variants, Bottlerocket runs Kubelet to communicate with the Kubernetes control plane and orchestrate container lifecycles.
         {{%/ twocol_inner %}}
 {{</ twocol >}}
 
