@@ -56,7 +56,7 @@ host-containers.admin --> Values of:
                              superpowered
 ```
 
-Laterally, if you `get` a path and a setting, it returns only the value of that specific setting:
+If you `get` a path and a setting, it returns only the value of that specific setting:
 
 ```goat
           +-- Path
