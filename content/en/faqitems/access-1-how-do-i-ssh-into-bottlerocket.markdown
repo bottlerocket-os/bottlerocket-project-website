@@ -1,6 +1,6 @@
 +++
 question = "How do I SSH into Bottlerocket?"
-group = "Fleet Management"
+group = "Access"
 +++
 
 Bottlerocket's {{< ver-ref project="os" page="/install/quickstart/aws/host-containers/index.markdown" >}}control container{{< /ver-ref >}} includes the capability for accessing the host through SSM.
