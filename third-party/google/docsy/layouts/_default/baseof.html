@@ -1,6 +1,6 @@
 <!doctype html>
 {{ if eq .Site.Language.Lang .Site.Params.languageOverride }}
-  <html itemscope itemtype="http://schema.org/WebPage" class="no-js">
+  <html itemscope itemtype="http://schema.org/WebPage" class="no-js" lang="en">
 {{ else }}
   <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
 {{ end }}
