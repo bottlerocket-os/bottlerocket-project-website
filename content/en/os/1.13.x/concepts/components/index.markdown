@@ -108,7 +108,8 @@ Bottlerocket defers workload management to the orchestrator. While Bottlerocket 
 “Host Containers” are containers specifically used to maintain, operate, or administer the node. Host containers provide a secondary method to manipulate and administer the operating system even if the orchestrator agent is non-responsive or exhausted of resources.
 
 There are two host containers that are published for use with Bottlerocket: the control container and the admin container.
-The control container is on by default, is pre-configured to be able to use the Bottlerocket API, and can be accessed by SSM.
+The control container is on by default.
+It is pre-configured to be able to use the Bottlerocket API and can be accessed by SSM.
 The admin container is off by default and has elevated privileges for system exploration and debugging.
 Furthermore, any container can be [run as a host container](https://github.com/bottlerocket-os/bottlerocket#custom-host-containers), and any number of host containers can run.
     {{%/ twocol_inner %}}
