@@ -1,5 +1,5 @@
 +++
-question = "Does Bottlerocket’s immutability mean that no files will ever change on the host?"
+question = "I heard Bottlerocket is immutable. What does that really mean?"
 group = "Security"
 +++
 
