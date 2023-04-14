@@ -245,6 +245,11 @@ h1,h2,h3,h4,h5,h6 {
         display: inherit;
     }
 }
+@include media-breakpoint-down(md) {
+    .td-sidebar-nav__section .ul-1 ul {
+        padding-left: 0.5rem;
+    }
+}
 
 /* swagger ui pages show some confusing references, we can hide them with CSS */
 .swagger-ui {
