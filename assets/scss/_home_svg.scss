@@ -527,3 +527,28 @@
 .td-home .row.td-box h2 {
     padding-top: $td-block-space-top-base;
 }
+
+@include media-breakpoint-down(md) {
+    .row .featured-figure {
+        border-radius: 0;
+        border-top: 1px solid rgba(0,0,0,0.2);
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+        background-color: inherit;
+        padding: 1em 0 1em 0;
+        .row {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .col, .col-7, .col-4  {
+            flex-basis: auto;
+        } 
+        .col-7, .col-4 {
+            padding-top: 1em;
+            max-width: none;
+        }
+    }
+}
+
+main.td-main > p {
+    display: none;
+}
