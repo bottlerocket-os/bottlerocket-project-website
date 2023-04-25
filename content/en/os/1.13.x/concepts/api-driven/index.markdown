@@ -13,7 +13,7 @@ Additionally, administrative tasks like checking for updates and rebooting as we
 ## Accessing the API
 
 The Bottlerocket API is only accessible by containers running on the same host with specific SELinux labels.
-The API Unix domain socket is accessible by mounting; containers running on the host or orchestrated containerd instances can access the API as long as they have both the correct SELinux labels and mount the socket.
+The API Unix domain socket is accessible by mounting; containers running on the host can access the API as long as they have both the correct SELinux labels and mount the socket.
 Both the Admin and Control containers have the requisite SELinux labels and socket pre-mounted.
 Because access to the API socket is through explicit mounts and SELinux labels there is no authentication required.
 
