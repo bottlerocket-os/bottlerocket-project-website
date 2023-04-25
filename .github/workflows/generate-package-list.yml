@@ -1,0 +1,65 @@
+name: generate-package-list
+on: 
+  workflow_dispatch:
+    inputs:
+      minorRelease:
+        description: 'Minor release (e.g. 1.13.x)'
+        required: true
+        type: string
+      patchRelease:
+        description: 'Patch release (e.g. 1.13.2)'
+        required: true
+        type: string
+      issueNumber:
+        description: 'Github issue number to close (e.g. 139)'
+        type: string
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  generate-package-list:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout docs site
+        uses: actions/checkout@v3
+        with:
+          path: bottlerocket-project-website
+      - name: Checkout bottlerocket os
+        uses: actions/checkout@v3
+        with:
+          repository: bottlerocket-os/bottlerocket
+          path: bottlerocket
+          ref: v${{ inputs.patchRelease }}
+      - name: Make new patch release folder
+        run: |
+          mkdir bottlerocket-project-website/content/en/os/$MINOR_RELEASE/version-information/packages/$PATCH_RELEASE
+        env:
+          MINOR_RELEASE: ${{ inputs.minorRelease }}
+          PATCH_RELEASE: ${{ inputs.patchRelease }}
+      - name: Generate package version list
+        run: |
+          bash bottlerocket-project-website/scripts/software-versions-inventory/software-versions-inventory.sh bottlerocket/ > bottlerocket-project-website/content/en/os/$MINOR_RELEASE/version-information/packages/$PATCH_RELEASE/index.markdown
+        env:
+          MINOR_RELEASE: ${{ inputs.minorRelease }}
+          PATCH_RELEASE: ${{ inputs.patchRelease }}
+      - name: Open PR for changes
+        uses: peter-evans/create-pull-request@v5
+        with:
+          path: bottlerocket-project-website
+          commit-message: 'packages: add package versions for v${{ inputs.patchRelease }}'
+          branch: add-package-versions-${{ inputs.patchRelease }}
+          title: 'packages: add package versions for v${{ inputs.patchRelease }}'
+          body: |
+            **Issue number:**
+
+            Closes #${{ inputs.issueNumber }}
+
+            **Description of changes:**
+
+            adds package version info for v${{ inputs.patchRelease }}
+
+            **Terms of contribution:**
+
+            By submitting this pull request, I confirm that my contribution is made under
+            the terms of the licenses outlined in the LICENSE-SUMMARY file.
+
