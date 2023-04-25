@@ -1,0 +1,67 @@
+name: generate-variant-kernel-info
+on: 
+  workflow_dispatch:
+    inputs:
+      minorRelease:
+        description: 'Docs site: minor release (e.g. 1.13.x)'
+        required: true
+        type: string
+      patchRelease:
+        description: 'Bottlerocket OS: patch release (e.g. 1.13.0)'
+        required: true
+        type: string
+      issueNumber:
+        description: 'Github issue number to close (e.g. 139)'
+        type: string
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  generate-variant-kernel-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout docs site
+        uses: actions/checkout@v3
+        with:
+          path: bottlerocket-project-website
+      - name: Checkout bottlerocket os
+        uses: actions/checkout@v3
+        with:
+          repository: bottlerocket-os/bottlerocket
+          path: bottlerocket
+          ref: v${{ inputs.patchRelease }}
+      - name: Make new minor release folder in data directory
+        run: |
+          mkdir bottlerocket-project-website/data/variants/$MINOR_RELEASE
+        env:
+          MINOR_RELEASE: ${{ inputs.minorRelease }}
+      - name: Generate variant kernel info
+        run: |
+          export ACTION_ROOT_DIR=$PWD
+          pushd bottlerocket-project-website/scripts/variant-kernel
+          bash ./get_cargos.sh $ACTION_ROOT_DIR/bottlerocket/variants $ACTION_ROOT_DIR/bottlerocket-project-website/data/variants/$MINOR_RELEASE/
+        env:
+          MINOR_RELEASE: ${{ inputs.minorRelease }}
+      - name: Open PR for changes
+        uses: peter-evans/create-pull-request@v5
+        with:
+          path: bottlerocket-project-website
+          commit-message: 'variants: add kernel info for v${{ inputs.minorRelease }}'
+          branch: add-variant-kernel-info-${{ inputs.minorRelease }}
+          title: 'variants: add kernel info for v${{ inputs.minorRelease }}'
+          body: |
+            **Issue number:**
+
+            Closes #${{ inputs.issueNumber }}
+
+            **Description of changes:**
+
+            adds variant kernel info for v${{ inputs.minorRelease }}
+
+            Bottlerocket OS repository tag used: v${{ inputs.patchRelease }}
+
+            **Terms of contribution:**
+
+            By submitting this pull request, I confirm that my contribution is made under
+            the terms of the licenses outlined in the LICENSE-SUMMARY file.
+
