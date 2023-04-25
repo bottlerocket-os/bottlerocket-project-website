@@ -30,13 +30,6 @@ jobs:
           repository: bottlerocket-os/bottlerocket
           path: bottlerocket
           ref: v${{ inputs.patchRelease }}
-      - name: Remove old package list
-        run: |
-          rm -rf bottlerocket-project-website/content/en/os/$MINOR_RELEASE/version-information/packages/$PATCH_RELEASE/
-          find bottlerocket-project-website/content/en/os/$MINOR_RELEASE/version-information/packages/
-        env:
-          MINOR_RELEASE: ${{ inputs.minorRelease }}
-          PATCH_RELEASE: ${{ inputs.patchRelease }}
       - name: Make new patch release folder
         run: |
           mkdir bottlerocket-project-website/content/en/os/$MINOR_RELEASE/version-information/packages/$PATCH_RELEASE

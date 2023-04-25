@@ -1,3 +1,5 @@
+<!--- When modifying this file, please also update the Github Actions under the .github/workflows/ directory, as they use duplicates of this PR template in their PR creation steps. -->
+
 **Issue number:**
 
 Closes #
