@@ -1,0 +1,14 @@
+
+<script>
+$(document).ready(function() {
+    let 
+        // set in the data.versions.current.toml
+        $currentVersionCheck = $('{{ $.Site.Data.versions.current.os.foldable_check_id }}'),
+        $reorderUl = $currentVersionCheck.parents('ul.foldable');
+    
+    //reverse the order 
+    $reorderUl.children().each((index,child) => $reorderUl.prepend(child));
+    //change the check status of the hidden checkmark to open the foldable
+    $currentVersionCheck.prop('checked', true);
+});
+</script>

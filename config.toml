@@ -12,6 +12,8 @@ brand_link = "/"
 [params.ui]
 footer_about_disable = true
 navbar_logo = false
+sidebar_menu_foldable = true
+ul_show = 1
 
 [params.imports.bottlerocket]
     repo_path = 'bottlerocket'
