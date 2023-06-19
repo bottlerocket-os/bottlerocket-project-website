@@ -6,7 +6,10 @@
    version="1.1"
    id="svg11993"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
+   xmlns:svg="http://www.w3.org/2000/svg"
+   aria-describedby="dmveritydescription"
+   >
+   <desc id="dmveritydescription">A diagram that describes the immutable and mutable nature of Bottlerocket file systems.</desc>
   <defs
      id="defs11990">
     <rect
