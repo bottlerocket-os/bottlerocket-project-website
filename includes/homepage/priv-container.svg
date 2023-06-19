@@ -14,7 +14,9 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
+   xmlns:svg="http://www.w3.org/2000/svg"
+   aria-describedby="privcontainerdescription">
+   <title id="privcontainerdescription">A diagram illustrating a host container having a shell instead of the host operating system itself</title>
   <sodipodi:namedview
      id="namedview7884"
      pagecolor="#ffffff"
