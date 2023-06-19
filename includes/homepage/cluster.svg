@@ -6,7 +6,9 @@
    version="1.1"
    id="clustersvg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
+   xmlns:svg="http://www.w3.org/2000/svg"
+   aria-describedby="BottlerocketClusterDiagramDescription">
+    <title id="BottlerocketClusterDiagramDescriptione">A diagram showing a control plane and seperately a data plane with three worker nodes</title>
     <defs
         id="defs2" />
     <g
