@@ -7,7 +7,9 @@
    version="1.1"
    id="svg17206"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
+   xmlns:svg="http://www.w3.org/2000/svg"
+   aria-describedby="updatediagram">
+   <title id="updatediagram">A diagram describing how partitions change at reboot during upgrades</title>
   <script>
 $(document).ready(function() {
    var $updateSvgDiagram = $('#update_svg_diagram'),
