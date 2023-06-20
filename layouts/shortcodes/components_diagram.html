@@ -9,7 +9,8 @@
 {{- $kernel_label := .Get "kernel_label" | default "Linux Kernel" -}}
 {{- $ecs_agent_label :=  .Get "ecs_agent_label" | default "ecs-agent" }}
 {{- $ecs_tasks_label :=  .Get "ecs_tasks_label" | default "Tasks" }}
-
+{{- $aria_description_id := .Get "aria_description_id" | default "aria_description" -}}
+{{- $aria_description := .Get "aria_description" | default "Components of Bottlerocket" -}}
 
  <svg
     width="100%"
@@ -17,9 +18,13 @@
     version="1.1"
     id="components_diagram"
     xmlns="http://www.w3.org/2000/svg"
-    xmlns:svg="http://www.w3.org/2000/svg">
+    xmlns:svg="http://www.w3.org/2000/svg"
+    aria-describedby="{{ $aria_description_id }}"
+    >
    <defs
       id="defs8426" />
+
+   <title id="{{ $aria_description_id }} ">{{ $aria_description }}</title>
    <g class="
     {{ if isset .Params "show_ecs" }} show_ecs {{ end }}
     {{ if isset .Params "disable_kubelet" }} disabled-diagram-component-kubelet {{ end }}
