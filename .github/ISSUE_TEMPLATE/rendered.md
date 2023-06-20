@@ -7,6 +7,6 @@ about: The site looks wrong
 
 **Describe the problem:**
 
-**Screen Shot, if possible**
+**Screenshot, if possible**
 
 **Describe how the site should look?**
