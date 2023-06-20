@@ -267,3 +267,17 @@ h1,h2,h3,h4,h5,h6 {
         max-width:unset;
     }
 }
+
+/* make nav even along left */
+nav.foldable-nav .ul-1 > li {
+    margin-left: -1.5rem;
+}
+
+/* fix "Documentation in English" issue, remove once we do i18n */
+.dropdown-toggle {
+    display: none;
+}
+
+nav.foldable-nav .with-child, nav.foldable-nav .without-child {
+    padding-left: 1.25em;
+}
