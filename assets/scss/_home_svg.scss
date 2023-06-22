@@ -66,7 +66,7 @@
     &.white_base .container_label tspan,
     &.white_base .os_label tspan,
     &.white_base .os_label {
-        fill:#fff;
+        fill:$light-teal-link;
     }
     .os_outline {
         opacity:1;fill:none;fill-opacity:1;
@@ -455,7 +455,7 @@
 
 .variant_animation {
     .grid_position {
-        fill:#fff;
+        fill: $light-teal-link;
         fill-opacity: 0.5;
         stroke-width:1;
     }
@@ -490,7 +490,7 @@
     .column_continue {
         font-size:4.93888889px;
         -inkscape-font-specification:'Courier New';text-align:center;text-anchor:middle;
-        fill:#101010;
+        fill: $light-teal-link;
         stroke-width:1;
     }
     .column_continue tspan {
@@ -500,7 +500,7 @@
     .variant_outline,
     .variant_connection {
         fill:none;
-        stroke: $dark-blue;
+        stroke: #fff;
         stroke-opacity:0.3;
         stroke-width:1;
     }
@@ -511,10 +511,10 @@
     &.white_base .variant_label,
     &.white_base .column_heading,
     &.white_base .column_item {
-        fill: #fff;
+        fill: $light-teal-link;
     }
     &.white_base .dot {
-        fill: $dark-blue;
+        fill: #fff;
     }
 }
 .td-home .row.td-box + p {
@@ -524,9 +524,24 @@
 .td-home .row.td-box:has(h2) {
     padding-top: 0;
 }
+
 .td-home .row.td-box h2 {
     padding-top: $td-block-space-top-base;
+    font-size: 3em;
 }
+.td-home .row.td-box p,
+.td-home .row.td-box .h4 p {
+    font-weight: 100;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+}
+.td-home .row.td-box em {
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+.td-home .row.td-box p {
+    font-size: 1.5rem;
+}
+
 
 @include media-breakpoint-down(md) {
     .row .featured-figure {
