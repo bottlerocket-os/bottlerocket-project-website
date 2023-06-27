@@ -37,6 +37,6 @@ These links alter the URL’s hash fragment and are useful when sharing a link t
 
 This site, like Bottlerocket, is [open source and developed in-the-open on GitHub](https://github.com/bottlerocket-os/project-website).
 If you find inaccuracies, gaps, or bugs in the documentation, [feel free to open an issue](https://github.com/bottlerocket-os/project-website/issues).
-If you know how to solve the problem yourself (and you want to make the matainers very happy), go ahead and [make a pull request](https://github.com/bottlerocket-os/project-website/pulls).
+If you know how to solve the problem yourself (and you want to make the maintainers very happy), go ahead and [make a pull request](https://github.com/bottlerocket-os/project-website/pulls).
 
 {{< nav-bar-open html_id="m-enos-check" >}}
