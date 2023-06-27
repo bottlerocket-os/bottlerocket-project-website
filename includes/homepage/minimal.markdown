@@ -16,6 +16,6 @@ It doesn’t need one.
 You can still interact with the system through privileged “host” containers (that do have shells).
 From host containers, you can explore the underlying operating system and even make changes to the running system’s settings via an API.
 
-{{< twocolfigure  colsplit="7" caption="You can totally login to a Bottlerocket node, the shell you’re logging into is actually in a container with privileged access to the resources of the underlying operating system." >}}
+{{< twocolfigure  colsplit="7" caption="You can totally login to a Bottlerocket node. The shell you’re logging into is actually in a container with privileged access to the resources of the underlying operating system." >}}
     {{% readfile "includes/homepage/priv-container.svg" %}}
 {{</ twocolfigure>}}
