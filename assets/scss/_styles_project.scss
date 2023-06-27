@@ -280,4 +280,19 @@ nav.foldable-nav .ul-1 > li {
 
 nav.foldable-nav .with-child, nav.foldable-nav .without-child {
     padding-left: 1.25em;
+    
 }
+
+/* style bottom links */
+footer .text-links {
+    a span {
+        color: white;
+        text-decoration:  underline;
+    }
+
+    a:not(:first-child)::before {
+        color: $light-teal-link;
+        content: " / ";
+    }
+}
+
