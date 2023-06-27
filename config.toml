@@ -21,6 +21,22 @@ ul_show = 1
     import_url_fragment = "https://github.com/bottlerocket-os/bottlerocket/blob/develop/"
 
 
+[[params.textLinks]]
+  name = "Charter"
+  url = "/about/charter"
+
+[[params.textLinks]]
+  name = "Code of Conduct"
+  url = "/about/code-of-conduct"
+
+[[params.textLinks]]
+  name = "Security"
+  url = "/about/security"
+
+[[params.textLinks]]
+  name = "Trademark Policy"
+  url = "/about/trademark"
+
 [params.links]
 
 [[params.links.developer]]
