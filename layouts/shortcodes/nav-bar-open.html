@@ -1,0 +1,9 @@
+{{- $htmlid := .Get "html_id" -}}
+<script>
+    $(document).ready(function() {
+        let 
+            $menuitem = $('#{{ $htmlid }}');
+        
+        $menuitem.prop('checked', true);
+    });
+ </script>
