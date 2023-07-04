@@ -83,4 +83,145 @@ The Bottlerocket node should be accessible again.
 
 ## Steps to Regain Access on ECS
 
-Bottlerocket supports `ecs exec` starting in v1.14.0, so a similar solution is possible.
+You can regain access to a Bottlerocket node using ECS Exec starting in v1.14.0.
+
+This solution requires the use of [ECS Exec](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html) and [associated IAM permissions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html#ecs-exec-enabling-and-using).
+The instructions for proper IAM permissions to enable ECS Exec can be found in the AWS blog post [Using Amazon ECS Exec to access your containers on AWS Fargate and Amazon EC2](https://aws.amazon.com/blogs/containers/new-using-amazon-ecs-exec-access-your-containers-fargate-ec2/).
+
+1. First, you will need to setup a few environment variables. `CONTAINER_NAME` and `SERVICE_NAME` are not specifically relevant, but they need to be consistent across multiple files and commands.
+
+```shell
+export CONTAINER_NAME="regain-access"
+export CLUSTER=<your cluster name>
+export SERVICE_NAME=regain-access
+export TASK_ROLE_ARN=<the ARN for your IAM task role>
+```
+
+2. Now you will create a task definition that will mount the Bottlerocket `apiclient` and the related socket path as well as giving it the proper SELinux labels.
+Piping `cat` to a file to generate the task definition[^1] JSON will allow for interpolating the variables into the final file.
+
+```shell
+cat << EOF > task-def.json 
+{
+    "family": "regain-access",
+    "containerDefinitions": [
+        {
+            "name": "$CONTAINER_NAME",
+            "image": "fedora",
+            "cpu": 0,
+            "memoryReservation": 300,
+            "portMappings": [],
+            "essential": true,
+            "entryPoint": [
+                "sleep",
+                "infinity"
+            ],
+            "environment": [],
+            "mountPoints": [
+                {
+                    "sourceVolume": "apiclient",
+                    "containerPath": "/usr/bin/apiclient",
+                    "readOnly": true
+                },
+                {
+                    "sourceVolume": "apisocket",
+                    "containerPath": "/run/api.sock"
+                }
+            ],
+            "volumesFrom": [],
+            "dockerSecurityOptions": [
+                "label:user:system_u",
+                "label:role:system_r",
+                "label:type:control_t",
+                "label:level:s0"
+            ]
+        }
+    ],
+    "taskRoleArn": "$TASK_ROLE_ARN",
+    "volumes": [
+        {
+            "name": "apiclient",
+            "host": {
+                "sourcePath": "/usr/bin/apiclient"
+            }
+        },
+        {
+            "name": "apisocket",
+            "host": {
+                "sourcePath": "/run/api.sock"
+            }
+        }
+    ],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "cpu": "1024",
+    "memory": "1024"
+}
+EOF
+```
+
+3. Next, take the file from the previous step and use the AWS CLI to register the task definition. 
+Running the AWS CLI command without any options, will produce a large amount of JSON that is hard to sift through. Instead, use the `query` parameter to get only what you need, format the output text and skip the pager.
+Then take the results and put it into another environment variable. Any errors will be visible as a response in standard output.
+As a confidence check, `echo` the environment variable to make sure it matches what you’d expect from an ARN.
+
+```shell
+export REGAIN_ACCESS_ARN=$(aws ecs register-task-definition \
+  --cli-input-json file://task-def.json \
+  --query "taskDefinition.taskDefinitionArn" \
+  --output text --no-cli-pager)
+```
+
+```shell
+echo $REGAIN_ACCESS_ARN
+```
+
+4. With the task definition ARN stored in the environment variable, you can create the service.
+
+```shell
+aws ecs create-service --cluster "${CLUSTER}" \
+    --task-definition "${REGAIN_ACCESS_ARN}" \
+    --service-name "${SERVICE_NAME}" \
+    --desired-count 1 \
+    --launch-type EC2 \
+    --enable-execute-command \
+    --no-cli-pager
+```
+
+5. For the subsequent step you will need the task ARN which is not included in the response from the `create-service` call.
+The following command will grab all the task ARNs from the service name and cluster you specified earlier (which should only be one), filter the response with the `query` parameter, and use an environment variable to store only what you need.
+Again, do a confidence check to ensure the environment variable looks as you’d expect.
+Wait a few seconds after the previous step and run the following command:
+
+```shell
+export TASK_ARN=$(aws ecs list-tasks --cluster ${CLUSTER} \
+  --service-name ${SERVICE_NAME} \
+  --no-cli-pager \
+  --output text \
+  --query "taskArns[0]")
+```
+
+```shell
+echo $TASK_ARN
+```
+
+6. Finally, you can use the `execute-command` command to re-enable the control or admin container (change `host-containers.control.enabled` to `host-containers.admin.enabled`). The command will output a nearly empty response, but no errors means it worked.
+
+```shell
+aws ecs execute-command --cluster "${CLUSTER}" \
+    --task "${TASK_ARN}" \
+    --container "${CONTAINER_NAME}" \
+    --command "apiclient set host-containers.control.enabled=true" \
+    --interactive
+```
+
+```shell
+Starting session with SessionId: ecs-execute-command-<some hex values>
+
+Exiting session with sessionId:ecs-execute-command-<some hex values>
+```
+
+7. Now you should be able to access your admin or control container using SSM. You no longer need anything created in this how-to, feel free to delete the service and IAM policies.
+
+[^1]: This task definition uses `fedora` as an image, but almost any base image with a shell will also work.
