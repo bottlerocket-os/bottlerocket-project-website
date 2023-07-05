@@ -6,7 +6,7 @@ body_class="suppress_section_listing"
 
 +++
 
-This section covers installing and using the Bottlerocket operating system[^1]. If you’re looking for information on building, contributing to, or learning about the inner workings of Bottlerocket, the [GitHub repo](https://github.com/bottlerocket/bottlerocket-os) has more information.
+This section covers installing and using the Bottlerocket operating system[^1]. If you’re looking for information on building, contributing to, or learning about the inner workings of Bottlerocket, the [GitHub repo](https://github.com/bottlerocket-os/bottlerocket) has more information.
 
 ## Organization
 
