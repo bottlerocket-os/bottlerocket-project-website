@@ -18,7 +18,7 @@ ul_show = 1
 
 [params.imports.bottlerocket]
     repo_path = 'bottlerocket'
-    repo_human_readable = 'bottlerocket/bottlerocket-os'
+    repo_human_readable = 'bottlerocket-os/bottlerocket'
     import_url_fragment = "https://github.com/bottlerocket-os/bottlerocket/blob/develop/"
 
 
