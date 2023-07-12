@@ -36,7 +36,7 @@
         var docs_location;
         {{/* do we have a hash in the URL? */}}
         if (window.location && window.location.hash) {
-            {/* get the hash portion and snip off the first character (will always be #) */}}
+            {{/* get the hash portion and snip off the first character (will always be #) */}}
             docs_location = window.location.hash.slice(1); 
             {{/* does it have a trailing slash? If not, add one to match the Hugo output */}}
             if (docs_location[docs_location.length-1] !== '/') { 
