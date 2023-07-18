@@ -1,0 +1,55 @@
+{{/* get the file name associated with the page */}}
+{{- $file := print .Page.File.Dir  -}}
+{{/* split by the seperator ("/") */}}
+{{- $parts := split $file "/" -}}
+{{/* this will grab the first part which is the section (aka product), e.g. `os` */}}
+{{- $url_section := index $parts 0 -}}
+{{/* grab the current version from the Hugo data file */}}
+{{- $versions := index $.Site.Data.versions.current $url_section -}}
+{{/* create the version string (e.g. `1.14.x`) */}}
+{{- $latest := print $versions.major "." $versions.minor ".x" -}}
+{{/* get the language (which is not part of the file name) */}}
+{{- $language := .Page.Language.Lang -}}
+
+<script>
+    {{/* JS IIFE to isolate variable scope */}}
+    (function() {
+        {{/* create an array */}}
+        var currentVersion = [];
+        var currentURLPrefix = "/{{$language}}/{{$url_section}}/{{$latest}}";
+        {{/* all the pages registered to the site */}}
+        {{ range .Site.AllPages }}
+            {{- /* break apart the page's permalink */ -}}
+            {{- $permalink_parts := split .RelPermalink "/" -}}
+            {{- /* this has the full URL including the language, so grab the language, section, and version */ -}}
+            {{- $docs_lang := index $permalink_parts 1 -}}
+            {{- $docs_section := index $permalink_parts 2 -}}
+            {{- $docs_version := index $permalink_parts 3 -}}
+            {{- /* if the page evaluated is the latest version, in the correct section, and correct language */ -}}
+            {{- if and (eq $docs_version $latest) (eq $url_section $docs_section) (eq .Language.Lang $docs_lang) -}}
+                {{- /* push it into an JS Array */ -}}
+                {{- /* remove the initial section (e.g. /en/os/1.14.x) */ -}}
+                currentVersion.push("{{ .RelPermalink }}".replace(currentURLPrefix,""));
+            {{ end }}
+        {{- end -}}
+        {{/* new `currentVersion` contains only the valid pages in the correct section/langauge/version */}}
+        var docs_location;
+        {{/* do we have a hash in the URL? */}}
+        if (window.location && window.location.hash) {
+            {{/* get the hash portion and snip off the first character (will always be #) */}}
+            docs_location = window.location.hash.slice(1); 
+            {{/* does it have a trailing slash? If not, add one to match the Hugo output */}}
+            if (docs_location[docs_location.length-1] !== '/') { 
+                docs_location = docs_location + '/';
+            }
+            {{/* Is the passed URL fragment in the array? */}}
+            if (currentVersion.indexOf(docs_location) !== -1) {
+                {{/* reconstruct the URL with the latest version */}}
+                location.assign(currentURLPrefix + docs_location);
+            } else {
+                {{/* otherwise just go to the top of the current version */}}
+                location.assign(currentURLPrefix);
+            }
+        }
+    })();
+</script>

@@ -1,0 +1,19 @@
+{{- /* pull the data about currency from scratch, originally originating from `head-end.html` hook */ -}}
+{{- $not_current := .Page.Scratch.Get "docs_not_current" -}}
+{{- /* don't render a warning if it is current */ -}}
+{{- if $not_current -}}
+<div class="pageinfo olddocs">
+    {{- /* pull all the existing scratch to render the warning. */ -}}
+    {{- $this_version := .Page.Scratch.Get "docs_this_sections_version" -}}
+    {{- $section_version := .Page.Scratch.Get "docs_section_current_version" -}}
+    {{- $newer_docs_avail_version := .Page.Scratch.Get "newer_docs_avail_version" -}}
+    {{- $newer_docs_permalink := .Page.Scratch.Get "newer_docs_permalink" -}}
+    {{- /* render the message */ -}}
+    You are viewing documentation for version {{ $this_version }}. 
+    The most current version is {{ $section_version }}.
+    {{- /* Some situations will exist where a newer file doesn't exist, so only show if there is one */ -}}
+    {{- if $newer_docs_avail_version -}} 
+    &nbsp; This <a href="{{$newer_docs_permalink}}"> documentation is available for {{$newer_docs_avail_version}}</a>.
+    {{- end -}}
+</div>
+{{- end -}}
