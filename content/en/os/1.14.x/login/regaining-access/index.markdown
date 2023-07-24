@@ -113,8 +113,11 @@ cat << EOF > task-def.json
             "portMappings": [],
             "essential": true,
             "entryPoint": [
-                "sleep",
-                "infinity"
+                "sh",
+                "-c"
+            ], 
+            "command": [
+                "apiclient set host-containers.control.enabled=true"
             ],
             "environment": [],
             "mountPoints": [
