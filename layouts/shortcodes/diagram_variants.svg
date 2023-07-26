@@ -1,6 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    width="100%"
    viewBox="0 0 330 150"
@@ -34,6 +31,13 @@ $(document).ready(function() {
       switchSpeed
    );
 });
+{{- $version_current := print $.Site.Data.homepagediagrams.variants.bottlerocket_versions.major "." $.Site.Data.homepagediagrams.variants.bottlerocket_versions.minor -}}
+{{- $version_prev_1 := print $.Site.Data.homepagediagrams.variants.bottlerocket_versions.major "." (sub (int $.Site.Data.homepagediagrams.variants.bottlerocket_versions.minor) 1 ) -}}
+{{- $version_prev_2 := print $.Site.Data.homepagediagrams.variants.bottlerocket_versions.major "." (sub (int $.Site.Data.homepagediagrams.variants.bottlerocket_versions.minor) 2 ) -}}
+
+{{- $k8s_newer := $.Site.Data.homepagediagrams.variants.k8s_versions.newer -}}
+{{- $k8s_older := $.Site.Data.homepagediagrams.variants.k8s_versions.older -}}
+{{- $ecs_newer := $.Site.Data.homepagediagrams.variants.ecs_versions.newer -}}
 </script>
 
       <sodipodi:namedview
@@ -285,7 +289,7 @@ $(document).ready(function() {
          id="tspan6490"
          class="variant_label"
          x="274.08826"
-         y="82.151993">bottlerocket-aws-k8s-1.23-aarch64-1.11</tspan></text>
+         y="82.151993">bottlerocket-aws-k8s-{{ $k8s_older }}-aarch64-{{ $version_prev_1 }}</tspan></text>
     <circle
        class="dot"
        id="path6309"
@@ -339,7 +343,7 @@ $(document).ready(function() {
          id="tspan6700"
          class="variant_label"
          x="274.08826"
-         y="57.853008">bottlerocket-aws-ecs-1-x86_64-1.12</tspan></text>
+         y="57.853008">bottlerocket-aws-ecs-1-x86_64-{{ $version_current }}</tspan></text>
     <circle
        class="dot"
        id="circle6706"
@@ -397,7 +401,7 @@ $(document).ready(function() {
            id="tspan6572"
            class="variant_label"
            x="274.08826"
-           y="82.151993">bottlerocket-metal-k8s-1.24-x86_64-1.12</tspan></text>
+           y="82.151993">bottlerocket-metal-k8s-{{ $k8s_newer }}-x86_64-{{ $version_current }}</tspan></text>
     </g>
     <circle
        class="dot"
@@ -511,7 +515,7 @@ $(document).ready(function() {
          sodipodi:role="line"
          x="84.794121"
          y="57.04034"
-         id="tspan5573">Kubernetes 1.24</tspan></text>
+         id="tspan5573">Kubernetes {{ $k8s_newer }}</tspan></text>
     <text
        xml:space="preserve"
        class="column_item"
@@ -551,7 +555,7 @@ $(document).ready(function() {
          sodipodi:role="line"
          id="tspan5589"
          x="195.55228"
-         y="57.569775">1.12</tspan></text>
+         y="57.569775">{{ $version_current }}</tspan></text>
     <text
        xml:space="preserve"
        class="column_item"
@@ -561,7 +565,7 @@ $(document).ready(function() {
          sodipodi:role="line"
          x="195.53763"
          y="81.857567"
-         id="tspan5597">1.11</tspan></text>
+         id="tspan5597">{{ $version_prev_1 }}</tspan></text>
     <text
        xml:space="preserve"
        class="column_item"
@@ -571,7 +575,7 @@ $(document).ready(function() {
          sodipodi:role="line"
          x="195.53763"
          y="106.16774"
-         id="tspan5601">1.10</tspan></text>
+         id="tspan5601">{{ $version_prev_2 }}</tspan></text>
     <text
        xml:space="preserve"
        class="column_continue"
@@ -713,7 +717,7 @@ $(document).ready(function() {
          sodipodi:role="line"
          x="85.035072"
          y="81.86618"
-         id="tspan6363">Kubernetes 1.23</tspan></text>
+         id="tspan6363">Kubernetes {{ $k8s_older }}</tspan></text>
     <text
        xml:space="preserve"
        class="column_continue"
