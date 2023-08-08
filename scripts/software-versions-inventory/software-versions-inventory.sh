@@ -6,7 +6,7 @@ printf "title: \"%s\"\n" $bottlerocket_release
 printf "type: \"docs\"\n"
 printf "description: \"Package Versions in Bottlerocket Release %s\"\n" $bottlerocket_release
 printf "packages:\n"
-for d in $(find $1/packages -maxdepth 1 -type d)
+for d in $(find $1/packages -maxdepth 1 -type d | sort)
 do
     if [ $d != $1/packages ]; then
         base=$(basename $d)
