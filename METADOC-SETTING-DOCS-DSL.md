@@ -33,8 +33,7 @@ Documentation for settings are expressed as [TOML v1.0.0](https://toml.io/en/v1.
 All documentation starts at the key `docs`.
 
 Settings in Bottlerocket are represented by at least a 2-level nesting, and most commonly 3-level nesting starting with `settings`.
-A single instance of `docs` represents the settings under a particular 2nd level nesting.
-For example, documenting `settings.foo` would be accomplished by one instance of `docs` and `settings.bar` by another.
+All settings in a group are documented together under `docs`.
 
 `docs` contains two [arrays of tables](https://toml.io/en/v1.0.0#array-of-tables): `ref` and `tag`.
 
