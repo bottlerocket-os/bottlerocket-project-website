@@ -1,0 +1,102 @@
+{{- $setting_id := .Get "id" }}
+{{- $setting_full_name := .Get "full_name" -}}
+{{- $setting_description := .Get "description" -}}
+{{- $setting_has_example := .Get "has_example" -}}
+{{- $setting_name_override := .Get "name_override" -}}
+{{- $setting_default := .Get "default" -}}
+{{- $setting_tags := .Get "tags" -}}
+{{- $setting_prefix := .Get "prefix" -}}
+{{- $setting_warning := .Get "warning" -}}
+{{- $setting_also_see := .Get "see" -}}
+{{- $setting_note := .Get "note" -}}
+{{- $tagHeadings := .Get "tagHeadings" -}}
+{{- $setting_accepted_values := .Get "accepted_values"}}
+<div class="setting-individual">
+    <h3 id="{{ $setting_id }}"><code>{{ $setting_full_name }}</code></h3>
+    <p>{{ $setting_description | markdownify }}</p>
+
+    {{ if $setting_warning }}
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">Warning</h4>
+            <p>{{ $setting_warning | markdownify}}</p>
+        </div>
+    {{ end }}
+
+    {{ if $setting_default }}
+        <p><strong>Default:</strong> {{ $setting_default | markdownify }}</p>
+    {{ end }}
+    {{ if $setting_accepted_values }}
+    Accepted values:
+    <ul>
+        {{- range $setting_accepted_values -}}
+        <li>{{ . | markdownify }}</li>
+        {{- end -}}
+    </ul>
+    {{ end }}
+
+
+    {{- if $setting_note -}}
+        <div class="alert alert-secondary" role="alert">
+            <h4 class="alert-heading">Note</h4>
+            <p>{{ $setting_note | markdownify}}</p>
+        </div>
+    {{- end -}}
+    {{ if $setting_has_example  }}
+        {{- $example := .Get "example" -}}
+        {{- $first_example := index $example 0 -}}
+        {{ $hasToml := or (isset $first_example "value") (isset $first_example "multiline") (isset $first_example (print "direct_toml" )) }}
+        {{ $hasApiClient := or (isset $first_example "value") (isset $first_example "multiline") (isset $first_example (print "direct_shell" )) }}
+
+
+        {{ $tomlTabData := newScratch }}
+        {{ $tomlTabData.Set "id" $setting_id }}
+        {{ $tomlTabData.Set "full_name" $setting_full_name }}
+        {{ $tomlTabData.Set "toml" true }}
+        {{ $tomlTabData.Set "active" true }}
+        {{ $tomlTabData.Set "example" $example }}
+        {{ $tomlTabData.Set "prefix" $setting_prefix }}
+
+        {{ $apiclientTabData := newScratch }}
+        {{ $apiclientTabData.Set "id" $setting_id }}
+        {{ $apiclientTabData.Set "full_name" $setting_full_name }}
+        {{ $apiclientTabData.Set "toml" false }}
+        {{ $apiclientTabData.Set "active" (not $hasToml) }}
+        {{ $apiclientTabData.Set "example" $example }}
+
+        <ul class="nav nav-tabs" role="tablist" id="{{ $setting_id }}ExampleTabs">
+            {{- if $hasToml -}}
+                {{ partial "settings-example-tab-button.html" $tomlTabData }}
+            {{- end -}}
+            {{- if $hasApiClient -}}
+                {{ partial "settings-example-tab-button.html" $apiclientTabData }}
+            {{- end -}}
+        </ul>
+
+        <div class="tab-content" id="{{ $setting_id }}ExampleContent">
+            {{- if $hasToml -}}
+                {{ partial "settings-example-tab-pane.html" $tomlTabData }}
+            {{- end -}}
+            {{- if $hasApiClient -}}
+                {{ partial "settings-example-tab-pane.html" $apiclientTabData }}
+            {{- end -}}
+        </div>
+    {{ end }}
+
+    {{ if (or $setting_also_see $setting_tags) }} 
+        <strong>Also see:&nbsp;</strong>
+        <ul>
+        {{- if $setting_tags -}}
+            {{ range $setting_tags }}
+                <li><a href="#tag-{{ . }}">{{ $tagHeadings.Get .  | markdownify }}</a>{{ end }}</li>
+        {{- end -}}
+        {{- range $index, $value := $setting_also_see -}} 
+            {{- $see := . -}}
+            {{- if eq (len $see) 3 -}}
+                <li><a href="../../{{ index $see 0 }}/{{ index $see 1 }}/#{{ index $see 2}}"><code>{{ delimit $see "." }}</code></a></li>
+            {{- else -}}
+                <li>{{ (index $see 0) | markdownify }}</li>
+            {{- end -}}
+        {{- end -}}
+    {{ end }}
+
+</div>
