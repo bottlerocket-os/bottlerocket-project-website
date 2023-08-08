@@ -16,9 +16,9 @@ Philosophy:
 
 ---
 
-Documentation for settings are expressed as[TOML v1.0.0](https://toml.io/en/v1.0.0).
+Documentation for settings are expressed as [TOML v1.0.0](https://toml.io/en/v1.0.0).
 
-All documentation starts at the key `docs` . 
+All documentation starts at the key `docs`.
 
 Settings in Bottlerocket are represented by at least a 2-level nesting, and most commonly 3-level nesting starting with `settings` . A single instance of `docs` represents the settings under a particular 2nd level nesting For example, documenting `settings.foo` would be accomplished by one instance of `docs` and `settings.bar` by another.
 
@@ -41,7 +41,7 @@ description = "..."
 ...
 ```
 
-The process building the documentation would either be explicitly instructed that everything `foo.toml` relates to `settings.foo`  or it will derived it by filename or other means.
+The process building the documentation would either be explicitly instructed that everything `foo.toml` relates to `settings.foo`  or it will derive it by filename or other means.
 
 Under the same structure, a tag looks like:
 
