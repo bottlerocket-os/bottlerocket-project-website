@@ -1,0 +1,37 @@
+    {{- $heading := .Get "heading" }}
+    {{- $description := .Get "description" }}
+    {{- $tag_name := .Get "tag_name" }}
+    {{- $examples := .Get "example" }}
+    <h3 id="tag-{{ $tag_name }}">{{ $heading | markdownify }}</h3>
+    {{ $description | markdownify }}
+    {{ if $examples }}
+        <div class="tag-example">
+            <ul class="nav nav-tabs" role="tablist" id="{{ $tag_name }}ExampleTabs">
+                {{- range $count, $value := $examples -}}
+                    <li class="nav-item" role="presentation">
+                        <button 
+                            class="nav-link {{ if (eq $count 0) }} active {{ end }}" 
+                            id="{{ $tag_name }}-example-{{ $value.type }}-tab" 
+                            data-toggle="tab" 
+                            data-target="#{{ $tag_name }}Example{{ $value.type }}Pane" 
+                            type="button" 
+                            role="tab" 
+                            aria-controls="{{ $value.tab  }}" 
+                            aria-selected="{{- if (eq $count 0) -}} true {{- else -}} false {{- end -}}">{{ $value.tab }}</button>
+                    </li>
+                {{- end -}}
+            </ul>
+            <div class="tab-content" id="{{ $tag_name  }}ExampleContent">
+                {{- range $count, $value := $examples -}}
+                <div 
+                    class="tab-pane fade {{ if (eq $count 0) }} show active {{ end }}" 
+                    id="{{ $tag_name  }}Example{{ $value.type }}Pane"
+                    role="tabpanel" 
+                    aria-labelledby="{{ $tag_name }}-example-{{ $value.type }}-tab">
+
+                    {{  highlight ( $value.source ) $value.type }}
+                </div>
+                {{- end -}}
+            </div>
+        </div>
+    {{ end }}
