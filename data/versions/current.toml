@@ -1,6 +1,6 @@
 [os]
     major = 1
-    minor = 14
-    patch = 3
-    foldable_check_id = "#m-enos114x-check" 
+    minor = 15
+    patch = 0
+    foldable_check_id = "#m-enos115x-check" 
     # this is the HTML ID of the sidebar hidden checkmark. There is a script that will auto open the correct menu item
