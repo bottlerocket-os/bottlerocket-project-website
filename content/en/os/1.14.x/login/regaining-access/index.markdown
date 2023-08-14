@@ -13,6 +13,12 @@ In some cases where both the admin and control containers are disabled, it is st
 
 In general, the solution is to mount the [API client](https://github.com/bottlerocket-os/bottlerocket/blob/develop/sources/api/apiclient/README.md) and API socket into a container on the Bottlerocket node and use the API client to re-enable the admin container, control container, or both.
 
+{{% alert title="Warning" color="warning" %}}
+The solutions on this page provide a minimal overview.
+It involves mounting critical resources into containers with elevated privileges.
+Use carefully, only run as long as necessary, and clean up afterwards.
+{{% /alert %}}
+
 ## Steps to Regain Access on Kubernetes
 
 1. Create a pod that mounts the API client and API socket with the correct SELinux labels.
@@ -93,7 +99,7 @@ The instructions for proper IAM permissions to enable ECS Exec can be found in t
 ```shell
 export CONTAINER_NAME="regain-access"
 export CLUSTER=<your cluster name>
-export SERVICE_NAME=regain-access
+export SERVICE_NAME="regain-access"
 export TASK_ROLE_ARN=<the ARN for your IAM task role>
 ```
 
@@ -106,19 +112,13 @@ cat << EOF > task-def.json
     "family": "regain-access",
     "containerDefinitions": [
         {
-            "name": "$CONTAINER_NAME",
+            "name": "${CONTAINER_NAME}",
             "image": "fedora",
             "cpu": 0,
             "memoryReservation": 300,
             "portMappings": [],
             "essential": true,
-            "entryPoint": [
-                "sh",
-                "-c"
-            ], 
-            "command": [
-                "apiclient set host-containers.control.enabled=true"
-            ],
+            "command": ["sleep", "infinity"],
             "environment": [],
             "mountPoints": [
                 {
@@ -140,7 +140,7 @@ cat << EOF > task-def.json
             ]
         }
     ],
-    "taskRoleArn": "$TASK_ROLE_ARN",
+    "taskRoleArn": "${TASK_ROLE_ARN}",
     "volumes": [
         {
             "name": "apiclient",
@@ -164,10 +164,9 @@ cat << EOF > task-def.json
 EOF
 ```
 
-3. Next, take the file from the previous step and use the AWS CLI to register the task definition. 
+3. The following will take the file from the previous step and use the AWS CLI to register the task definition.
 Running the AWS CLI command without any options, will produce a large amount of JSON that is hard to sift through. Instead, use the `query` parameter to get only what you need, format the output text and skip the pager.
 Then take the results and put it into another environment variable. Any errors will be visible as a response in standard output.
-As a confidence check, `echo` the environment variable to make sure it matches what you’d expect from an ARN.
 
 ```shell
 export REGAIN_ACCESS_ARN=$(aws ecs register-task-definition \
@@ -176,11 +175,13 @@ export REGAIN_ACCESS_ARN=$(aws ecs register-task-definition \
   --output text --no-cli-pager)
 ```
 
+4. As a confidence check, `echo` the environment variable to make sure it matches what you’d expect from an ARN.
+
 ```shell
 echo $REGAIN_ACCESS_ARN
 ```
 
-4. With the task definition ARN stored in the environment variable, you can create the service.
+5. With the task definition ARN stored in the environment variable, you can create the service. You may want to limit the deployment of this service to specific instance(s).
 
 ```shell
 aws ecs create-service --cluster "${CLUSTER}" \
@@ -192,9 +193,7 @@ aws ecs create-service --cluster "${CLUSTER}" \
     --no-cli-pager
 ```
 
-5. For the subsequent step you will need the task ARN which is not included in the response from the `create-service` call.
-The following command will grab all the task ARNs from the service name and cluster you specified earlier (which should only be one), filter the response with the `query` parameter, and use an environment variable to store only what you need.
-Again, do a confidence check to ensure the environment variable looks as you’d expect.
+6. The subsequent step will need the task ARN which is not included in the response from the `create-service` call; the command below will grab all the task ARNs from the service name and cluster you specified earlier (which should only be one), filter the response with the `query` parameter, and use an environment variable to store only what you need.
 Wait a few seconds after the previous step and run the following command:
 
 ```shell
@@ -205,26 +204,41 @@ export TASK_ARN=$(aws ecs list-tasks --cluster ${CLUSTER} \
   --query "taskArns[0]")
 ```
 
+7. Again, do a confidence check to ensure the environment variable looks as you’d expect.
+
 ```shell
 echo $TASK_ARN
 ```
 
-6. Finally, you can use the `execute-command` command to re-enable the control or admin container (change `host-containers.control.enabled` to `host-containers.admin.enabled`). The command will output a nearly empty response, but no errors means it worked.
+8. Finally, you can use `execute-command` to open an interactive shell with the container.
 
 ```shell
 aws ecs execute-command --cluster "${CLUSTER}" \
     --task "${TASK_ARN}" \
     --container "${CONTAINER_NAME}" \
-    --command "apiclient set host-containers.control.enabled=true" \
-    --interactive
+    --interactive \
+    --command /bin/bash"
 ```
+
+9. You should see a message like this followed by an interactive shell
 
 ```shell
 Starting session with SessionId: ecs-execute-command-<some hex values>
-
-Exiting session with sessionId:ecs-execute-command-<some hex values>
 ```
 
-7. Now you should be able to access your admin or control container using SSM. You no longer need anything created in this how-to, feel free to delete the service and IAM policies.
+10. In the shell use `apiclient` to enable the [admin container](https://github.com/bottlerocket-os/bottlerocket-admin-container#authenticating-with-the-admin-container), [control container](https://github.com/bottlerocket-os/bottlerocket-control-container#connecting-to-aws-systems-manager-ssm), or both.
+
+
+```bash
+# Admin container
+apiclient set host-containers.admin.enabled=true
+```
+
+```bash
+# Control container:
+apiclient set host-containers.control.enabled=true
+```
+
+11. Now you should be able to access your admin or control container using SSM. You no longer need anything created in this how-to, feel free to delete the service and IAM policies.
 
 [^1]: This task definition uses `fedora` as an image, but almost any base image with a shell will also work.
