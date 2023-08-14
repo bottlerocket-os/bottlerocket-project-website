@@ -3,7 +3,7 @@ title="OS"
 type="docs"
 description="Documentation for the Bottlerocket operating system"
 body_class="suppress_section_listing"
-
+no_version_warning=true
 +++
 
 This section covers installing and using the Bottlerocket operating system[^1]. If you’re looking for information on building, contributing to, or learning about the inner workings of Bottlerocket, the [GitHub repo](https://github.com/bottlerocket-os/bottlerocket) has more information.
