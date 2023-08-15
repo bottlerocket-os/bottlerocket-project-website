@@ -88,29 +88,11 @@ You should see something similar to the following:
   {{< tab header="Orchestrator:" disabled=true />}}
   {{< tab header="EKS" >}}
 [root@admin]# cat /.bottlerocket/rootfs/etc/os-release
-NAME=Bottlerocket
-ID=bottlerocket
-VERSION="1.12.0 (aws-k8s-1.25)"
-PRETTY_NAME="Bottlerocket OS 1.12.0 (aws-k8s-1.25)"
-VARIANT_ID=aws-k8s-1.25
-VERSION_ID=1.12.0
-BUILD_ID=6ef1139f
-HOME_URL="https://github.com/bottlerocket-os/bottlerocket"
-SUPPORT_URL="https://github.com/bottlerocket-os/bottlerocket/discussions"
-BUG_REPORT_URL="https://github.com/bottlerocket-os/bottlerocket/issues"
+{{< os-release-example orchestrator="k8s" build_id="6ef1139f" >}}
   {{< /tab >}}
   {{< tab header="ECS" >}}
 [root@admin]# cat /.bottlerocket/rootfs/etc/os-release
-NAME=Bottlerocket
-ID=bottlerocket
-VERSION="1.13.1 (aws-ecs-1)"
-PRETTY_NAME="Bottlerocket OS 1.13.1 (aws-ecs-1)"
-VARIANT_ID=aws-ecs-1
-VERSION_ID=1.13.1
-BUILD_ID=32e9bb46
-HOME_URL="https://github.com/bottlerocket-os/bottlerocket"
-SUPPORT_URL="https://github.com/bottlerocket-os/bottlerocket/discussions"
-BUG_REPORT_URL="https://github.com/bottlerocket-os/bottlerocket/issues"
+{{< os-release-example orchestrator="ecs" build_id="32e9bb46" >}}
   {{< /tab >}}
 {{< /tabpane >}}
 

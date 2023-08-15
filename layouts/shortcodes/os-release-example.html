@@ -1,0 +1,15 @@
+{{- $orchestrator := .Get "orchestrator" -}}
+{{- $version_array := index $.Site.Data.versions.current $orchestrator }}
+{{- $bottlerocket_version := print $.Site.Data.versions.current.os.major "." $.Site.Data.versions.current.os.minor "." $.Site.Data.versions.current.os.patch -}}
+{{- $orchestrator_version := index (last 1 $version_array.versions) 0 -}}
+{{- $build_id := .Get "build_id" -}}
+NAME=Bottlerocket
+ID=bottlerocket
+VERSION="{{ $bottlerocket_version }} (aws-{{ $orchestrator }}-{{ $orchestrator_version }})"
+PRETTY_NAME="Bottlerocket OS {{ $bottlerocket_version }} (aws-{{ $orchestrator }}-{{ $orchestrator_version }})"
+VARIANT_ID=aws-{{ $orchestrator }}-{{ $orchestrator_version }}
+VERSION_ID={{ $bottlerocket_version }}
+BUILD_ID={{ $build_id }}
+HOME_URL="https://github.com/bottlerocket-os/bottlerocket"
+SUPPORT_URL="https://github.com/bottlerocket-os/bottlerocket/discussions"
+BUG_REPORT_URL="https://github.com/bottlerocket-os/bottlerocket/issues"
