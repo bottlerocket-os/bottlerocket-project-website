@@ -1,5 +1,5 @@
 +++
-title = "API Endpoints"
+title = "API Endpoint Reference"
 type = "swagger"
 description = "Paths and methods for the API"
 +++
@@ -8,4 +8,4 @@ The following output is generated from [Bottlerocket's OpenAPI Spec](https://git
 
 ---
 
-{{<  swaggerui src="../../../../external/openapi.yaml" >}}
+{{<  swaggerui src="../../../../external/openapi/1.13.x/openapi.yaml" >}}
