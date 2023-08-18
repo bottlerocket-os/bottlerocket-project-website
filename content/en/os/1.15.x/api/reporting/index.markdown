@@ -56,3 +56,5 @@ Evaluation of each item on the benchmark will result in one of three outcomes:
 * `PASS`: Evaluated item is in compliance with the benchmark.
 * `FAIL`: Evaluated item is not in compliance with the benchmark.
 * `SKIP`: The item could not be automatically evaluated.
+
+Refer to the [Bottlerocket CIS Benchmark](https://www.cisecurity.org/benchmark/bottlerocket) for detailed audit and remediation steps.
