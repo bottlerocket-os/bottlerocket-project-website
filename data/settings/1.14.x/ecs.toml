@@ -21,7 +21,7 @@ description = "Settings related to logs from the ECS Agent"
 [[docs.ref.cluster]]
 description = """
 The name or [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of your Amazon ECS cluster.
-If left unspecified, Bottlerocket will join your default cluster.
+If left unspecified, the Bottlerocket host will join your default cluster.
 """
 tags = [
     "startup-only"
