@@ -3,7 +3,7 @@
 [[docs.tag.startup-only]]
 heading = "Startup Only Settings"
 description = """
-These settings affect how the instances joins the ECS cluster.
+These settings affect how the instances join the ECS cluster.
 Since joining a cluster happens at startup, they need to be set in user data.
 """
 
