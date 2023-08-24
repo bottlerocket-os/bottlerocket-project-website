@@ -1,0 +1,133 @@
+{{- /* get the path of the doc calling the shortcode */ -}}
+{{- $currentPath := print .Page.File.Dir -}}
+{{- /* break apart the path */ -}}
+{{- $parts := split $currentPath "/" -}}
+{{- /* 2nd (base 0) index has the version */ -}}
+{{- $version := index $parts 1 -}}
+{{- /* 5th (base 0) index has the `root` of the settings */ -}}
+{{- $settings_root := index $parts 4 -}}
+{{- $settings_file := index $.Site.Data.settings $version $settings_root -}}
+
+{{- if isset $settings_file "top_level"  -}}
+    {{- $docs := $settings_file.docs.ref -}}
+        {{- $full_setting := print "settings." $settings_root -}}
+
+        {{- range $docs -}}
+            {{- $settingData := newScratch -}}
+            {{- $settingData.Set "full_name" $full_setting -}}
+            {{- $settingData.Set "description" .description -}}
+            {{- $settingData.Set "warning" .warning -}}
+            {{- $settingData.Set "id"  $settings_root -}}
+            {{- $settingData.Set "name_override" .name_override -}}
+            {{- $settingData.Set "prefix" "settings"}}
+            {{- if isset . "example" -}}
+                {{- $settingData.Set "has_example" true -}}
+                {{- $settingData.Set "example" .example -}}
+            {{- else -}}
+                {{- $settingData.Set "has_example" false -}}
+            {{- end -}}
+            {{- partial "settings-setting-individual.html" $settingData -}}
+        {{- end -}}
+{{- else -}}
+    {{- $docs := $settings_file.docs.ref -}}
+    {{- $tags := $settings_file.docs.tag -}}
+    {{- $tagHeadings := newScratch -}}
+
+    <h2>Topic list</h2>  
+    <ul>
+        {{- range $tag_name, $value := $tags -}}
+            {{- if reflect.IsSlice $value -}}
+                {{- range . -}}
+                    {{- $heading := .heading }}
+                    {{- $tagHeadings.Set $tag_name $heading -}}
+                    <li><a href="#tag-{{ $tag_name }}"> {{ $heading | markdownify }} </a></li>
+                {{- end -}}
+            {{- end -}}
+        {{- end -}}
+    </ul>
+
+    <h2 id="alphaorder">Setting list for <code>settings.{{- $settings_root -}}</code></h2>
+    <ul id="sortedSettings">
+        {{- range $setting_name, $value := $docs -}}
+            {{- if reflect.IsSlice $value -}}
+                {{- $values := index $value 0 -}}
+                {{- $linkData := newScratch -}}
+                {{- $linkData.Set "name" $setting_name -}}
+                {{- $linkData.Set "link" $setting_name -}}
+                {{- $linkData.Set "root" $settings_root -}}
+                {{- $linkData.Set "values" $values -}}
+                {{- partial "settings_inner_page_link.html" $linkData -}}
+            {{- end -}}
+        {{- end -}}
+    </ul>
+    <hr />
+    <div class="topics">
+        <h2 id="tagged">Topics</h2>
+            {{- range $tag_name, $value := $tags -}}
+                {{- if reflect.IsSlice $value -}}
+                    <div class="tag-group">
+                        {{- range . -}}
+                            {{- $tagData := newScratch -}}
+                            {{- $tagData.Set "heading" .heading -}}
+                            {{- $tagData.Set "tag_name" $tag_name -}}
+                            {{- $tagData.Set "description" .description -}}
+                            {{- $tagData.Set "example" .example -}}
+                            {{- partial "settings-tag-individual.html" $tagData -}}
+                            
+                            <h4>Settings</h4>
+                            <ul>
+                            {{- range $setting_name, $value := $docs -}}
+                                {{- if reflect.IsSlice $value -}}
+                                    {{- range . -}}
+                                        {{- if (in .tags $tag_name) -}}
+                                            {{- $tagLinkData := newScratch -}}
+                                            {{- $tagLinkData.Set "name" $setting_name -}}
+                                            {{- $tagLinkData.Set "link" $setting_name -}}
+                                            {{- $tagLinkData.Set "root" $settings_root -}}
+                                            {{- $tagLinkData.Set "values" . -}}
+                                            {{- partial "settings_inner_page_link.html" $tagLinkData -}}
+                                        {{- end -}}
+                                    {{- end -}}
+                                {{- end -}}
+                            {{- end -}}
+                            </ul>
+                        {{- end -}}
+                    </div>
+                {{- end -}}
+            {{- end -}}
+    </div>
+    <hr />
+    <h2 id="reference">Full Reference</h2>
+    <div class="reference">
+        {{- range $setting_name, $value := $docs -}}
+            {{- if reflect.IsSlice $value -}}
+                {{- $prefix_setting := print "settings." $settings_root -}}                    
+                {{- range . -}}
+                    {{- $full_setting := print $prefix_setting "." ( or .name_override $setting_name ) -}}
+
+                    {{- $settingData := newScratch -}}
+                    {{- $settingData.Set "full_name" $full_setting -}}
+                    {{- $settingData.Set "prefix" $prefix_setting -}}
+                    {{- $settingData.Set "description" .description -}}
+                    {{- $settingData.Set "id" $setting_name -}}
+                    {{- $settingData.Set "default" .default -}}
+                    {{- $settingData.Set "tags" .tags -}}
+
+                    {{- $settingData.Set "warning" .warning -}}
+                    {{- $settingData.Set "see" .see -}}
+                    {{- $settingData.Set "note" .note -}}
+                    {{- $settingData.Set "tagHeadings" $tagHeadings -}}
+                    {{- $settingData.Set "accepted_values" .accepted_values -}}
+
+                    {{- if isset . "example" -}}
+                        {{- $settingData.Set "has_example" true -}}
+                        {{- $settingData.Set "example" .example -}}
+                    {{- else -}}
+                        {{- $settingData.Set "has_example" false -}}
+                    {{- end -}}
+                    {{- partial "settings-setting-individual.html" $settingData -}}
+                {{- end -}}
+            {{- end -}}
+        {{- end -}}
+    </div>
+{{- end -}}
