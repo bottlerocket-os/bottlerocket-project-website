@@ -45,6 +45,10 @@ attribute2 = "bar"
 description = """Allow the launch of privileged containers on the container instance.
 If this value is set to `false`, privileged containers are not permitted.
 """
+see = [
+    ["`ECS_DISABLE_PRIVILEGED` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
+
 default = "`false`"
 
 [[docs.ref.container-stop-timeout]]
@@ -53,7 +57,7 @@ Time to wait for the task's containers to stop on their own before they are forc
 Valid time units include `s`, `m`, and `h` (e.g. `1h`, `1m1s`).
 """
 see = [
-    ["`ECS_CONTAINER_STOP_TIMEOUT` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+    ["`ECS_DISABLE_PRIVILEGED` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
 ]
 
 [[docs.ref.enable-spot-instance-draining]]
@@ -111,10 +115,17 @@ description = """
 The steady state rate limit of the throttling configurations set for the task metadata service.
 """
 note = "This directly maps to the values set by the ECS_TASK_METADATA_RPS_LIMIT environment variable."
+see = [
+    ["`ECS_TASK_METADATA_RPS_LIMIT` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
 
 [[docs.ref.metadata-service-burst]]
 description = "The burst rate limit of the throttling configurations set for the task metadata service."
 note = "This directly maps to the values set by the ECS_TASK_METADATA_RPS_LIMIT environment variable."
+see = [
+    ["`ECS_TASK_METADATA_RPS_LIMIT` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
+
 
 [[docs.ref.reserved-memory]]
 description = "The amount of memory, in MiB, reserved for critical system processes."
