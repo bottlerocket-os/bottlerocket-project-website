@@ -90,6 +90,9 @@ The list of logging drivers available on the container instance.
 The ECS agent running on a container instance must register available logging drivers before tasks that use those drivers are eligible to be placed on the instance.
 Bottlerocket enables the `json-file`, `awslogs`, and `none` drivers by default.
 """
+tags = [
+    "logging"
+]
 see = [
     ["`ECS_AVAILABLE_LOGGING_DRIVERS` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
 ]
@@ -103,6 +106,9 @@ accepted_values = [
     "`warn`",
     "`error`",
     "`crit`"
+]
+tags = [
+    "logging"
 ]
 default = "`info`"
 see = [
