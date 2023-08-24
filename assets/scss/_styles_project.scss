@@ -262,6 +262,33 @@ h1,h2,h3,h4,h5,h6 {
     }
 }
 
+/* custom css for bottlerocket settings rendering */
+.reference {
+    .setting-individual + .setting-individual {
+        padding-top: 1em;
+        border-top: 1px dotted $light-blue;
+        margin-bottom: 3em;
+    }
+}
+
+.topics {
+    .tag-group {
+        
+        padding-top: 1em;
+        margin-bottom: 4em;
+        h4 {
+            padding-top: 1em;
+        }
+        
+        & + .tag-group {
+            border-top: 1px dotted $light-blue;
+        }
+
+    }
+}
+
+
+
 @include media-breakpoint-down(md) {
     .td-content .highlight {
         max-width:unset;
