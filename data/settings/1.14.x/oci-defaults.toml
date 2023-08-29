@@ -13,7 +13,7 @@ These correspond to the object [`rlimit` in the runtime spec](https://github.com
 
 Unusual among Bottlerocket settings, individual key/values will not validate. You must provide both `hard-limit` and `soft-limit` for any given resource limit setting at the same time.
 Consequently, using dot-notation expressions to change resource limits is not possible (e.g. `apiclient set settings.oci-defaults.resource-limits.max-locked-memory.hard-limit=9223372` will fail).
-You can use TOML configuration format or the same structure expressed as JSON to set both keys simultaneously (or use a transaction).
+You can use TOML configuration format or the same structure expressed as JSON to set both keys simultaneously.
 """
 [[docs.tag.resource-limits.example]]
 tab = "TOML"
