@@ -10,7 +10,7 @@ Consequently, Bottlerocket variants that use the Docker container runtime (e.g. 
 """
 
 note = """
-Bottlerocket cannot mirror from Amazon Elastic Container Registry (Amazon ECR) private repositories for host or bootstrap containers.
+Bottlerocket cannot configure registry mirrors for private Amazon Elastic Container Registry (Amazon ECR) repositories. For example the Bottlerocket default host or bootstrap container images from ECR cannot be mirrored.
 """
 
 [[docs.ref.mirrors.example]]
