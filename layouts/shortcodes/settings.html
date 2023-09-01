@@ -20,6 +20,7 @@
             {{- $settingData.Set "id"  $settings_root -}}
             {{- $settingData.Set "name_override" .name_override -}}
             {{- $settingData.Set "prefix" "settings"}}
+            {{- $settingData.Set "deprecated" .deprecated -}}
             {{- if isset . "example" -}}
                 {{- $settingData.Set "has_example" true -}}
                 {{- $settingData.Set "example" .example -}}
@@ -113,6 +114,7 @@
                     {{- $settingData.Set "description" .description -}}
                     {{- $settingData.Set "id" $setting_name -}}
                     {{- $settingData.Set "default" .default -}}
+                    {{- $settingData.Set "deprecated" .deprecated -}}
                     {{- $settingData.Set "tags" .tags -}}
 
                     {{- $settingData.Set "warning" .warning -}}

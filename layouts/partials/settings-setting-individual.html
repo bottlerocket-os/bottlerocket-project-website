@@ -10,10 +10,15 @@
 {{- $setting_also_see := .Get "see" -}}
 {{- $setting_note := .Get "note" -}}
 {{- $tagHeadings := .Get "tagHeadings" -}}
-{{- $setting_accepted_values := .Get "accepted_values"}}
+{{- $setting_deprecated := .Get "deprecated" -}}
+{{- $setting_accepted_values := .Get "accepted_values" -}}
 <div class="setting-individual">
-    <h3 id="{{ $setting_id }}"><code>{{ $setting_full_name }}</code></h3>
-    <p>{{ $setting_description | markdownify }}</p>
+    <h3 id="{{ $setting_id }}"><code>{{ $setting_full_name }}</code>
+    {{ if $setting_deprecated }}
+        <span class="badge badge-secondary">Deprecated</span>
+    {{ end }}
+    </h3>
+    
 
     {{ if $setting_warning }}
         <div class="alert alert-warning" role="alert">
