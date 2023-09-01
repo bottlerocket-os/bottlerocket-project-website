@@ -8,7 +8,8 @@ accepted_values = [
     "`false`"
 ]
 see = [
-    ["[`host-containers.<container>.source` for custom host container example](#container_source)"]
+    ["[`host-containers.<container>.source` for custom host container example](#container_source)"],
+    ["[Shell-less host](../../../concepts/shell-less-host/)"]
 ]
 
 [[docs.ref.container_source]]
@@ -27,7 +28,9 @@ apiclient set \\
     settings.host-containers.mycontainer.source="uri.to.container.in.oci-compatible-registry.example.com/foo:1.0.0" \\
     settings.host-containers.mycontainer.superpowered=false
 """
-
+see = [
+    ["[Shell-less host](../../../concepts/shell-less-host/)"]
+]
 
 [[docs.ref.container_superpowered]]
 name_override = "<container>.superpowered"
@@ -37,7 +40,9 @@ accepted_values = [
     "`false`"
 ]
 see = [
-    ["[`host-containers.<container>.source` for custom host container example](#container_source)"]
+    ["[`host-containers.<container>.source` for custom host container example](#container_source)"],
+    ["[Shell-less host](../../../concepts/shell-less-host/)"]
+
 ]
 
 [[docs.ref.container_user-data]]
