@@ -83,6 +83,7 @@ Will have the heading “Note” andis  rendered separately after the `descripti
 * `warning` (optional, [string](https://toml.io/en/v1.0.0#string), markdownified): Information that warns the reader of potentially dangerous outcomes.
 Will have the heading “Warning” and is rendered separately after the `description`
 * `accepted_values` (optional, [array](https://toml.io/en/v1.0.0#array) of [string](https://toml.io/en/v1.0.0#string), each string is markdownified): A representation of allowed values, typically for enums where there are specific allowable strings in a setting value.
+* `deprecated` (optional, [boolean](https://toml.io/en/v1.0.0#boolean)): If `true`, the setting will be marked as 'deprecated'
 * `name_override` (optional, [string](https://toml.io/en/v1.0.0#string)): In situations where a setting cannot be represented as a 3-element array, this string can override the textual and linking representation.
 For example, if you have a setting like `setting.foo.bar.<some index>.baz` , you can define the documentation under `bar-index-baz` and set `name_override` to `bar.<some index>.baz`  to make it render to the reader correctly.
 Hash links and references would still use  `bar-index-baz`.
