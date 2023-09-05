@@ -1,0 +1,22 @@
+[[docs.ref.name_essential]]
+name_override = "<name>.essential"
+default = "`false`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+
+[[docs.ref.name_mode]]
+name_override = "<name>.mode"
+description = "This setting defines how (or if) the container starts at boot."
+accepted_values = [
+    "`always`: The container executes on every boot.",
+    "`off`: The container will not execute at boot.",
+    "`once`: The container executes on the next (or first) boot. After compeletion, the `mode` changes to `off`."
+]
+
+[[docs.ref.name_source]]
+name_override = "<name>.source"
+
+[[docs.ref.name_user-data]]
+name_override = "<name>.user-data"
