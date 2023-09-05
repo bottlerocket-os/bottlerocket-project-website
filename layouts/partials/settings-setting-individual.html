@@ -18,7 +18,7 @@
         <span class="badge badge-secondary">Deprecated</span>
     {{ end }}
     </h3>
-    
+    <p>{{ $setting_description | markdownify }}</p>
 
     {{ if $setting_warning }}
         <div class="alert alert-warning" role="alert">
