@@ -7,7 +7,8 @@ accepted_values = [
     "`false`"
 ]
 see = [
-    ["[`settings.bootstrap-containers.<name>.source`](#name_source) for a full example with `settings.bootstrap-containers.<name>.essential`."]
+    ["[`settings.bootstrap-containers.<name>.source`](#name_source) for a full example with `settings.bootstrap-containers.<name>.essential`."],
+    ["The {{< ver-ref project=\"os\" page=\"/concepts/bootstrap-containers#lifecycle\" >}}bootstrap container lifecycle{{< /ver-ref >}} conceptual documentationion"]
 ]
 
 
@@ -27,7 +28,9 @@ accepted_values = [
     "`\"once\"`"
 ]
 see = [
-    ["[`settings.bootstrap-containers.<name>.source`](#name_source) for a full example with `settings.bootstrap-containers.<name>.mode`."]
+    ["[`settings.bootstrap-containers.<name>.source`](#name_source) for a full example with `settings.bootstrap-containers.<name>.mode`."],
+    ["The {{< ver-ref project=\"os\" page=\"/concepts/bootstrap-containers#lifecycle\" >}}bootstrap container lifecycle{{< /ver-ref >}} conceptual documentation"]
+
 ]
 
 [[docs.ref.name_source]]
