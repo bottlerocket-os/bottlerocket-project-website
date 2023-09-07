@@ -16,7 +16,7 @@ apiclient set \
 
 [[docs.ref.pki_bundle-name_trusted]]
 name_override = "<bundle-name>.trusted"
-description = "Defines if the Bottlerocket trusts `<bundle-name>`."
+description = "Defines if the bundle in `<bundle-name>` should be trusted."
 default = "`false`"
 [[docs.ref.pki_bundle-name_trusted.example]]
 direct_toml = """
