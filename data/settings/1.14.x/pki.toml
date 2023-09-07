@@ -1,6 +1,6 @@
 [[docs.ref.pki_bundle-name_data]]
 name_override = "<bundle-name>.data"
-description = "A Base64-encoded PEM-formatted certificate bundle; This setting can contain more than one certificate."
+description = "A Base64-encoded PEM-formatted certificate bundle; this setting can contain more than one certificate."
 note = """
 Defining a certificate bundle with `data` and but without [`trusted`](#pki_bundle-name_trusted) results in a untrusted bundle.
 """
