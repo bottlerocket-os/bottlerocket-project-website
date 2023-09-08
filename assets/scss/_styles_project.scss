@@ -102,6 +102,11 @@ $link-color: $light-link;
     }
 }
 
+blockquote {
+    border-left: 2px solid $tan;
+    padding-left: 1em;
+}
+
 .featured-figure {
     background-color: rgba(0,0,0,0.05);
     border-radius: 4px;
