@@ -105,7 +105,7 @@ export ECS_SUBNET_ID=$(aws ec2 describe-subnets \
    --region $AWS_REGION \
    --filter=Name=vpc-id,Values=$ECS_VPC_ID \
    | jq --raw-output '.Subnets[0] | {id: .SubnetId, public: .MapPublicIpOnLaunch, az: .AvailabilityZone} | .id')
-export BOTTLEROCKET_AMI_ID="resolve:ssm:/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id"
+export BOTTLEROCKET_AMI_ID="resolve:ssm:/aws/service/bottlerocket/aws-ecs-2/x86_64/latest/image_id"
 export ECS_INSTANCE_PROFILE_NAME=$(aws iam list-instance-profiles-for-role \
    --role-name $ECS_INSTANCE_ROLE_NAME \
    --query "InstanceProfiles[*].InstanceProfileName" \
