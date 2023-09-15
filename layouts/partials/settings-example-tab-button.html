@@ -1,0 +1,9 @@
+{{- $setting_id := .Get "id" }}
+{{- $setting_full_name := .Get "full_name" -}}
+{{- $example_toml_or_apiclient := cond (eq (.Get "toml") true) "TOML" "apiclient" -}}
+{{- $highlighter_type := cond (eq (.Get "toml") true) "toml" "shell" -}}
+{{- $active_tab := cond (eq (.Get "active") true) "active" "" -}}
+{{- $aria_selected := (eq (.Get "active") true) -}}
+<li class="nav-item" role="presentation">
+    <button class="nav-link {{ $active_tab }}" id="{{ $setting_id }}-example-{{$example_toml_or_apiclient}}-tab" data-toggle="tab" data-target="#{{ $setting_id }}Example{{$example_toml_or_apiclient}}Pane" type="button" role="tab" aria-controls="{{ $example_toml_or_apiclient }}" aria-selected="{{ $aria_selected }}">{{  $example_toml_or_apiclient }}</button>
+</li>

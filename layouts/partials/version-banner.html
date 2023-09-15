@@ -1,7 +1,7 @@
 {{- /* pull the data about currency from scratch, originally originating from `head-end.html` hook */ -}}
 {{- $not_current := .Page.Scratch.Get "docs_not_current" -}}
 {{- /* don't render a warning if it is current */ -}}
-{{- if $not_current -}}
+{{- if and $not_current (ne .Params.no_version_warning true) -}}
 <div class="pageinfo olddocs">
     {{- /* pull all the existing scratch to render the warning. */ -}}
     {{- $this_version := .Page.Scratch.Get "docs_this_sections_version" -}}

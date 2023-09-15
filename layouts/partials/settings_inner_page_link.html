@@ -1,0 +1,10 @@
+{{- $setting_name := .Get "name" -}}
+{{- $setting_link := .Get "link" }}
+{{- $setting_root := .Get "root" -}}
+{{- $values := .Get "values" }}
+<li>
+    <a href="#{{ $setting_link }}"><code>settings.{{$setting_root}}.{{ or $values.name_override $setting_name}}</code></a>
+    {{ if $values.deprecated }}
+        <span class="badge badge-secondary">Deprecated</span>
+    {{ end }}
+</li>

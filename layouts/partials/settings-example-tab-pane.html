@@ -1,0 +1,62 @@
+{{- $setting_id := .Get "id" }}
+{{- $setting_full_name := .Get "full_name" -}}
+{{- $setting_prefix := .Get "prefix" -}}
+{{- $active_tab := cond (eq (.Get "active") true) "show active" "" -}}
+{{- $example_toml_or_apiclient := cond (eq (.Get "toml") true) "TOML" "apiclient" -}}
+{{- $highlighter_type := cond (eq (.Get "toml") true) "toml" "shell" -}}
+{{- $examples := .Get "example" -}}
+
+<div class="tab-pane fade {{ $active_tab }}" id="{{ $setting_id  }}Example{{ $example_toml_or_apiclient }}Pane" role="tabpanel" aria-labelledby="{{ $setting_id }}-example-{{ $example_toml_or_apiclient }}-tab">
+{{ range $examples }}
+    {{ $example_scratch := newScratch }}
+    {{ $example := . }}
+
+    {{ if (eq $highlighter_type "toml") }}
+        {{ if isset $example "comment" }}
+            {{ $example_scratch.Add "out" (print "# " $example.comment "\n") }}
+        {{ end }}
+        {{ if isset $example "direct_toml"}}
+            {{ if (gt (len $example.direct_toml) 0 )}}
+                {{ $example_scratch.Add "out" $example.direct_toml }}
+            {{ end }}
+        {{ else if isset $example "multiline" }}
+            {{ $example_scratch.Add "out" (print "[" $setting_full_name "]\n")}}
+
+            {{ range $example.multiline }}
+                {{ range $multi_key, $multi_val := . }}
+                    {{ $example_scratch.Add "out" (print $multi_key " = " $multi_val "\n") }}
+                {{ end }}
+            {{ end }}
+        {{ else }}
+            {{ $example_scratch.Add "out" (print "[" $setting_prefix "]\n")}}
+            {{ $example_scratch.Add "out" (print $setting_id " = " $example.value) }}
+        {{ end }}
+    {{ else }}
+        {{ if isset $example "direct_shell"}}
+            {{ if (gt (len $example.direct_shell) 0 )}}
+                {{ $example_scratch.Add "out" $example.direct_shell }}
+            {{ end }}
+        {{ else }}
+            {{ if isset $example "comment" }}
+                <i>{{ $example.comment }}</i>
+            {{ end }}
+            {{ if isset $example "multiline" }}
+                {{ $example_scratch.Add "out" (print "apiclient set ")}}
+                {{ range $example.multiline }}
+                    {{ $line_num := 1 }}
+                    {{ $total_lines := len . }}
+                    {{ range $multi_key, $multi_val := . }}
+                        {{ $example_scratch.Add "out" (print $setting_full_name "." $multi_key "=" $multi_val ) }}
+                        {{ $example_scratch.Add "out" (cond (eq $total_lines $line_num) "" " \\ \n \t" ) }}
+                        {{ $line_num = add $line_num 1 }}
+                    {{ end }}
+                {{ end }}
+            {{ else }}
+                {{ $example_scratch.Add "out" (print "apiclient set " )}}
+                {{ $example_scratch.Add "out" (print $setting_full_name "=" $example.value) }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+    {{ highlight ( $example_scratch.Get "out") $highlighter_type }}
+{{ end }}
+</div>
