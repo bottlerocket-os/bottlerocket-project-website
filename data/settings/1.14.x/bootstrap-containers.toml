@@ -1,6 +1,6 @@
 [[docs.ref.name_essential]]
 name_override = "<name>.essential"
-description = "If `essential` set to `true` the bootstrap container will halt the boot process if it exits a non-zero exit code."
+description = "If `essential` is set to `true` the bootstrap container will halt the boot process when it exits with a non-zero exit code."
 default = "`false`"
 accepted_values = [
     "`true`",
