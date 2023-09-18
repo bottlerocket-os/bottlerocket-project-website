@@ -33,7 +33,7 @@
     {{- $docs := $settings_file.docs.ref -}}
     {{- $tags := $settings_file.docs.tag -}}
     {{- $tagHeadings := newScratch -}}
-
+    {{- if (isset $settings_file.docs "tag") -}}
     <h2>Topic list</h2>  
     <ul>
         {{- range $tag_name, $value := $tags -}}
@@ -46,7 +46,7 @@
             {{- end -}}
         {{- end -}}
     </ul>
-
+    {{- end -}}
     <h2 id="alphaorder">Setting list for <code>settings.{{- $settings_root -}}</code></h2>
     <ul id="sortedSettings">
         {{- range $setting_name, $value := $docs -}}
@@ -61,6 +61,7 @@
             {{- end -}}
         {{- end -}}
     </ul>
+    {{- if (isset $settings_file.docs "tag") -}}
     <hr />
     <div class="topics">
         <h2 id="tagged">Topics</h2>
@@ -97,6 +98,7 @@
                 {{- end -}}
             {{- end -}}
     </div>
+    {{- end -}}
     <hr />
     <h2 id="reference">Full Reference</h2>
     <div class="reference">
