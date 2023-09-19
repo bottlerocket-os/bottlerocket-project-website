@@ -343,7 +343,7 @@ $(document).ready(function() {
          id="tspan6700"
          class="variant_label"
          x="274.08826"
-         y="57.853008">bottlerocket-aws-ecs-1-x86_64-{{ $version_current }}</tspan></text>
+         y="57.853008">bottlerocket-aws-ecs-2-x86_64-{{ $version_current }}</tspan></text>
     <circle
        class="dot"
        id="circle6706"
