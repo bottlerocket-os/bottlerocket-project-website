@@ -310,6 +310,83 @@ nav.foldable-nav .with-child, nav.foldable-nav .without-child {
     
 }
 
+/* bootstrap containers diagram styles */
+.bootstrap-container-diagram {
+    .sequence-arrow-line{
+        fill: none;
+        stroke: $dark;
+    }
+    .sequence-arrow-point {
+        fill: $dark;
+        stroke: $dark;
+    }
+    .systemd-box {
+        fill: $light-blue;
+        stroke: none;
+    }
+
+    .bootstrap-containers-rect {
+        fill: $tan;
+        stroke: $light-teal;
+        stroke-dasharray: 3 3;
+    }
+    .bootstrap-containers-label-back {
+        fill: $tan;
+        stroke: none;
+    }
+    rect.next-boot-stage {
+        fill: $light-teal;
+        stroke: none;
+    }
+
+    
+    path.exit-flag {
+        fill: $dark-blue;
+    }
+
+    rect.container-b4,
+    rect.container-b3,
+    rect.container-b2,
+    rect.container-b1 {
+        fill: $dark-orange;
+    }
+    .systemd-box-text,
+    .bootstrap-containers-text,
+    text.exit-flag,
+    text.mode-to-off,
+    text.boot-halt,
+    text.next-boot-stage,
+    text.container-b4,
+    text.container-b3,
+    text.container-b2,
+    text.container-b1 {
+        fill: $dark;
+        text-anchor: middle;
+        font-size: 12px;
+        font-family: $td-fonts-serif
+    }
+    .systemd-box-text {
+        fill: $light-blue-text;
+        
+    }
+    .bootstrap-containers-text {
+        fill: $dark;
+    }
+    text.exit-flag {
+        fill: $white;
+    }
+    text.next-boot-stage {
+        fill: $light-teal-text;
+    }
+    text.container-b4,
+    text.container-b3,
+    text.container-b2,
+    text.container-b1 {
+        fill: $white
+    }
+}
+
+
 /* style bottom links */
 footer .text-links {
     a span {
