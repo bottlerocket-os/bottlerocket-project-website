@@ -55,3 +55,7 @@ note = """
 Despite the common name, host container `user-data` and instance `user-data` function differently.
 Host container `user-data` may consist of anything and it is up to the container to interepret the data.
 """
+warning = """
+The [Bottlerocket admin container](../../../concepts/components/#operational-and-administrative-workloads) decodes JSON for SSH keys from user data.
+Supplying base64-encoded data that is not JSON to the admin container will interfere with making it accessible via SSH.
+"""
