@@ -1,12 +1,14 @@
 #!/bin/bash
 
-bottlerocket_release=$(grep "version =" $1/Release.toml | cut -d "=" -f 2 | tr -d '"')
+bottlerocket_root=${1:?}
+bottlerocket_release=$(grep "version =" $bottlerocket_root/Release.toml | cut -d "=" -f 2 | tr -d '"')
+
 printf "%s\n" "---"
 printf "title: \"%s\"\n" $bottlerocket_release
 printf "type: \"docs\"\n"
 printf "description: \"Package Versions in Bottlerocket Release %s\"\n" $bottlerocket_release
 printf "packages:\n"
-for d in $(find $1/packages -mindepth 1 -maxdepth 1 -type d | sort)
+for d in $(find $bottlerocket_root/packages -mindepth 1 -maxdepth 1 -type d | sort)
 do
     base=$(basename $d)
     rpmspec -q --qf "%{Version}:" $d/$base.spec  --define="_cross_os _" --nodebuginfo --quiet &> /dev/null
