@@ -1,0 +1,132 @@
+{{- $example := .Get "example" -}}
+
+{{ if (eq $example 1) }}
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" viewBox="-0.5 -0.5 561 361" class="bootstrap-container-diagram">
+  <defs/>
+  <g>
+    <path d="M 280 60 L 280 73.63" class="sequence-arrow-line"/>
+    <path d="M 280 78.88 L 276.5 71.88 L 280 73.63 L 283.5 71.88 Z" class="sequence-arrow-point" />
+    <rect x="0" y="0" width="560" height="60" class="systemd-box" />
+    <g transform="translate(257.5,23.5)">
+        <text x="23" y="12" class="systemd-box-text" >systemd</text>
+    </g>
+    <path d="M 280 280 L 280 293.63" class="sequence-arrow-line"/>
+    <path d="M 280 298.88 L 276.5 291.88 L 280 293.63 L 283.5 291.88 Z" class="sequence-arrow-point" />
+    <rect x="0" y="80" width="560" height="200" class="bootstrap-containers-rect"/>
+    <rect x="10" y="70" width="130" height="20" class="bootstrap-containers-label-back" />
+    <g transform="translate(20.5,73.5)">
+      <text x="55" y="12" class="bootstrap-containers-text">bootstrap containers</text>
+    </g>
+    <rect x="153" y="90" width="110" height="110" class="container-b1"/>
+    <g transform="translate(200.5,138.5)">
+        <text x="8" y="12" class="container-b1">B1</text>
+    </g>
+    <rect x="297" y="90" width="110" height="180" class="container-b2"/>
+    <g transform="translate(344.5,173.5)">
+        <text x="8" y="12" class="container-b2">B2</text>
+    </g>
+    <rect x="10" y="90" width="110" height="40" class="container-b3"/>
+    <g transform="translate(57.5,103.5)">
+        <text x="8" y="12" class="container-b3">B3</text>
+    </g>
+    <rect x="440" y="90" width="110" height="90" class="container-b4"/>
+    <g transform="translate(487.5,128.5)">
+        <text x="8" y="12" class="container-b4">B4</text>
+    </g>
+    <rect x="0" y="300" width="560" height="60" class="next-boot-stage"/>
+    <g transform="translate(238.5,323.5)">
+        <text x="41" y="12" class="next-boot-stage">next boot stage</text>
+    </g>
+  </g>
+</svg>
+{{ end }}
+{{ if (eq $example 2) }}
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" viewBox="-0.5 -0.5 561 321" class="bootstrap-container-diagram">
+    <defs/>
+    <g>
+      <path d="M 280 60 L 280 73.63" class="sequence-arrow-line"/>
+      <path d="M 280 78.88 L 276.5 71.88 L 280 73.63 L 283.5 71.88 Z" class="sequence-arrow-point"/>
+      <rect x="0" y="0" width="560" height="60" class="systemd-box" />
+      <g transform="translate(257.5,23.5)">
+        <text x="23" y="12" class="systemd-box-text" >systemd</text>
+      </g>
+      <path d="M 280 280 L 280 293.63" class="sequence-arrow-line"/>
+      <path d="M 280 298.88 L 276.5 291.88 L 280 293.63 L 283.5 291.88 Z" class="sequence-arrow-point" />      <rect x="0" y="80" width="560" height="200" class="bootstrap-containers-rect"/>
+      <rect x="10" y="70" width="130" height="20" class="bootstrap-containers-label-back" />
+      <g transform="translate(20.5,73.5)">
+          <text x="55" y="12" class="bootstrap-containers-text">bootstrap containers</text>
+      </g>
+      <rect x="153" y="90" width="110" height="110" class="container-b1"/>
+      <g transform="translate(200.5,138.5)">
+          <text x="8" y="12" class="container-b1">B1</text>
+      </g>
+      <rect x="297" y="90" width="110" height="180" class="container-b2" />
+      <g transform="translate(310.5,166.5)">
+          <text x="41" y="20" class="container-b2">B2</text>
+          <text x="41" y="35" class="container-b2">essential = true</text>
+      </g>
+      <rect x="10" y="90" width="110" height="40" class="container-b3" />
+      <g transform="translate(57.5,103.5)">
+          <text x="8" y="12" class="container-b3">B3</text>
+      </g>
+      <rect x="440" y="90" width="110" height="90" class="container-b4"/>
+      <g transform="translate(487.5,128.5)">
+          <text x="8" y="12" class="container-b4">B4</text>
+      </g>
+      <g transform="translate(256.5,303.5)">
+          <text x="23" y="12" class="boot-halt">boot halt</text>
+      </g>
+      <path d="M 407 270 L 437.75 250 L 510 250 Q 530 250 530 270 Q 530 290 510 290 L 437.75 290 Z" class="exit-flag"/>
+      <g transform="translate(439.5,263.5)">          
+          <text x="29" y="12" class="exit-flag">exit code 1</text>
+      </g>
+    </g>
+  </svg>
+{{end}}
+{{ if (eq $example 3) }}
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" viewBox="-0.5 -0.5 561 361" class="bootstrap-container-diagram">
+    <defs/>
+  <g>
+    <path d="M 280 60 L 280 73.63" class="sequence-arrow-line" />
+    <path d="M 280 78.88 L 276.5 71.88 L 280 73.63 L 283.5 71.88 Z" class="sequence-arrow-point" />
+    <rect x="0" y="0" width="560" height="60" class="systemd-box" />
+    <g transform="translate(257.5,23.5)">
+        <text x="23" y="12" class="systemd-box-text" >systemd</text>
+    </g>
+    <rect x="0" y="80" width="560" height="200" class="bootstrap-containers-rect"/>
+    <rect x="10" y="70" width="130" height="20" class="bootstrap-containers-label-back" />
+    <g transform="translate(20.5,73.5)">
+      <text x="55" y="12" class="bootstrap-containers-text">bootstrap containers</text>
+    </g>
+    <rect x="153" y="90" width="110" height="110" class="container-b1"/>
+    <g transform="translate(200.5,138.5)">
+        <text x="8" y="12" class="container-b1">B1</text>
+    </g>
+    <rect x="297" y="90" width="110" height="180" class="container-b2" />
+    <g transform="translate(344.5,173.5)">
+        <text x="8" y="12" class="container-b2">B2</text>
+    </g>
+    <rect x="10" y="90" width="110" height="40" class="container-b3"/>
+    <g transform="translate(57.5,103.5)">
+        <text x="8" y="12" class="container-b3">B3</text>
+    </g>
+    <path d="M 495 180 L 495 200 L 495 190 L 495 203.63" class="sequence-arrow-line"/>
+    <path d="M 495 208.88 L 491.5 201.88 L 495 203.63 L 498.5 201.88 Z" class="sequence-arrow-point" />
+    <rect x="440" y="90" width="110" height="90" class="container-b4"/>
+    <g transform="translate(463.5,121.5)">
+        <text x="32" y="20" class="container-b4">B4</text>
+        <text x="32" y="35" class="container-b4">mode=once</text>
+    </g>
+    <g transform="translate(449.5,211.5)">
+        <text x="46" y="20" class="mode-to-off">Update container</text>
+        <text x="46" y="35" class="mode-to-off">B4 mode to off</text>
+    </g>
+    <path d="M 280 280 L 280 293.63" class="sequence-arrow-line"/>
+    <path d="M 280 298.88 L 276.5 291.88 L 280 293.63 L 283.5 291.88 Z" class="sequence-arrow-point"/>
+    <rect x="0" y="300" width="560" height="60" class="next-boot-stage"/>
+    <g transform="translate(238.5,323.5)">
+        <text x="41" y="12" class="next-boot-stage">next boot stage</text>
+    </g>
+  </g>
+</svg>
+{{end}}
