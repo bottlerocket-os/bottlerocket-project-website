@@ -5,7 +5,7 @@ description = "Setting up the host with containers that start during boot."
 +++
 
 Bootstrap containers are a form of {{< ver-ref project="os" page="/concepts/components" >}}host container{{< /ver-ref >}} that you can use to run critical software before the node connects to an orchestrator.
-They give you subsantial power to configure and modify the system in ways that would otherwise be [difficult or impossible](#use-cases).
+They give you substantial power to configure and modify the system in ways that would otherwise be [difficult or impossible](#use-cases).
 
 ## Lifecycle
 
@@ -40,7 +40,7 @@ Container `B2` runs the longest and the next stage of the boot does not proceed 
     {{</ twocol_inner >}}
     {{% twocol_inner %}}
 This example is the same as the previous one except container `B2` is configured with {{< ver-ref project="os" page="/api/settings/bootstrap-containers#name_essential">}}`essential=true`{{< /ver-ref >}}.
-Container `B2` exits with a non-zero exit code and consquently the boot halts.
+Container `B2` exits with a non-zero exit code and consequently the boot halts.
     {{%/ twocol_inner %}}
 {{</ twocol >}}
 
