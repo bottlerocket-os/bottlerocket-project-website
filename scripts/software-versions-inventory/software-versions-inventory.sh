@@ -1,5 +1,7 @@
 #!/bin/bash
 
+shopt -s nullglob
+
 bottlerocket_root=${1:?}
 bottlerocket_release=$(grep "version =" $bottlerocket_root/Release.toml | cut -d "=" -f 2 | tr -d '"')
 
@@ -21,12 +23,11 @@ do
         printf "%4s" " "
         printf "%s" "version: "
         printf "%s\n" "$version" | cut -d":" -f1
-        patch_count=`find $d -type f -name "*.patch" | wc -l`
-        if [ $patch_count -gt 0 ]; then
-            patches=`find $d -type f -name "*.patch"`
+        patches=( "$d"/*.patch )
+        if [[ ${#patches[@]} -gt 0 ]]; then
             printf "%4s" " "
             printf "%s\n" "patches:"
-            for patch in $patches
+            for patch in "${patches[@]}"
             do
                 patch_file=$(basename $patch)
                 printf "%6s" " "
