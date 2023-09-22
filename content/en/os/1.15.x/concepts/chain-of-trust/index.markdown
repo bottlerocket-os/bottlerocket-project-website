@@ -19,12 +19,12 @@ Modern, server-class machines initialize by loading firmware that conforms to th
 In the most basic configuration, the firmware hands off control of the machine to the OS or bootloader.
 However, UEFI optionally implements Secure Boot, which is a mechanism that prevents hand off to unsigned software. Bottlerocket uses Secure Boot by default.
 
-To start, the firmware retrieves the Bottlerocket vendor certificate stored in the system’s NVRAM and uses it to verify that the pre-bootloader, [shim](https://github.com/rhboot/shim), is correctly signed.
+To start, the firmware retrieves the Bottlerocket certificate stored in the system’s NVRAM and uses it to verify that the first-stage bootloader, [shim](https://github.com/rhboot/shim), is correctly signed.
 
 {{% alert title="Note" color="success" %}}
 Many operating systems use a version of shim signed by the Microsoft 3rd Party UEFI CA certificate. Bottlerocket does not use this certificate.
 Instead, Bottlerocket uses a self-signed certificate intended to allow you to focus your machine’s trust only to your specified OS (in this case, Bottlerocket).
-From ** Microsoft’s article [“Secure the Windows boot process”](https://learn.microsoft.com/en-us/windows/security/operating-system-security/system-security/secure-the-windows-10-boot-process):
+From Microsoft’s article [“Secure the Windows boot process”](https://learn.microsoft.com/en-us/windows/security/operating-system-security/system-security/secure-the-windows-10-boot-process):
 
 *“Since the Microsoft 3rd Party UEFI CA certificate signs the bootloaders for all Linux distributions, trusting the Microsoft 3rd Party UEFI CA signature in the UEFI database increases the attack surface of systems. A customer who intended to only trust and boot a single Linux distribution will trust all distributions - much more than their desired configuration.”*
 {{% /alert %}}
