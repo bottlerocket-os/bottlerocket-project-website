@@ -40,7 +40,6 @@ After the boot process, dm-verity will detect any changes to the block device un
 
 This chain of trust relies on Secure Boot enabled firmware. Secure Boot has some prerequisites which are primarily relevant on `metal` variants:
 
-
 1. UEFI firmware
 2. Firmware Secure Boot feature enabled; Compatibility Support Module and/or legacy bios emulation disabled
 3. The machine’s NVRAM must contain Bottlerocket’s "db" certificate, which is used to sign shim. The Bottlerocket EFI partition includes this certificate in both PEM and DER formats.
