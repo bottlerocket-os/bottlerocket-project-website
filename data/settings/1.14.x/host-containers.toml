@@ -56,6 +56,8 @@ Despite the common name, host container `user-data` and instance `user-data` fun
 Host container `user-data` may consist of anything and it is up to the container to interepret the data.
 """
 warning = """
-The [Bottlerocket admin container](../../../concepts/components/#operational-and-administrative-workloads) decodes JSON for SSH keys from user data.
-Supplying base64-encoded data that is not JSON to the admin container will interfere with making it accessible via SSH.
+The [Bottlerocket admin container](../../../concepts/components/#operational-and-administrative-workloads) decodes JSON for SSH keys as well as the password hash for serial connections from user data.
+If you provide user data to the admin container, no SSH keys nor serial password hash information will be automatically passed into the admin container by Bottlerocket.
+If using custom user data with the admin container, you must also provide your own authentication information in this user data.
+See [Authenticating with the Admin Container](https://github.com/bottlerocket-os/bottlerocket-admin-container#authenticating-with-the-admin-container) for more information.
 """
