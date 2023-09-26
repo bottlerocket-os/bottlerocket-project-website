@@ -9,7 +9,7 @@
 		<td>
 			{{ with .patches }}
 				<ul>
-					{{ range $patch := . }}
+					{{ range $patch := sort . }}
 						<li>{{ $patch }}</li>
 					{{ end }}
 				</ul>
