@@ -17,7 +17,8 @@ This mode prevents unsigned kernel modules from loading.
 default = "`integrity` except for `nvidia` and `dev` variant flavours which use `none`"
 see = [
     ["[`kernel_lockdown` Linux Manual Page](https://man7.org/linux/man-pages/man7/kernel_lockdown.7.html)"],
-    ["Bottlerocket [Security Gudiance on GitHub](https://github.com/bottlerocket-os/bottlerocket/blob/develop/SECURITY_GUIDANCE.md#enable-kernel-lockdown)"]
+    ["Bottlerocket [Security Gudiance on GitHub](https://github.com/bottlerocket-os/bottlerocket/blob/develop/SECURITY_GUIDANCE.md#enable-kernel-lockdown)"],
+    ["[Linux kernel lockdown, integrity, and confidentiality](https://mjg59.dreamwidth.org/55105.html)"]
 ]
 
 [[docs.ref.modules_allowed]]
