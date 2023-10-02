@@ -83,7 +83,7 @@ The no-proxy list automatically includes entries for `localhost`.
 On Kubernetes variants (`*-k8s-*`) the no-proxy lists includes the Kubernetes API server endpoint as well as other commonly used Kubernetes DNS suffixes.
 """
 accepted_values = [
-    "List of host names and IP addresses (with optional port numbers)"
+    "List of host names and IP addresses"
 ]
 tags = [
     "proxy-settings"
