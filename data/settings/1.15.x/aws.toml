@@ -4,7 +4,7 @@ The base64-encoded representation of data used to populate `~/.aws/config`
 """
 warning = """
 Avoid adding a `[profile default]` section.
-Recent versions of `aws-iam-authenticator` (and perhaps other components) not pick up the default credential settings when `settings.aws.profile` is set to `default`. 
+Recent versions of `aws-iam-authenticator` (and perhaps other components) pick up the default credential settings when `settings.aws.profile` is set to `default`. 
 """
 
 [[docs.ref.credentials]]
