@@ -6,6 +6,9 @@ warning = """
 Avoid adding a `[profile default]` section.
 Recent versions of `aws-iam-authenticator` (and perhaps other components) not pick up the default credential settings when `settings.aws.profile` is set to `default`. 
 """
+see = [
+    ["`ecr-credential-provider` under [`settings.kubernetes.credential-providers`](../kubernetes/#credential-providers)"]
+]
 
 [[docs.ref.credentials]]
 description = """
@@ -14,7 +17,7 @@ The base64-encoded representation of data used to populate `~/.aws/credentials`
 
 [[docs.ref.profile]]
 description = """
-The profile name to use for `settings.aws.config` and `settings.aws.credentials`.
+The profile name to use for [`settings.aws.config`](#config) and [`settings.aws.credentials`](#credentials).
 """
 default = "`default`"
 [[docs.ref.profile.example]]
