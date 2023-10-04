@@ -34,7 +34,7 @@ If you intend to process the report with some other piece of software,  add the 
 
 ```shell
 # Returns evaluation of the report in JSON format
-apiclient report <rreport identifier> -f json
+apiclient report <report identifier> -f json
 ```
 
 ## Evaluation Results
