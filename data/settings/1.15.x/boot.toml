@@ -27,7 +27,7 @@ EOF
 description = """
 Kernel parameters expressed as key/value pairs. 
 If boot data exists at `/proc/bootconfig`, Bottlerocket generates the settings from this data on first boot.
-During the boot process, the init parameters pass via the kernel command line.
+During the boot process, the parameters pass via the kernel command line.
 """
 see = [
     ["[Boot Configuration on kernel.org](https://www.kernel.org/doc/html/latest/admin-guide/bootconfig.html)"]
