@@ -72,7 +72,7 @@ EOF
 
 [[docs.ref.reboot-to-reconcile]]
 description = """
-When `true`, anytime the values for `settings.boot.kernel-parameters` or `settings.boot.init-parameters` change, the node reboots.
+When `true`, changes observed to `settings.boot.kernel-parameters` or `settings.boot.init-parameters` during the boot proccess trigger a reboot.
 """
 note = """
 The reboot occurs only if the actual settings value changes.
