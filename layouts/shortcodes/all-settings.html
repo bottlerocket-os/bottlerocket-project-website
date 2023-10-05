@@ -1,0 +1,26 @@
+
+{{- /* get the path of the doc calling the shortcode */ -}}
+{{- $currentPath := print .Page.File.Dir -}}
+{{- /* break apart the path */ -}}
+{{- $parts := split $currentPath "/" -}}
+{{- /* 2nd (base 0) index has the version */ -}}
+{{- $version := index $parts 1 -}}
+
+{{- $settings_file := index $.Site.Data.settings $version -}}
+
+{{- range $settings_category, $settings_ref := $settings_file  -}}
+    <!-- <h2>settings.{{ $settings_category }}</h2> -->
+    {{- range $setting_name, $setting_details := $settings_ref.docs.ref -}} 
+        <code>
+            <a href="../settings/{{ $settings_category }}/#{{  $setting_name }}">
+                settings.{{ $settings_category }}
+                {{- if reflect.IsSlice $setting_details -}}
+                    {{- range $setting_details -}}
+                        .{{ ( or .name_override $setting_name ) }}
+                    {{- end -}}
+                {{- end -}}
+            </a>
+        </code>
+        <br />
+    {{- end -}}
+{{- end -}}
