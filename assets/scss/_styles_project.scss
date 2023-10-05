@@ -202,7 +202,75 @@ $link-color: $light-link;
 #svg_kernel_label tspan {
    fill: $light;
 }
-    
+
+#svgSecureBootDiagram {
+    .check-text,
+    .nvram-text,
+    .root-fs-text,
+    .boot-text,
+    .efi-text,
+    .arrow-box-text {
+        text-anchor: middle;
+        font-size: 12px;
+    }
+    .arrow-box {
+        fill: $light-blue;
+    }
+    .arrow-box-text {
+        fill: $light-blue-text;
+    }
+    .boot-box {
+        fill: $dark-teal;
+        stroke: $light-teal
+    }
+    .boot-text {
+        fill: $dark-teal-text;
+    }
+    .sig-box {
+        fill: $light-orange;
+    }
+    .shaded-background {
+        fill: $tan;
+    }
+    .root-fs-box {
+        fill: $light-teal;
+    }
+    .root-fs-text {
+        fill: $white;
+    }
+    .nvram-box {
+        fill: $dark-blue;
+        stroke: none;
+    }
+    .nvram-text {
+        fill: $dark-blue-text
+    }
+    .boot-process-outline-box,
+    .grouper-lines,
+    .connector-arrow,
+    .connector-line,
+    .connector-line-dashed {
+        fill: none;
+        stroke: $dark;
+        stroke-miterlimit: 10;
+        pointer-events: stroke;
+    }
+    #efiBoundary1,
+    .boot-process-outline-box {
+        stroke-opacity: 0.2;
+    }
+    .connector-line-dashed {
+        stroke-dasharray: 3 3;
+    }
+    .connector-arrow {
+        fill: $dark;
+    }
+    .sig-checkmark {
+        fill: $dark-orange;
+        stroke: none;
+    }
+}
+
 .disabled-diagram-component-host-containers { 
     #svg_control_label,
     #svg_admin_label tspan,

@@ -223,10 +223,11 @@ see = [
 
 [[docs.ref.credential-providers]]
 description = """
-Contains a collection of Kubelet image credential provider settings. Each key under this setting is the name of the plugin to configure. See Example 1 below.
-
-The `ecr-credential-provider` plugin can also be used for AWS IAM Roles Anywhere support. IAM Roles Anywhere is configured using the `settings.aws.config` setting. The content of that setting needs to configure the `credential_process` using the `aws_signing_helper` using your IAM Roles Anywhere settings, see Example 2 below.
-
+Contains a collection of Kubelet image credential provider settings. 
+Each key under this setting is the name of the plugin to configure. See Example 1 below.
+The `ecr-credential-provider` plugin can also be used for AWS IAM Roles Anywhere support.
+IAM Roles Anywhere is configured using the [`settings.aws.config`](../aws#config) setting. 
+The content of that setting needs to configure the `credential_process` using the `aws_signing_helper` using your IAM Roles Anywhere settings, see Example 2 below.
 """
 note = "`ecr-credential-provider` is currently the only supported provider. To manage its AWS credentials, see the `settings.aws.config` and `settings.aws.credentials` settings."
 
