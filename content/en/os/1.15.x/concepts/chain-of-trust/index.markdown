@@ -29,8 +29,8 @@ From Microsoft’s article [“Secure the Windows boot process”](https://learn
 *“Since the Microsoft 3rd Party UEFI CA certificate signs the bootloaders for all Linux distributions, trusting the Microsoft 3rd Party UEFI CA signature in the UEFI database increases the attack surface of systems. A customer who intended to only trust and boot a single Linux distribution will trust all distributions - much more than their desired configuration.”*
 {{% /alert %}}
 
-Shim has access to certs stored in NVRAM. These certs are needed to verify the signed binary for GNU Grub, the next step in the boot process.
-Grub verifies the signature of its configuration file, `grub.cfg`, then grub calls into shim to verify the kernel.
+Shim has access to certs stored in NVRAM. These certs are needed to verify the signed binary for GNU GRUB, the next step in the boot process.
+GRUB verifies the signature of its configuration file, `grub.cfg`, then grub calls into shim to verify the kernel.
 The GRUB configuration also contains the dm-verity root hash for the immutable root filesystem. GRUB hands off to the now-verified Linux kernel which can mount the root filesystem using the dm-verity root hash.
 
 If any verification fails during the above process, the boot sequence will cease.

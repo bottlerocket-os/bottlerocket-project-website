@@ -170,7 +170,7 @@
             x="12"
             y="12"
             class="boot-text"
-            id="grubText">grub</text>
+            id="grubText">GRUB</text>
       </g>
     </g>
     <g>
@@ -355,7 +355,7 @@
             x="-28.401497"
             y="77.347656"
             class="check-text"
-            id="sigGrubText">signature: grub</text>
+            id="sigGrubText">signature: GRUB</text>
       </switch>
       <g
          aria-label="✔"
