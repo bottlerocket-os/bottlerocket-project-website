@@ -1,0 +1,422 @@
+<svg
+   version="1.1"
+   width="100%"
+   viewBox="-0.5 -0.5 633 601"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:xhtml="http://www.w3.org/1999/xhtml"
+   id="svgSecureBootDiagram">
+  <defs
+     id="defs2" />
+  <g
+     id="g168">
+    <g>
+      <path
+       d="M 72 190 L 67 190 Q 62 190 62 200 L 62 255 Q 62 265 57 265 L 54.5 265 Q 52 265 57 265 L 59.5 265 Q 62 265 62 275 L 62 330 Q 62 340 67 340 L 72 340"
+       class="grouper-lines"
+       id="efiSystemGrouper" />
+      <switch
+       id="switch1843"
+       transform="translate(1,241)">
+      <text
+         x="27"
+         y="12"
+         class="efi-text"
+         id="efiSystemPartitionText"><tspan
+           x="27"
+           y="12">EFI</tspan><tspan
+           x="27"
+           y="27">System</tspan><tspan
+           x="27"
+           y="42">Partition</tspan></text>
+      </switch>
+      <rect
+         x="82"
+         y="190"
+         width="550"
+         height="150"
+         id="efiBackground"
+         class="shaded-background" />
+    </g>
+    <g>
+      <rect
+         x="142"
+         y="0"
+         width="100"
+         height="60"
+         class="nvram-box"
+         id="nvramBox" />
+      <g
+         transform="translate(166.5,3.5)"
+         id="g96">
+            <text
+            x="26"
+            y="12"
+            class="nvram-text"
+            id="nvramText">(NVRAM)</text>
+      </g>
+      <g
+         transform="translate(158.5,33.5)">
+         <text
+            x="30"
+            y="12"
+            class="nvram-text"
+            id="vendorCertText">signature db</text>
+      </g>
+    </g>
+    <rect
+       x="292"
+       y="190"
+       width="120"
+       height="410"
+       class="boot-process-outline-box"
+       id="bootProcessOutlineBox" />
+    <g>
+    <path
+       d="M 32 90 L 132 90 L 152 130 L 132 170 L 32 170 L 52 130 Z"
+       id="powerUpBox"
+       class="arrow-box" />
+      <g
+         transform="translate(65.5,123.5)"
+         id="g16">
+         <text
+            x="27"
+            y="12"
+            id="powerUpText"
+            class="arrow-box-text">Power Up</text>
+      </g>
+    </g>
+    <path
+       d="M 262 130 L 302 130"
+       class="connector-line"
+       id="uefiSigConnector" />
+    <g>
+    <path
+       d="M 142 90 L 242 90 L 262 130 L 242 170 L 142 170 L 162 130 Z"
+       id="uefiBox"
+       class="arrow-box" />
+      <g
+         transform="translate(176.5,116.5)"
+         id="g26">
+         <text
+            x="30.527555"
+            y="10.192383"
+            class="arrow-box-text"
+            id="uefiText"><tspan
+               x="30.527555"
+               y="10.192383">UEFI</tspan><tspan
+               x="30.527555"
+               y="25.192383">Firmware</tspan></text>
+      </g>
+    </g>
+    <g>
+      <path
+         d="M 402 215 L 502 215 L 502 240"
+         class="connector-line"
+         id="shimGrubConnector1" />
+      <path
+         d="M 502 270 L 502 285 L 408.37 285"
+         class="connector-line"
+         id="shimGrubConnector2" />
+      <path
+         d="M 403.12 285 L 410.12 281.5 L 408.37 285 L 410.12 288.5 Z"
+         class="connector-arrow"
+         id="shimGrubArrow" />
+   </g>
+    <g>
+      <rect
+         x="302"
+         y="200"
+         width="100"
+         height="60"
+         id="shimBox"
+         class="boot-box" />
+      <g
+         transform="translate(339.5,223.5)"
+         id="g36">
+         <text
+            x="13"
+            y="12"
+            class="boot-text"
+            id="shimText">shim</text>
+      </g>
+    </g>
+    <path
+       d="M 292 338 L 412 338 M 412 342 L 292 342 M 412 342"
+       class="connector-line"
+       id="efiBoundary1" />
+    <g>
+      <path
+         d="M 402 315 L 502 315 L 502 340"
+         class="connector-line"
+         id="grubKernelConnector" />
+      <path
+         d="M 502 370 L 502 435"
+         class="connector-line"
+         id="sigKernelDmVerityConnector" />
+    </g>
+    <g>
+      <rect
+         x="302"
+         y="270"
+         width="100"
+         height="60"
+         id="grubBox"
+         class="boot-box" />
+      <g
+         transform="translate(339.5,293.5)"
+         id="g48">
+            <text
+            x="12"
+            y="12"
+            class="boot-text"
+            id="grubText">GRUB</text>
+      </g>
+    </g>
+    <g>
+      <rect
+         x="302"
+         y="350"
+         width="100"
+         height="60"
+         id="grubCfgBox"
+         class="boot-box" />
+      <g
+         transform="translate(336.63366,371.99121)"
+         id="g13498">
+         <text
+            x="15.019654"
+            y="-2.850585"
+            class="boot-text"
+            id="grubCfgText"><tspan
+               id="tspan13500"
+               x="15.019654"
+               y="-2.850585">grub.cfg</tspan><tspan
+               id="tspan13502"
+               x="15.019654"
+               y="12.149415">(w/dm-verity</tspan><tspan
+               x="15.019654"
+               y="27.149414"
+               id="tspan13504">root hash)</tspan></text>
+      </g>
+    </g>
+    <g>
+      <path
+         d="M 302 490 L 402 490 L 402 575 Q 377 548 352 575 Q 327 602 302 575 L 302 505 Z"
+         class="root-fs-box"
+         id="rootFsBox" />
+      <g
+         transform="translate(339.5,527.18332)"
+         id="rootFsText">
+         <text
+            x="12.198242"
+            y="-14.315965"
+            class="root-fs-text">
+            <tspan
+               x="12.198242"
+               y="-14.315965"
+               id="tspan13510">Bottlerocket</tspan><tspan
+               x="12.198242"
+               y="0.68403524"
+               id="tspan13522">immutable</tspan><tspan
+               x="12.198242"
+               y="15.684036"
+               id="tspan13524">root FS</tspan></text>
+      </g>
+    </g>
+    <g>
+      <rect
+         x="302"
+         y="420"
+         width="100"
+         height="60"
+         id="kernelBox"
+         class="boot-box" />
+      <g
+         transform="translate(335.5,443.5)"
+         id="g74">
+            <text
+            x="17"
+            y="12"
+            class="boot-text"
+            id="kernelText">kernel</text>
+      </g>
+    </g>
+    <g>
+      <path
+         d="M 352 145 L 352 193.63"
+         class="connector-line"
+         id="sigShimShimConnector" />
+      <path
+         d="M 352 198.88 L 348.5 191.88 L 352 193.63 L 355.5 191.88 Z"
+         class="connector-arrow"
+         id="sigShimShimArrow" />
+    </g>
+    <g>
+      <path
+         d="M 227 40 L 352 40 L 352 108.63"
+         class="connector-line-dashed"
+         id="vendorCertShimConnector" />
+      <path
+         d="M 352 113.88 L 348.5 106.88 L 352 108.63 L 355.5 106.88 Z"
+         class="connector-arrow"
+         id="vendorCertShimArrow" />
+    </g>
+    <g>
+      <path
+         d="M 302 300 L 202 300 L 202 340"
+         class="connector-line"
+         id="sigGrubCfgLine1" />
+      <path
+         d="M 202 370 L 202 395 L 295.63 395"
+         class="connector-line"
+         id="sigGrubCfgLine2" />
+      <path
+         d="M 300.88 395 L 293.88 398.5 L 295.63 395 L 293.88 391.5 Z"
+         class="connector-arrow"
+         id="grubGrubCfgArrow" />
+    </g>
+    <g>
+      <path
+         d="M 432 450 L 412 450 L 422 450 L 408.37 450"
+         class="connector-line"
+         id="dmVerityKernelConnector" />
+      <path
+         d="M 403.12 450 L 410.12 446.5 L 408.37 450 L 410.12 453.5 Z"
+         class="connector-arrow"
+         id="dmVerityKernelArrow" />
+    </g>
+    <g>
+      <path
+         d="M 467 465 L 467 540 L 402 540"
+         class="connector-line-dashed"
+         id="grubCfgFsConnector2" />
+      <path
+         d="M 402 395 L 467 395 L 467 435"
+         class="connector-line-dashed"
+         id="grubCfgFsConnector1" />
+    </g>
+    <g>
+      <rect
+         x="432"
+         y="435"
+         width="140"
+         height="30"
+         id="sigDmVerity"
+         class="sig-box" />
+      <g
+         transform="translate(450.5,443.5)"
+         id="g166">
+         <text
+            x="52"
+            y="12"
+            class="check-text"
+            id="sigDmVerityCheck">dm-verity root hash</text>
+      </g>
+    </g>
+    <g>
+      <rect
+         x="292"
+         y="115"
+         width="120"
+         height="30"
+         id="sigShim"
+         class="sig-box" />
+      <g
+         class="sig-checkmark"
+         id="sigShimCheckmark"
+         aria-label="✔"
+         transform="matrix(0.36923095,0,0,0.36923095,257.10479,156.97147)">
+         <path
+            d="m 123.59636,-66.382812 q 1.90104,-3.984372 4.53125,-8.749994 2.6302,-4.765623 5.93749,-9.505203 3.33333,-4.739581 4.84375,-6.276038 1.53646,-1.562499 2.57812,-2.473957 1.06771,-0.911458 3.75,-1.328124 2.68229,-0.416667 4.0625,-0.416667 0.91146,0 1.48437,0.572917 0.59896,0.546874 0.59896,1.458332 0,0.703125 -0.33854,1.223958 -0.33854,0.494791 -1.40625,1.510416 -5.13021,4.713538 -10.67708,13.437492 -5.54687,8.723953 -8.80208,16.901031 -1.53645,3.749998 -1.97916,4.401039 -0.44271,0.651042 -1.35417,1.223958 -0.91145,0.546875 -3.74999,0.546875 -2.23959,0 -2.86459,-0.286459 -0.625,-0.260416 -0.96354,-0.572916 -0.33854,-0.3125 -1.92708,-2.708332 -1.64062,-2.52604 -4.76562,-5.963538 -1.79688,-1.979165 -1.79688,-3.307289 0,-1.927083 2.03125,-3.359373 2.05729,-1.432291 3.61979,-1.432291 1.71875,0 3.67188,1.406249 1.95312,1.380207 3.51562,3.697914 z" />
+      </g>
+      <switch
+         id="switch13462"
+         transform="translate(385.21582,55.498047)">
+         <text
+            x="-28.401497"
+            y="77.347656"
+            class="check-text"
+            id="sigShimText">signature: shim</text>
+      </switch>
+    </g>
+    <g>
+      <rect
+       x="432"
+       y="240"
+       width="140"
+       height="30"
+       id="sigGrub" 
+       class="sig-box" />
+      <switch
+         id="switch13472"
+         transform="translate(526.43665,180.41216)">
+         <text
+            x="-28.401497"
+            y="77.347656"
+            class="check-text"
+            id="sigGrubText">signature: GRUB</text>
+      </switch>
+      <g
+         aria-label="✔"
+         class="sig-checkmark"
+         id="sigGrubCheckmark"
+         transform="matrix(0.36923095,0,0,0.36923095,398.32562,281.88559)">
+         <path
+            d="m 123.59636,-66.382812 q 1.90104,-3.984372 4.53125,-8.749994 2.6302,-4.765623 5.93749,-9.505203 3.33333,-4.739581 4.84375,-6.276038 1.53646,-1.562499 2.57812,-2.473957 1.06771,-0.911458 3.75,-1.328124 2.68229,-0.416667 4.0625,-0.416667 0.91146,0 1.48437,0.572917 0.59896,0.546874 0.59896,1.458332 0,0.703125 -0.33854,1.223958 -0.33854,0.494791 -1.40625,1.510416 -5.13021,4.713538 -10.67708,13.437492 -5.54687,8.723953 -8.80208,16.901031 -1.53645,3.749998 -1.97916,4.401039 -0.44271,0.651042 -1.35417,1.223958 -0.91145,0.546875 -3.74999,0.546875 -2.23959,0 -2.86459,-0.286459 -0.625,-0.260416 -0.96354,-0.572916 -0.33854,-0.3125 -1.92708,-2.708332 -1.64062,-2.52604 -4.76562,-5.963538 -1.79688,-1.979165 -1.79688,-3.307289 0,-1.927083 2.03125,-3.359373 2.05729,-1.432291 3.61979,-1.432291 1.71875,0 3.67188,1.406249 1.95312,1.380207 3.51562,3.697914 z" />
+      </g>
+    </g>
+    <g>
+      <rect
+       x="432"
+       y="340"
+       width="140"
+       height="30"
+       id="sigKernel"
+       class="sig-box" />
+      <switch
+         id="switch13480"
+         transform="translate(530.76966,280.91216)">
+         <text
+            x="-28.401497"
+            y="77.347656"
+            class="check-text"
+            id="sigKernelText">signature: kernel</text>
+      </switch>
+      <g
+         aria-label="✔"
+         class="sig-checkmark"
+         id="sigKernelCheckmark"
+         transform="matrix(0.36923095,0,0,0.36923095,398.32562,382.38559)">
+         <path
+            d="m 123.59636,-66.382812 q 1.90104,-3.984372 4.53125,-8.749994 2.6302,-4.765623 5.93749,-9.505203 3.33333,-4.739581 4.84375,-6.276038 1.53646,-1.562499 2.57812,-2.473957 1.06771,-0.911458 3.75,-1.328124 2.68229,-0.416667 4.0625,-0.416667 0.91146,0 1.48437,0.572917 0.59896,0.546874 0.59896,1.458332 0,0.703125 -0.33854,1.223958 -0.33854,0.494791 -1.40625,1.510416 -5.13021,4.713538 -10.67708,13.437492 -5.54687,8.723953 -8.80208,16.901031 -1.53645,3.749998 -1.97916,4.401039 -0.44271,0.651042 -1.35417,1.223958 -0.91145,0.546875 -3.74999,0.546875 -2.23959,0 -2.86459,-0.286459 -0.625,-0.260416 -0.96354,-0.572916 -0.33854,-0.3125 -1.92708,-2.708332 -1.64062,-2.52604 -4.76562,-5.963538 -1.79688,-1.979165 -1.79688,-3.307289 0,-1.927083 2.03125,-3.359373 2.05729,-1.432291 3.61979,-1.432291 1.71875,0 3.67188,1.406249 1.95312,1.380207 3.51562,3.697914 z" />
+      </g>
+    </g>
+    <g>
+      <rect
+       x="132"
+       y="340"
+       width="140"
+       height="30"
+       id="sigGrubCfg"
+       class="sig-box" />
+      <switch
+         id="switch13488"
+         transform="translate(162.65345,417.92403)">
+         <text
+            x="43.06757"
+            y="-59.693562"
+            class="check-text"
+            id="sigGrubCfgText">signature: grub.cfg</text>
+      </switch>
+      <g
+         aria-label="✔"
+         class="sig-checkmark"
+         id="sigGrubCfgCheckmark"
+         transform="matrix(0.36923095,0,0,0.36923095,98.011487,382.35624)">
+         <path
+            d="m 123.59636,-66.382812 q 1.90104,-3.984372 4.53125,-8.749994 2.6302,-4.765623 5.93749,-9.505203 3.33333,-4.739581 4.84375,-6.276038 1.53646,-1.562499 2.57812,-2.473957 1.06771,-0.911458 3.75,-1.328124 2.68229,-0.416667 4.0625,-0.416667 0.91146,0 1.48437,0.572917 0.59896,0.546874 0.59896,1.458332 0,0.703125 -0.33854,1.223958 -0.33854,0.494791 -1.40625,1.510416 -5.13021,4.713538 -10.67708,13.437492 -5.54687,8.723953 -8.80208,16.901031 -1.53645,3.749998 -1.97916,4.401039 -0.44271,0.651042 -1.35417,1.223958 -0.91145,0.546875 -3.74999,0.546875 -2.23959,0 -2.86459,-0.286459 -0.625,-0.260416 -0.96354,-0.572916 -0.33854,-0.3125 -1.92708,-2.708332 -1.64062,-2.52604 -4.76562,-5.963538 -1.79688,-1.979165 -1.79688,-3.307289 0,-1.927083 2.03125,-3.359373 2.05729,-1.432291 3.61979,-1.432291 1.71875,0 3.67188,1.406249 1.95312,1.380207 3.51562,3.697914 z" />
+      </g>
+    </g>
+  </g>
+</svg>
