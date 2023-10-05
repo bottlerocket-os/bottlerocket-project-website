@@ -31,7 +31,7 @@ From Microsoft’s article [“Secure the Windows boot process”](https://learn
 
 Shim has access to certs stored in NVRAM. These certs are needed to verify the signed binary for GNU Grub, the next step in the boot process.
 Grub verifies the signature of its configuration file, `grub.cfg`, then grub calls into shim to verify the kernel.
-The dm-verity root hash for the immutable root filesystem, contains the grub configuration as well. Grub hands off to the now-verified Linux kernel which can mount the root filesystem using with the dm-verity root hash.
+The GRUB configuration also contains the dm-verity root hash for the immutable root filesystem. GRUB hands off to the now-verified Linux kernel which can mount the root filesystem using the dm-verity root hash.
 
 If any verification fails during the above process, the boot sequence will cease.
 After the boot process, dm-verity will detect any changes to the block device underlying the root filesystem and trigger a reboot of the machine.
