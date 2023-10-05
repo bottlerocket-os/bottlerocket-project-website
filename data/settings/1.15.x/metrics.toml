@@ -15,7 +15,7 @@ accepted_values = [
 default = "`true` (except on `dev` variants, where it is `false`)"
 
 [[docs.ref.service-checks]]
-description = "A list of systemd services that Bottlerocket will checked to determine if a host is healthy."
+description = "A list of systemd services that Bottlerocket will check to determine if a host is healthy."
 default = """The default services vary by variant:
 
 - `apiserver` (all variants)
