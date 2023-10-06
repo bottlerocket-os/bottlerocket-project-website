@@ -1,0 +1,66 @@
+[[docs.ref.ignore-waves]]
+description = """
+Typically, updates roll out in waves. 
+To ignore update waves, set this value to `true` which will cause the node to update immediately.
+"""
+default = "`false`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["[Locking to a Specific Release](../../../update/locking-to-a-specific-release/)"],
+    ["[_Waves_ in Publishing Bottlerocket](https://github.com/bottlerocket-os/bottlerocket/blob/develop/PUBLISHING.md#waves)"]
+
+]
+
+[[docs.ref.metadata-base-url]]
+description = """
+The common portion of all URIs used to download update metadata.
+"""
+accepted_values = [
+    "A string containing a URI fragment"
+]
+see = [
+    ["[_Using your repo from a Bottlerocket host_ in Publishing Bottlerocket](https://github.com/bottlerocket-os/bottlerocket/blob/develop/PUBLISHING.md#using-your-repo-from-a-bottlerocket-host)"]
+]
+[[docs.ref.metadata-base-url.example]]
+value = "\"https://my-bucket.s3-us-west-2.amazonaws.com/aws-k8s-1.24/x86_64/\""
+
+
+[[docs.ref.seed]]
+description = """
+A value that determines how far into the update schedule the node will accept an update.
+Typically, you should leave this as the default random value to ensure that randomized updates in your cluster.
+"""
+accepted_values = [
+    "Any `u32` value"
+]
+default = "A randomly generated `u32` value"
+
+[[docs.ref.targets-base-url]]
+description = """
+The common portion of all URIs used to download update files.
+"""
+default = "`https://updates.bottlerocket.aws/targets/`"
+accepted_values = [
+    "A string containing a URI fragment"
+]
+see = [
+    ["[_Using your repo from a Bottlerocket host_ in Publishing Bottlerocket](https://github.com/bottlerocket-os/bottlerocket/blob/develop/PUBLISHING.md#using-your-repo-from-a-bottlerocket-host)"]
+]
+[[docs.ref.targets-base-url.example]]
+value = "\"https://my-bucket.s3-us-west-2.amazonaws.com/targets/\""
+
+[[docs.ref.version-lock]]
+description = """
+When you issue an update request, the value determines the selected version.
+"""
+default = "`latest`"
+accepted_values = [
+    "`v` plus a 3-part, dot seperated version number (e.g. `v1.0.0`)",
+    "`latest`"
+]
+see = [
+    ["[Locking to a Specific Release](../../update/locking-to-a-specific-release/)"]
+]
