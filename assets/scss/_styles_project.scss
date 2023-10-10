@@ -128,6 +128,10 @@ $link-color: $light-link;
 #svg_admin_label tspan { @include svg-disabled-container-label; }
 
 @mixin svg-disabled-component { fill-opacity: 0.25; }
+.hide-control-and-admin-container {
+    #svg_control, #svg_control_label tspan, 
+    #svg_admin, #svg_admin_label tspan { display: none; }
+}
 .disabled-diagram-component-systemd { #svg_systemd { @include svg-disabled-component; } }
 .disabled-diagram-component-kernel { #svg_kernel { @include svg-disabled-component; } }
 .disabled-diagram-component-containerd-left { #svg_containerd_left  { @include svg-disabled-component; } }
