@@ -4,7 +4,7 @@ type = "docs"
 description = "Setting up the host with containers that start during boot." 
 +++
 
-Bootstrap containers are a form of {{< ver-ref project="os" page="/concepts/components" >}}host container{{< /ver-ref >}} that you can use to run critical software before the node connects to an orchestrator.
+Bootstrap containers are a form of {{< ver-ref project="os" page="/concepts/host-containers" >}}host container{{< /ver-ref >}} that you can use to run critical software before the node connects to an orchestrator.
 They give you substantial power to configure and modify the system in ways that would otherwise be [difficult or impossible](#use-cases).
 
 ## Lifecycle
