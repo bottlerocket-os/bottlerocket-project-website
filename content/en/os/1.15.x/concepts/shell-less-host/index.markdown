@@ -26,7 +26,7 @@ The admin container is designed to provide out-of-band access with elevated priv
 On `aws-k8s-*` and `aws-ecs-*` variants, the admin container is not enabled by default but can be turned on or entered through the control container.
 The best security practice is to disable the admin container and only enable it as-needed.
 
-The admin container has read-only mount to the host file system, unrestricted an SELinux label as well as all of the capabilities of the control container.
+The admin container has a mount to the host file system[^1], unrestricted an SELinux label as well as all of the capabilities of the control container.
 Using the admin container should be rare: only used as-needed and by those required.
 
 ## With `kubectl` on Kubernetes
@@ -34,3 +34,6 @@ Using the admin container should be rare: only used as-needed and by those requi
 For variants designed to be used with Kubernetes, you can gain out-of-band access to a node by using `kubectl exec` and a pod spec with specific volume mounts and security contexts.
 You can read more about this method in [Regaining Access to a Bottlerocket Node](../../login/regaining-access/).
 This method is very similar to running the control container, but it runs in the orchestrated containerd instance instead of the host containerd instance.
+
+[^1]: The admin container mount for the host file system is located at `/.bottlerocket/rootfs/`.
+    Despite the use of `rootfs` in the path, this mount has both {{< ver-ref project="os" page="/concepts/restricted-filesystem#immutable-filesystem" >}}immutable{{< /ver-ref >}} and {{< ver-ref project="os" page="/concepts/restricted-filesystem#mutable-filesystem" >}}mutable{{< /ver-ref >}} directories.
