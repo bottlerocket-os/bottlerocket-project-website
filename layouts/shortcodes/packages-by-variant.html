@@ -1,4 +1,8 @@
-{{- $version := "1.15.x" -}}
+{{- $currentPath := print .Page.File.Dir -}}
+{{- /* break apart the path */ -}}
+{{- $parts := split $currentPath "/" -}}
+{{- /* 2nd (base 0) index has the version */ -}}
+{{- $version := index $parts 1 -}}
 {{- $variants := index .Site.Data.variants $version -}}
 {{- $packages := slice -}}
 {{- $variant_package_dicts := dict -}}
