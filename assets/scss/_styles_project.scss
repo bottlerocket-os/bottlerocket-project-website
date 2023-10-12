@@ -285,6 +285,26 @@ $link-color: $light-link;
     #svg_control { @include svg-disabled-container; }
 }
 
+.package-by-variant-table{
+    overflow-x: auto;
+    thead, .variant-col {
+        white-space: nowrap;
+    }
+    th.angled {
+        height: 250px;
+        div {
+            transform: rotate(270deg);
+            width: 20px;
+        }
+    }
+    .dot-chart {
+        text-align: center;
+    }
+    .variant-col {
+        text-align: right;
+    }
+}
+
 .td-sidebar-nav .td-sidebar-link__page {
     font-family: $td-fonts-serif
 }
