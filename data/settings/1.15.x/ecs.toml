@@ -138,7 +138,7 @@ description = "The amount of memory, in MiB, reserved for critical system proces
 
 [[docs.ref.task-cleanup-wait]]
 description = """
-Time to wait between image cleanup cycles.
+Time to wait before the task's containers are removed after they are stopped.
 Valid time units include `s`, `m`, and `h` (e.g. `1h`, `1m1s`).
 """
 tags = [
@@ -167,6 +167,15 @@ tags = [
 [[docs.ref.image-cleanup-age]]
 description = """
 Time since the image was pulled to be considered for clean up.
+Valid time units include `s`, `m`, and `h` (e.g. `1h`, `1m1s`).
+"""
+tags = [
+    "cleanup"
+]
+
+[[docs.ref.image-cleanup-wait]]
+description = """
+Time to wait between image cleanup cycles
 Valid time units include `s`, `m`, and `h` (e.g. `1h`, `1m1s`).
 """
 tags = [
