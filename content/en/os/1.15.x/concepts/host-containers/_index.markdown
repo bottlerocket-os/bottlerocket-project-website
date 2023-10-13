@@ -54,7 +54,7 @@ See {{< setting-reference setting="settings.host-containers.<container>.superpow
 ### Updates
 
 Host containers do not update automatically.
-Updates only occur when you update the {{< setting-reference setting="settings.host-containers.<container>.source" >}}{{</ setting-reference >}}.
+Updates only occur when you update the {{< setting-reference setting="settings.host-containers.<container>.source" >}}{{</ setting-reference >}} or when an {{< ver-ref project="os" page="/update/methods/in-place" >}}in-place update{{</ ver-ref >}} occurs.
 
 ### User data
 
