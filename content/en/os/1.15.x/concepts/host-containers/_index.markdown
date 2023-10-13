@@ -20,12 +20,12 @@ Instead you manage the lifecycle of these containers by manipulating specific {{
 ## Built-in host containers
 
 Depending on the variant, Bottlerocket has two standard host containers: the {{< ver-ref project="os" page="/install/quickstart/aws/host-containers#interacting-with-a-bottlerocket-node-through-host-containers" >}}control container{{< /ver-ref >}} and the {{< ver-ref project="os" page="/install/quickstart/aws/host-containers#exploring-the-admin-container" >}}admin container{{< /ver-ref >}}.
-The control container provides a pathway to connect to and interact with the host as well as conveniently access the Bottlerocket API.
+The control container provides a pathway to connect ([via SMM](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html)) to and interact with the host as well as conveniently access the Bottlerocket API.
 The control container also provides an entry point to the admin container.
 The admin container allows you to more deeply interact with the host as it mounts the root filesystem and has elevated privileges.
 
 The control and admin containers are not actually special: both are just host containers with specific privileges.
-Case in point, you can disable these containers as-needed and you can even fully replace the functionality of both the host and admins containers with your own host containers.
+Case in point, you can disable (and {{< ver-ref project="os" page="/login/regaining-access" >}}re-enable{{</ ver-ref >}}) these containers as-needed and you can even fully replace the functionality of both the host and admins containers with your own host containers.
 
 ## Properties of host containers
 
@@ -39,6 +39,7 @@ Bottlerocket has two parallel instances of `containerd`: one for your orchestrat
 
 All host containers automatically mount the API socket (`/run/api.sock`) and the API Client (`/usr/local/bin/apiclient`).
 This allows you to run API commands and manipulate Bottlerocket settings from within the host containers without explicitly mounting these resources.
+As a consequence, any user that can access a host container can change configurations which could effect the efficiency or stability of the node.
 
 ### Lifecycle & restarts
 
@@ -80,7 +81,7 @@ Examples:
 - {{< ver-ref project="os" page="/concepts/bootstrap-containers/" >}}Bootstrap Containers{{</ ver-ref >}}
 
 [^1]: The admin container has a special uses for user data. See the warning on {{< setting-reference setting="settings.host-containers.<container>.user-data" >}}{{</ setting-reference >}}
-[^2]: Paths for persistent storage and user data (`$HOST_CONTAINER_NAME` being the name of the host container):
+[^2]: Paths for persistent storage and user data (`<HOST_CONTAINER_NAME>` being the name of the host container):
 
-    - `/.bottlerocket/host-containers/$HOST_CONTAINER_NAME` and `/.bottlerocket/host-containers/$HOST_CONTAINER_NAME/user-data` 
+    - `/.bottlerocket/host-containers/<HOST_CONTAINER_NAME>` and `/.bottlerocket/host-containers/<HOST_CONTAINER_NAME>/user-data` 
     - `/.bottlerocket/host-containers/current` and `/.bottlerocket/host-containers/current/user-data`
