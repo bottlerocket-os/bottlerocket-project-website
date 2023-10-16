@@ -5,7 +5,7 @@ description="Individual settings avaliable for the `/settings` endpoint"
 +++
 
 {{% alert title="Note" color="warning" %}}
-This section is currently incomplete and represents a subset of available settings. Each setting group (i.e. `settings.*`) will be ported over as a unit. If the setting group you're interested in exists, consider that _group_ to be complete.
+This section is incomplete and represents a subset of available settings for 1.14.x. All settings are comprehensively documented starting with Bottlerocket 1.15.x in the [updated version of this section](/en/os/1.15.x/api/settings/).  
 
-See [Description of Settings](https://github.com/bottlerocket-os/bottlerocket#description-of-settings) on the Bottlerocket README for the definitive list until this notice is removed.
+See [__Description of Settings__](https://github.com/bottlerocket-os/bottlerocket/blob/v1.14.3/README.md#description-of-settings) on the Bottlerocket GitHub README tagged for 1.14.3 for the definitive list of Bottlerocket 1.14.x settings
 {{% /alert %}}
