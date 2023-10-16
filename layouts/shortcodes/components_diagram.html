@@ -27,6 +27,7 @@
    <title id="{{ $aria_description_id }} ">{{ $aria_description }}</title>
    <g class="
     {{ if isset .Params "show_ecs" }} show_ecs {{ end }}
+    {{ if isset .Params "hide_admin_and_control"}} hide-control-and-admin-container {{ end }}
     {{ if isset .Params "disable_kubelet" }} disabled-diagram-component-kubelet {{ end }}
     {{ if isset .Params "disable_systemd" }} disabled-diagram-component-systemd {{ end }}
     {{ if isset .Params "disable_kernel" }} disabled-diagram-component-kernel {{ end }}

@@ -1,0 +1,22 @@
+
+{{- $setting := or (.Get "setting") $.Inner -}}
+{{- $setting_parts := strings.Split $setting "." -}}
+{{- $ref := index $setting_parts 1 -}}
+{{- $current_path := print .Page.File.Dir -}}
+{{- $parts := split $current_path "/" -}}
+{{- $version := index $parts 1 -}}
+{{- $lang := print $.Page.Language -}}
+{{- $settings_at_version := index (index .Site.Data.settings $version) $ref }}
+{{- $page := . -}}
+{{- range $key, $value := $settings_at_version.docs.ref -}}
+    {{- range $value -}}
+        {{- $name := or (index . "name_override") $key }}
+        {{- $full_name := print "settings." $ref "." $name -}}
+        {{- if (eq $full_name $setting) -}}
+            {{- $path := print "/os/" $version "/api/settings/" $ref -}}
+            {{ $ref_link :=  relref $page (dict "path" $path "lang" $lang) }}
+            {{- $url := print "/"  $lang $path "#" $key -}}
+            <a href="{{ $url }}"><code>{{ or $.Inner $setting }}</code></a>
+        {{- end -}}
+    {{- end -}}
+{{- end -}}

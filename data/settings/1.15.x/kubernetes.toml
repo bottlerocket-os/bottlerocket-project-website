@@ -542,10 +542,22 @@ see = [
 [[docs.ref.eviction-soft-grace-period.example.multiline]]
 "\"memory.available\"" = "\"30s\""
 
+[[docs.ref.standalone-mode]]
+description = """
+It `true`, kubelet runs in standalone mode without connecting to an API server.
+"""
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+tags = [
+    "static-pods"
+]
+default = "`false`"
 
 [[docs.ref.customid_enabled]]
 description= "Whether the static pod is enabled."
-name_override="<custom identifier>.enabled"
+name_override="static-pods.<custom identifier>.enabled"
 tags = [
     "static-pods"
 ]
@@ -553,10 +565,9 @@ see = [
     [ "settings", "kubernetes", "customid_manifest" ]
 ]
 
-
 [[docs.ref.customid_manifest]]
 description= "A base64-encoded pod manifest."
-name_override="<custom identifier>.manifest"
+name_override="static-pods.<custom identifier>.manifest"
 tags = [
     "static-pods"
 ]
