@@ -26,7 +26,7 @@ The admin container is designed to provide out-of-band access with elevated priv
 On `aws-k8s-*` and `aws-ecs-*` variants, the admin container is not enabled by default but can be turned on or entered through the control container.
 The best security practice is to disable the admin container and only enable it as-needed.
 
-The admin container has a mount to the host file system[^1], unrestricted an SELinux label as well as all of the capabilities of the control container.
+The admin container has a mount to the host file system[^1], an unrestricted SELinux label as well as all of the capabilities of the control container.
 Using the admin container should be rare: only used as-needed and by those required.
 
 ## With `kubectl` on Kubernetes
