@@ -1,0 +1,49 @@
+{{- $currentPath := print .Page.File.Dir -}}
+{{- /* break apart the path */ -}}
+{{- $parts := split $currentPath "/" -}}
+{{- /* 2nd (base 0) index has the version */ -}}
+{{- $version := index $parts 1 -}}
+{{- $variants := index .Site.Data.variants $version -}}
+{{- $packages := slice -}}
+{{- $variant_package_dicts := dict -}}
+{{- range $v_k, $v_v := $variants -}}
+    {{- range $v_v.package.metadata -}}
+        {{- range (index . "included-packages") -}}
+            {{- if (ne (collections.In $packages . ) true) -}}
+                {{- $packages = $packages | append . -}}
+            {{- end -}}
+            {{- $variant_package_dicts = merge $variant_package_dicts (dict $v_k (dict . true)) -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+{{- $sorted_packages := sort $packages -}}
+
+<div class="package-by-variant-table">
+    <table class="table table-responsive table-striped package-by-variant-table">
+        <thead>
+            <tr>
+                <th scope="col">&nbsp;</th>
+                {{- range $package_name := (sort $packages) -}}
+                    <th scope="col" class="angled"><div>{{- $package_name -}}</div></th>
+                {{- end -}}
+            </tr>
+        </thead>
+        <tbody>
+            {{- range $variant_name, $variant_package_map := $variant_package_dicts -}}
+                <tr>
+                    <th scope="row" class="variant-col">{{- $variant_name -}}</th>
+                    {{- range $package_name := (sort $packages) -}}
+                        <td class="dot-chart">
+                            {{- if (index $variant_package_map $package_name) -}}
+                                <span aria-label="{{- $variant_name -}} has package {{- $package_name -}}"><span aria-hidden="true">&#x2B24;</span></span>
+                            {{- else -}}
+                                <span aria-label="{{- $variant_name -}} does not have {{- $package_name -}}"><span aria-hidden="true">&#x25EF;</span></span>
+                            {{- end -}}
+                        </td>
+                    {{- end -}}
+                </tr>
+            {{- end -}}
+        </tbody>
+    </table>
+</div>
+
