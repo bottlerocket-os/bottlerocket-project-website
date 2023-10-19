@@ -1,0 +1,14 @@
+
+{{- $questions := .questions -}}
+{{- range .groups -}}
+    {{- $group_name := . -}}
+    <h2>{{ $group_name }}</h2>
+
+    <div class="pl-5">
+    {{- range (sort (index $questions $group_name) "question" ) -}}
+        <h3 id="{{.hash}}">{{ .question }} </h3>
+        {{ .answer }}
+    {{- end -}}
+    </div>
+    <hr />
+{{- end -}}
