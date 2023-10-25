@@ -617,3 +617,11 @@ For `aws-k8s-1.26` variants, which use the "external" cloud provider, a hostname
 see = [
     ["[`--hostname-override` in Kubelet Options](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/#options)"]
 ]
+
+[[docs.ref.seccomp-default]]
+description = "Enable `RuntimeDefault` as the default seccomp profile for all workloads via `kubelet-configuration`"
+default= "`false`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
