@@ -57,3 +57,24 @@ direct_toml = """
 "user.max_user_namespaces" = "16384"
 "vm.max_map_count" = "262144"
 """
+
+[[docs.ref.modules_autoload]]
+name_override = "modules.<name>.autoload"
+description = "If `true`, the kernel `<name>` module loads automatically on boot."
+note = """
+You must use this setting in conjuction with [`settings.kernel.modules.<name>.allowed`](#modules_allowed) on the same module.
+This ensures that the OS doesn't auto-load a blocked module. 
+"""
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+[[docs.ref.modules_autoload.example]]
+direct_toml = """
+[settings.kernel.modules.ip_vs_lc]
+allowed = true
+autoload = true
+"""
+direct_shell = """
+apiclient set settings.kernel.modules.ip_vs_lc.allowed=true settings.kernel.modules.ip_vs_lc.autoload=true
+"""
