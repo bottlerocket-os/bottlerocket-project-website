@@ -1,0 +1,48 @@
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Variant</th>
+            <th scope="col">Kernel Version</th>
+            <th scope="col">NVIDIA Driver Version</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+{{- $full_bottlerocket_version := .Page.Params.title -}}
+{{- $minor_bottlerocket_version_parts := split $full_bottlerocket_version "." -}}
+{{- $minor_bottlerocket_release_line := print (index $minor_bottlerocket_version_parts 0) "." (index $minor_bottlerocket_version_parts 1) ".x" -}}
+{{- $kmod_data := index $.Site.Data.nvidia $full_bottlerocket_version -}}
+{{- $kernel_to_nvidia := dict -}}
+
+{{- range $kmod_fname, $kmod_data := $kmod_data -}}
+    {{- $k_version := index (split $kmod_fname "-") 1 -}}
+    {{- $external_files := index (index (index (index $kmod_data "package") "metadata") "build-package") "external-files" -}}
+    {{- $url := index (index $external_files 0) "url" -}}
+    {{- $version := (path.Split (path.Dir $url)).File -}}
+    {{- $kernel_to_nvidia = merge $kernel_to_nvidia (dict $k_version $version) -}}
+{{- end -}}
+
+
+{{- with  $.Site.Data.variants -}}
+    {{- $release_variants := index $.Site.Data.variants $minor_bottlerocket_release_line -}}
+    {{ range $variant_name, $variant_info := $release_variants }}
+        {{- if (strings.Contains $variant_name "nvidia") -}}
+        <tr>
+            <td><code>{{ $variant_name }}</code></td>
+            {{- $packages := (index (index (index (index $variant_info "package" ) "metadata") "build-variant") "included-packages") -}}
+            {{- $kernel := "" -}}
+            {{- range $packages -}}
+                {{- if (strings.Contains . "kernel-") -}}
+                    {{- $kernel = index (split . "-") 1 -}}
+                {{- end -}}
+            {{- end -}}
+            <td>{{ $kernel }}</td>
+            <td>{{ index $kernel_to_nvidia $kernel }}</td>
+        </tr>
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+        
+    </tbody>
+</table>
