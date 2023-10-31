@@ -1,0 +1,64 @@
+[[docs.ref.mirrors]]
+description = """
+An [array of tables](https://toml.io/en/v1.0.0#array-of-tables) that represent container image registry mirrors.
+Each table must contain the `registry` (a string) and `endpoints` (an array of strings).
+When pulling an image from a registry, the container runtime will try the endpoints one-by-one and use the first working registry.
+The runtime will still try the default registry URL if the mirrors fail.
+
+The Docker container runtime can [only provide pull-through caches for images from Docker Hub (docker.io)](https://docs.docker.com/registry/recipes/mirror/#gotcha) and ignores mirrors for other registries.
+Consequently, Bottlerocket variants that use the Docker container runtime (e.g. `aws-ecs-1` or `aws-ecs-2`) have the same limitation.
+"""
+
+note = """
+Bottlerocket cannot configure registry mirrors for private Amazon Elastic Container Registry (Amazon ECR) repositories.
+For example, the Bottlerocket default host or bootstrap container images from ECR cannot be mirrored.
+"""
+
+[[docs.ref.mirrors.example]]
+direct_toml = """
+[[settings.container-registry.mirrors]]
+registry = "*"
+endpoint = ["https://<example-mirror>","https://<example-mirror-2>"]
+
+[[settings.container-registry.mirrors]]
+registry = "docker.io"
+endpoint = [ "https://<my-docker-hub-mirror-host>", "https://<my-docker-hub-mirror-host-2>"]
+"""
+
+[[docs.ref.credentials]]
+description = """
+An [array of tables](https://toml.io/en/v1.0.0#array-of-tables) that represent image registry credentials.
+The fields (all strings) in the table specify the `registry` and credential information such as `username`, `password`, `auth`, `identitytoken`.
+The credential fields map to [containerd's registry credential fields](https://github.com/containerd/containerd/blob/v1.6.0/docs/cri/registry.md#configure-registry-credentials), which in turn map to fields in `.docker/config.json`.
+"""
+
+warning = "Avoid storing plain text credentials in external systems. As an alternative, programmatically apply these settings via `apiclient` using a bootstrap or host container."
+
+[[docs.ref.credentials.example]]
+direct_toml = """
+[[settings.container-registry.credentials]]
+registry = "docker.io"
+username = "foo"
+password = "bar"
+
+[[settings.container-registry.credentials]]
+registry = "gcr.io"
+auth = "example_base64_encoded_auth_string"
+"""
+direct_shell = """
+apiclient set --json '{
+  "container-registry": {
+    "credentials": [
+      {
+        "registry": "docker.io",
+        "username": "foo",
+        "password": "bar"
+      },
+      {
+        "registry": "gcr.io",
+        "auth": "example_base64_encoded_auth_string"
+      }
+    ]
+  }
+}'
+"""
