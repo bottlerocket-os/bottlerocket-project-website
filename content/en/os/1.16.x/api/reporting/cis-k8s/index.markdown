@@ -29,3 +29,5 @@ apiclient report cis-k8s -l 2
 ## Audit and Remediation
 
 Refer to the [Kubernetes CIS Benchmark](https://www.cisecurity.org/benchmark/kubernetes) for detailed audit and remediation steps.
+
+{{< on-github >}}

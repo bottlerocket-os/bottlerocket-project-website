@@ -85,3 +85,5 @@ Examples:
 
     - `/.bottlerocket/host-containers/<HOST_CONTAINER_NAME>` and `/.bottlerocket/host-containers/<HOST_CONTAINER_NAME>/user-data` 
     - `/.bottlerocket/host-containers/current` and `/.bottlerocket/host-containers/current/user-data`
+
+{{< on-github >}}

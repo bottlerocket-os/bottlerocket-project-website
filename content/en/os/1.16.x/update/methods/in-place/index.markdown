@@ -161,3 +161,5 @@ After running the SSM Command Document, you are taken to the SSM Command status 
 If you would like to see the output of the SSM Command Document that you just ran, click on an Instance ID in the "Targets and outputs" section of the page and see any output or errors.
 
 Once the [first SSM Command Document (`update-bottlerocket-node`)](#ssm-command-document-check-for-and-apply-updates-to-a-bottlerocket-node) has finished running, apply the [second SSM Command Document (`reboot-bottlerocket-node`)](#ssm-command-document-reboot-a-bottlerocket-node) to your Bottlerocket nodes using the same process as above.
+
+{{< on-github >}}

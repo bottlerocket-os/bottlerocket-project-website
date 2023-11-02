@@ -91,3 +91,5 @@ The above key/value format is equlivent to:
 ### User Data
 
 User Data is a collection of settings contained in a TOML-formatted file that is processed by the API at boot: anything you can manipulate using `apiclient` you can also manipulate with User Data.
+
+{{< on-github >}}

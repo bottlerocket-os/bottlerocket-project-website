@@ -54,3 +54,5 @@ The use of ephemeral storage in this area provides  two advantages:
 
 * it creates more reliable pathways for configuration changes (through the API and/or with special containers specifications like [CNI](https://github.com/containernetworking/cni) or [CSI](https://github.com/container-storage-interface/spec)),
 * it makes it more difficult for attackers to make changes that persist.
+
+{{< on-github >}}
