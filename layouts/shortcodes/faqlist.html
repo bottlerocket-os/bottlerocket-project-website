@@ -1,49 +1,35 @@
-{{ $groups := slice }}
-{{ $headless := .Site.GetPage "/faqitems" }}
-{{ $faqItems := $headless.Resources.Match "*" }}
-{{ range $faqItems }}
-    {{ $groups = $groups | append .Params.group }}
-{{ end }}
-{{ $groups = uniq $groups }}
-<ul>
-    {{ $.Scratch.Set "groupindex" 0 }}
-    {{ range $groups }} 
-        
-        {{ $group := . }}
-        {{ $.Scratch.Set "groupindex" 
-            (add ($.Scratch.Get "groupindex") 1) 
-        }}
-            <li> {{ $.Scratch.Get "groupindex" }}. {{ $group }}
-                <ol>
-                    {{ $.Scratch.Set "qindex" 0 }}
-                    {{ range where $faqItems "Params.group" $group }}
-                        {{ $.Scratch.Set "qindex" 
-                            (add ($.Scratch.Get "qindex") 1) 
-                        }}
-                        <li><a href="#{{$.Scratch.Get "groupindex"}}_{{$.Scratch.Get "qindex"}}">{{ .Params.question }}</a></li>
-                    {{ end }}
-                </ol>
-            </li>
-    {{ end }}
-</ul>
+{{- $groups := slice  -}}
+{{- $headless := .Site.GetPage "/faqitems"  -}}
+{{- $faq_items := $headless.Resources.Match "*"  -}}
+
+{{- $grouped := dict  -}}
+
+{{- $hash_links := slice  -}}
+
+{{- range $k, $v := $faq_items  -}}
+    {{- $hash := (index (split (path.BaseName ($v.Page.File)) "-") 0)  -}}
+    {{- $hash_links = $hash_links | append $hash  -}}
+    {{- $group := $v.Params.group  -}}
+
+    {{- if not ( reflect.IsSlice (index $grouped $group) )  -}}
+        {{- $grouped = merge $grouped (dict $group ( slice ) )  -}}
+    {{- end  -}}
+
+    {{- $this_item := dict "hash" $hash "question" $v.Page.Params.question "answer" $v.Page.Content  -}}
+    {{- $this_group := index $grouped $group | append $this_item  -}}
+    {{- $grouped = merge $grouped (dict $group ( $this_group ) )   -}}
+
+    {{- $groups = $groups | append .Params.group  -}}
+{{- end  -}}
+
+{{- $unique_hashes := $hash_links | uniq | len  -}}
+{{- $total_faq_items := $faq_items | len  -}}
+{{- if ne $unique_hashes $total_faq_items  -}}
+    {{- errorf "Oops! You have %d faq items and %d unique hash links. Check for duplicate IDs in faq file names." $total_faq_items $unique_hashes  -}}
+{{- end  -}}
+
+{{- $faq := dict "groups" (sort (uniq $groups) ) "questions" $grouped  -}}
+
+{{- partial "faq-index.html" $faq  -}}
 <hr />
-{{ $.Scratch.Set "groupindex" 0 }}
-{{ range $groups }} 
-    {{ $group := . }}
-    {{ $.Scratch.Set "groupindex" 
-        (add ($.Scratch.Get "groupindex") 1) 
-    }}
-    <h2>{{ $.Scratch.Get "groupindex" }}. {{ $group }}</h2>
-    <div class="pl-5">
-        {{ $.Scratch.Set "qindex" 0 }}
-        {{ range where $faqItems "Params.group" $group }}
-            {{ $.Scratch.Set "qindex" 
-                (add ($.Scratch.Get "qindex") 1) 
-            }}
-            <h3 id="{{ $.Scratch.Get "groupindex" }}_{{ $.Scratch.Get "qindex" }}">{{ $.Scratch.Get "groupindex" }}.{{ $.Scratch.Get "qindex" }} {{ .Params.question }}</h3>
-            {{ .Content }}
-        {{ end }}
-    </div>
-    
-    <hr />
-{{ end }}
+{{- partial "faq-body.html" $faq  -}}
