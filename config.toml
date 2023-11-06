@@ -85,3 +85,8 @@ ul_show = 1
   name = "FAQ"
   weight = 20
   url = "en/faq/"
+
+[[menu.main]]
+  name = "Community"
+  weight = 20
+  url = "en/community/"

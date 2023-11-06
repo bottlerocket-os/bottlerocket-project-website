@@ -478,6 +478,26 @@ nav.foldable-nav .with-child, nav.foldable-nav .without-child {
     }
 }
 
+/* resources / links / events */
+.resource-list, #event_list {
+    h3 {
+        margin-bottom: 0;
+    }
+    margin-bottom: 2em;
+}
+#event_list {
+    &.future_only {
+        .event.past { 
+            display: none;
+        }
+    }
+    &.past_only {
+        .event.future {
+            display: none;
+        }
+    }
+    margin-top: 2em;
+}
 
 /* style bottom links */
 footer .text-links {
