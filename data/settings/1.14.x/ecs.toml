@@ -156,7 +156,7 @@ tags = [
 
 [[docs.ref.image-cleanup-enabled]]
 description = "Enable automatic images clean up after the tasks have been removed."
-default = "`false`"
+default = "`true`"
 see = [
     ["`ECS_DISABLE_IMAGE_CLEANUP` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
 ]
