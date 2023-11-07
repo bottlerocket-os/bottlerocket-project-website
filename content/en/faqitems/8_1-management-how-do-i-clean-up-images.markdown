@@ -1,6 +1,6 @@
 +++
 question = "How do I clean up old container images from Bottlerocket?"
-group = "Mangagement"
+group = "Management"
 +++
 
 You should not need to manually clean up container images from Bottlerocket, this is handled automatically by the orchestrator agent.
