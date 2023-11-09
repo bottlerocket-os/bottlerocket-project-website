@@ -242,3 +242,5 @@ apiclient set host-containers.control.enabled=true
 11. Now you should be able to access your admin or control container using SSM. You no longer need anything created in this how-to, feel free to delete the service and IAM policies.
 
 [^1]: This task definition uses `fedora` as an image, but almost any base image with a shell will also work.
+
+{{< on-github >}}

@@ -98,3 +98,5 @@ You should see something similar to the following:
 
 Congratulations!
 You have successfully navigated a Bottlerocket system through the control and admin containers.
+
+{{< on-github >}}

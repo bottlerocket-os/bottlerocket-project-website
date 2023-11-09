@@ -52,3 +52,5 @@ On `aws-*` variants , any instance based with a Xen-based hypervisor (generation
 
 - [FAQ: How do I disable Secure Boot?](/en/faq/#4_3)
 - [Concept: Restricted filesystem](../restricted-filesystem/)
+
+{{< on-github >}}

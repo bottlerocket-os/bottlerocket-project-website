@@ -33,3 +33,5 @@ apiclient report cis -l 2
 ## Audit and Remediation
 
 Refer to the [Bottlerocket CIS Benchmark](https://www.cisecurity.org/benchmark/bottlerocket) for detailed audit and remediation steps.
+
+{{< on-github >}}
