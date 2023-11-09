@@ -68,3 +68,5 @@ A few examples:
 |aws-**ecs-2**-x86_64-1.15.0|aws-**k8s-1.28**-x86_64-1.15.0|✗|✗|The orchestrator has changed. The cluster must be rebuilt.|
 
 If you are using a node replacement strategy, the distinction between migrating and updating is less important as any change is effectively a migration.
+
+{{< on-github >}}

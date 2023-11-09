@@ -71,3 +71,5 @@ mainSteps:
       runCommand:
         - "apiclient set updates.version-lock=\"latest\" updates.ignore-waves=false"
 ```
+
+{{< on-github >}}

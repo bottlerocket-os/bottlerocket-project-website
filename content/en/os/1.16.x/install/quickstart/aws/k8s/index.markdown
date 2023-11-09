@@ -117,3 +117,5 @@ Any of the instance IDs listed for the `bottlerocket-quickstart-eks` cluster sho
 
 Congratulations!
 You now have a Bottlerocket cluster running on EKS.
+
+{{< on-github >}}

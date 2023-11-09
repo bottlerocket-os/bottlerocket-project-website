@@ -46,3 +46,5 @@ Evaluation of each item on the report will result in one of three outcomes:
 * `SKIP`: The item could not be automatically evaluated.
 
 ## All Available Reports
+
+{{< on-github >}}

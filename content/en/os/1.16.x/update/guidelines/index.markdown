@@ -60,3 +60,5 @@ It is not possible to update _in-place_ from one variant to another.
 For example, moving from an `aws-k8s-1.22` variant to an `aws-k8s-1.23` variant is not an update path.
 
 In order to move between Kubernetes versions (or any variant), you must replace the nodes in your cluster with new nodes running the desired variant.
+
+{{< on-github >}}

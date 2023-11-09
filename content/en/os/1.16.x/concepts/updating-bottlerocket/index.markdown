@@ -39,3 +39,5 @@ There are many ways to update Bottlerocket, including:
 - [Applying SSM Command Documents](../../update/methods/in-place/#ssm) to your nodes
 
 It is also possible to [lock your nodes to a specific release](../../update/locking-to-a-specific-release).
+
+{{< on-github >}}

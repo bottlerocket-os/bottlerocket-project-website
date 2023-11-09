@@ -20,3 +20,5 @@ In order to update your Bottlerocket nodes in an EKS cluster using the EKS Conso
 
 Using [`eksctl`](https://eksctl.io/) is another option to update your Bottlerocket nodes.
 Specific commands can be found in the [EKS User Guide: "Update a node group version", on the `eksctl` tab](https://docs.aws.amazon.com/eks/latest/userguide/update-managed-node-group.html#mng-update).
+
+{{< on-github >}}

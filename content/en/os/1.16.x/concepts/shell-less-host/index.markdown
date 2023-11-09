@@ -37,3 +37,5 @@ This method is very similar to running the control container, but it runs in the
 
 [^1]: The admin container mount for the host file system is located at `/.bottlerocket/rootfs/`.
     Despite the use of `rootfs` in the path, this mount has both {{< ver-ref project="os" page="/concepts/restricted-filesystem#immutable-filesystem" >}}immutable{{< /ver-ref >}} and {{< ver-ref project="os" page="/concepts/restricted-filesystem#mutable-filesystem" >}}mutable{{< /ver-ref >}} directories.
+
+{{< on-github >}}

@@ -155,3 +155,5 @@ To confirm in depth that an instance is running Bottlerocket, save the instance 
 
 Congratulations!
 You now have a Bottlerocket cluster running on ECS.
+
+{{< on-github >}}
