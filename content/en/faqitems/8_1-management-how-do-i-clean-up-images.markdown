@@ -13,7 +13,7 @@ On ECS variants, the [ECS Agent](https://github.com/aws/amazon-ecs-agent) manage
 If you want to manually clean up images, log into the {{< ver-ref project="os" page="/install/quickstart/aws/host-containers" hash="#interacting-with-a-bottlerocket-node-through-host-containers" >}}admin container{{</ ver-ref >}} and use `ctr`'s `image` commands with the address pointed at `/run/dockershim.sock`. For example, on Kubernetes variants to list all images:
 
 ```shell
-ctr --address "/run/dockershim.sock" -n k8s.io image ls
+sudo chroot /.bottlerocket/rootfs ctr -n k8s.io image ls
 ```
 
 From here you can decide which images you want to manually remove.
