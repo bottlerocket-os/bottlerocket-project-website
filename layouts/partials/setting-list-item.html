@@ -1,0 +1,14 @@
+{{ $url := "" }}
+{{ if .setting_name }}
+    {{ $url = printf "../settings/%s/#%s" .settings_category .setting_name }}
+{{ else }}
+    {{ $url = printf "../settings/%s/#%s" .settings_category .setting_name }}
+{{ end }}
+<code>
+    <a href="{{ $url }}">
+        settings.{{ .settings_category }}{{ if .setting_name }}.{{ ( or .name_override .setting_name ) }} {{ end }}
+    </a>
+</code>
+{{ if .new }}
+<span class="badge badge-secondary">New for {{ .new }}</span>
+{{ end }}

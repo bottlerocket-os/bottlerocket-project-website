@@ -1,26 +1,55 @@
+{{- $current_version := index (split .Page.File "/") 1  -}}
+{{- $all_versions := slice  -}}
+{{- $current_version_index := -1  -}}
+{{- $new_badge := .Get "new_badge" }}
 
-{{- /* get the path of the doc calling the shortcode */ -}}
-{{- $currentPath := print .Page.File.Dir -}}
-{{- /* break apart the path */ -}}
-{{- $parts := split $currentPath "/" -}}
-{{- /* 2nd (base 0) index has the version */ -}}
-{{- $version := index $parts 1 -}}
+{{- range (where .Site.Sections "Name" "OS")  -}}
+  {{- range $k, $v := .Sections  -}}
+    {{- if (eq $v.File.ContentBaseName $current_version)  -}}
+        {{- $current_version_index = $k  -}}
+    {{- end  -}}
+    {{- $all_versions = $all_versions | append $v.File.ContentBaseName  -}}
+  {{- end  -}}
+{{- end  -}}
 
-{{- $settings_file := index $.Site.Data.settings $version -}}
+{{- $old_version := index $all_versions (math.Sub $current_version_index 1) -}}
 
-{{- range $settings_category, $settings_ref := $settings_file  -}}
-    <!-- <h2>settings.{{ $settings_category }}</h2> -->
+<br />
+
+{{- $settings_file_new := index $.Site.Data.settings $current_version -}}
+{{- $settings_file_old := index $.Site.Data.settings $old_version -}}
+
+{{- range $settings_category, $settings_ref := $settings_file_new -}}
     {{- range $setting_name, $setting_details := $settings_ref.docs.ref -}} 
-        <code>
-            <a href="../settings/{{ $settings_category }}/#{{  $setting_name }}">
-                settings.{{ $settings_category }}
-                {{- if reflect.IsSlice $setting_details -}}
-                    {{- range $setting_details -}}
-                        .{{ ( or .name_override $setting_name ) }}
-                    {{- end -}}
+    {{- $setting_info := dict -}}
+        {{- if reflect.IsSlice $setting_details -}}
+            {{- range $setting_details -}}
+                {{- $setting_info = merge $setting_info (
+                    dict    "setting_name" $setting_name
+                            "settings_category" $settings_category
+                            "name_override" .name_override
+                )  -}}
+            
+                {{- $old_category := index $settings_file_old $settings_category  -}} 
+                {{- if (eq $new_badge true) -}}
+                    {{- if isset $old_category "docs" -}}
+                        {{- $old_setting := index $old_category.docs.ref $setting_name  -}}
+                        {{- if not (isset (index (index $old_category "docs") "ref") $setting_name)  -}}
+                            {{- $setting_info = merge $setting_info (dict "new" (string $current_version))  -}}
+                        {{- end  -}}
+                    {{- else  -}}
+                        {{- $setting_info = merge $setting_info (dict "new" (string $current_version))  -}}
+                    {{- end  -}}
                 {{- end -}}
-            </a>
-        </code>
-        <br />
+            {{- end -}}
+        {{- else -}}
+            {{- $setting_info = merge $setting_info (
+                dict    "setting_name" $setting_name
+                        "settings_category" $settings_category
+                        "name_override" .name_override
+            )  -}}
+        {{- end -}}
+
+        {{ partial "setting-list-item.html" $setting_info }}<br />
     {{- end -}}
 {{- end -}}
