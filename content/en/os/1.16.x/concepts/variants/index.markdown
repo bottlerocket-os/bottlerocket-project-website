@@ -85,7 +85,7 @@ Bottlerocket provides information to both understand the software included in a 
 
 ### Software Inventory
 
-The Bottlerocket build process generates an `application.json` file at `/var/lib/bottlerocket/inventory/` on the host file system. This JSON file contains objects that represent a build-time package. The `application.json` file structure is as follows:
+The Bottlerocket build process generates an `applications.json` file at `/var/lib/bottlerocket/inventory/` on the host file system. This JSON file contains objects that represent a build-time package. The `applications.json` file structure is as follows:
 
 ```json
 {
@@ -114,7 +114,7 @@ The Bottlerocket build process generates an `application.json` file at `/var/lib
 Bottlerocket publishes security advisories on [the repo’s GitHub’s Security tab](https://github.com/bottlerocket-os/bottlerocket/security/advisories) and a gzipped `updateinfo.xml` file at advisories.bottlerocket.aws (make sure you follow redirects: e.g. use `curl -LO https://advisories.bottlerocket.aws/updateinfo.xml.gz`).  
 
 Both places contain approximately the same information but in different formats.
-The security advisories match with the package information provided in the `application.json` file.
+The security advisories match with the package information provided in the `applications.json` file.
 For example, take the following snippet from `applications.json`:
 
 ```json
