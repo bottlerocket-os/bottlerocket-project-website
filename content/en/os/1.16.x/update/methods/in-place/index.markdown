@@ -79,7 +79,7 @@ Brupop installation via the released YAML file is covered in the [Brupop documen
 
 If your Bottlerocket nodes are registered with AWS Systems Manager (SSM), it may be convenient for you to use SSM Command Documents to update your Bottlerocket nodes.
 
-**Important:** when using the SSM instructions below to update Bottlerocket nodes, workloads are _not_ be drained from the node before rebooting the node (unlike when using Brupop, for example).
+**Important:** when using the SSM instructions below to update Bottlerocket nodes, workloads will _not_ be drained from the node before rebooting the node, causing interruptions to the workloads (unlike when using Brupop, for example).
 
 ### SSM Command Document Method
 
