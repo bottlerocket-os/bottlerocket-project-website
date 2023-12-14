@@ -1,0 +1,18 @@
+{{ $link_url := .Get "link_url" }}
+{{ $depad := eq (.Get "depad") "true" }}
+{{ $pathParts := split .Page.File.Path "/" }}
+{{ $full_link_url := fmt.Printf $link_url (index $pathParts 1)}}
+
+<script>
+    $(document).ready(function() {
+        var $sidebar_link = $('.td-sidebar a[href="{{ $full_link_url }}"]');
+        var $depad = {{ $depad }};
+
+        if ($depad) {
+           $sidebar_link.parent().parent().addClass('depad');
+        }
+
+        $sidebar_link.parent().hide();
+    });
+    
+</script>

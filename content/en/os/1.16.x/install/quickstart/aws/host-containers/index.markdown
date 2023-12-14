@@ -4,6 +4,12 @@ type="docs"
 description="How to interact with a Bottlerocket node through Host Containers"
 +++
 
+{{< hide-and-re-highlight-menu link_url="/en/os/%s/install/quickstart/" depad="true" >}}
+{{< hide-and-re-highlight-menu link_url="/en/os/%s/install/quickstart/aws/" depad="true" >}}
+{{< breadcrumb-remove link_url="/en/os/%s/install/quickstart/">}}
+{{< breadcrumb-remove link_url="/en/os/%s/install/quickstart/aws/">}}
+
+
 ## Prerequisites
 
 - An AWS EC2 Instance ID (begins with `i-`) of a Bottlerocket instance

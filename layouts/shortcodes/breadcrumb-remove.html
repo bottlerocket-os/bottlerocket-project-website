@@ -1,0 +1,10 @@
+{{ $link_url := .Get "link_url" }}
+{{ $pathParts := split .Page.File.Path "/" }}
+{{ $full_link_url := fmt.Printf $link_url (index $pathParts 1)}}
+
+<script>
+    $(document).ready(function() {
+        var $crumb_link = $('.td-breadcrumbs a[href$="{{ $full_link_url }}"]');
+        $crumb_link.parent().hide();
+    });
+</script>
