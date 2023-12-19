@@ -1,0 +1,61 @@
+# Extracted from https://github.com/bottlerocket-os/bottlerocket/variants/metal-dev/Cargo.toml
+[package]
+name = "metal-dev"
+version = "0.1.0"
+edition = "2021"
+publish = false
+build = "../build.rs"
+# Don't rebuild crate just because of changes to README.
+exclude = ["README.md"]
+
+[package.metadata.build-variant.image-layout]
+partition-plan = "unified"
+
+[package.metadata.build-variant.image-features]
+grub-set-private-var = true
+unified-cgroup-hierarchy = true
+xfs-data-partition = true
+uefi-secure-boot = true
+systemd-networkd = true
+
+[package.metadata.build-variant]
+image-format = "raw"
+kernel-parameters = [
+    # Only reserve if there are at least 2GB
+    "crashkernel=2G-:256M"
+]
+included-packages = [
+# core
+    "release",
+    "kernel-6.1",
+    "linux-firmware",
+# docker
+    "docker-cli",
+    "docker-engine",
+    "docker-init",
+    "docker-proxy",
+# tools
+    "login",
+    "iputils",
+    "strace",
+    "chrony-tools",
+]
+
+[lib]
+path = "../variants.rs"
+
+[build-dependencies]
+# core
+release = { path = "../../packages/release" }
+kernel-6_1 = { path = "../../packages/kernel-6.1" }
+linux-firmware = { path = "../../packages/linux-firmware" }
+# docker
+docker-cli = { path = "../../packages/docker-cli" }
+docker-engine = { path = "../../packages/docker-engine" }
+docker-init = { path = "../../packages/docker-init" }
+docker-proxy = { path = "../../packages/docker-proxy" }
+# tools
+login = { path = "../../packages/login" }
+iputils = { path = "../../packages/iputils" }
+strace = { path = "../../packages/strace" }
+chrony = { path = "../../packages/chrony" }
