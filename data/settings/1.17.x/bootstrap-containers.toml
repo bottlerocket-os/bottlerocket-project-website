@@ -1,0 +1,61 @@
+[[docs.ref.name_essential]]
+name_override = "<name>.essential"
+description = "If `essential` is set to `true` the bootstrap container will halt the boot process when it exits with a non-zero exit code."
+default = "`false`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["[`settings.bootstrap-containers.<name>.source`](#name_source) for a full example with `settings.bootstrap-containers.<name>.essential`."],
+    ["The {{< ver-ref project=\"os\" page=\"/concepts/bootstrap-containers#lifecycle\" >}}bootstrap container lifecycle{{< /ver-ref >}} conceptual documentationion"]
+]
+
+
+[[docs.ref.name_mode]]
+name_override = "<name>.mode"
+description = """
+Specifies how (or if) a container starts at boot. 
+If you set the value to:
+
+* `"always"`, the container will start on every boot,
+* `"off"`, the container will not start at boot,
+* `"once"`, the container will start on the first boot but after exit, the `mode` changes to `off`. 
+"""
+accepted_values = [
+    "`\"always\"`",
+    "`\"off\"`",
+    "`\"once\"`"
+]
+see = [
+    ["[`settings.bootstrap-containers.<name>.source`](#name_source) for a full example with `settings.bootstrap-containers.<name>.mode`."],
+    ["The {{< ver-ref project=\"os\" page=\"/concepts/bootstrap-containers#lifecycle\" >}}bootstrap container lifecycle{{< /ver-ref >}} conceptual documentation"]
+
+]
+
+[[docs.ref.name_source]]
+name_override = "<name>.source"
+description = "Defines the URI for a container to run as a bootstrap container."
+[[docs.ref.name_user-data]]
+name_override = "<name>.user-data"
+description = """
+An optional field that allows you to pass arbitrary base64-encoded data to the bootstrap container.
+The data is avaliable to the bootstrap container at `/.bottlerocket/bootstrap-containers/<container>/user-data` or `/.bottlerocket/bootstrap-containers/current/user-data`.
+"""
+[[docs.ref.name_source.example]]
+direct_toml = """
+# Creates a bootstrap container called `mybootstrap`
+# It runs only one time and if exits with a non-zero code, will halt the boot process
+[settings.bootstrap-containers.mybootstrap]
+source = \"uri.to.container.in.oci-compatible-registry.example.com/foo:1.0.0"
+mode = "once"
+essential = true
+"""
+direct_shell = """
+# Creates a bootstrap container called `mybootstrap`
+# It runs only one time and if exits with a non-zero code, will halt the boot process
+apiclient set \\
+    bootstrap-containers.mybootstrap.source=\"uri.to.container.in.oci-compatible-registry.example.com/foo:1.0.0" \\
+    bootstrap-containers.mybootstrap.mode=\"once\" \\
+    bootstrap-containers.mybootstrap.mode=true
+"""
