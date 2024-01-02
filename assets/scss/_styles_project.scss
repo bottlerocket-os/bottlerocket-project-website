@@ -492,6 +492,16 @@ footer .text-links {
     }
 }
 
+.suppress-additional-index {
+    .section-index + .section-index {
+        display: none;
+    }
+}
+
+nav.foldable-nav .with-child.depad {
+    padding-left: 0;
+}
+
 /* old docs notice */
 .pageinfo.olddocs {
     margin-left: 0;

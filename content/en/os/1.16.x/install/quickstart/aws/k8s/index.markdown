@@ -4,6 +4,12 @@ type="docs"
 description="How to get started with Bottlerocket on Amazon EKS"
 +++
 
+{{< hide-and-re-highlight-menu link_url="/en/os/%s/install/quickstart/" depad="true" >}}
+{{< hide-and-re-highlight-menu link_url="/en/os/%s/install/quickstart/aws/" depad="true" >}}
+{{< breadcrumb-remove link_url="/en/os/%s/install/quickstart/">}}
+{{< breadcrumb-remove link_url="/en/os/%s/install/quickstart/aws/">}}
+
+
 ## Prerequisites
 
 In order to set up a Bottlerocket cluster on EKS, you will need the latest versions of the following tools installed:
