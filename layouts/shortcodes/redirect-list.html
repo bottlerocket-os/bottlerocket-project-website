@@ -1,0 +1,5 @@
+{{ $actual := .Get "actual" }}
+{{ $pathParts := split .Page.File.Path "/" }}
+{{ with .Site.GetPage (fmt.Printf $actual (index $pathParts 1) )}}
+    {{ partial "section-index.html" .Page }}
+{{ end }}
