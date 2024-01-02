@@ -4,6 +4,11 @@ type="docs"
 description="How to get started with Bottlerocket on Amazon ECS"
 +++
 
+{{< hide-and-re-highlight-menu link_url="/en/os/%s/install/quickstart/" depad="true" >}}
+{{< hide-and-re-highlight-menu link_url="/en/os/%s/install/quickstart/aws/" depad="true" >}}
+{{< breadcrumb-remove link_url="/en/os/%s/install/quickstart/">}}
+{{< breadcrumb-remove link_url="/en/os/%s/install/quickstart/aws/">}}
+
 In this quickstart, we use a number of techniques/tools like `jq` and environment variables to make the quickstart experience as simple and straightforward as possible.
 These tools are not absolutely necessary to use Bottlerocket on ECS.
 
