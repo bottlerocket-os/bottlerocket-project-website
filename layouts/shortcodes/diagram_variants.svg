@@ -485,7 +485,7 @@ $(document).ready(function() {
          sodipodi:role="line"
          x="29.392647"
          y="32.938339"
-         id="tspan5561">VMware vSphere</tspan></text>
+         id="tspan5561">Bare Metal</tspan></text>
     <text
        xml:space="preserve"
        class="column_item"
@@ -505,7 +505,7 @@ $(document).ready(function() {
          sodipodi:role="line"
          x="29.665796"
          y="81.84034"
-         id="tspan5569">Bare Metal</tspan></text>
+         id="tspan5569">VMware vSphere</tspan></text>
     <text
        xml:space="preserve"
        class="column_item"

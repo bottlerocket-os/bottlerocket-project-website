@@ -1,0 +1,74 @@
+name: generate-nvidia-driver-versions
+on:
+  workflow_dispatch:
+    inputs:
+      minorRelease:
+        description: 'Minor release (e.g. 1.13.x)'
+        required: true
+        type: string
+      patchRelease:
+        description: 'Patch release (e.g. 1.13.2)'
+        required: true
+        type: string
+      issueNumber:
+        description: 'Github issue number to close (e.g. 139)'
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  generate-package-list:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout docs site
+        uses: actions/checkout@v3
+        with:
+          path: bottlerocket-project-website
+      - name: Checkout bottlerocket os
+        uses: actions/checkout@v3
+        with:
+          repository: bottlerocket-os/bottlerocket
+          path: bottlerocket
+          ref: v${{ inputs.patchRelease }}
+      - name: Make new patch release folder
+        run: |
+          mkdir -p bottlerocket-project-website/data/nvidia/$PATCH_RELEASE
+        env:
+          MINOR_RELEASE: ${{ inputs.minorRelease }}
+          PATCH_RELEASE: ${{ inputs.patchRelease }}
+      - name: Generate nvidia version list
+        run: |
+          export ACTION_ROOT_DIR=$PWD
+          pushd bottlerocket-project-website/scripts/nvidia-driver-versions
+          echo $ACTION_ROOT_DIR/bottlerocket
+          echo $ACTION_ROOT_DIR/bottlerocket-project-website/data/nvidia/$PATCH_RELEASE/
+          bash ./get_cargos.sh $ACTION_ROOT_DIR/bottlerocket $ACTION_ROOT_DIR/bottlerocket-project-website/data/nvidia/$PATCH_RELEASE/
+        env:
+          PATCH_RELEASE: ${{ inputs.patchRelease }}
+      - name: Create gpu version page
+        run: |
+          bash bottlerocket-project-website/scripts/nvidia-driver-versions/create_markdown.sh  bottlerocket-project-website/content/en/os/$MINOR_RELEASE/version-information/gpu-drivers $PATCH_RELEASE
+        env:
+          MINOR_RELEASE: ${{ inputs.minorRelease }}
+          PATCH_RELEASE: ${{ inputs.patchRelease }}
+      - name: Open PR for changes
+        uses: peter-evans/create-pull-request@v5
+        with:
+          path: bottlerocket-project-website
+          commit-message: 'gpu: add NVIDIA drivers versions for v${{ inputs.patchRelease }}'
+          branch: add-nvidia-versions-${{ inputs.patchRelease }}
+          title: 'GPUs: add NVIDIA versions for v${{ inputs.patchRelease }}'
+          body: |
+            **Issue number:**
+
+            Closes #${{ inputs.issueNumber }}
+
+            **Description of changes:**
+
+            adds NVIDIA driver version info for v${{ inputs.patchRelease }}
+
+            **Terms of contribution:**
+
+            By submitting this pull request, I confirm that my contribution is made under
+            the terms of the licenses outlined in the LICENSE-SUMMARY file.
