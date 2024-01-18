@@ -1,0 +1,7 @@
+[[docs.ref.time-servers]]
+description = """
+A list of NTP servers to set and verify the system time.
+"""
+accepted_values = [ "hostnames", "IP addresses" ]
+[[docs.ref.time-servers.example]]
+value = "[\"169.254.169.123\", \"time.aws.com\"]"
