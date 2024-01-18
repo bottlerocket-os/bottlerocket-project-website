@@ -1,0 +1,88 @@
+[[docs.ref.init-parameters]]
+description = """
+Init parameters expressed as key/value pairs. 
+If boot data exists at `/proc/bootconfig`, Bottlerocket generates the settings from this data on first boot.
+During the boot process, the init parameters pass via the kernel command line.
+"""
+see = [
+    ["[Boot Configuration on kernel.org](https://www.kernel.org/doc/html/latest/admin-guide/bootconfig.html)"]
+]
+[[docs.ref.init-parameters.example]]
+direct_toml = """
+[settings.boot.init-parameters]
+"log_level" = ["debug"]
+"splash" = []
+"""
+direct_shell = """
+apiclient apply <<EOF
+[settings.boot.init-parameters]
+"log_level" = ["debug"]
+"splash" = []
+EOF
+"""
+
+
+
+[[docs.ref.kernel-parameters]]
+description = """
+Kernel parameters expressed as key/value pairs. 
+If boot data exists at `/proc/bootconfig`, Bottlerocket generates the settings from this data on first boot.
+During the boot process, the parameters pass via the kernel command line.
+"""
+see = [
+    ["[Boot Configuration on kernel.org](https://www.kernel.org/doc/html/latest/admin-guide/bootconfig.html)"]
+]
+[[docs.ref.kernel-parameters.example]]
+direct_toml = """
+[settings.boot.kernel-parameters]
+"console" = [
+  "tty0",
+  "ttyS1,115200n8",
+]
+"crashkernel" = [
+  "2G-:256M"
+]
+"slub_debug" = [
+  "options,slabs"
+]
+"usbcore.quirks" = [
+  "0781:5580:bk",
+  "0a5c:5834:gij"
+]
+"""
+direct_shell = """
+apiclient apply <<EOF
+[settings.boot.kernel-parameters]
+"console" = [
+  "tty0",
+  "ttyS1,115200n8",
+]
+"crashkernel" = [
+  "2G-:256M"
+]
+"slub_debug" = [
+  "options,slabs"
+]
+"usbcore.quirks" = [
+  "0781:5580:bk",
+  "0a5c:5834:gij",
+]
+EOF
+"""
+
+[[docs.ref.reboot-to-reconcile]]
+description = """
+When `true`, changes observed to `settings.boot.kernel-parameters` or `settings.boot.init-parameters` during the boot proccess trigger a reboot.
+"""
+note = """
+The reboot occurs only if the actual settings value changes.
+If `settings.boot.kernel-parameters` or `settings.boot.init-parameters` are set to an existing value, no reboot will occur even if `settings.boot.reboot-to-reconcile` is set to `true`.
+This allows you to place `settings.boot.kernel-parameters` and `settings.boot.init-parameters` in user data or a [bootstrap container](../../../concepts/bootstrap-containers/) without causing a reboot loop.
+"""
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+[[docs.ref.reboot-to-reconcile.example]]
+value = "true"
+
