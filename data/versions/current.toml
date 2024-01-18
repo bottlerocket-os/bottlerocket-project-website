@@ -8,3 +8,9 @@
     versions = ["1.23","1.24","1.25","1.26","1.27","1.28"]
 [ecs]
     versions = ["1","2"]
+
+[brupop]
+    major = 1
+    minor = 13
+    patch = 0
+    tag_commit = "6455a43fd717765da044a95a18a60a8286020971"
