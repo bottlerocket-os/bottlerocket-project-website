@@ -1,7 +1,7 @@
 +++
 type="docs"
 title="Setup"
-weight=1
+weight=5
 +++
 
 Setting up Brupop for the first time has three major steps:

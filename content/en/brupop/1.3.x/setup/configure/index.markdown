@@ -9,6 +9,10 @@ weight = 30
 When you install Brupop, the operator comes pre-configured with reasonable defaults.
 [Labeling your nodes](#label-nodes) is the only required configuration step.
 
+Aside from labeling nodes, you configure Brupop with helm or with a manifest.
+Helm reduces the configuration burden for Brupop substantially with few down sides, so this the documentation focuses configuration with Helm.
+If you choose to not use Helm, refer to the pre-baked manifest for an example.
+
 ## Required Configuration
 
 ### Label nodes
@@ -64,7 +68,97 @@ kubectl label node $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}') 
 
 ## Optional Configuration
 
+### API Server Ports
+
+__Helm Configuration__: `apiserver_internal_port` for internal traffic, `apiserver_service_port` for node agent traffic.
+
+By default, the operator's API server uses port `8443` for internal traffic and port `443` for node agents, but you can change these ports via configuration.
+Both ports must be set or the operator will fail to start.
+
+---
+
+### Concurrent Updates
+
+__Helm Configuration__: `max_concurrent_updates`
+
+You can set the maximum concurrency of updates that Brupop will perform.
+You either set a specific number of concurrent updates or, alternately, `"unlimited"` to update as many nodes as possible concurrently.
+In either case, Brupop always respects [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-application/configure-pdb/).
+
+{{% alert title="Conflicts between load balancing and concurrency" color="warning" %}}
+Take caution when setting concurrency and excluding load balancers together, as misconfiguration can result in a condition where all nodes exclude load balancing.
+{{% /alert %}}
+
+---
+
+### Namespace
+
+__Helm Configuration__: `brupop-bottlerocket-aws`
+
+You can change the namespace where the Kubernetes deploys Brupop (default: `brupop-bottlerocket-aws`).
+
+---
+
+### Load balancer exclusion
+
+__Helm Configuration__: `exclude_from_lb_wait_time_in_sec`
+
+With this option, you can control the exclusion of the node from load balancing and delays draining the node for the number of seconds specified.
+Internally, Brupop uses [`node.kubernetes.io/exclude-from-external-load-balancers`](https://kubernetes.io/docs/reference/labels-annotations-taints/#node-kubernetes-io-exclude-from-external-load-balancers) to exclude the node from load balancing.
+
+See [Concurrent Updates](#concurrent-updates) for an important warning about concurrency and load balancer exclusion.
+
+---
+
+### Logging
+
+Brupop emits logs from the controller, agent, and API server through standard Kubernetes logging mechanisms but you configure the log format and filter.
+
+#### Format
+
+__Helm Configuration__: `logging.formatter`
+
+Log formatting has four options:
+
+- `full`: Human-readable, single-line logs,
+- `compact`: A shorter version of `full`,
+- `pretty`: "Excessively pretty", terminal-optimized human-readable logs (default),
+- `json`: New line-delimited JSON-formatted (machine-readable) logs.
+
+#### Colours
+
+__Helm Configuration__: `logging.ansi_enabled`
+
+You can optionally set the logs to add ANSI colour information (`true`/`false`), which is helpful if viewing in a terminal, but adds garbage characters for non-terminal logging utilities.
+
+#### Filter
+
+__Helm Configuration__: The controller, agent, and API server are configured via`logging.controller.tracing_filter`, `logging.agent.tracing_filter`, and `logging.apiserver.tracing_filter` (respectively).
+
+Log filtering accepts on both typical log levels (`info` (default), `debug`, `error`) or through [filter directives](https://docs.rs/tracing-subscriber/0.3.17/tracing_subscriber/filter/struct.EnvFilter.html#directives).
+
+---
+
+### Placement
+
+__Helm Configuration__: `placement.agent`, `placement.controller`, `placement.apiserver`
+
+With these configurations, you can control the [tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) for the agent, controller and API server.
+For the controller and and API server you can also control the [node selector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector), and [pod affinitiy and anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity).
+
+---
+
+### Private Image Registry
+
+__Helm Configuration__: `image_pull_secrets`
+
+If you are testing Brupop with a private image registry, you can configure pull secrets to fetch images.
+
+---
+
 ### Scheduling
+
+__Helm Configuration__: `scheduler_cron_expression`
 
 Brupop schedules node updates based a cron expression in the following format:
 
@@ -80,85 +174,3 @@ Brupop schedules node updates based a cron expression in the following format:
  │ │ │ │ │ │ │
  * * * * * * *
 ```
-
-#### Helm
-
-You can configure the schedule with `scheduler_cron_expression`.
-
-#### Kubernetes YAML
-
-In the controller deployment, you can change the schedule by alerting the `env` named `SCHEDULER_CRON_EXPRESSION` to the desired cron expression `value`.
-See {{% github-at-commit repo="bottlerocket-os/bottlerocket-update-operator"  path="/deploy/charts/bottlerocket-update-operator/templates/controller-deployment.yaml" %}}`controller-deployment.yaml`{{% /github-at-commit %}} for more details on the stuctures.
-
----
-
-### Concurrent Updates
-
-You can set the maximum concurrency of updates that Brupop will perform.
-You either set a specific number of concurrent updates or, alternately, `"unlimited"` to update as many nodes as possible concurrently.
-In either case, Brupop always respects [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-application/configure-pdb/).
-
-{{% alert title="Conflicts between load balancing and concurrency" color="warning" %}}
-Take caution when setting concurrency and excluding load balancers together, as misconfiguration can result in a condition where all nodes exclude load balancing.
-{{% /alert %}}
-
-#### Helm
-
-You can configure the concurrency by `max_concurrent_updates` .
-
-#### Kubernetes YAML
-
-In the controller deployment, you can change the schedule by alerting the `env` named `SCHEDULER_CRON_EXPRESSION` to the desired `value`.
-See {{% github-at-commit repo="bottlerocket-os/bottlerocket-update-operator"  path="/deploy/charts/bottlerocket-update-operator/templates/controller-deployment.yaml" %}}`controller-deployment.yaml`{{% /github-at-commit %}} for more details on the stuctures.
-
----
-
-### API Server Ports
-
-By default, the operator's API server uses port `8443` for internal traffic and port `443` for node agents, but you can change these ports via configuration.
-Both ports must be set or the operator will fail to start.
-
-#### Helm
-
-You can configure the API server ports by changing the value of `apiserver_internal_port` for internal traffic and `apiserver_service_port` for node agent traffic.
-
-#### Kubernetes YAML
-
-If configuring Brupop via Kubernetes YAML, you need to change the port values in several places, see {{% github-at-commit repo="bottlerocket-os/bottlerocket-update-operator"  path="/bottlerocket-update-operator.yaml" %}}pre-baked YAML manifest{{% /github-at-commit %}} and the following templates for more details on the structures:
-
-- `{{< github-at-commit repo="bottlerocket-os/bottlerocket-update-operator"  path="/deploy/charts/bottlerocket-shadow/templates/custom-resource-definition.yaml" >}}custom-resource-definition.yaml{{< /github-at-commit >}}`
-- `{{< github-at-commit repo="bottlerocket-os/bottlerocket-update-operator"  path="/deploy/charts/bottlerocket-update-operator/templates/api-server-service.yaml" >}}api-server-service.yaml{{< /github-at-commit >}}`
-- `{{< github-at-commit repo="bottlerocket-os/bottlerocket-update-operator"  path="/deploy/charts/bottlerocket-update-operator/templates/agent-daemonset.yaml" >}}agent-daemonset.yaml{{< /github-at-commit >}}`
-- `{{< github-at-commit repo="bottlerocket-os/bottlerocket-update-operator"  path="/deploy/charts/bottlerocket-update-operator/templates/api-server-deployment.yaml" >}}api-server-deployment.yam{{< /github-at-commit >}}`
-
----
-
-### Logging
-
-Brupop emits logs from the controller, agent, and API server through standard Kubernetes logging mechanisms but you configure the log format and filter.
-
-Log formatting has four options:
-
-- `full`: Human-readable, single-line logs,
-- `compact`: A shorter version of `full`,
-- `pretty`: "Excessively pretty", terminal-optimized human-readable logs (default),
-- `json`: New line-delimited JSON-formatted (machine-readable) logs.
-
-You can optionally set the logs to add ANSI colour information, which is helpful if viewing in a terminal, but adds garbage characters for non-terminal logging utilities.
-
-Log filtering accepts on both typical log levels (`info` (default), `debug`, `error`) or through [filter directives](https://docs.rs/tracing-subscriber/0.3.17/tracing_subscriber/filter/struct.EnvFilter.html#directives).
-
-#### Helm
-
-You can configure the log format with `logging.formatter` and ANSI color with `logging.ansi_enabled` (`true`/`false`).
-
-To change the log filtering, set the `logging.controller.tracing_filter`, `logging.agent.tracing_filter`, and `logging.apiserver.tracing_filter` to the desired log level or filter directive.
-
-#### Kubernetes YAML
-
-You need to configure the logging seperately for each item seperately, see the following templates:
-
-- API Server: `{{< github-at-commit repo="bottlerocket-os/bottlerocket-update-operator"  path="/deploy/charts/bottlerocket-update-operator/templates/api-server-deployment.yaml" >}}api-server-deployment.yaml{{< /github-at-commit >}}`
-- 
-
-To configure the format of your logs with, you need to change the `env` named `LOGGING_FORMATTER` to the desired format option.
