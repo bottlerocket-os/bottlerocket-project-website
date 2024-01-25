@@ -309,8 +309,14 @@ $link-color: $light-link;
     }
 }
 
+input:checked + label a.td-sidebar-link__page {
+    font-weight: 600;
+}
+
+.td-sidebar-nav .td-sidebar-link__section,
 .td-sidebar-nav .td-sidebar-link__page {
-    font-family: $td-fonts-serif
+    //font-family: $td-fonts-serif
+    font-weight: 300;
 }
 
 .td-sidebar-nav__section-title,
