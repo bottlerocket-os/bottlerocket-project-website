@@ -1,0 +1,15 @@
+[[docs.ref.should-wait]]
+description = """
+If set to `true`, the node waits until the instance reaches the [`InService` state](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-lifecycle.html#as-lifecycle-inservice) to join the cluster. 
+"""
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+note = """
+Only set this value to `true` if the instance is currently (or will be) in an auto scaling group. 
+"""
+default = "`false`"
+
+[[docs.ref.should-wait.example]]
+value = "true"
