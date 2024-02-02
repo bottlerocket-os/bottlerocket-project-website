@@ -17,6 +17,16 @@ description = "Settings related to logs from the ECS Agent"
 
 
 # reference
+[[docs.ref.backend-host]]
+description = "Sets the endpoint to make calls against (e.g `ecs.us-east-1.amazonaws.com`)."
+default = "The endpoint for your current region."
+
+[[docs.ref.awsvpc-block-imds]]
+description = "Blocks access to [Instance Metadata](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) for Tasks started with `awsvpc` network mode if `true`"
+default = "`false`"
+see = [
+    ["`ECS_AWSVPC_BLOCK_IMDS` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
 
 [[docs.ref.cluster]]
 description = """
