@@ -502,6 +502,83 @@ nav.foldable-nav .with-child.depad {
     padding-left: 0;
 }
 
+.brupop-diagram {
+    .node,
+    .agent,
+    .api-server,
+    .controller,
+    .unused-container,
+    .unused-volume,
+    .active-volume,
+    .line-arrow-connector .arrow-head,
+    .ellipses  {
+        pointer-events: all;
+    }
+    .node {
+        fill: $tan;
+        rx: 3;
+    }
+    .agent,
+    .api-server,
+    .controller,
+    .unused-container,
+    .unused-volume,
+    .active-volume {
+        rx: 2;
+    }
+    .agent {
+        fill: $light-teal;
+    }
+    .unused-container,
+    .unused-volume {
+        fill: $white;
+    }
+
+    .label {
+        font-size: 12px;
+        font-family: $td-fonts-serif;
+        font-weight: 600;
+
+        &.active-volume-label {
+            fill: $white;
+            text-anchor: middle;
+        }
+        &.outer-label {
+            fill: $dark-blue;
+            text-anchor: middle;
+        }
+    }
+    .active-volume {
+        fill: $dark-blue;
+    }
+    
+    .line-arrow-connector {
+        stroke-miterlimit: 10;
+        .connector {
+            stroke: $dark-blue;
+            fill: none;
+            pointer-events : stroke;
+        }
+        .arrow-head {
+            stroke: $dark-blue;
+            fill: $dark-blue;
+        }
+    }
+
+    .api-server {
+        fill: $dark-orange;
+    }
+    .controller {
+        fill: $light-blue;
+    }
+    .ellipses {
+        fill: $tan;
+        stroke: none;
+        rx: 5;
+        ry: 5; 
+    }
+}
+
 /* old docs notice */
 .pageinfo.olddocs {
     margin-left: 0;

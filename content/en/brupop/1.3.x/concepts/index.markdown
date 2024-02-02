@@ -4,10 +4,17 @@ type = "docs"
 description = "Understanding Brupop" 
 weight = 1
 +++
+---
+
+## test
+
+{{< brupop-agent-controller-diagram >}}
+{{< brupop_agent_api_server_control_plane >}}
+{{< brupop_components_diagram >}}
 
 ## Declarative, in-place updates
 
-You can update Bottlerocket in a couple of ways: 
+You can update Bottlerocket in a couple of ways:
 
 * node replacement where new instances with a new version of the OS replace nodes with older versions of the OS,
 * in-place updates where the node downloads a new version of the OS and reboots into a new version of the OS while maintaining the same instance.
