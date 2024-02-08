@@ -1,7 +1,7 @@
 +++
 title = "Install Brupop"
 type = "docs"
-description = "Install the Bottlerocket Update Operator to your Kubernetes cluster" 
+description = "Install the Bottlerocket Update Operator on your Kubernetes cluster" 
 weight = 10
 +++
 

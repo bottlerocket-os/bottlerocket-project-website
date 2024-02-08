@@ -6,7 +6,7 @@
             <ol>
                 {{- range  (sort (index $questions $group_name) "question" ) -}}
                 <li>
-                    <a href="#{{ .hash }}">{{ .question }}</a> 
+                    <a href="#{{ .hash }}">{{ .question | markdownify }}</a> 
                 </li>
                 {{- end -}}
             </ol>

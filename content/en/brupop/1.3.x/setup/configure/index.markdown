@@ -9,10 +9,8 @@ When you install Brupop, the operator comes pre-configured with reasonable defau
 [Labeling your nodes](#label-nodes) is the only required configuration step.
 
 Aside from labeling nodes, you configure Brupop with [helm](https://helm.sh/) or with a manifest.
-Helm reduces the configuration burden for Brupop substantially with few down sides, so this documentation focuses on configuration with Helm.
-If you choose to not use Helm, refer to the {{< github-link-at-version url="https://github.com/bottlerocket-os/bottlerocket-update-operator/blob/vx.x.x/bottlerocket-update-operator.yaml" project="brupop" >}}pre-baked manifest for an example{{< /github-link-at-version >}}.
- 
-
+Helm reduces the configuration burden for Brupop substantially with few down sides, so this documentation focuses on configuration with helm.
+If you choose to not use helm, refer to the {{< github-link-at-version url="https://github.com/bottlerocket-os/bottlerocket-update-operator/blob/vx.x.x/bottlerocket-update-operator.yaml" project="brupop" >}}pre-baked manifest for an example{{< /github-link-at-version >}}.
 
 ## Required Configuration
 
@@ -24,7 +22,7 @@ You can fully install Brupop but if you do not apply the proper node labels the 
 
 [Kubernetes node labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) control which nodes Brupop updates; specifically, the label `bottlerocket.aws/updater-interface-version=2.0.0` dictates which nodes in the cluster get automatic updates.
 
-You can label nodes using {{< cross-project-current-link url="/en/os/x.x.x/api/settings/kubernetes/#node-labels" >}}`settings.kubernetes.node-labels`{{</ cross-project-current-link>}} with TOML ({{< cross-project-current-link url="/en/os/x.x.x/concepts/api-driven/#user-data" >}}including instance user data{{</ cross-project-current-link>}}), using `apiclient` in a host container, or `kubectl`.
+You can label nodes using {{< cross-project-current-link url="/en/os/x.x.x/api/settings/kubernetes/#node-labels" >}}`settings.kubernetes.node-labels`{{</ cross-project-current-link>}} with TOML {{< cross-project-current-link url="/en/os/x.x.x/concepts/api-driven/#user-data" >}}(including instance user data){{</ cross-project-current-link>}}, using `apiclient` in a host container, or `kubectl`.
 
 #### Label a node with `apiclient`
 
@@ -61,7 +59,7 @@ kubectl label node $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}') 
 
 #### Labeling a node with the Bottlerocket API
 
-You can add the following TOML to your instance user data:
+Add the following TOML to your instance user data:
 
 ```TOML
 ...
@@ -82,8 +80,7 @@ apiclient set settings.kubernetes.node-labels.bottlerocket.aws/updater-interface
 
 __Helm Configuration__: `apiserver_internal_port` for internal traffic, `apiserver_service_port` for node agent traffic.
 
-
-By default, the operator’s API server uses port `8443` for internal traffic and port `443` for node agents, but you can change these ports via configuration. Both ports must be set or the operator will fail to start.
+By default, the operator’s API server uses port `8443` for internal traffic and port `443` for node agents, but you can change these ports via this configuration. Both ports must be set or the operator will fail to start.
 
 Example:
 
@@ -97,10 +94,10 @@ apiserver_internal_port: "8443"
 
 __Helm Configuration__: `max_concurrent_updates`
 
-You can set the maximum concurrency of updates that Brupop will perform. You either set a specific number of concurrent updates or, alternately, `"unlimited"` to update as many nodes as possible concurrently. In either case, Brupop always respects [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-application/configure-pdb/).
+You can set the maximum concurrency of updates that Brupop will perform. You either set a specific number of concurrent updates or, alternately, `"unlimited"` to update as many nodes as possible concurrently. In either case, Brupop always respects [`PodDisruptionBudget`](https://kubernetes.io/docs/tasks/run-application/configure-pdb/).
 
 {{% alert title="Conflicts between load balancing and concurrency" color="warning" %}}
-Take caution when setting concurrency and excluding load balancers together, as misconfiguration can result in a condition where all nodes exclude load balancing.
+Take caution when setting concurrency and [excluding load balancers](#load-balancer-exclusion) together, as misconfiguration can result in a condition where all nodes exclude load balancing and can never drain fully to complete the update. Setting up `PodDisruptionBudget` guards against this condition.
 {{% /alert %}}
 
 Example:
@@ -115,8 +112,7 @@ max_concurrent_updates: "1"
 
 __Helm Configuration__: `brupop-bottlerocket-aws`
 
-
-You can change the namespace where the Kubernetes deploys Brupop (default: `brupop-bottlerocket-aws`).
+You can change the namespace where Kubernetes deploys Brupop (default: `brupop-bottlerocket-aws`).
 
 Example:
 
@@ -130,11 +126,12 @@ namespace: "brupop-bottlerocket-aws"
 
 __Helm Configuration__: `exclude_from_lb_wait_time_in_sec`
 
-With this option, you can control the exclusion of the node from load balancing and delays draining the node for the number of seconds specified. Internally, Brupop uses [`node.kubernetes.io/exclude-from-external-load-balancers`](https://kubernetes.io/docs/reference/labels-annotations-taints/#node-kubernetes-io-exclude-from-external-load-balancers) to exclude the node from load balancing.
+With this option, you control the exclusion of the node from load balancing and delays draining the node for the number of seconds specified. Internally, Brupop uses [`node.kubernetes.io/exclude-from-external-load-balancers`](https://kubernetes.io/docs/reference/labels-annotations-taints/#node-kubernetes-io-exclude-from-external-load-balancers) to exclude the node from load balancing.
 
 See [Concurrent Updates](#concurrent-updates) for an important warning about concurrency and load balancer exclusion.
 
 Example:
+
 ```yaml
 exclude_from_lb_wait_time_in_sec: "0"
 ```
@@ -173,7 +170,7 @@ Example:
 
 ```yaml
 logging:
-  ansi_enabled: "pretty"
+  ansi_enabled: "true"
 ```
 
 #### Filter

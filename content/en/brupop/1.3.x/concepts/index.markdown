@@ -8,11 +8,11 @@ weight = 1
 You can update Bottlerocket in a couple of ways:
 
 * **node replacement** where new instances with a new version of the OS replace nodes with older versions of the OS,
-* **in-place updates** where the node downloads a new version of the OS and reboots into a new version of the OS while maintaining the same instance.
+* **in-place updates** where the node downloads a new version of the OS and reboots into a new version of the OS while maintaining the same instance/machine.
 
 There is no single preferred nor advised method to update a node; both methods have pros and cons depending on your situation.
 
-You can trigger an {{< cross-project-current-link project="os" url="/en/os/x.x.x/update/methods/in-place/#apiclient-commands">}}in-place update of manually with the API{{< /cross-project-current-link >}} or you can use the Bottlerocket Update Operator (Brupop).
+You can trigger an {{< cross-project-current-link project="os" url="/en/os/x.x.x/update/methods/in-place/#apiclient-commands">}}in-place update manually with the API{{< /cross-project-current-link >}} or you can use the Bottlerocket Update Operator (Brupop).
 **Brupop is a Kubernetes operator for managing in-place updates of Bottlerocket on Kubernetes.**
 
 If you use Bottlerocket on ECS or intend to replace nodes in Kubernetes, Brupop is not for you.
@@ -31,14 +31,14 @@ To achieve this, Brupop does the following:
 {{< brupop/components-diagram >}}
 
 Brupop collects the state of each node with an agent.
-The Brupop Agent runs in a container on each node as a DaemonSet.
+The Brupop Agent runs in a container on each node as a [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/).
 This agent sends the state to an API Server.
 API Server instances run in the cluster itself and communicates with the Kubernetes API to record the state as a custom resource.
 
 {{< brupop/agent-api-server-control-plane >}}
 
 {{< alert title="Bottlerocket API Server vs Brupop API Server?" color="success" >}}
-Don’t confuse Bottlerocket’s {{< cross-project-current-link project="os" url="/en/os/x.x.x/concepts/api-driven/">}}API Server{{< /cross-project-current-link >}} with Brupop’s API Server, these are two distinct servers, just with the same name.
+Don’t confuse Bottlerocket’s {{< cross-project-current-link project="os" url="/en/os/x.x.x/concepts/api-driven/">}}API Server{{< /cross-project-current-link >}} with Brupop’s API Server, these are two distinct things, just with the same name.
 In this part of the documentation, unless otherwise noted, assume that “API Server” refers to the Brupop API Server.
 {{< /alert >}}
 
@@ -48,9 +48,9 @@ The Controller also runs in a container on the cluster where it regularly evalua
 
 ## States
 
-At any given point nodes are in one of five Brupop states: **idle, staged & performed update, rebooted into update, monitoring update** or **error reset**.
+At any given point nodes are in one of five Brupop states: **idle**, **staged & performed update**, **rebooted into update**, **monitoring update** or **error reset**.
 A node is never in more than one state.
-The state of each node is represented as a [Kubernetes Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) called a BottlerocketShadow resource or `brs`.
+The state of each node is represented as a [Kubernetes Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) called a `BottlerocketShadow` resource or `brs`.
 
 {{< brupop/state-machine >}}
 
@@ -59,9 +59,10 @@ The state of each node is represented as a [Kubernetes Custom Resource](https://
 A node in the **idle** state does not have a pending update in-process.
 Most of the time your nodes will remain in this state.
 
-{{< brupop/idle >}}
-
 ### Staged & Performed Update
+
+{{< brupop/staged-and-performed >}}
+
 
 Bottlerocket uses multiple partitions to manage in-place updates.
 The OS runs from one partition and, when a new update is available, the update is downloaded and installed into the other.
@@ -83,6 +84,8 @@ Once the node reboots the update is technically complete, however the time whils
 Bottlerocket’s versioning and variant scheme is built to mitigate incompatibilities between OS versions, there is always a chance that an unforeseen incompatibility exists with some component of your architecture.
 Brupop’s state machine has a reserved state for monitoring these incompatibilities (**Monitoring Updates**), however as of this version, this state is a noop.
 You can suggest a direction for this state on the [Brupop GitHub Repo](https://github.com/bottlerocket-os/bottlerocket-update-operator/issues/new?assignees=&labels=&projects=&template=issue.md&title=Suggestion%20for%20monitoring%20state).
+
+
 Consequently, the Agent immediately transitions through **Monitoring Updates** back to **Idle** with the API server.
 
 ### Error Reset

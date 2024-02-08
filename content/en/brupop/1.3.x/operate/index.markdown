@@ -27,7 +27,7 @@ brs-node-2                                         Idle    1.17.0     StagedUpda
 
 ## On-going monitoring
 
-To facilitate on-going monitoring the Brupop API server and controller provide you with metrics endpoints (`/metrics`) compatible with [Prometheus](https://prometheus.io/).
+To facilitate on-going monitoring the Brupop API server and controller provides you with metrics endpoints (`/metrics`) compatible with [Prometheus](https://prometheus.io/).
 The metrics endpoints expose two metrics: one that describes the current version of each node (`brupop_hosts_version`) and another for the [state](../concepts/#states) of each node (`brupop_hosts_state`).
 
 For a sample configuration of using Prometheus with Brupop see the {{< github-link-at-version url="https://github.com/bottlerocket-os/bottlerocket-update-operator/blob/vx.x.x/deploy/examples/prometheus-resources.yaml" project="brupop" >}}configuration on the Brupop GitHub Repo{{</ github-link-at-version >}}.
