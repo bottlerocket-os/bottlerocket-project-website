@@ -1,5 +1,5 @@
 +++
-question = "Why are my nodes egressing to https://updates.bottlerocket.aws?"
+question = "Why are my nodes egressing to `updates.bottlerocket.aws`?"
 group = "Updates"
 +++
 

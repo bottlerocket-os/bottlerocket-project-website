@@ -2,7 +2,6 @@
 question = "Why do some of the nodes in my cluster have an update available and others do not?"
 group = "Updates"
 +++
-
 This is normal.
 Bottlerocket uses "waves" to stagger deployment of updates.
 When a node starts for the first time, the boot process generates a random seed (or uses the value from {{< setting-reference setting="settings.updates.seed" current_version="true">}}settings.updates.seed{{</ setting-reference >}}).

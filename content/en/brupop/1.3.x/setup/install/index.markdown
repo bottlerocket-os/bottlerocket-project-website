@@ -11,7 +11,7 @@ You can install Brupop either [with `helm`](#install-with-helm) or a [pre-baked 
 
 ## Install with `helm`
 
-First, add the `bottlerocket-operator-chart`
+First, using [helm](https://helm.sh/) add the `bottlerocket-operator-chart`
 
 ```shell
 helm repo add brupop https://bottlerocket-os.github.io/bottlerocket-update-operator
@@ -45,7 +45,7 @@ After you've installed the operator, you can move on to the next step: [configur
 
 ## Install with a Manifest
 
-First, download the manifest from the release to your local machine and run the following:
+First, <a href="https://github.com/bottlerocket-os/bottlerocket-update-operator/releases/tag/v{{< current-version project="brupop" >}}">download the manifest from the release</a> to your local machine and run the following:
 
 ```shell
 kubectl apply -f bottlerocket-update-operator-v{{< current-version project="brupop" >}}.yaml

@@ -1,5 +1,4 @@
 @import '_home_svg.scss';
-
 .btn-lg, .btn-group-lg > .btn {
     border-radius: 6px;
 }
@@ -431,7 +430,7 @@ nav.foldable-nav .with-child, nav.foldable-nav .without-child {
         stroke: none;
     }
 
-    
+
     path.exit-flag {
         fill: $dark-blue;
     }
@@ -502,6 +501,59 @@ nav.foldable-nav .with-child.depad {
     padding-left: 0;
 }
 
+.start-align-labels.brupop-diagram {
+    .outer-label {
+        &.active-volume-label,
+        &.outer-label {
+            text-anchor: start;
+        }
+    }
+}
+
+.brupop-diagram,
+.brupop-state-machine {
+    .line-arrow-connector {
+        stroke-miterlimit: 10;
+        stroke: $dark-blue;
+        .connector {
+            
+            fill: none;
+            pointer-events : stroke;
+            &.dotted {
+                stroke-dasharray: 1 2;
+            }
+        }
+        .arrow-head {
+            fill: $dark-blue;
+        }
+        
+    }
+
+    .label {
+        font-size: 12px;
+        font-family: $td-fonts-serif;
+        font-weight: 300;
+
+        &.active-volume-label {
+            fill: $white;
+            text-anchor: middle;
+        }
+        &.outer-label {
+            fill: $dark-blue;
+            text-anchor: middle;
+        }
+
+    }
+}
+.brupop-state-machine {
+    .state {
+        fill: $tan;
+        rx: 9;
+        ry: 9;
+        pointer-events: all;
+    }
+}
+
 .brupop-diagram {
     .node,
     .agent,
@@ -511,7 +563,10 @@ nav.foldable-nav .with-child.depad {
     .unused-volume,
     .active-volume,
     .line-arrow-connector .arrow-head,
-    .ellipses  {
+    .ellipses,
+    .future-volume,
+    .label-backer,
+    .wait  {
         pointer-events: all;
     }
     .node {
@@ -523,46 +578,32 @@ nav.foldable-nav .with-child.depad {
     .controller,
     .unused-container,
     .unused-volume,
-    .active-volume {
+    .active-volume,
+    .future-volume {
         rx: 2;
     }
     .agent {
         fill: $light-teal;
     }
+
+    .label-backer,
     .unused-container,
     .unused-volume {
         fill: $white;
     }
 
-    .label {
-        font-size: 12px;
-        font-family: $td-fonts-serif;
-        font-weight: 600;
 
-        &.active-volume-label {
-            fill: $white;
-            text-anchor: middle;
-        }
-        &.outer-label {
-            fill: $dark-blue;
-            text-anchor: middle;
-        }
-    }
     .active-volume {
         fill: $dark-blue;
     }
+    .future-volume {
+        fill: url(#stripes);
+    }
     
-    .line-arrow-connector {
-        stroke-miterlimit: 10;
-        .connector {
-            stroke: $dark-blue;
-            fill: none;
-            pointer-events : stroke;
-        }
-        .arrow-head {
-            stroke: $dark-blue;
-            fill: $dark-blue;
-        }
+    .wait {
+        stroke-width: 2px;
+        stroke: $light-blue;
+        fill: none;
     }
 
     .api-server {
@@ -577,6 +618,20 @@ nav.foldable-nav .with-child.depad {
         rx: 5;
         ry: 5; 
     }
+    
+    #stripes {
+        width: 7;
+        height: 7; 
+        rect {
+            fill: $dark-blue;
+        }
+        line {
+            stroke: #ffffff;
+            opacity: 0.1;
+            stroke-width: 7px;
+        }
+    }
+
 }
 
 /* old docs notice */

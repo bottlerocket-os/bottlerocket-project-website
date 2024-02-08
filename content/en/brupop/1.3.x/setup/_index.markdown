@@ -1,7 +1,8 @@
 +++
-type="docs"
-title="Setup"
-weight=5
+type = "docs"
+title = "Setup"
+weight = 5
+description = "Steps to use and configure Brupop on your Bottlerocket nodes"
 +++
 
 Setting up Brupop for the first time has three major steps:
