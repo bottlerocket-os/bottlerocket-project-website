@@ -1,0 +1,28 @@
+# Extracted from https://github.com/bottlerocket-os/bottlerocket/tree/develop/packages/kmod-5.10-nvidia/Cargo.toml
+[package]
+name = "kmod-5_10-nvidia"
+version = "0.1.0"
+edition = "2021"
+publish = false
+build = "../build.rs"
+
+[lib]
+path = "../packages.rs"
+
+[package.metadata.build-package]
+package-name = "kmod-5.10-nvidia"
+releases-url = "https://docs.nvidia.com/datacenter/tesla/"
+
+[[package.metadata.build-package.external-files]]
+url = "https://us.download.nvidia.com/tesla/470.223.02/NVIDIA-Linux-x86_64-470.223.02.run"
+sha512 = "66e470343b6f0c04703c81169cd03674be06b5315db738cab64308ec073b5bf5b87508b58ac8b6288d10e95307072d99e874e7884207a323a3dd08887bbc8750"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://us.download.nvidia.com/tesla/470.223.02/NVIDIA-Linux-aarch64-470.223.02.run"
+sha512 = "c22eab4ec6aa1868bbe55200ba74187939571ae78645c333fe05d544869c54b84d63e26f5c4f922bbe4e768da1f394d15d0b85cacbd4bbbc2b1dfd5074734a02"
+force-upstream = true
+
+[build-dependencies]
+glibc = { path = "../glibc" }
+kernel-5_10 = { path = "../kernel-5.10" }
