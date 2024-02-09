@@ -3,6 +3,8 @@ type="docs"
 title="Documentation"
 +++
 
+{{< current-full-version >}}
+
 You may be familiar with general purpose Linux distributions like Ubuntu, Fedora, or Amazon Linux.
 With these Linux distributions, you can run a variety of workloads, setup in a variety of ways.
 While Bottlerocket is also a Linux distribution, Bottlerocket stands in stark contrast to general purpose distributions by being specifically optimized to host containers and interoperate directly with container orchestrators such as Kubernetes or ECS.
