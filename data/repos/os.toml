@@ -1,0 +1,3 @@
+github = "https://github.com/bottlerocket-os/bottlerocket"
+path_prefix = "/tree/develop"
+github_issue_url = "https://github.com/bottlerocket-os/bottlerocket/issues/new/choose"

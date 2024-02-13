@@ -1,0 +1,8 @@
+{{- $project_short := .Get "project" | default "os" -}}
+{{- $repo_metadata := index $.Site.Data.repos $project_short -}}
+{{- $full_version := print $.Site.Data.versions.current.os.major "." $.Site.Data.versions.current.os.minor "." $.Site.Data.versions.current.os.patch -}}
+<div class="card border-success mb-3">
+    <div class="card-body">
+        The most recent release of {{ index $.Site.Data.project_long_names $project_short }} is <strong>{{ $full_version }}</strong> (<a href="{{ $repo_metadata.github }}/releases/tag/v{{ $full_version }}">Release Notes</a>).
+    </div>
+</div>
