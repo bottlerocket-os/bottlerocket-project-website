@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+    width="80%"
+    viewBox="-0.5 -0.5 920 355">
+    <defs />
+    <g class="brupop-diagram start-align-labels">
+        <rect x="360" y="57" width="210" height="210" class="node" />
+        <rect x="370" y="67" width="30" height="90" class="agent" />
+        <rect x="410" y="67" width="30" height="90" class="api-server" />
+        <rect x="450" y="67" width="30" height="90" class="unused-container" />
+        <rect x="490" y="67" width="30" height="90" class="unused-container" />
+        <rect x="530" y="67" width="30" height="90" class="unused-container"   />
+        <rect x="370" y="167" width="190" height="40" class="unused-volume" />
+        <rect x="370" y="217" width="190" height="40" class="unused-volume"/>
+        
+        <rect x="120" y="57" width="210" height="210" class="node" />
+        <rect x="130" y="67" width="30" height="90" class="agent" />
+        <rect x="170" y="67" width="30" height="90" class="api-server" />
+        <rect x="210" y="67" width="30" height="90" class="unused-container" />
+        <rect x="250" y="67" width="30" height="90" class="unused-container" />
+        <rect x="290" y="67" width="30" height="90" class="unused-container" />
+        <rect x="130" y="167" width="190" height="40"  class="unused-volume"/>
+        <rect x="130" y="217" width="190" height="40"  class="unused-volume"/>
+
+        <rect x="600" y="57" width="210" height="210" class="node" />
+        <rect x="610" y="67" width="30" height="90" class="agent" />
+        <rect x="650" y="67" width="30" height="90" class="api-server" />
+        <rect x="690" y="67" width="30" height="90" class="unused-container" />
+        <rect x="730" y="67" width="30" height="90" class="unused-container"  />
+        <rect x="770" y="67" width="30" height="90" class="controller" />
+        <rect x="610" y="167" width="190" height="40" class="unused-volume" />
+        <rect x="610" y="217" width="190" height="40" class="unused-volume"/>
+
+        <g class="line-arrow-connector">
+            <path d="M 120 329.5 L 100 329.5 L 100 112 L 123.63 112" class="connector"/>
+            <path d="M 128.88 112 L 121.88 115.5 L 123.63 112 L 121.88 108.5 Z" class="arrow-head"  />
+        </g>
+        
+        <g class="line-arrow-connector">
+            <path d="M 210 329.5 L 583 329.5 L 583 112 L 603.63 112" class="connector" />
+            <path d="M 608.88 112 L 601.88 115.5 L 603.63 112 L 601.88 108.5 Z" class="arrow-head"  />
+        </g>
+       
+        <g class="line-arrow-connector">
+            <path d="M 165 305 L 165 285 L 346 285 L 346 112 L 363.63 112" class="connector"  />
+            <path d="M 368.88 112 L 361.88 115.5 L 363.63 112 L 361.88 108.5 Z" class="arrow-head"  />
+        </g>
+
+        <g transform="translate(-0.5 -0.5)" >
+            <text x="130" y="320" class="label outer-label">Brupop Agent</text>
+            <text x="138" y="340" class="label outer-label">(1x / node)</text>
+        </g>
+        <g class="line-arrow-connector">
+            <path d="M 67.5 97 L 67.5 47 L 185 47 L 185 60.63" class="connector" />
+            <path d="M 185 65.88 L 181.5 58.88 L 185 60.63 L 188.5 58.88 Z" class="arrow-head"  />
+        </g>
+        <g class="line-arrow-connector">
+            <path d="M 45 97 L 45 27 L 425 27 L 425 60.63"  class="connector" />
+            <path d="M 425 65.88 L 421.5 58.88 L 425 60.63 L 428.5 58.88 Z" class="arrow-head"  />
+        </g>
+        <g class="line-arrow-connector">
+            <path d="M 22.5 97 L 22.5 7 L 665 7 L 665 60.63"  class="connector" />
+            <path d="M 665 65.88 L 661.5 58.88 L 665 60.63 L 668.5 58.88 Z" class="arrow-head"  />
+        </g>
+        
+        <g transform="translate(-0.5 -0.5)">
+            <text x="15" y="115" class="label outer-label">API Server</text>
+            <text x="20" y="145" class="label outer-label">(Default: </text>
+            <text x="12" y="165" class="label outer-label">3x / cluster)</text>
+        </g>
+
+        <g class="line-arrow-connector">
+            <path d="M 875 88 L 875 37 L 785 37 L 785 60.63" class="connector" />
+            <path d="M 785 65.88 L 781.5 58.88 L 785 60.63 L 788.5 58.88 Z" class="arrow-head" />
+        </g>
+        
+        <rect x="830" y="88" width="90" height="52" fill="none" stroke="none"  />
+        <g transform="translate(-0.5 -0.5)">
+            <text x="845" y="108" class="label outer-label">Controller</text>
+            <text x="840" y="128" class="label outer-label">(1x / cluster)</text>
+        </g>
+    </g>
+</svg>

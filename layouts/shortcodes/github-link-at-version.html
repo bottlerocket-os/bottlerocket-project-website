@@ -1,0 +1,11 @@
+{{- $project := .Get "project" | default "os" -}}
+{{- $url_arg := .Get "url" -}}
+{{- $replace := .Get "replace" | default "/vx.x.x/" -}}
+{{- $current_version_data := $.Site.Data.versions.current -}}
+{{- $v := index $current_version_data $project -}}
+
+{{- $new_url := print "/v" $v.major "." $v.minor "." $v.patch "/"  -}}
+
+{{- $url := replace $url_arg $replace $new_url }}
+
+<a href="{{$url}}">{{ .Inner | markdownify }}</a>
