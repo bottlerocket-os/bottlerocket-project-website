@@ -5,7 +5,8 @@ description = "Prepare your cluster for Brupop"
 weight = 1
 +++
 
-Brupop uses [cert-manager](https://cert-manager.io/) to manage self-signed certificates. You can install it with `kubectl` or [helm](https://helm.sh/).
+Brupop uses [cert-manager](https://cert-manager.io/) to manage self-signed certificates.
+You can install it with `kubectl` or [helm](https://helm.sh/).
 
 {{% alert title="Note" color="success" %}}
 This guide uses the most recent release of `cert-manager`, {{< brupop/cert-manager-version >}}, but there is no particular hard dependency on this version.

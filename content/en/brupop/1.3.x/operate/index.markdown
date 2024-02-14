@@ -5,7 +5,8 @@ weight = 10
 description = "Understanding the day-to-day use of Brupop"
 +++
 
-After installation on your cluster Brupop runs in the background and generally requires no intervention. Your nodes will check for updates and apply them according to your configuration and the Bottlerocket update waves.
+After installation on your cluster Brupop runs in the background and generally requires no intervention.
+Your nodes will check for updates and apply them according to your configuration and the Bottlerocket update waves.
 
 However, you can observe the status of the updates by [adhoc query](#adhoc-query) or setup [on-going monitoring](#on-going-monitoring).
 
@@ -17,7 +18,8 @@ If you want to see the update status of your nodes, use `kubectl` to get the cus
 kubectl get brs --namespace brupop-bottlerocket-aws
 ```
 
-`kubectl` returns the [state](../concepts/#states), current version, target state, and target version. For example:
+`kubectl` returns the [state](../concepts/#states), current version, target state, and target version.
+For example:
 
 ```shell
 AME                                               STATE   VERSION     TARGET STATE   TARGET VERSION

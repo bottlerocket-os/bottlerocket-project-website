@@ -26,6 +26,8 @@ You can label nodes using {{< cross-project-current-link url="/en/os/x.x.x/api/s
 
 #### Label a node with `apiclient`
 
+From the control or admin container, run the following:
+
 ```shell
 apiclient set settings.kubernetes.node-labels.bottlerocket.aws/updater-interface-version=2.0.0
 ```
@@ -64,14 +66,8 @@ Add the following TOML to your instance user data:
 ```TOML
 ...
 [settings.kubernetes.node-labels]
-"bottlerocket.aws/updater-interface-version" = 2.0.0
+"bottlerocket.aws/updater-interface-version" = "2.0.0"
 ...
-```
-
-From the control container, run the following:
-
-```shell
-apiclient set settings.kubernetes.node-labels.bottlerocket.aws/updater-interface-version=2.0.0
 ```
 
 ## Optional Configuration
@@ -80,7 +76,12 @@ apiclient set settings.kubernetes.node-labels.bottlerocket.aws/updater-interface
 
 __Helm Configuration__: `apiserver_internal_port` for internal traffic, `apiserver_service_port` for node agent traffic.
 
-By default, the operator’s API server uses port `8443` for internal traffic and port `443` for node agents, but you can change these ports via this configuration. Both ports must be set or the operator will fail to start.
+Brupop uses two ports for [communication between components](../../concepts/#controlled-updates): `apiserver_internal_port` for the controller and the [`BottlerocketShadow` custom resource](../../concepts/#states) and the `apiserver_service_port` for the conversion webhook.
+Refer to the the
+{{< github-link-at-version project="brupop" url="https://github.com/bottlerocket-os/bottlerocket-update-operator/blob/vx.x.x/bottlerocket-update-operator.yaml">}} manifest {{< / github-link-at-version >}} for more information on the usage of each port.
+
+By default, the operator’s API server uses port `8443` for internal traffic and port `443` for node agents, but you can change these ports via this configuration.
+Both ports must be set or the operator will fail to start.
 
 Example:
 
@@ -94,10 +95,13 @@ apiserver_internal_port: "8443"
 
 __Helm Configuration__: `max_concurrent_updates`
 
-You can set the maximum concurrency of updates that Brupop will perform. You either set a specific number of concurrent updates or, alternately, `"unlimited"` to update as many nodes as possible concurrently. In either case, Brupop always respects [`PodDisruptionBudget`](https://kubernetes.io/docs/tasks/run-application/configure-pdb/).
+You can set the maximum concurrency of updates that Brupop will perform.
+You either set a specific number of concurrent updates or, alternately, `"unlimited"` to update as many nodes as possible concurrently.
+In either case, Brupop always respects [`PodDisruptionBudget`](https://kubernetes.io/docs/tasks/run-application/configure-pdb/).
 
 {{% alert title="Conflicts between load balancing and concurrency" color="warning" %}}
-Take caution when setting concurrency and [excluding load balancers](#load-balancer-exclusion) together, as misconfiguration can result in a condition where all nodes exclude load balancing and can never drain fully to complete the update. Setting up `PodDisruptionBudget` guards against this condition.
+Take caution when setting concurrency and [excluding load balancers](#load-balancer-exclusion) together, as misconfiguration can result in a condition where all nodes exclude load balancing and can never drain fully to complete the update.
+Setting up `PodDisruptionBudget` guards against this condition.
 {{% /alert %}}
 
 Example:
@@ -126,7 +130,8 @@ namespace: "brupop-bottlerocket-aws"
 
 __Helm Configuration__: `exclude_from_lb_wait_time_in_sec`
 
-With this option, you control the exclusion of the node from load balancing and delays draining the node for the number of seconds specified. Internally, Brupop uses [`node.kubernetes.io/exclude-from-external-load-balancers`](https://kubernetes.io/docs/reference/labels-annotations-taints/#node-kubernetes-io-exclude-from-external-load-balancers) to exclude the node from load balancing.
+With this option, you control the exclusion of the node from load balancing and delays draining the node for the number of seconds specified.
+Internally, Brupop uses [`node.kubernetes.io/exclude-from-external-load-balancers`](https://kubernetes.io/docs/reference/labels-annotations-taints/#node-kubernetes-io-exclude-from-external-load-balancers) to exclude the node from load balancing.
 
 See [Concurrent Updates](#concurrent-updates) for an important warning about concurrency and load balancer exclusion.
 

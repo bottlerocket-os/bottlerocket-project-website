@@ -10,7 +10,8 @@ You can disable Brupop from managing some or all nodes of your cluster as well a
 ## Disabling Brupop on nodes
 
 Brupop will only manage updates for the nodes you’ve labeled `bottlerocket.aws/updater-interface-version=2.0.0`.
-Consequently, if you remove the label, Brupop will no longer manage the node updates. See the [Kubectl `label` docs](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#label) for more information on removing a label.
+Consequently, if you remove the label, Brupop will no longer manage the node updates.
+See the [Kubectl `label` docs](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#label) for more information on removing a label.
 
 ## Uninstalling Brupop
 

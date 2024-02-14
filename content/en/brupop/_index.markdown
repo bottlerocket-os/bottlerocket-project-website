@@ -7,13 +7,15 @@ no_version_warning=true
 +++
 
 
-This section covers installing and using the Bottlerocket Update Operator only. If you’re seeking general information about Bottlerocket updates, {{< cross-project-current-link project="os" url="/en/os/x.x.x/update/" >}}check the Updating documentation for the OS{{< /cross-project-current-link >}}.
+This section covers installing and using the Bottlerocket Update Operator only.
+If you’re seeking general information about Bottlerocket updates, {{< cross-project-current-link project="os" url="/en/os/x.x.x/update/" >}}check the Updating documentation for the OS{{< /cross-project-current-link >}}.
 
 If you’re looking for information on building, contributing to, or learning about the inner workings of Brupop, the [GitHub repo](https://github.com/bottlerocket-os/bottlerocket-update-operator) is a better destination.
 
 ## Organization
 
-The Brupop documentation is organized by minor version, with each minor release getting it’s own namespaced, version-specific section. Inside each version-specific sections are subsections which address specific tasks or categories of information.
+The Brupop documentation is organized by minor version, with each minor release getting it’s own namespaced, version-specific section.
+Inside each version-specific sections are subsections which address specific tasks or categories of information.
 
 The current documented versions:
 
@@ -26,4 +28,5 @@ However, patches are only provided to the latest version, so you should keep you
 
 ## Something Missing?
 
-This [documentation is open-source](https://github.com/bottlerocket-os/bottlerocket-project-website/tree/main/content/en/brupop) and likely incomplete, but will evolve over time to encompass a more complete explanation of the software. Should you find gaps, you’re invited to file issues or contribute.
+This [documentation is open-source](https://github.com/bottlerocket-os/bottlerocket-project-website/tree/main/content/en/brupop) and likely incomplete, but will evolve over time to encompass a more complete explanation of the software.
+Should you find gaps, you’re invited to file issues or contribute.

@@ -63,7 +63,6 @@ Most of the time your nodes will remain in this state.
 
 {{< brupop/staged-and-performed >}}
 
-
 Bottlerocket uses multiple partitions to manage in-place updates.
 The OS runs from one partition and, when a new update is available, the update is downloaded and installed into the other.
 The Brupop controller periodically requests the agent to check for and download the most recent version of Bottlerocket.
@@ -84,7 +83,6 @@ Once the node reboots the update is technically complete, however the time whils
 Bottlerocket’s versioning and variant scheme is built to mitigate incompatibilities between OS versions, there is always a chance that an unforeseen incompatibility exists with some component of your architecture.
 Brupop’s state machine has a reserved state for monitoring these incompatibilities (**Monitoring Updates**), however as of this version, this state is a noop.
 You can suggest a direction for this state on the [Brupop GitHub Repo](https://github.com/bottlerocket-os/bottlerocket-update-operator/issues/new?assignees=&labels=&projects=&template=issue.md&title=Suggestion%20for%20monitoring%20state).
-
 
 Consequently, the Agent immediately transitions through **Monitoring Updates** back to **Idle** with the API server.
 
