@@ -8,7 +8,7 @@ weight = 1
 You can update Bottlerocket in a couple of ways:
 
 * **node replacement** where new instances with a new version of the OS replace nodes with older versions of the OS,
-* **in-place updates** where the node downloads a new version of the OS and reboots into a new version of the OS while maintaining the same instance/machine.
+* **in-place updates** where the node downloads and reboots into a new version of the OS while maintaining the same instance/machine.
 
 There is no single preferred nor advised method to update a node; both methods have pros and cons depending on your situation.
 
