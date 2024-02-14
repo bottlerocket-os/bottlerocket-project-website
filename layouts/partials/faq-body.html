@@ -6,7 +6,7 @@
 
     <div class="pl-5">
     {{- range (sort (index $questions $group_name) "question" ) -}}
-        <h3 id="{{.hash}}">{{ .question }} </h3>
+        <h3 id="{{.hash}}">{{ .question | markdownify }} </h3>
         {{ .answer }}
     {{- end -}}
     </div>

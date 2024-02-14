@@ -1,5 +1,4 @@
 @import '_home_svg.scss';
-
 .btn-lg, .btn-group-lg > .btn {
     border-radius: 6px;
 }
@@ -437,7 +436,7 @@ nav.foldable-nav .with-child, nav.foldable-nav .without-child {
         stroke: none;
     }
 
-    
+
     path.exit-flag {
         fill: $dark-blue;
     }
@@ -506,6 +505,139 @@ footer .text-links {
 
 nav.foldable-nav .with-child.depad {
     padding-left: 0;
+}
+
+.start-align-labels.brupop-diagram {
+    .outer-label {
+        &.active-volume-label,
+        &.outer-label {
+            text-anchor: start;
+        }
+    }
+}
+
+.brupop-diagram,
+.brupop-state-machine {
+    .line-arrow-connector {
+        stroke-miterlimit: 10;
+        stroke: $dark-blue;
+        .connector {
+            
+            fill: none;
+            pointer-events : stroke;
+            &.dotted {
+                stroke-dasharray: 1 2;
+            }
+        }
+        .arrow-head {
+            fill: $dark-blue;
+        }
+        
+    }
+
+    .label {
+        font-size: 12px;
+        font-family: $td-fonts-serif;
+        font-weight: 300;
+
+        &.active-volume-label {
+            fill: $white;
+            text-anchor: middle;
+        }
+        &.outer-label {
+            fill: $dark-blue;
+            text-anchor: middle;
+        }
+
+    }
+}
+.brupop-state-machine {
+    .state {
+        fill: $tan;
+        rx: 9;
+        ry: 9;
+        pointer-events: all;
+    }
+}
+
+.brupop-diagram {
+    .node,
+    .agent,
+    .api-server,
+    .controller,
+    .unused-container,
+    .unused-volume,
+    .active-volume,
+    .line-arrow-connector .arrow-head,
+    .ellipses,
+    .future-volume,
+    .label-backer,
+    .wait  {
+        pointer-events: all;
+    }
+    .node {
+        fill: $tan;
+        rx: 3;
+    }
+    .agent,
+    .api-server,
+    .controller,
+    .unused-container,
+    .unused-volume,
+    .active-volume,
+    .future-volume {
+        rx: 2;
+    }
+    .agent {
+        fill: $light-teal;
+    }
+
+    .label-backer,
+    .unused-container,
+    .unused-volume {
+        fill: $white;
+    }
+
+
+    .active-volume {
+        fill: $dark-blue;
+    }
+    .future-volume {
+        fill: url(#stripes);
+    }
+    
+    .wait {
+        stroke-width: 2px;
+        stroke: $light-blue;
+        fill: none;
+    }
+
+    .api-server {
+        fill: $dark-orange;
+    }
+    .controller {
+        fill: $light-blue;
+    }
+    .ellipses {
+        fill: $tan;
+        stroke: none;
+        rx: 5;
+        ry: 5; 
+    }
+    
+    #stripes {
+        width: 7;
+        height: 7; 
+        rect {
+            fill: $dark-blue;
+        }
+        line {
+            stroke: #ffffff;
+            opacity: 0.1;
+            stroke-width: 7px;
+        }
+    }
+
 }
 
 /* old docs notice */

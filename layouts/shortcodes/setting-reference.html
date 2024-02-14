@@ -2,9 +2,17 @@
 {{- $setting := or (.Get "setting") $.Inner -}}
 {{- $setting_parts := strings.Split $setting "." -}}
 {{- $ref := index $setting_parts 1 -}}
-{{- $current_path := print .Page.File.Dir -}}
-{{- $parts := split $current_path "/" -}}
-{{- $version := index $parts 1 -}}
+{{- $version := "" -}}
+{{- if (.Get "current_version") -}}
+    {{- $versions := index $.Site.Data.versions.current "os" -}}
+    {{/* create the version string (e.g. `1.14.x`) */}}
+    {{- $version = print $versions.major "." $versions.minor ".x" -}}
+{{- else -}}
+    {{- $current_path := print .Page.File.Dir -}}
+
+    {{- $parts := split $current_path "/" -}}
+    {{- $version = index $parts 1 -}}
+{{- end -}}
 {{- $lang := print $.Page.Language -}}
 {{- $settings_at_version := index (index .Site.Data.settings $version) $ref }}
 {{- $page := . -}}

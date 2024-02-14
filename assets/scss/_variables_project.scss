@@ -1,5 +1,13 @@
+
 $google_font_name: "IBM Plex Sans";
-$google_font_family: "IBM+Plex+Sans+Condensed:ital,wght@0,300;0,600;1,300;1,600&family=IBM+Plex+Sans:ital,wght@0,100;0,300;0,600;1,100;1,300;1,600";
+$google_font_family: "IBM+Plex+Sans:ital,wght@0,100;0,300;0,600;1,100;1,300;1,600";
+
+// this is a work around for the baked in css2 vs css call to google fonts. I don't like having two calls, but there isn't a clean way to work around this
+$google_font_family_secondary: "IBM+Plex+Sans+Condensed:ital,wght@0,300;0,600;1,300;1,600";
+$web-font-path_secondary: "https://fonts.googleapis.com/css?family=#{$google_font_family_secondary}&display=swap";
+@import url($web-font-path_secondary);
+
+
 
 $heading_font_stack: "'IBM Plex Sans Condensed', sans-serif";
 

@@ -1,0 +1,8 @@
+{{- $project := .Get "project" | default "os" -}}
+{{- $minor_override_value := .Get "minor_override" -}}
+{{- $patch_override_value := .Get "patch_override" -}}
+{{- $seperator := default "." (.Get "seperator_override")  }}
+{{- $version_data := $.Site.Data.versions.current -}}
+{{- $project_data := index $version_data $project -}}
+
+{{ $project_data.major }}{{ $seperator }}{{ default $project_data.minor $minor_override_value }}{{ $seperator }}{{ default $project_data.patch $patch_override_value }}
