@@ -25,7 +25,7 @@ This documentation is divided by project and largely mirrors the repository boun
 | GitHub Repo | Section | Description |
 |-------------|---------------|-------------|
 | [`bottlerocket-os/bottlerocket`](https://github.com/bottlerocket-os/bottlerocket) | [OS](./os/)  | Primary documentation for the operating system. |
-| [`bottlerocket-os/bottlerocket-update-operator`](https://github.com/bottlerocket-os/bottlerocket-update-operator) | [Brupop](./os/)  | Documentation for the Kubernetes operator that automates Bottlerocket updates  |
+| [`bottlerocket-os/bottlerocket-update-operator`](https://github.com/bottlerocket-os/bottlerocket-update-operator) | [Brupop](./brupop/)  | Documentation for the Kubernetes operator that automates Bottlerocket updates  |
 
 Inside each section, the documentation is further scoped to minor versions of each project with the most recent release being marked as (*Current*).
 
