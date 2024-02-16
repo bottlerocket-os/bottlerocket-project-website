@@ -82,7 +82,7 @@ As an example:
 host-containers.admin.enabled=false
 ```
 
-The above key/value format is equlivent to:
+The above key/value format is equivalent to:
 
 ```json
 { "host-containers" : { "admin" : { "enabled": false } } }
