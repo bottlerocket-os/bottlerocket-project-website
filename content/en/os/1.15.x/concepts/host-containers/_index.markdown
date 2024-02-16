@@ -20,7 +20,7 @@ Instead you manage the lifecycle of these containers by manipulating specific {{
 ## Built-in host containers
 
 Depending on the variant, Bottlerocket has two standard host containers: the {{< ver-ref project="os" page="/install/quickstart/aws/host-containers#interacting-with-a-bottlerocket-node-through-host-containers" >}}control container{{< /ver-ref >}} and the {{< ver-ref project="os" page="/install/quickstart/aws/host-containers#exploring-the-admin-container" >}}admin container{{< /ver-ref >}}.
-The control container provides a pathway to connect ([via SMM](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html)) to and interact with the host as well as conveniently access the Bottlerocket API.
+The control container provides a pathway to connect ([via SSM](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html)) to and interact with the host as well as conveniently access the Bottlerocket API.
 The control container also provides an entry point to the admin container.
 The admin container allows you to more deeply interact with the host as it mounts the root filesystem and has elevated privileges.
 

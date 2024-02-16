@@ -21,11 +21,15 @@ However, the most fundamental building blocks needed to understand Bottlerocket 
 ## Organization
 
 This documentation is divided by project and largely mirrors the repository boundaries of the Bottlerocket GitHub organization.
-The primary documentation for the operating system is in the OS section and correlates with `bottlerocket-os/bottlerocket` on GitHub.
+
+| GitHub Repo | Section | Description |
+|-------------|---------------|-------------|
+| [`bottlerocket-os/bottlerocket`](https://github.com/bottlerocket-os/bottlerocket) | [OS](./os/)  | Primary documentation for the operating system. |
+| [`bottlerocket-os/bottlerocket-update-operator`](https://github.com/bottlerocket-os/bottlerocket-update-operator) | [Brupop](./brupop/)  | Documentation for the Kubernetes operator that automates Bottlerocket updates  |
 
 Inside each section, the documentation is further scoped to minor versions of each project with the most recent release being marked as (*Current*).
 
-Version Information sections contain reference metadata about the documented release.
+Where available, **Version Information** sections contain reference metadata about the documented release.
 
 ## Navigation
 
