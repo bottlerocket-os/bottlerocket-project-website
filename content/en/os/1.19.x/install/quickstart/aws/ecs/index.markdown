@@ -18,7 +18,7 @@ There are some preliminary tasks to complete in order to use ECS.
 You need to both set up your AWS account for use with ECS and have an IAM role for ECS configured:
 
 - Complete the steps in [Setting up with Amazon ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/get-set-up-for-amazon-ecs.html).
-- Ensure that the AWS user you use for this quickstart has the permissions specified in the [Amazon ECS First Run Wizard Permissions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/security_iam_id-based-policy-examples.html#first-run-permissions) IAM policy example.
+- Ensure that the AWS user you use for this quickstart has the has the [AmazonECS_FullAccess](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/security-iam-awsmanpol.html#security-iam-awsmanpol-AmazonECS_FullAccess) policy attached (scope down as needed for your production requirements).
 - Ensure that you have an [IAM role created](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/instance_IAM_role.html#instance-iam-role-create) named `ecsInstanceRole` and configured according to the AWS ECS Developer Guide.
   - Be sure to follow _both_ the [AWS Console steps](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/instance_IAM_role.html#instance-iam-role-create) as well as the AWS CLI steps (section labeled "To create the ecsInstanceRole role (AWS CLI)" - the AWS CLI steps cover an important aspect: adding an Instance Profile to the role)
 
