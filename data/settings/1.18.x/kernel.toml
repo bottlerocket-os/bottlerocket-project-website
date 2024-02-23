@@ -27,6 +27,12 @@ warning = "This setting only affects *loading* of kernel modules at boot time. C
 description = """
 Allows (`true`) or disallows (`false`) the loading of kernel module `<name>`. 
 """
+see = [
+    [ "settings", "boot", "kernel-parameters" ]
+]
+note = """
+Use [`settings.boot.kernel-parameters`](../boot/#kernel-parameters) to set module parameters through the kernel command line.
+"""
 accepted_values = [
     "`true`",
     "`false`"
@@ -61,9 +67,14 @@ direct_toml = """
 [[docs.ref.modules_autoload]]
 name_override = "modules.<name>.autoload"
 description = "If `true`, the kernel `<name>` module loads automatically on boot."
+see = [
+    [ "settings", "boot", "kernel-parameters" ]
+]
 note = """
 You must use this setting in conjuction with [`settings.kernel.modules.<name>.allowed`](#modules_allowed) on the same module.
 This ensures that the OS doesn't auto-load a blocked module. 
+
+Use [`settings.boot.kernel-parameters`](../boot/#kernel-parameters) to set module parameters through the kernel command line.
 """
 accepted_values = [
     "`true`",
