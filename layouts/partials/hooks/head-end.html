@@ -1,5 +1,6 @@
 {{- /* get the directory of the file being rendered */ -}}
-{{- $file := print .Page.File.Dir  -}}
+{{- /* Note: For whatever reason .Page.File.Dir doesn't function with 0.123.8, the strings.Replace works around this issue */}}
+{{- $file := strings.Replace (strings.Replace (print .Page) "Page(/" "") ")" "" -}}
 {{- /* break it apart */ -}}
 {{- $parts := split $file "/" -}}
 {{- /* the first part is the section (aka product 'os', etc.) */ -}}
