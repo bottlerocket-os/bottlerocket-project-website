@@ -1,4 +1,4 @@
-{{- $current_version := index (split .Page.File "/") 1  -}}
+{{- $current_version := index (split .Page.File.Dir "/") 1  -}}
 {{- $all_versions := slice  -}}
 {{- $current_version_index := -1  -}}
 {{- $new_badge := .Get "new_badge" }}
