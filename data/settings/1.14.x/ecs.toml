@@ -56,8 +56,9 @@ description = """
 Time to wait for the task's containers to stop on their own before they are forcefully stopped.
 Valid time units include `s`, `m`, and `h` (e.g. `1h`, `1m1s`).
 """
+default = "`30s`"
 see = [
-    ["`ECS_DISABLE_PRIVILEGED` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+    ["`ECS_CONTAINER_STOP_TIMEOUT` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
 ]
 
 [[docs.ref.enable-spot-instance-draining]]

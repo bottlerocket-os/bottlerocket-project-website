@@ -51,13 +51,21 @@ ul_show = 1
   [module.hugoVersion]
     extended = true
     min = "0.73.0"
-  [[module.imports]]
-    path = "github.com/google/docsy"
-    disable = false
-  [[module.imports]]
-    path = "github.com/google/docsy/dependencies"
-    disable = false
 
+[[module.imports]]
+  path = "github.com/google/docsy"
+  disable = false
+[[module.imports]]
+  path = "github.com/google/docsy/dependencies"
+  disable = false
+[[module.mounts]]
+  source= "/third-party/google/docsy/layouts/_default"
+  target= "layouts/_default"
+  includeFiles= "baseof.html"
+[[module.mounts]]
+  source= "/third-party/google/docsy/layouts/partials"
+  target= "layouts/partials"
+  includeFiles= ["navbar.html", "footer.html"]
 
 [languages]
   [languages.all]

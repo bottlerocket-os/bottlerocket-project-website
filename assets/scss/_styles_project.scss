@@ -2,7 +2,9 @@
 .btn-lg, .btn-group-lg > .btn {
     border-radius: 6px;
 }
-
+.d-lg-block.d-none {
+    display: none !important;
+}
 
 ._td-navbar {
     background-color: $dark-teal;
@@ -25,7 +27,7 @@
     }
     .td-sidebar-nav a:hover { color: $dark-teal; }
 }
-.navbar-brand .font-weight-bold { font-weight: 600 !important; }
+.navbar-brand .font-weight-bold { font-weight: 500 !important; }
 .td-home, .td-main, .td-section, .td-page {
     .td-navbar { 
         background: linear-gradient($dark 0%, $dark-blue 10%, $dark-blue 100%);

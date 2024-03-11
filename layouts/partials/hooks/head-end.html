@@ -1,9 +1,9 @@
 {{- /* get the directory of the file being rendered */ -}}
-{{- $file := print .Page.File.Dir  -}}
+{{- $file := .Page.Path -}}
 {{- /* break it apart */ -}}
 {{- $parts := split $file "/" -}}
 {{- /* the first part is the section (aka product 'os', etc.) */ -}}
-{{- $sect := index $parts 0 -}}
+{{- $sect := index $parts 1 -}}
 {{- /* is it in the site data? If so we might need to show a notice and do a rel cannonical */ -}}
 {{- if in $.Site.Data.versioned.sections $sect }}
     {{- /* get the current version parts */ -}}
@@ -13,7 +13,7 @@
     {{- /* but it into the scratch for later page elemnents */ -}}
     {{- .Page.Scratch.Set (print $sect "-latest") $latest -}}
     {{- /* now get the page version from the URL */ -}}
-    {{- $pageVersion := index $parts 1 }}
+    {{- $pageVersion := index $parts 2 -}}
     {{- /* if the page version is not equal to the latest, we've got out of date stuff */ -}}
     {{- if (ne $latest $pageVersion) -}}
         {{- /* create the corresponding filename for the newer version (e.g. /en/foo/1.13.x/ -> /en/foo/1.14.x/) */ -}}
