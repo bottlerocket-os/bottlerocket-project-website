@@ -192,3 +192,13 @@ Valid time units include `s`, `m`, and `h` (e.g. `1h`, `1m1s`).
 tags = [
     "cleanup"
 ]
+
+[[docs.ref.enable-container-metadata]]
+description = """
+When `true`, the agent will create a file describing the container's metadata at
+the path stored in the environment variable `ECS_CONTAINER_METADATA_FILE`
+"""
+default = "`false`"
+see = [
+  ["`ECS_ENABLE_CONTAINER_METADATA` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
