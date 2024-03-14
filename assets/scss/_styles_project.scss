@@ -517,14 +517,60 @@ nav.foldable-nav .with-child.depad {
         }
     }
 }
+.ecs-updater-diagram {
+    text {
+        text-anchor: middle;
+        font-size: 12px;
+    }
+    .aws-service rect,
+    .fargate-task rect {
+        rx: 9; 
+    }
+    .fargate-task {
+        rect {
+            fill: $tan;
+        }
+        text {
+            fill: $dark-blue;
+        }
+    }
+    .aws-service {
+        rect {
+            fill: $dark-orange;           
+        }
+        text {
+            
+            fill: $white;
+        }
+    }
+    .shared-responsibility-boundary {
+        fill: none;
+        stroke: $dark;
+        stroke-width: 2px;
+        stroke-miterlimit: 10;
+        stroke-dasharray: 2 6;
+    }
 
+    .line-arrow-connector {
+        .mid-label,
+        .label {
+            text-anchor: middle;
+        }
+
+        .mid-label {
+            font-size: 11px;
+            font-weight: 100;
+        }
+    }
+}
+
+.ecs-updater-diagram,
 .brupop-diagram,
 .brupop-state-machine {
     .line-arrow-connector {
         stroke-miterlimit: 10;
         stroke: $dark-blue;
         .connector {
-            
             fill: none;
             pointer-events : stroke;
             &.dotted {
@@ -537,6 +583,7 @@ nav.foldable-nav .with-child.depad {
         
     }
 
+    .mid-label,
     .label {
         font-size: 12px;
         font-family: $td-fonts-serif;
@@ -562,7 +609,9 @@ nav.foldable-nav .with-child.depad {
     }
 }
 
-.brupop-diagram {
+.brupop-diagram,
+.ecs-updater-diagram {
+    .aws-service .rect,
     .node,
     .agent,
     .api-server,
@@ -570,6 +619,7 @@ nav.foldable-nav .with-child.depad {
     .unused-container,
     .unused-volume,
     .active-volume,
+    .control-container, 
     .line-arrow-connector .arrow-head,
     .ellipses,
     .future-volume,
@@ -577,6 +627,9 @@ nav.foldable-nav .with-child.depad {
     .wait  {
         pointer-events: all;
     }
+}
+.ecs-updater-diagram,
+.brupop-diagram {
     .node {
         fill: $tan;
         rx: 3;
@@ -587,7 +640,8 @@ nav.foldable-nav .with-child.depad {
     .unused-container,
     .unused-volume,
     .active-volume,
-    .future-volume {
+    .future-volume,
+    .control-container {
         rx: 2;
     }
     .agent {
@@ -596,7 +650,8 @@ nav.foldable-nav .with-child.depad {
 
     .label-backer,
     .unused-container,
-    .unused-volume {
+    .unused-volume,
+    .control-container {
         fill: $white;
     }
 
@@ -614,6 +669,9 @@ nav.foldable-nav .with-child.depad {
         fill: none;
     }
 
+    .control-container {
+        fill: $light-blue;
+    }
     .api-server {
         fill: $dark-orange;
     }

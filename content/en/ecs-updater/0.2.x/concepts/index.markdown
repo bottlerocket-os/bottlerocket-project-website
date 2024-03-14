@@ -29,18 +29,19 @@ The upgradable, eligible nodes drain, reboot into the latest update, and finally
 The ECS Updater task runs from AWS Fargate, triggered periodically by Amazon EventBridge.
 The updater task first determines the Bottlerocket nodes in a given cluster by querying the ECS API.
 
-[Image: Image.jpg]
+{{< ecs-updater/eventbridge-api-task >}}
 
 Next, the ECS Updater runs an AWS Systems Manager (SSM) Document on each Bottlerocket node against the control container.
 This document invokes the API Client to check for updates.
 With the list of nodes that have available updates, the ECS Updater task queries the ECS API for information on the type of workloads running on the node.
 If a node is running one or more non-service (standalone or scheduled) tasks, the node is deemed not updateable.
 
-[Image: Image.jpg]
+{{< ecs-updater/updateable >}}
+
 
 ECS Updater uses the ECS API to initiate node draining and checks the number of running tasks on the node until none remain.
 
-[Image: Image.jpg]
+{{< ecs-updater/node-3-ready >}}
 
 Once the node has no remaining tasks, the ECS Updater runs an SSM Document against the control container to initiate the update through the Bottlerocket API.
 Effectively, this is the same as running  `apiclient update apply --reboot`  from an interactive SSM session with the control container.
