@@ -9,10 +9,9 @@ description="How to get started with Bottlerocket on Amazon ECS"
 {{< breadcrumb-remove link_url="/en/os/%s/install/quickstart/">}}
 {{< breadcrumb-remove link_url="/en/os/%s/install/quickstart/aws/">}}
 
-When creating or adding capacity to an ECS Cluster using EC2, you can use Bottlerocket as the operating system for these instances.
+When registering EC2 instances as capacity for an ECS cluster, you can use Bottlerocket as the operating system for these instances.
 If you want to understand the AWS console workflow, start with the [video _Amazon ECS: Using Bottlerocket_.](#aws-console-quickstart)
 Otherwise, read the [AWS CLI Quickstart](#aws-cli-quickstart) or the pattern [Amazon ECS cluster on Bottlerocket](https://containersonaws.com/pattern/ecs-ec2-bottlerocket-cluster) which outlines how to start Bottlerocket with [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/).
-
 
 ## AWS CLI Quickstart
 
