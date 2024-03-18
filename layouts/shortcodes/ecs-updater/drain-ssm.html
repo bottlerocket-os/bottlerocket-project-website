@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+    width="80%" viewBox="-0.5 -0.5 911 324">
+    <defs />
+    <g class="ecs-updater-diagram">
+        {{- $node_volumes := dict "upper" "Old Version" "lower" "Running Version" -}}
+        <g transform="translate(610, 92)">
+          {{ partial "ecs-updater/node.html" $node_volumes }}
+        </g>
+        <g class="line-arrow-connector">
+            <path d="M 420 141 L 420 41.47 L 480 41.5" class="connector" />
+            <path d="M 730 41.5 L 795.06 41.47 L 795.06 95.63" class="connector" />
+            <path d="M 795.06 100.88 L 791.56 93.88 L 795.06 95.63 L 798.56 93.88 Z" class="arrow-head" />
+        </g>
+        <text x="605" y="45" class="mid-label">Apply update and reboot (SSM Document)</text>
+        <g transform="translate(360, 141)" class="fargate-task">
+            {{ partial "ecs-updater/fargate-task.html" . }}
+        </g>
+
+        <path d="M 160 311 L 160 1" class="shared-responsibility-boundary"  />
+
+        
+        <g class="line-arrow-connector">
+            <path d="M 310 166 L 353.63 166" class="connector" />
+            <path d="M 358.88 166 L 351.88 169.5 L 353.63 166 L 351.88 162.5 Z" class="arrow-head" />
+        </g>
+        <g transform="translate(0, 106)"class="aws-service">
+            {{ partial "ecs-updater/aws-service.html" (dict "service" "ECS API")}}
+        </g>
+
+        <g class="line-arrow-connector">
+            <path d="M 875 272 L 875.06 282.06 L 816.37 282.01" class="connector" />
+            <path d="M 811.12 282 L 818.12 278.51 L 816.37 282.01 L 818.11 285.51 Z" class="arrow-head" />
+        </g>
+        
+        <text x="875" y="266" class="mid-label">Reboot</text>
+
+        <g class="line-arrow-connector">
+            <path d="M 810 232 L 875.06 232.06 L 875 252" class="connector" />
+            <path d="M 120 166 L 190 166" class="arrow-head" />
+        </g>
+
+        <text x="250" y="170" class="mid-label">Node-3 is drained </text>
+    </g>
+</svg>

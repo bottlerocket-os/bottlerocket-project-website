@@ -38,7 +38,6 @@ If a node is running one or more non-service (standalone or scheduled) tasks, th
 
 {{< ecs-updater/updateable >}}
 
-
 ECS Updater uses the ECS API to initiate node draining and checks the number of running tasks on the node until none remain.
 
 {{< ecs-updater/node-3-ready >}}
@@ -47,9 +46,9 @@ Once the node has no remaining tasks, the ECS Updater runs an SSM Document again
 Effectively, this is the same as running  `apiclient update apply --reboot`  from an interactive SSM session with the control container.
 After the reboot, the node will be running the newer version of Bottlerocket.
 
-[Image: Image.jpg]
+{{< ecs-updater/drain-ssm >}}
 
 Once confirmed to be running with the new version, the ECS Updater uses the ECS API to update the node status to active.
 At this point ECS will resume assigning tasks to the updated node.
 
-[Image: Image.jpg]
+{{< ecs-updater/node-ready-for-tasks >}}

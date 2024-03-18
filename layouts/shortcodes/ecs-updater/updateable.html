@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-    width="100%" 
-    viewBox="-0.5 -0.5 856 490">
+    width="80%" 
+    viewBox="-0.5 -0.5 911 500">
     <defs />
     <g class="ecs-updater-diagram">
         <g class="line-arrow-connector">
@@ -12,21 +12,21 @@
             <path d="M 250 15 L 426.13 15" class="connector"/>
             <path d="M 431.38 15 L 424.38 18.5 L 426.13 15 L 424.38 11.5 Z" class="arrow-head" />
         </g>
-
+        {{- $node_volumes := dict "upper" "Running Version" "lower" "New Version" -}}
         <g transform="translate(0, 360)" class="fargate-task">
             {{ partial "ecs-updater/fargate-task.html" . }}  
         </g>
 
         <g transform="translate(150,110)">
-            {{ partial "ecs-updater/node.html" . }}   
+            {{ partial "ecs-updater/node.html"  $node_volumes }}   
         </g>
              
         <g transform="translate(390,110)">
-            {{ partial "ecs-updater/node.html" . }}   
+            {{ partial "ecs-updater/node.html"  $node_volumes }}   
         </g>
 
         <g transform="translate(630,110)">
-            {{ partial "ecs-updater/node.html" . }}   
+            {{ partial "ecs-updater/node.html"  $node_volumes }}   
         </g>
         
         <g class="line-arrow-connector">
