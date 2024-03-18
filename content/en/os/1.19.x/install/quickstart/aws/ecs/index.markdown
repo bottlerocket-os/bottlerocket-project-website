@@ -9,10 +9,16 @@ description="How to get started with Bottlerocket on Amazon ECS"
 {{< breadcrumb-remove link_url="/en/os/%s/install/quickstart/">}}
 {{< breadcrumb-remove link_url="/en/os/%s/install/quickstart/aws/">}}
 
-In this quickstart, we use a number of techniques/tools like `jq` and environment variables to make the quickstart experience as simple and straightforward as possible.
+When registering EC2 instances as capacity for an ECS cluster, you can use Bottlerocket as the operating system for these instances.
+If you want to understand the AWS console workflow, start with the [video _Amazon ECS: Using Bottlerocket_.](#aws-console-quickstart)
+Otherwise, read the [AWS CLI Quickstart](#aws-cli-quickstart) or the pattern [Amazon ECS cluster on Bottlerocket](https://containersonaws.com/pattern/ecs-ec2-bottlerocket-cluster) which outlines how to start Bottlerocket with [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/).
+
+## AWS CLI Quickstart
+
+This quickstart uses a number of techniques/tools like `jq` and environment variables to make the quickstart experience as simple and straightforward as possible.
 These tools are not absolutely necessary to use Bottlerocket on ECS.
 
-## Prerequisites
+### Prerequisites
 
 There are some preliminary tasks to complete in order to use ECS.
 You need to both set up your AWS account for use with ECS and have an IAM role for ECS configured:
@@ -27,7 +33,7 @@ In this quickstart, the following software is used to interact with AWS and pars
 - [`aws-cli`](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#getting-started-install-instructions): Used to interact with AWS services.
 - [`jq`](https://stedolan.github.io/jq/download/): Used for parsing response data from `aws-cli`.
 
-## Create a Cluster
+### Create a Cluster
 
 First, set some environment variables to use throughout this quickstart:
 
@@ -69,11 +75,11 @@ You should see output confirming your new cluster similar to the following:
 }
 ```
 
-## Launching Instances Into Your Cluster
+### Launching Instances Into Your Cluster
 
 After your ECS cluster is created, you can add instances to it.
 
-### Enabling SSM
+#### Enabling SSM
 
 Enable SSM on the `ecsInstanceRole` IAM role by attaching the `AmazonSSMManagedInstanceCore` managed policy to the role:
 
@@ -83,7 +89,7 @@ aws iam attach-role-policy \
    --policy-arn arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
 ```
 
-### Connecting To Your Cluster
+#### Connecting To Your Cluster
 
 In order to communicate with ECS, configure each node with the name of the cluster.
 The following command will create a file named `quickstart-ecs-user-data.toml` with the appropriate contents:
@@ -95,7 +101,7 @@ cluster = "$ECS_CLUSTER_NAME"
 EOF
 ```
 
-### Launch
+#### Launch
 
 Now you can add Bottlerocket instances to your ECS cluster!
 There are some values that you need to set in your environment first such as the Subnet ID, Bottlerocket AMI ID, and ECS Instance Profile Name.
@@ -132,7 +138,7 @@ aws ec2 run-instances \
 
 Once the instance launches, you should be able to run tasks on your Bottlerocket instance using either the ECS API or web console.
 
-## Confirming Your Instances Are Running
+### Confirming Your Instances Are Running
 
 To confirm that nodes are running in your cluster, you can run the following command to list your ECS cluster nodes:
 
@@ -154,7 +160,7 @@ You should see output that contains a column similar to the following:
     +----------------------+
 ```
 
-## Interacting With Your Cluster
+### Interacting With Your Cluster
 
 To confirm in depth that an instance is running Bottlerocket, save the instance ID and follow the steps in the [Host Containers Quickstart](../host-containers).
 
@@ -162,3 +168,8 @@ Congratulations!
 You now have a Bottlerocket cluster running on ECS.
 
 {{< on-github >}}
+
+## AWS Console Quickstart
+
+If you want to start an ECS cluster using EC2 nodes running Bottlerocket, the follow video provides a high level walk through.
+{{< youtube c4hhZZwSrP0 >}}
