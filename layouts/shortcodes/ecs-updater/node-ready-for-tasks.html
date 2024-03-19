@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+    width="80%"
+    viewBox="-0.5 -0.5 911 323">
+    <defs />
+    <g class="ecs-updater-diagram">
+        {{- $node_volumes := dict "upper" "Old Version" "lower" "Running Version" -}}
+        <g transform="translate(610, 92)">
+          {{ partial "ecs-updater/node.html" $node_volumes }}
+        </g>
+        <g class="line-arrow-connector">
+            <path d="M 360 166 L 330 166" class="connector" />
+            <path d="M 486.37 166 L 540 166 L 540 206" class="connector" />
+            <path d="M 481.12 166 L 488.12 162.5 L 486.37 166 L 488.12 169.5 Z" class="arrow-head" />
+        </g>
+        <g transform="translate(360, 141)" class="fargate-task">
+            {{ partial "ecs-updater/fargate-task.html" . }}
+        </g>
+        
+        <path d="M 160 311 L 160 1" class="shared-responsibility-boundary"  />
+
+        <g transform="translate(0, 106)"class="aws-service">
+            {{ partial "ecs-updater/aws-service.html" (dict "service" "ECS API")}}
+        </g>
+
+        <g class="line-arrow-connector">
+            <path d="M 170 166 L 126.37 166" class="connector" />
+            <path d="M 121.12 166 L 128.12 162.5 L 126.37 166 L 128.12 169.5 Z" class="arrow-head" />
+        </g>
+        <text x="250" y="170" fill="rgb(0, 0, 0)" class="mid-label">Node-3 is ready for tasks</text>
+        
+        <g class="line-arrow-connector">
+            <path d="M 540 226 L 540 282 L 620 282" class="connector" />
+        </g>
+
+        <text  x="540" y="220" fill="rgb(0, 0, 0)" class="mid-label">Ready</text>
+    </g>
+</svg>

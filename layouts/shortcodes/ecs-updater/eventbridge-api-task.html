@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+    width="80%" 
+    viewBox="-0.5 -0.5 911 364">
+    <defs />
+    <g class="ecs-updater-diagram">
+        <path d="M 160 351 L 160 1" class="shared-responsibility-boundary" />
+        <g class="line-arrow-connector">
+            <path d="M 60 301 L 60 321.03 L 170 321" class="connector" />
+            <path d="M 400 321 L 440 321.03 L 440 307.37" class="connector" />
+            <path d="M 440 302.12 L 443.5 309.12 L 440 307.37 L 436.5 309.12 Z" class="arrow-head"/>
+
+            <text x="285" y="325" class="mid-label">Bottlerocket Nodes: Node-1, Node-2, Node-3</text>
+        </g>
+        <g transform="translate(0, 181)"class="aws-service">
+            {{ partial "ecs-updater/aws-service.html" (dict "service" "ECS API")}}
+        </g>
+        <g class="line-arrow-connector">
+            <path d="M 440 251 L 440 211.03 L 300 211" class="connector" />
+            <path d="M 170 211 L 126.37 211" class="connector" />
+            <path d="M 121.12 211 L 128.12 207.5 L 126.37 211 L 128.12 214.5 Z" class="arrow-head" />
+            <text x="235" y="215" class="mid-label">List of Bottlerocket Nodes</text>
+        </g>
+        <g transform="translate(380, 251)" class="fargate-task">
+            {{ partial "ecs-updater/fargate-task.html" . }}
+        </g>
+        <g transform="translate(0, 21)"class="aws-service">
+            {{ partial "ecs-updater/aws-service.html" (dict "service" "EventBridge")}}
+        </g>
+
+        <g class="line-arrow-connector">
+            <path d="M 120 81 L 170 81" class="connector" />
+            <path d="M 413 81 L 520 81.03 L 520 276 L 506.37 276" class="connector"/>
+            <path d="M 501.12 276 L 508.12 272.5 L 506.37 276 L 508.12 279.5 Z" class="arrow-head" />
+            <text x="290" y="85" class="mid-label">Every 12 hours run the ECS Updater Fargate Task</text>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+    width="80%"viewBox="-0.5 -0.5 911 233">
+    <defs />
+    <g class="ecs-updater-diagram">
+        <g transform="translate(0, 21)"class="aws-service">
+            {{ partial "ecs-updater/aws-service.html" (dict "service" "ECS API")}}
+        </g>
+        
+        <g class="line-arrow-connector">
+            <path d="M 500 81 L 665 81 L 665 114.63" class="connector"/>
+            <path d="M 665 119.88 L 661.5 112.88 L 665 114.63 L 668.5 112.88 Z" class="arrow-head" />
+        </g>
+        <g transform="translate(380, 56)" class="fargate-task">
+            {{ partial "ecs-updater/fargate-task.html" . }}
+        </g>
+        <g class="line-arrow-connector">
+            <path d="M 210 196 L 30 196 L 30 147.37" class="connector" />
+            <path d="M 30 142.12 L 33.5 149.12 L 30 147.37 L 26.5 149.12 Z" class="arrow-head" />
+        </g>
+
+        <text x="665" y="140" class="label">Node-3 is ready to update</text>
+
+        <g class="line-arrow-connector">
+            <path d="M 350 196 L 665 196 L 665 151" class="connector" />
+        </g>
+        <path d="M 160 221 L 160 1" class="shared-responsibility-boundary"  />
+    
+
+        <text x="280" y="200" class="mid-label">Drain Node 3 of tasks</text>
+
+    </g>
+</svg>
