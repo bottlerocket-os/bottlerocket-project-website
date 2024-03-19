@@ -2,6 +2,7 @@
 title = "Operate & Observe"
 type = "docs"
 description = "Understanding the day-to-day use of ECS Updater" 
+weight = 20
 +++
 
 By default, the ECS Updater runs every 12 hours (using the default template, schedule defined at at `.Resources.BottlerocketUpdaterSchedule.Properties.ScheduleExpression`).

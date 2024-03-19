@@ -2,6 +2,7 @@
 title = "Troubleshoot"
 type = "docs"
 description = "Debugging and solving ECS Updater problems" 
+weight = 30
 +++
 
 Troubleshooting’s first step is evaluating the log messages emitted by ECS Updater.

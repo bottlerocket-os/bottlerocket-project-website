@@ -1,7 +1,8 @@
 +++
 title = "Setup"
 type = "docs"
-description = "Steps to install ECS Updater on your cluster" 
+description = "Steps to install ECS Updater on your cluster"
+weight = 10
 +++
 
 This guide assumes you have [AWS CLI v2](https://aws.amazon.com/cli/) installed on a Unix-like system and that you’re authenticated into an account with the requisite permissions.

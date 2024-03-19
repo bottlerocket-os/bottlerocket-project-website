@@ -2,6 +2,7 @@
 title = "Uninstall"
 type = "docs"
 description = "Removing ECS Updater from your cluster" 
+weight = 40
 +++
 
 To uninstall ECS Updater, delete the AWS CloudFormation stack that you previously deployed.
