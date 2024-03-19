@@ -1,2 +1,3 @@
 os = "Bottlerocket OS"
 brupop = "Bottlerocket Update Operator"
+ecs-updater = "Bottlerocket ECS Updater"

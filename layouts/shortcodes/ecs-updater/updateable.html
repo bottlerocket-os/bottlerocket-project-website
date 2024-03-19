@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+    width="80%" 
+    viewBox="-0.5 -0.5 911 500">
+    <defs />
+    <g class="ecs-updater-diagram">
+        <g class="line-arrow-connector">
+            <path d="M 60 410 L 60 453.63" class="connector" />
+            <path d="M 60 458.88 L 56.5 451.88 L 60 453.63 L 63.5 451.88 Z" class="arrow-head" />
+        </g>
+        <g class="line-arrow-connector">
+            <path d="M 60 360 L 60 15 L 150 15" class="connector" />
+            <path d="M 250 15 L 426.13 15" class="connector"/>
+            <path d="M 431.38 15 L 424.38 18.5 L 426.13 15 L 424.38 11.5 Z" class="arrow-head" />
+        </g>
+        {{- $node_volumes := dict "upper" "Running Version" "lower" "New Version" -}}
+        <g transform="translate(0, 360)" class="fargate-task">
+            {{ partial "ecs-updater/fargate-task.html" . }}  
+        </g>
+
+        <g transform="translate(150,110)">
+            {{ partial "ecs-updater/node.html"  $node_volumes }}   
+        </g>
+             
+        <g transform="translate(390,110)">
+            {{ partial "ecs-updater/node.html"  $node_volumes }}   
+        </g>
+
+        <g transform="translate(630,110)">
+            {{ partial "ecs-updater/node.html"  $node_volumes }}   
+        </g>
+        
+        <g class="line-arrow-connector">
+            <path d="M 463.75 30 L 463.83 80.03 L 335.03 80.03 L 335 113.63" class="connector" />
+            <path d="M 335 118.88 L 331.51 111.88 L 335 113.63 L 338.51 111.88 Z" class="arrow-head" />
+        </g>
+        
+        <g class="line-arrow-connector">
+            <path d="M 495 30 L 495.03 90.03 L 575.03 90.03 L 575.01 113.63" class="connector" />
+            <path d="M 575 118.88 L 571.51 111.88 L 575.01 113.63 L 578.51 111.89 Z" class="arrow-head" />
+        </g>
+        
+        <g class="line-arrow-connector">
+            <path d="M 526.25 30 L 526.29 80.03 L 815.03 80.03 L 815 113.63" class="connector" />
+            <path d="M 815 118.88 L 811.51 111.88 L 815 113.63 L 818.51 111.88 Z" class="arrow-head" />
+        </g>
+        
+        <text x="495" y="19" class="label">Update Available?</text>
+        <g transform="translate(60,475)">
+            <text x="0" y="0" class="label">Node 1 and Node 3</text>
+            <text x="0" y="12" class="label">are updatable</text>
+        </g>
+        
+
+        <text x="200" y="19" fill="rgb(0, 0, 0)" class="mid-label">(SSM Document)</text>
+
+        <text x="324" y="376" class="mid-label">Updateable</text>
+        <g class="line-arrow-connector">
+            <path d="M 360 372 L 367.03 372.03 L 367.03 145 L 356.37 145" class="connector" />
+            <path d="M 351.12 145 L 358.12 141.5 L 356.37 145 L 358.12 148.5 Z" class="arrow-head" />
+            <path d="M 287 372 L 126.37 372.48" class="connector" />
+            <path d="M 121.12 372.5 L 128.11 368.98 L 126.37 372.48 L 128.13 375.98 Z"
+            class="arrow-head" />
+        </g>
+        
+        <text x="550" y="389" class="mid-label">Not Updateable</text>
+        <g class="line-arrow-connector">
+            <path d="M 600 385 L 607.03 385 L 607.03 145 L 596.37 145" class="connector" />
+            <path d="M 591.12 145 L 598.12 141.5 L 596.37 145 L 598.12 148.5 Z" class="arrow-head" />
+            <path d="M 500 385 L 126.37 385" class="connector" />
+            <path d="M 121.12 385 L 128.12 381.5 L 126.37 385 L 128.12 388.5 Z" class="arrow-head" />
+        </g>
+
+
+        <text x="805" y="402" fill="rgb(0, 0, 0)" class="mid-label">Updateable</text>
+        <g class="line-arrow-connector">
+            <path d="M 770 398 L 430 398.03 L 126.37 397.51" class="connector" />
+            <path d="M 121.12 397.5 L 128.12 394.01 L 126.37 397.51 L 128.11 401.01 Z"
+            class="arrow-head" />
+            <path d="M 840 398 L 847.03 398.03 L 847.03 145 L 836.37 145" class="connector" />
+            <path d="M 831.12 145 L 838.12 141.5 L 836.37 145 L 838.12 148.5 Z" class="arrow-head" />
+        </g>
+    </g>
+</svg>
