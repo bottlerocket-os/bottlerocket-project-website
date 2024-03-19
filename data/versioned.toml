@@ -1,1 +1,1 @@
-sections = [ "os" ]
+sections = [ "os", "brupop", "ecs-updater" ]

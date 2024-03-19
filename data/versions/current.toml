@@ -14,3 +14,8 @@
     minor = 3
     patch = 0
     cert_manager = "1.14.1"
+
+[ecs-updater]
+    major = 0
+    minor = 2
+    patch = 3
