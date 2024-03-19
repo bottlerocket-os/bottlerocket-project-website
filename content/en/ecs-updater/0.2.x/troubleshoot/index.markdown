@@ -18,7 +18,7 @@ If you’re using an auto-scaling group, update your AMI ID in the the launch co
 
 ### Spot instances never update to a new version of Bottlerocket
 
-While it’s possible to run ECS Updater in conjunction with Amazon EC2 Spot, in practice this doesn’t work well.
+While it’s possible to run ECS Updater in conjunction with [Amazon EC2 Spot](https://aws.amazon.com/ec2/spot/), in practice **this doesn’t work well**.
 Due to the short average lifespan of Spot instances paired with the run frequency and draining requirements in ECS Updater, Spot instances are unlikely to be kept up-to-date.
 If you intend to use Spot instances, set the instance to start with the latest AMI for your variant.
 

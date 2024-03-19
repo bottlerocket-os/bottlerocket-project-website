@@ -7,13 +7,14 @@ weight = 10
 
 This guide assumes you have [AWS CLI v2](https://aws.amazon.com/cli/) installed on a Unix-like system and that you’re authenticated into an account with the requisite permissions.
 
->Note:
+{{% alert title="Note" color="secondary" %}}
 Environment variable names in this guide do not have specific meaning; you can replace them with your own or directly interpolate your values as needed.
+{{% /alert %}}
 
 ## Define your environment
 
 First, define your region in an environment variable.
-Customize the value of this variable for whatever region in which your particular Amazon ECS cluster resides.
+Customize the value of this variable for whatever region in which your particular [Amazon ECS](https://aws.amazon.com/ecs/) cluster resides.
 
 ```shell
 export AWS_REGION=us-west-2
@@ -35,12 +36,12 @@ aws ecs describe-clusters --no-cli-pager \
     --cluster ${ECS_UPDATER_CLUSTER}
 ```
 
-This should return JSON describing the information about your cluster.
+This should return JSON [describing the information about your cluster](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ecs/describe-clusters.html).
 If the returned JSON has an empty `clusters` element and populated `failures` element, double check your cluster name.
 
 ## VPCs and Subnets
 
-If you’re **using the default VPC**, this one-liner stores it in the environment variable `ECS_UPDATER_VPC` :
+If you’re **using the default VPC**, this command stores it in the environment variable `ECS_UPDATER_VPC` :
 
 ```shell
 export ECS_UPDATER_VPC=$(aws ec2 describe-vpcs \
@@ -57,7 +58,7 @@ Alternately, **if you want a specific VPC by name**, store that name in the envi
 export ECS_UPDATER_VPC_NAME=myvpc
 ```
 
-Then run the following one-liner:
+Then run the following command:
 
 ```shell
 export ECS_UPDATER_VPC=$(aws ec2 describe-vpcs \
@@ -72,7 +73,7 @@ Double check that the output matches what you’d expect by running `echo $ECS_U
 It should return something like `vpc-0a0a0a0a0a0a0a0a0` .
 
 Now, with the `ECS_UPDATER_VPC`  environment variable, you’ll need to select the subnets.
-To get a list of your subnets with the requisite information, run the following:
+To get a [list of your subnets](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ec2/describe-subnets.html) with the requisite information, run the following:
 
 ```shell
  aws ec2 describe-subnets \
@@ -87,11 +88,13 @@ This returns a formatted table for each subnet in the VPC along with their ID, a
 From this table you’ll need to select at least one in each availability zone listed and put the IDs into a comma separated environment variable `ECS_UPDATER_SUBNETS` .
 For example, you might end up with something like `export ECS_UPDATER_SUBNETS=subnet-0c0c0c0c0c0c0c0c0,subnet-0b0b0b0b0b0b0b0cb`
 
->ECS Updater requires access to the internet to gather dependencies. [Public subnets need an internet gateway and private subnets require NAT configuration.](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)
+{{% alert title="Requirement" color="warning" %}}
+ECS Updater requires access to the internet to gather dependencies. [Public subnets need an internet gateway and private subnets require NAT configuration.](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)
+{{% /alert %}}
 
 ## Add a log group
 
-ECS Updater requires an Amazon CloudWatch Logs group to record output.
+ECS Updater requires an [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) group to record output.
 You can use either an existing log group or create a new log group.
 
 ### Create a log group
@@ -102,7 +105,7 @@ To create a new log group, first define the name of the log group:
 export ECS_UPDATER_LOG_GROUP="my-log-group"
 ```
 
-Then create the group:
+Then [create the group](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/logs/create-log-group.html):
 
 ```shell
 aws logs create-log-group --log-group-name ${ECS_UPDATER_LOG_GROUP}
@@ -112,7 +115,7 @@ A successful log group creation may not return any values, so make sure and conf
 
 ### Use an existing log group
 
-Run the following to get a list of your available log groups:
+Run the following to get a [list of your available log groups](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/logs/describe-log-groups.html):
 
 ```shell
 aws logs describe-log-groups \
@@ -122,13 +125,13 @@ aws logs describe-log-groups \
 ```
 
 This should return a single-column, formatted table of your log groups.
-Select the log group you want and then set the  ECS_UPDATER_LOG_GROUP to the name of the group you wish to use.
+Select the log group you want and then set the  `ECS_UPDATER_LOG_GROUP` to the name of the group you wish to use.
 
 ```shell
 export ECS_UPDATER_LOG_GROUP="my-log-existing"
 ```
 
-To make sure you transcribed the log group name correctly, make sure you confirm the details about your group.
+To make sure you transcribed the log group name correctly, confirm the details about your group.
 
 ### Confirm the log group
 
@@ -151,7 +154,7 @@ First set an environment variable to define the stack name:
 export ECS_UPDATER_STACK="bottlerocket-ecs-updater"
 ```
 
-Then deploy it using the environment variables you previously set above:
+Then [deploy the stack](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudformation/deploy/index.html) using the environment variables you previously set above:
 
 ```shell
 aws cloudformation deploy \

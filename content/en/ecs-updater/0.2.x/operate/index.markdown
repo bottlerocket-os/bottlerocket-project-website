@@ -5,13 +5,13 @@ description = "Understanding the day-to-day use of ECS Updater"
 weight = 20
 +++
 
-By default, the ECS Updater runs every 12 hours (using the default template, schedule defined at at `.Resources.BottlerocketUpdaterSchedule.Properties.ScheduleExpression`).
+By default, the ECS Updater runs every 12 hours (using the [default template](https://github.com/bottlerocket-os/bottlerocket-ecs-updater/blob/develop/stacks/bottlerocket-ecs-updater.yaml), schedule defined at at `.Resources.BottlerocketUpdaterSchedule.Properties.ScheduleExpression`).
 Each time it runs, the ECS Updater creates a new log stream in Amazon CloudWatch Logs in the log group you specified when deploying.
-You can view the logs in the CloudWatch Logs Console, with your own tools, or in the console.
+You can view the logs in the [CloudWatch Logs Console](https://console.aws.amazon.com/cloudwatch/), with your own tools, or in the console.
 
 ## ECS Updater logs in the console
 
-First, you’ll need to retrieve the log stream; likely you’re interested in the most recent update check.
+First, you’ll need to [retrieve the log stream](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/logs/describe-log-streams.html); likely you’re interested in the most recent update check.
 Using the environment variables established in the Setup documentation, run the following command to get the most recent stream and store it in an environment variable:
 
 ```shell
@@ -24,7 +24,7 @@ export LAST_ECS_UPDATER_LOG_STREAM=$(aws logs describe-log-streams \
 
 Then confirm that the results look correct by running `echo $LAST_ECS_UPDATER_LOG_STREAM` , this should return something like `/ecs/bottlerocket-updater/some-ecs-cluster/BottlerocketEcsUpdaterService/0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a`
 
-Once you have the `LAST_ECS_UPDATER_LOG_STREAM` environment variable, you can get the events:
+Once you have the `LAST_ECS_UPDATER_LOG_STREAM` environment variable, you can [get the events](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/logs/get-log-events.html):
 
 ```shell
 aws logs get-log-events --log-group-name ${ECS_UPDATER_LOG_GROUP} \
