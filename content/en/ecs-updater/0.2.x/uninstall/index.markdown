@@ -19,7 +19,7 @@ With no errors, this will give no return status.
 To confirm the removal of ECS Updater, [describe the stack](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudformation/describe-stacks.html):
 
 ```shell
-aws cloudformation describe-stacks --stack-name ${ECS_UPDATER_STACK}
+aws cloudformation delete-stack --stack-name ${ECS_UPDATER_STACK}
 ```
 
 If deleted, the CLI returns `An error occurred (ValidationError) when calling the DescribeStacks operation Stack with id <...> does not exist` , otherwise it will show the stack, indicating a still active ECS Updater.

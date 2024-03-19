@@ -154,12 +154,18 @@ First set an environment variable to define the stack name:
 export ECS_UPDATER_STACK="bottlerocket-ecs-updater"
 ```
 
+Next, get the [AWS CloudFormation template from the ECS Updater GitHub repo](https://github.com/bottlerocket-os/bottlerocket-ecs-updater/blob/develop/stacks/bottlerocket-ecs-updater.yaml) and save it to your working directory or use  curl to retrieve the file directly:
+
+```shell
+curl https://raw.githubusercontent.com/bottlerocket-os/bottlerocket-ecs-updater/v0.2.3/stacks/bottlerocket-ecs-updater.yaml > bottlerocket-ecs-updater.yaml
+```
+
 Then [deploy the stack](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudformation/deploy/index.html) using the environment variables you previously set above:
 
 ```shell
 aws cloudformation deploy \
     --stack-name ${ECS_UPDATER_STACK} \
-    --template-url  "https://raw.githubusercontent.com/bottlerocket-os/bottlerocket-ecs-updater/v0.2.3/stacks/bottlerocket-ecs-updater.yaml" \
+    --template-file  ./bottlerocket-ecs-updater.yaml \
     --capabilities CAPABILITY_NAMED_IAM \
     --parameter-overrides \
     ClusterName=${ECS_UPDATER_CLUSTER} \
