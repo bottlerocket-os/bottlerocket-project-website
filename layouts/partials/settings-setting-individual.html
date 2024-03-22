@@ -67,6 +67,7 @@
         {{ $apiclientTabData.Set "toml" false }}
         {{ $apiclientTabData.Set "active" (not $hasToml) }}
         {{ $apiclientTabData.Set "example" $example }}
+        {{ $apiclientTabData.Set "prefix" $setting_prefix }}
 
         <ul class="nav nav-tabs" role="tablist" id="{{ $setting_id }}ExampleTabs">
             {{- if $hasToml -}}
