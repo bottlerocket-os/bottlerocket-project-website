@@ -52,8 +52,16 @@
                     {{ end }}
                 {{ end }}
             {{ else }}
-                {{ $example_scratch.Add "out" (print "apiclient set " )}}
-                {{ $example_scratch.Add "out" (print $setting_full_name "=" $example.value) }}
+                {{/* compound toml examples have [ ] in them, so we have to use a regex to find and render alternately */}}
+                {{ if (findRE `\[(.*?)\]` $example.value) }}
+                    {{ $example_scratch.Add "out" (print "apiclient apply <<EOF\r\n" ) }}
+                    {{ $example_scratch.Add "out" (print "[" $setting_prefix "]\n")}}
+                    {{ $example_scratch.Add "out" (print $setting_id " = " $example.value "\n") }}
+                    {{ $example_scratch.Add "out" "EOF" }}
+                {{ else }}
+                    {{ $example_scratch.Add "out" (print "apiclient set " )}}
+                    {{ $example_scratch.Add "out" (print $setting_full_name "=" $example.value) }}
+                {{ end }}
             {{ end }}
         {{ end }}
     {{ end }}
