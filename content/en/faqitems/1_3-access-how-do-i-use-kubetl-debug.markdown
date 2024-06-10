@@ -11,4 +11,4 @@ kubectl debug node/<node name> -it --image=ubuntu --profile=sysadmin
 
 This is a useful alternative to SSH or SSM. Use a `kubectl` version of 1.30 or later to ensure that the `sysadmin` profile is available. Once the debug pod is started and you have a shell, you can run `chroot /host apiclient exec admin bash` to access the admin container (if enabled) or `chroot /host <command>` to run commands from the Bottlerocket OS.
 
-The Pod created is very priviliged so ensure it is removed after use.
+The Pod created is privileged so ensure it is removed after use.
