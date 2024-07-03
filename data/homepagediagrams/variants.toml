@@ -1,11 +1,11 @@
 # This drives the variants diagram on the homepage
 [bottlerocket_versions]
 major= 1
-minor= 19
+minor= 20
 
 [k8s_versions]
-newer= 1.29
-older= 1.28
+newer= 1.30
+older= 1.29
 
 [ecs_versions]
 newer= 2
