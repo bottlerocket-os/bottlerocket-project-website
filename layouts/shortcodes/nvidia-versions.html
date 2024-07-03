@@ -18,9 +18,14 @@
 {{- range $kmod_fname, $kmod_data := $kmod_data -}}
     {{- $k_version := index (split $kmod_fname "-") 1 -}}
     {{- $external_files := index (index (index (index $kmod_data "package") "metadata") "build-package") "external-files" -}}
-    {{- $url := index (index $external_files 0) "url" -}}
-    {{- $version := (path.Split (path.Dir $url)).File -}}
-    {{- $kernel_to_nvidia = merge $kernel_to_nvidia (dict $k_version $version) -}}
+    {{- range $external_files }}
+        {{- /* nvidia gpu drivers are self-extracting archives with .run extension */ -}}
+        {{- if hasSuffix .url ".run" }}
+            {{- $url := .url -}}
+            {{- $version := (path.Split (path.Dir $url)).File -}}
+            {{- $kernel_to_nvidia = merge $kernel_to_nvidia (dict $k_version $version) -}}
+        {{- end }}
+    {{- end }}
 {{- end -}}
 
 
@@ -43,6 +48,6 @@
         {{- end -}}
     {{- end -}}
 {{- end -}}
-        
+
     </tbody>
 </table>
