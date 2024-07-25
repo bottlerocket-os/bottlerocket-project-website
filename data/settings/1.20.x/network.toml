@@ -63,6 +63,8 @@ hosts = [
 [[docs.ref.https-proxy]]
 description = """
 The HTTPS proxy server used by services listed under [proxy settings](#tag-proxy-settings) section.
+The connection to the proxy server uses HTTP (unencrypted TCP) to the specified port, and Bottlerocket
+will open a proxy to the desired service with a `CONNECT` request to the server.
 """
 accepted_values = [
     "A host name (with an optional port number)",
@@ -76,11 +78,20 @@ value = "\"1.2.3.4:8080\""
 
 [[docs.ref.no-proxy]]
 description = """
-A list of hosts that Bottlerocket will excluded from proxying.
+A list of hosts that Bottlerocket will exclude from proxying.
 
-The no-proxy list automatically includes entries for `localhost`.
+Bottlerocket adds these hosts to a default list.
 
-On Kubernetes variants (`*-k8s-*`) the no-proxy lists includes the Kubernetes API server endpoint as well as other commonly used Kubernetes DNS suffixes.
+The default no-proxy list automatically includes entries for `localhost`.
+
+On Kubernetes variants (`*-k8s-*`) the no-proxy list includes the Kubernetes API server
+endpoint as well as other commonly used Kubernetes DNS suffixes:
+
+* The host specified in `settings.kubernetes.api-server`.
+* Hosts in the domain specified in `settings.kubernetes.cluster-domain`.
+
+These default no-proxy entries are not visible in the API, and the API will not override them.
+The hosts in `no-proxy` are in addition to these default hosts.
 """
 accepted_values = [
     "List of host names and IP addresses"
@@ -89,4 +100,4 @@ tags = [
     "proxy-settings"
 ]
 [[docs.ref.no-proxy.example]]
-value = "[\"localhost\", \"127.0.0.1\"]"
+value = "[\"some-other-host.com\", \"169.254.3.1\"]"
