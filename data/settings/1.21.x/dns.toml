@@ -1,0 +1,19 @@
+[[docs.ref.name-servers]]
+description = "A list of IP address strings that represent the desired name server(s)."
+accepted_values = [ "IP addresses" ]
+see = [
+    ["[`resolve.conf` manual page](https://man7.org/linux/man-pages/man5/resolv.conf.5.html)"]
+]
+note = "If you do not provide this setting, Bottlerocket gathers the name servers from the DHCP lease."
+[[docs.ref.name-servers.example]]
+value = "[\"1.2.3.4\", \"5.6.7.8\"]"
+
+
+[[docs.ref.search-list]]
+description = "An list of domain strings that represent the desired domain search path(s)."
+see = [
+    ["[`resolve.conf` manual page](https://man7.org/linux/man-pages/man5/resolv.conf.5.html)"]
+]
+note = "If you do not provide this setting, Bottlerocket gathers the DNS search list from the DHCP lease."
+[[docs.ref.search-list.example]]
+value = "[\"foo.bar\", \"baz.foo\"]"
