@@ -8,4 +8,4 @@ The following output is generated from [Bottlerocket's OpenAPI Spec](https://git
 
 ---
 
-{{<  swaggerui src="../../../../external/openapi/1.15.x/openapi.yaml" >}}
+{{<  swaggerui src="../../../../external/openapi/1.22.x/openapi.yaml" >}}
