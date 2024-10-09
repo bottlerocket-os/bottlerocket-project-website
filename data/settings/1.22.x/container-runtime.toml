@@ -1,0 +1,40 @@
+[[docs.ref.enable-unprivileged-icmp]]
+description = "If `true` unprivileged containers can open [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol) echo sockets."
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["[CRI Plugin Config Guide - Full configuration](https://github.com/containerd/containerd/blob/main/docs/cri/config.md#full-configuration)"]
+]
+
+
+[[docs.ref.enable-unprivileged-ports]]
+description = "If `true` unprivileged containers can bind to ports less than 1024."
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["[CRI Plugin Config Guide - Full configuration](https://github.com/containerd/containerd/blob/main/docs/cri/config.md#full-configuration)"]
+]
+
+[[docs.ref.max-concurrent-downloads]]
+description = "The number of allowed concurrent layer downloads for each image."
+accepted_values = [
+    "a positive number"
+]
+see = [
+    ["[CRI Plugin Config Guide - Full configuration](https://github.com/containerd/containerd/blob/main/docs/cri/config.md#full-configuration)"]
+]
+
+
+[[docs.ref.max-container-log-line-size]]
+description = "A value that dictates the maximum log line size, any larger log lines will split into multiple lines. Values are expressed in bytes."
+accepted_values = [
+    "`-1` for no limit",
+    "a positive numbers"
+]
+see = [
+    ["[CRI Plugin Config Guide - Full configuration](https://github.com/containerd/containerd/blob/main/docs/cri/config.md#full-configuration)"]
+]
