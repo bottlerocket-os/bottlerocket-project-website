@@ -1,0 +1,129 @@
+{{- $example := .Get "example" -}}
+
+{{ if (eq $example 1) }}
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" viewBox="-0.5 -0.5 561 361" class="bootstrap-container-diagram">
+  <defs/>
+  <g>
+    <path d="M 280 60 L 280 73.63" class="sequence-arrow-line"/>
+    <path d="M 280 78.88 L 276.5 71.88 L 280 73.63 L 283.5 71.88 Z" class="sequence-arrow-point" />
+    <rect x="0" y="0" width="560" height="60" class="systemd-box" />
+    <g transform="translate(257.5,23.5)">
+        <text x="23" y="12" class="systemd-box-text" >systemd</text>
+    </g>
+    <path d="M 280 280 L 280 293.63" class="sequence-arrow-line"/>
+    <path d="M 280 298.88 L 276.5 291.88 L 280 293.63 L 283.5 291.88 Z" class="sequence-arrow-point" />
+    <rect x="0" y="80" width="560" height="200" class="bootstrap-containers-rect"/>
+    <rect x="10" y="70" width="130" height="20" class="bootstrap-containers-label-back" />
+    <g transform="translate(20.5,73.5)">
+      <text x="55" y="12" class="bootstrap-containers-text">bootstrap commands</text>
+    </g>
+    <rect x="10" y="90" width="110" height="40" class="container-b1"/>
+    <g transform="translate(57.5,102.5)">
+        <text x="8" y="12" class="container-b1">001-cmd</text>
+    </g>
+    <rect x="153" y="130" width="110" height="30" class="container-b2"/>
+    <g transform="translate(200.5,137)">
+        <text x="8" y="12" class="container-b2">002-cmd</text>
+    </g>
+    <rect x="297" y="160" width="110" height="50" class="container-b3"/>
+    <g transform="translate(344.5,177)">
+        <text x="8" y="12" class="container-b3">003-cmd</text>
+    </g>
+    <rect x="440" y="210" width="110" height="60" class="container-b4"/>
+    <g transform="translate(487.5,230)">
+        <text x="8" y="12" class="container-b4">004-cmd</text>
+    </g>
+    <rect x="0" y="300" width="560" height="60" class="next-boot-stage"/>
+    <g transform="translate(238.5,323.5)">
+        <text x="41" y="12" class="next-boot-stage">next boot stage</text>
+    </g>
+  </g>
+</svg>
+{{ end }}
+{{ if (eq $example 2) }}
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" viewBox="-0.5 -0.5 561 274" class="bootstrap-container-diagram">
+    <defs/>
+    <g>
+      <path d="M 280 60 L 280 73.63" class="sequence-arrow-line"/>
+      <path d="M 280 78.88 L 276.5 71.88 L 280 73.63 L 283.5 71.88 Z" class="sequence-arrow-point"/>
+      <rect x="0" y="0" width="560" height="60" class="systemd-box" />
+      <g transform="translate(257.5,23.5)">
+        <text x="23" y="12" class="systemd-box-text" >systemd</text>
+      </g>
+      <path d="M 280 180 L 280 250.63" class="sequence-arrow-line"/>
+      <path d="M 280 250.88 L 276.5 243.88 L 280 245.63 L 283.5 243.88 Z" class="sequence-arrow-point" />      <rect x="0" y="80" width="560" height="140" class="bootstrap-containers-rect"/>
+      <rect x="10" y="70" width="130" height="20" class="bootstrap-containers-label-back" />
+      <rect x="10" y="90" width="110" height="40" class="container-b1"/>
+      <g transform="translate(57.5,102.5)">
+          <text x="8" y="12" class="container-b1">001-cmd</text>
+      </g>
+      <g transform="translate(20.5,73.5)">
+          <text x="55" y="12" class="bootstrap-containers-text">bootstrap commands</text>
+      </g>
+      <rect x="153" y="130" width="110" height="30" class="container-b2"/>
+      <g transform="translate(200.5,137)">
+          <text x="8" y="12" class="container-b2">002-cmd</text>
+      </g>
+      <rect x="297" y="160" width="110" height="50" class="container-b3"/>
+      <g transform="translate(344.5,177)">
+          <text x="8" y="8" class="container-b3">003-cmd</text>
+          <text x="8" y="21" class="container-b3">essential = true</text>
+      </g>
+      <g transform="translate(256.5,253.5)">
+          <text x="23" y="12" class="boot-halt">boot halt</text>
+      </g>
+      <path d="M 407 210 L 437.75 190 L 510 190 Q 530 190 530 210 Q 530 230 510 230 L 437.75 230 Z" class="exit-flag"/>
+      <g transform="translate(441.5,203.5)">
+          <text x="29" y="12" class="exit-flag">exit code 1</text>
+      </g>
+    </g>
+  </svg>
+{{end}}
+{{ if (eq $example 3) }}
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" viewBox="-0.5 -0.5 561 411" class="bootstrap-container-diagram">
+    <defs/>
+  <g>
+    <path d="M 280 60 L 280 73.63" class="sequence-arrow-line" />
+    <path d="M 280 78.88 L 276.5 71.88 L 280 73.63 L 283.5 71.88 Z" class="sequence-arrow-point" />
+    <rect x="0" y="0" width="560" height="60" class="systemd-box" />
+    <g transform="translate(257.5,23.5)">
+        <text x="23" y="12" class="systemd-box-text" >systemd</text>
+    </g>
+    <rect x="0" y="80" width="560" height="250" class="bootstrap-containers-rect"/>
+    <rect x="10" y="70" width="130" height="20" class="bootstrap-containers-label-back" />
+    <g transform="translate(20.5,73.5)">
+      <text x="55" y="12" class="bootstrap-containers-text">bootstrap commands</text>
+    </g>
+    <rect x="10" y="90" width="110" height="40" class="container-b1"/>
+      <g transform="translate(57.5,102.5)">
+          <text x="8" y="12" class="container-b1">001-cmd</text>
+      </g>
+    <rect x="153" y="130" width="110" height="30" class="container-b2"/>
+    <g transform="translate(200.5,137)">
+        <text x="8" y="12" class="container-b2">002-cmd</text>
+    </g>
+    <rect x="297" y="160" width="110" height="50" class="container-b3"/>
+    <g transform="translate(344.5,177)">
+        <text x="8" y="8" class="container-b3">003-cmd</text>
+        <text x="8" y="21" class="container-b3">essential = true</text>
+    </g>
+    <path d="M 495 270 L 495 290 L 495 280 L 495 293.63" class="sequence-arrow-line"/>
+    <path d="M 495 298.88 L 491.5 291.88 L 495 293.63 L 498.5 291.88 Z" class="sequence-arrow-point" />
+    <rect x="440" y="210" width="110" height="60" class="container-b4"/>
+    <g transform="translate(487.5,230)">
+        <text x="8" y="12" class="container-b4">004-cmd</text>
+        <text x="8" y="22" class="container-b4">mode=once</text>
+    </g>
+    <g transform="translate(449.5,281.5)">
+        <text x="46" y="30" class="mode-to-off">Update mode for</text>
+        <text x="46" y="45" class="mode-to-off">004-cmd to off</text>
+    </g>
+    <path d="M 280 330 L 280 343.63" class="sequence-arrow-line"/>
+    <path d="M 280 348.88 L 276.5 341.88 L 280 343.63 L 283.5 341.88 Z" class="sequence-arrow-point"/>
+    <rect x="0" y="350" width="560" height="60" class="next-boot-stage"/>
+    <g transform="translate(238.5,373.5)">
+        <text x="41" y="12" class="next-boot-stage">next boot stage</text>
+    </g>
+  </g>
+</svg>
+{{end}}
