@@ -1,7 +1,7 @@
 # This drives the variants diagram on the homepage
 [bottlerocket_versions]
 major= 1
-minor= 22
+minor= 23
 
 [k8s_versions]
 newer= 1.31
