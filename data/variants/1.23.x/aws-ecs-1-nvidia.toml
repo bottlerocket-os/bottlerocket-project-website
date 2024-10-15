@@ -1,0 +1,43 @@
+# Extracted from https://github.com/bottlerocket-os/bottlerocket/variants/aws-ecs-1-nvidia/Cargo.toml
+[package]
+name = "aws-ecs-1-nvidia"
+version = "0.1.0"
+edition = "2021"
+publish = false
+build = "../build.rs"
+
+[package.metadata.build-variant.image-layout]
+os-image-size-gib = 4
+
+[package.metadata.build-variant]
+kernel-parameters = [
+    "console=tty0",
+    "console=ttyS0,115200n8",
+    "net.ifnames=0",
+    "netdog.default-interface=eth0:dhcp4,dhcp6?",
+    "systemd.unified_cgroup_hierarchy=0",
+    "quiet",
+]
+included-packages = [
+# core
+    "release",
+    "kernel-5.10",
+# docker
+    "docker-cli",
+    "docker-engine",
+    "docker-init",
+# ecs
+    "ecs-agent-nvidia-config",
+# NVIDIA support
+    "ecs-gpu-init",
+    "nvidia-container-toolkit-ecs",
+    "kmod-5.10-nvidia-tesla-470",
+]
+
+[lib]
+path = "../variants.rs"
+
+[build-dependencies]
+settings-defaults = { path = "../../packages/settings-defaults" }
+settings-plugins = { path = "../../packages/settings-plugins" }
+settings-migrations = { path = "../../packages/settings-migrations" }

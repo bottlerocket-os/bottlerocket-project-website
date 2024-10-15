@@ -1,0 +1,204 @@
+# tags
+
+[[docs.tag.startup-only]]
+heading = "Startup Only Settings"
+description = """
+These settings affect how the instances join the ECS cluster.
+Since joining a cluster happens at startup, they need to be set in user data.
+"""
+
+[[docs.tag.cleanup]]
+heading = "Image & Task Cleanup Settings"
+description = "Settings related to [cleaning up images](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/automated_image_cleanup.html)."
+
+[[docs.tag.logging]]
+heading = "Log Settings"
+description = "Settings related to logs from the ECS Agent"
+
+
+# reference
+[[docs.ref.backend-host]]
+description = "Sets the endpoint to make calls against (e.g `ecs.us-east-1.amazonaws.com`)."
+default = "The endpoint for your current region."
+
+[[docs.ref.awsvpc-block-imds]]
+description = "Blocks access to [Instance Metadata](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) for Tasks started with `awsvpc` network mode if `true`"
+default = "`false`"
+see = [
+    ["`ECS_AWSVPC_BLOCK_IMDS` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
+
+[[docs.ref.cluster]]
+description = """
+The name or [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of your Amazon ECS cluster.
+If left unspecified, the Bottlerocket host will join your default cluster.
+"""
+tags = [
+    "startup-only"
+]
+
+[[docs.ref.instance-attributes]]
+description = "[Attributes](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html#attributes) in the form of key, value pairs added when registering the container instance in the cluster."
+tags = [
+    "startup-only"
+]
+see = [
+    ["`ECS_INSTANCE_ATTRIBUTES` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
+[[docs.ref.instance-attributes.example]]
+comment = "Example user data for setting up attributes"
+[[docs.ref.instance-attributes.example.multiline]]
+attribute1 = "foo"
+attribute2 = "bar"
+
+[[docs.ref.allow-privileged-containers]]
+description = """Allow the launch of privileged containers on the container instance.
+If this value is set to `false`, privileged containers are not permitted.
+"""
+see = [
+    ["`ECS_DISABLE_PRIVILEGED` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
+
+default = "`false`"
+
+[[docs.ref.container-stop-timeout]]
+description = """
+Time to wait for the task's containers to stop on their own before they are forcefully stopped.
+Valid time units include `s`, `m`, and `h` (e.g. `1h`, `1m1s`).
+"""
+default = "`30s`"
+see = [
+    ["`ECS_CONTAINER_STOP_TIMEOUT` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
+
+[[docs.ref.enable-spot-instance-draining]]
+description = """
+If the instance receives a spot termination notice, the agent will set the instance's state to `DRAINING`,
+so the workload can be moved gracefully before the instance is removed.
+"""
+default = "`false`"
+see = [
+    ["`ECS_ENABLE_SPOT_INSTANCE_DRAINING` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
+
+
+[[docs.ref.image-pull-behavior]]
+description = "The behavior used to customize the [pull image process](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html#ecs-agent-availparam) for your container instances."
+accepted_values = [
+    "`default`",
+    "`always`",
+    "`once`",
+    "`prefer-cached`"
+]
+default = "`default`"
+see = [
+    ["`ECS_IMAGE_PULL_BEHAVIOR` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
+
+[[docs.ref.logging-drivers]]
+description = """
+The list of logging drivers available on the container instance.
+The ECS agent running on a container instance must register available logging drivers before tasks that use those drivers are eligible to be placed on the instance.
+Bottlerocket enables the `json-file`, `awslogs`, and `none` drivers by default.
+"""
+tags = [
+    "logging"
+]
+see = [
+    ["`ECS_AVAILABLE_LOGGING_DRIVERS` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
+
+
+[[docs.ref.loglevel]]
+description = "The level of verbosity for the ECS agent's logs."
+accepted_values = [
+    "`debug`",
+    "`info`",
+    "`warn`",
+    "`error`",
+    "`crit`"
+]
+tags = [
+    "logging"
+]
+default = "`info`"
+see = [
+    ["`ECS_LOGLEVEL` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
+
+
+[[docs.ref.metadata-service-rps]]
+description = """
+The steady state rate limit of the throttling configurations set for the task metadata service.
+"""
+note = "This directly maps to the values set by the ECS_TASK_METADATA_RPS_LIMIT environment variable."
+see = [
+    ["`ECS_TASK_METADATA_RPS_LIMIT` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
+
+[[docs.ref.metadata-service-burst]]
+description = "The burst rate limit of the throttling configurations set for the task metadata service."
+note = "This directly maps to the values set by the ECS_TASK_METADATA_RPS_LIMIT environment variable."
+see = [
+    ["`ECS_TASK_METADATA_RPS_LIMIT` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
+
+
+[[docs.ref.reserved-memory]]
+description = "The amount of memory, in MiB, reserved for critical system processes."
+
+[[docs.ref.task-cleanup-wait]]
+description = """
+Time to wait before the task's containers are removed after they are stopped.
+Valid time units include `s`, `m`, and `h` (e.g. `1h`, `1m1s`).
+"""
+tags = [
+    "cleanup"
+]
+
+[[docs.ref.image-cleanup-delete-per-cycle]]
+description = "Number of images to delete in a single image cleanup cycle."
+see = [
+    ["`ECS_NUM_IMAGES_DELETE_PER_CYCLE` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
+tags = [
+    "cleanup"
+]
+
+[[docs.ref.image-cleanup-enabled]]
+description = "Enable automatic images clean up after the tasks have been removed."
+default = "`true`"
+see = [
+    ["`ECS_DISABLE_IMAGE_CLEANUP` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
+tags = [
+    "cleanup"
+]
+
+[[docs.ref.image-cleanup-age]]
+description = """
+Time since the image was pulled to be considered for clean up.
+Valid time units include `s`, `m`, and `h` (e.g. `1h`, `1m1s`).
+"""
+tags = [
+    "cleanup"
+]
+
+[[docs.ref.image-cleanup-wait]]
+description = """
+Time to wait between image cleanup cycles
+Valid time units include `s`, `m`, and `h` (e.g. `1h`, `1m1s`).
+"""
+tags = [
+    "cleanup"
+]
+
+[[docs.ref.enable-container-metadata]]
+description = """
+When `true`, the agent will create a file describing the container's metadata at
+the path stored in the environment variable `ECS_CONTAINER_METADATA_FILE`
+"""
+default = "`false`"
+see = [
+  ["`ECS_ENABLE_CONTAINER_METADATA` in the [ECS Agent Environment Variables](https://github.com/aws/amazon-ecs-agent/blob/master/README.md#environment-variables)"]
+]
