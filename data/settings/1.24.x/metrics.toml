@@ -1,0 +1,29 @@
+[[docs.ref.metrics-url]]
+description = "The URL where Bottlerocket sends metrics."
+default = "`https://metrics.bottlerocket.aws/v1/metrics`"
+
+[[docs.ref.send-metrics]]
+description = """
+Determines if anonymous metrics are sent.
+If set to `true`, Bottlerocket will send metrics to the URL defined by `settings.metrics.metrics-url` at boot and every six hours.
+If `false`, Bottlerocket will not send metrics.
+"""
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+default = "`true` (except on `dev` variants, where it is `false`)"
+
+[[docs.ref.service-checks]]
+description = "A list of systemd services that Bottlerocket will check to determine if a host is healthy."
+default = """The default services vary by variant:
+
+- `apiserver` (all variants)
+- `chronyd` (all variants)
+- `containerd` (all variants)
+- `host-containerd` (all variants)
+- `docker` (`aws-ecs-*`, `aws-dev-*`)
+- `ecs` (`aws-ecs-*`)
+- `kubelet` (`*-k8s-*`)
+- `vmtoolsd` (`vmware-*`)
+"""

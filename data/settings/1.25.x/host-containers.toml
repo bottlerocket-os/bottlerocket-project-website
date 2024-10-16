@@ -1,0 +1,63 @@
+
+
+[[docs.ref.container_enabled]]
+name_override = "<container>.enabled"
+description = "If `true` the container starts automatically at boot. Bottlerocket requires this key alongside [`source`](#container_source) and [`superpowered`](#container_superpowered) to start a host container."
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["[`host-containers.<container>.source` for custom host container example](#container_source)"],
+    ["[Shell-less host](../../../concepts/shell-less-host/)"]
+]
+
+[[docs.ref.container_source]]
+name_override = "<container>.source"
+description = "The URI for the container to run as a host container. Bottlerocket requires this key alongside [`enabled`](#container_enabled) and [`superpowered`](#container_superpowered) to start a host container."
+[[docs.ref.container_source.example]]
+direct_toml = """
+[settings.host-containers.mycontainer]
+enabled = true
+source = "uri.to.container.in.oci-compatible-registry.example.com/foo:1.0.0"
+superpowered = false
+"""
+direct_shell = """
+apiclient set \\
+    settings.host-containers.mycontainer.enabled=true \\
+    settings.host-containers.mycontainer.source="uri.to.container.in.oci-compatible-registry.example.com/foo:1.0.0" \\
+    settings.host-containers.mycontainer.superpowered=false
+"""
+see = [
+    ["[Shell-less host](../../../concepts/shell-less-host/)"]
+]
+
+[[docs.ref.container_superpowered]]
+name_override = "<container>.superpowered"
+description = "If `true`, effectively grants the container root access to the host. Bottlerocket requires this key alongside [`enabled`](#container_enabled) and [`source`](#container_source) to start a host container."
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["[`host-containers.<container>.source` for custom host container example](#container_source)"],
+    ["[Shell-less host](../../../concepts/shell-less-host/)"]
+
+]
+
+[[docs.ref.container_user-data]]
+name_override = "<container>.user-data"
+description = """
+An optional field that stores arbitrary base64-encoded data.
+The data in this field is accessible by the host container at `/.bottlerocket/host-containers/<container>/user-data` and `/.bottlerocket/host-containers/current/user-data`.
+"""
+note = """
+Despite the common name, host container `user-data` and instance `user-data` function differently.
+Host container `user-data` may consist of anything and it is up to the container to interepret the data.
+"""
+warning = """
+The [Bottlerocket admin container](../../../concepts/components/#operational-and-administrative-workloads) decodes JSON for SSH keys from user data.
+If you provide user data to the admin container, no SSH keys will be automatically passed into the admin container by Bottlerocket.
+If using custom user data with the admin container, you must also provide your own authentication information in this user data.
+See [Authenticating with the Admin Container](https://github.com/bottlerocket-os/bottlerocket-admin-container#authenticating-with-the-admin-container) for more information.
+"""
