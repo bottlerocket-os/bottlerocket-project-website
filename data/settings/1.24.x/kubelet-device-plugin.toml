@@ -1,0 +1,48 @@
+[[docs.tag.nvidia]]
+heading = "Settings related to k8 nvidia device plugin"
+description = """
+See the [nvidia-k8s-device-plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#with-cuda-time-slicing) for more details.
+"""
+
+[[docs.ref.nvidia-device-id-strategy]]
+name_override = "nvidia.device-id-strategy"
+description = "Specifies the desired strategy for passing device IDs to the container."
+default = "`index`"
+accepted_values = ["`index`", "`uuid`"]
+see = [
+    [
+        "[NVIDIA K8 Device Plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#configuration-option-details)",
+    ],
+]
+tags = ["nvidia"]
+
+[[docs.ref.nvidia-device-list-strategy]]
+name_override = "nvidia.device-list-strategy"
+description = """
+Specifies the desired strategy for passing the device list to the container. If the value is set to:
+* `volume-mounts`, the list of devices is passed as a set of volume mounts instead of as an environment variable to instruct the NVIDIA Container Runtime to inject the devices. 
+* `envvar`, the `NVIDIA_VISIBLE_DEVICES` environment variable is used to select the devices that are to be injected by the NVIDIA Container Runtime.
+"""
+default = "`volume-mounts`"
+accepted_values = ["`volume-mounts`", "`envvar`"]
+see = [
+    [
+        "[NVIDIA K8 Device Plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#configuration-option-details)",
+    ],
+    [
+        "[Read list of GPU devices from volume mounts instead of NVIDIA_VISIBLE_DEVICES](https://docs.google.com/document/d/1uXVF-NWZQXgP1MLb87_kMkQvidpnkNWicdpO2l9g-fw/edit?tab=t.0#heading=h.xtqvwyv8lv4c)",
+    ],
+]
+tags = ["nvidia"]
+
+[[docs.ref.nvidia-pass-device-specs]]
+name_override = "nvidia.pass-device-specs"
+description = "Specifies passing the paths and desired device node permissions for any NVIDIA devices being allocated to the container. "
+default = "`true`"
+accepted_values = ["`true`", "`false`"]
+see = [
+    [
+        "[NVIDIA K8 Device Plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#configuration-option-details)",
+    ],
+]
+tags = ["nvidia"]
