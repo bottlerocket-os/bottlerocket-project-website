@@ -1,4 +1,4 @@
 +++
-title="1.25.x (Current)"
+title="1.25.x"
 type="docs"
 +++
