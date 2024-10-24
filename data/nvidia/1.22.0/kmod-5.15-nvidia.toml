@@ -1,4 +1,4 @@
-# Extracted from https://github.com/bottlerocket-os/bottlerocket/tree/develop/packages/kmod-5.15-nvidia/Cargo.toml
+# Extracted from https://github.com/bottlerocket-os/bottlerocket-core-kit/tree/develop/packages/kmod-5.15-nvidia/Cargo.toml
 [package]
 name = "kmod-5_15-nvidia"
 version = "0.1.0"
