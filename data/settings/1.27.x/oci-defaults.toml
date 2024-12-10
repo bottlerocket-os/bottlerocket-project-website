@@ -1,0 +1,792 @@
+# tags
+[[docs.tag.capabilities]]
+heading = "Capabilities Settings"
+description = """Capabilities for the runtime process.
+These correspond to the object [`capabilities` in the runtime spec](https://github.com/opencontainers/runtime-spec/blob/main/config.md#linux-process).
+"""
+
+[[docs.tag.resource-limits]]
+heading = "Resource Limits Settings"
+description = """
+Resource limits for the runtime process.
+These correspond to the object [`rlimit` in the runtime spec](https://github.com/opencontainers/runtime-spec/blob/main/config.md#posix-process).
+
+Unusual among Bottlerocket settings, individual key/values will not validate. You must provide both `hard-limit` and `soft-limit` for any given resource limit setting at the same time.
+Consequently, using dot-notation expressions to change resource limits is not possible (e.g. `apiclient set settings.oci-defaults.resource-limits.max-locked-memory.hard-limit=9223372` will fail).
+You can use TOML configuration format or the same structure expressed as JSON to set both keys simultaneously.
+"""
+[[docs.tag.resource-limits.example]]
+tab = "TOML"
+type = "toml"
+source = """
+# Setting a limit
+[settings.oci-defaults.resource-limits.max-core-file-size]
+soft-limit = 100000000
+hard-limit = 1000000000
+
+# Removing a hard limit
+[settings.oci-defaults.resource-limits.max-locked-memory]
+soft-limit = 100000000
+hard-limit = "unlimited"
+"""
+
+[[docs.tag.resource-limits.example]]
+tab = "API Client with JSON"
+type = "shell"
+source = """
+# Setting a limit
+apiclient set --json <<EOF
+{
+  "settings": {
+    "oci-defaults": {
+      "resource-limits": {
+        "max-core-file-size": {
+          "soft-limit": 100000000,
+          "hard-limit": 1000000000
+        }
+      }
+    }
+  }
+}
+EOF
+
+# Removing a hard limit
+apiclient set --json <<EOF
+{
+  "settings": {
+    "oci-defaults": {
+      "resource-limits": {
+        "max-core-file-size": {
+          "soft-limit": 100000000,
+          "hard-limit": "unlimited"
+        }
+      }
+    }
+  }
+}
+EOF
+"""
+
+
+# settings
+[[docs.ref.capabilities_audit-write]]
+name_override = "capabilities.audit-write"
+tags = [ "capabilities" ]
+default = "`true`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_AUDIT_WRITE` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_chown]]
+name_override = "capabilities.chown"
+tags = [ "capabilities" ]
+default = "`true`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_CHOWN` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_dac-override]]
+name_override = "capabilities.dac-override"
+tags = [ "capabilities" ]
+default = "`true`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_DAC_OVERRIDE` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_fowner]]
+name_override = "capabilities.fowner"
+tags = [ "capabilities" ]
+default = "`true`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_FOWNER` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_fsetid]]
+name_override = "capabilities.fsetid"
+tags = [ "capabilities" ]
+default = "`true`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_FSETID` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_kill]]
+name_override = "capabilities.kill"
+tags = [ "capabilities" ]
+default = "`true`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_KILL` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_mknod]]
+name_override = "capabilities.mknod"
+tags = [ "capabilities" ]
+default = "`true`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_MKNOD` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_net-bind-service]]
+name_override = "capabilities.net-bind-service"
+tags = [ "capabilities" ]
+default = "`true`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_NET_BIND_SERVICE` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_setgid]]
+name_override = "capabilities.setgid"
+tags = [ "capabilities" ]
+default = "`true`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SETGID` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_setfcap]]
+name_override = "capabilities.setfcap"
+tags = [ "capabilities" ]
+default = "`true`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SETFCAP` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_setpcap]]
+name_override = "capabilities.setpcap"
+tags = [ "capabilities" ]
+default = "`true`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SETPCAP` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_setuid]]
+name_override = "capabilities.setuid"
+tags = [ "capabilities" ]
+default = "`true`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SETUID` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_sys-chroot]]
+name_override = "capabilities.sys-chroot"
+tags = [ "capabilities" ]
+default = "`true`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SYS_CHROOT` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_audit-control]]
+name_override = "capabilities.audit-control"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_AUDIT_CONTROL` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_audit-read]]
+name_override = "capabilities.audit-read"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_AUDIT_READ` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_block-suspend]]
+name_override = "capabilities.block-suspend"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_BLOCK_SUSPEND` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_bpf]]
+name_override = "capabilities.bpf"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_BPF` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_checkpoint-restore]]
+name_override = "capabilities.checkpoint-restore"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_CHECKPOINT_RESTORE` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_dac-read-search]]
+name_override = "capabilities.dac-read-search"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_DAC_READ_SEARCH` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_ipc-lock]]
+name_override = "capabilities.ipc-lock"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_IPC_LOCK` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_ipc-owner]]
+name_override = "capabilities.ipc-owner"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_IPC_OWNER` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_lease]]
+name_override = "capabilities.lease"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_LEASE` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_linux-immutable]]
+name_override = "capabilities.linux-immutable"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_LINUX_IMMUTABLE` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_mac-admin]]
+name_override = "capabilities.mac-admin"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_MAC_ADMIN` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+
+[[docs.ref.capabilities_mac-override]]
+name_override = "capabilities.mac-override"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_MAC_OVERRIDE` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_net-admin]]
+name_override = "capabilities_net-admin"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_NET_ADMIN` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_net-broadcast]]
+name_override = "capabilities.net-broadcast"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_NET_BROADCAST` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_net-raw]]
+name_override = "capabilities.net-raw"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_NET_RAW` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_perfmon]]
+name_override = "capabilities.perfmon"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_PERFMON` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_sys-admin]]
+name_override = "capabilities.sys-admin"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SYS_ADMIN` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_sys-boot]]
+name_override = "capabilities.sys-boot"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SYS_BOOT` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_sys-module]]
+name_override = "capabilities.sys-module"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SYS_MODULE` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_sys-nice]]
+name_override = "capabilities.sys-nice"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SYS_NICE` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_sys-pacct]]
+name_override = "capabilities.sys-pacct"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SYS_PACCT` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_sys-ptrace]]
+name_override = "capabilities.sys-ptrace"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SYS_PTRACE` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_sys-rawio]]
+name_override = "capabilities.sys-rawio"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SYS_RAWIO` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_sys-resource]]
+name_override = "capabilities.sys-resource"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SYS_RESOURCE` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_sys-time]]
+name_override = "capabilities.sys-time"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["CAP_SYS_TIME`` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_sys-tty-config]]
+name_override = "capabilities.sys-tty-config"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SYS_TTY_CONFIG` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_syslog]]
+name_override = "capabilities.syslog"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_SYSLOG` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.capabilities_wake-alarm]]
+name_override = "capabilities.wake-alarm"
+tags = [ "capabilities" ]
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["`CAP_WAKE_ALARM` on the [Linux `capabilities` manual page](https://man7.org/linux/man-pages/man7/capabilities.7.html)"]
+]
+
+[[docs.ref.resource-limits_max-address-space]]
+name_override = "resource-limits.max-address-space"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+Uses *bytes* as an implicit value unit.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_AS` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-core-file-size]]
+name_override = "resource-limits.max-core-file-size"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+Uses *bytes* as an implicit value unit.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_CORE` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-cpu-time]]
+name_override = "resource-limits.max-cpu-time"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+Uses *seconds* as an implicit unit.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_CPU` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-data-size]]
+name_override = "resource-limits.max-data-size"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+Uses *bytes* as an implicit value unit.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_DATA` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-file-locks]]
+name_override = "resource-limits.max-file-locks"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+The value is unit-less, representing the *number of locks*.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_LOCKS` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-file-size]]
+name_override = "resource-limits.max-file-size"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+Uses *bytes* as an implicit value unit.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_FSIZE` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-locked-memory]]
+name_override = "resource-limits.max-locked-memory"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+Uses *bytes* as an implicit value unit.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_MEMLOCK` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-msgqueue-size]]
+name_override = "resource-limits.max-msgqueue-size"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+Uses *bytes* as an implicit value unit.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_MSGQUEUE` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-nice-priority]]
+name_override = "resource-limits.max-nice-priority"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+The value is unit-less, representing niceness. 
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: Practical values range from `1` to `40`, however the technically accepted values are `0` to `9223372036854775807` (i.e. `int64::MAX`).",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_NICE` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-open-files]]
+name_override = "resource-limits.max-open-files"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+The value is unit-less, representing the *number of files*.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+default = "`soft-limit` is `65536` and `hard-limit` is `1048576`"
+see = [
+    ["`RLIMIT_NOFILE` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-pending-signals]]
+name_override = "resource-limits.max-pending-signals"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+The value is unit-less, representing the *number of singals*.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_SIGPENDING` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-processes]]
+name_override = "resource-limits.max-processes"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+The value is unit-less, representing the *number of procceses*.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_NPROC` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-realtime-priority]]
+name_override = "resource-limits.max-realtime-priority"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+The value is unit-less, representing *priority*.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_RTPRIO` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-realtime-timeout]]
+name_override = "resource-limits.max-realtime-timeout"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+Uses *microseconds* as an implicit value unit.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_RTTIME` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-resident-set]]
+name_override = "resource-limits.max-resident-set"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+Uses *bytes* as an implicit value unit.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_RSS` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
+
+[[docs.ref.resource-limits_max-stack-size]]
+name_override = "resource-limits.max-stack-size"
+description = """
+A [TOML table](https://toml.io/en/v1.0.0#table).
+Validation requires a key/value for both `soft-limit` and `hard-limit`.
+Uses *bytes* as an implicit value unit.
+"""
+tags = [ "resource-limits" ]
+accepted_values = [
+    "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
+    "Removing a limit: `-1` or `\"unlimited\"`"
+]
+see = [
+    ["`RLIMIT_STACK` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
+]
