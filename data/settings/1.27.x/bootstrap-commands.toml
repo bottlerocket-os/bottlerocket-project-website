@@ -1,0 +1,61 @@
+[[docs.ref.name_commands]]
+name_override = "<name>.commands"
+description = "List of API commands to be run as part of the bootstrap command. Each API command is expressed as a list of strings."
+see = [
+    ["[`settings.bootstrap-commands.<name>.mode`](../bootstrap-commands/#name_mode) for a full example with `settings.bootstrap-commands.<name>.commands`."],
+    ["The {{< ver-ref project=\"os\" page=\"/concepts/bootstrap-commands#lifecycle\" >}}bootstrap commands lifecycle{{< /ver-ref >}} documentation"]
+]
+
+[[docs.ref.name_essential]]
+name_override = "<name>.essential"
+description = "If `essential` is set to `true` the bootstrap command will halt the boot process when it exits with a non-zero exit code."
+default = "`false`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["[`settings.bootstrap-commands.<name>.mode`](../bootstrap-commands/#name_mode) for a full example with `settings.bootstrap-commands.<name>.essential`."],
+    ["The {{< ver-ref project=\"os\" page=\"/concepts/bootstrap-commands#lifecycle\" >}}bootstrap commands lifecycle{{< /ver-ref >}} documentation"]
+]
+
+
+[[docs.ref.name_mode]]
+name_override = "<name>.mode"
+description = """
+Specifies how (or if) a bootstrap command starts at boot.
+If you set the value to:
+
+* `"always"`, the bootstrap command will start on every boot,
+* `"off"`, the bootstrap command will not start at boot,
+* `"once"`, the bootstrap command will start on the first boot but after exit, the `mode` changes to `off`.
+"""
+accepted_values = [
+    "`\"always\"`",
+    "`\"off\"`",
+    "`\"once\"`"
+]
+see = [
+    ["[`settings.bootstrap-commands.<name>.mode`](../bootstrap-commands/#name_mode) for a full example with `settings.bootstrap-commands.<name>.mode`."],
+    ["The {{< ver-ref project=\"os\" page=\"/concepts/bootstrap-commands#lifecycle\" >}}bootstrap commands lifecycle{{< /ver-ref >}} documentation"]
+]
+
+[[docs.ref.name_mode.example]]
+direct_toml = """
+# Creates a bootstrap command called `mybootstrap`
+# It runs everytime the instance boots and if exits with a non-zero code, will halt the boot process
+[settings.bootstrap-commands.mybootstrap]
+commands = [["apiclient", "ephemeral-storage", "init"], ["apiclient", "ephemeral-storage" ,"bind", "--dirs", "/var/lib/containerd", "/var/lib/docker", "/var/log/ecs"]]
+essential = true
+mode = "always"
+"""
+direct_shell = """
+# Creates a bootstrap container called `mybootstrap`
+# It runs everytime the instance boots and if exits with a non-zero code, will halt the boot process
+apiclient apply <<EOF
+[settings.bootstrap-commands.mybootstrap]
+commands = [["apiclient", "ephemeral-storage", "init"], ["apiclient", "ephemeral-storage" ,"bind", "--dirs", "/var/lib/containerd", "/var/lib/docker", "/var/log/ecs"]]
+essential = true
+mode = "always"
+EOF
+"""

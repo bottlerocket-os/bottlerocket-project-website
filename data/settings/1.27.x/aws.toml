@@ -1,0 +1,31 @@
+[[docs.ref.config]]
+description = """
+The base64-encoded representation of data used to populate `~/.aws/config`
+"""
+warning = """
+Avoid adding a `[profile default]` section.
+Recent versions of `aws-iam-authenticator` (and perhaps other components) pick up the default credential settings when `settings.aws.profile` is set to `default`.
+"""
+see = [
+    ["`ecr-credential-provider` under [`settings.kubernetes.credential-providers`](../kubernetes/#credential-providers)"]
+]
+
+[[docs.ref.credentials]]
+description = """
+The base64-encoded representation of data used to populate `~/.aws/credentials`
+"""
+
+[[docs.ref.profile]]
+description = """
+The profile name to use for [`settings.aws.config`](#config) and [`settings.aws.credentials`](#credentials).
+"""
+default = "`default`"
+[[docs.ref.profile.example]]
+value = "myprofile"
+
+[[docs.ref.region]]
+description = """
+The AWS region (e.g. `us-west-2`)
+"""
+note = "You do not need to explicitly set `setting.aws.region` unless you have a reason to override this default value."
+default = "The region is automatically inferred based on calls to the [Instance MetaData Service (IMDS)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html)."
