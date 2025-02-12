@@ -51,27 +51,50 @@
         {{- $first_example := index $example 0 -}}
         {{ $hasToml := or (isset $first_example "value") (isset $first_example "multiline") (isset $first_example (print "direct_toml" )) }}
         {{ $hasApiClient := or (isset $first_example "value") (isset $first_example "multiline") (isset $first_example (print "direct_shell" )) }}
+        {{/* hasYaml check to only look for direct_yaml for specfile examples, since Bottlerocket only supports toml and shell */}}
+        {{ $hasYaml := false }}
+        {{- range $example -}}
+            {{- if isset . "direct_yaml" -}}
+                {{- if gt (len .direct_yaml) 0 -}}
+                    {{ $hasYaml = true }}
+                {{- end -}}
+            {{- end -}}
+        {{- end -}}
 
 
         {{ $tomlTabData := newScratch }}
         {{ $tomlTabData.Set "id" $setting_id }}
         {{ $tomlTabData.Set "full_name" $setting_full_name }}
         {{ $tomlTabData.Set "toml" true }}
+        {{ $tomlTabData.Set "yaml" false }}
         {{ $tomlTabData.Set "active" true }}
         {{ $tomlTabData.Set "example" $example }}
         {{ $tomlTabData.Set "prefix" $setting_prefix }}
+
+        {{ $yamllTabData := newScratch }}
+        {{ $yamllTabData.Set "id" $setting_id }}
+        {{ $yamllTabData.Set "full_name" $setting_full_name }}
+        {{ $yamllTabData.Set "toml" false }}
+        {{ $yamllTabData.Set "yaml" true }}
+        {{ $yamllTabData.Set "active" (and (not $hasToml) (not $hasApiClient)) }}
+        {{ $yamllTabData.Set "example" $example }}
+        {{ $yamllTabData.Set "prefix" $setting_prefix }}
 
         {{ $apiclientTabData := newScratch }}
         {{ $apiclientTabData.Set "id" $setting_id }}
         {{ $apiclientTabData.Set "full_name" $setting_full_name }}
         {{ $apiclientTabData.Set "toml" false }}
-        {{ $apiclientTabData.Set "active" (not $hasToml) }}
+        {{ $apiclientTabData.Set "yaml" false }}
+        {{ $apiclientTabData.Set "active" (and (not $hasToml) (not $hasYaml)) }}
         {{ $apiclientTabData.Set "example" $example }}
         {{ $apiclientTabData.Set "prefix" $setting_prefix }}
 
         <ul class="nav nav-tabs" role="tablist" id="{{ $setting_id }}ExampleTabs">
             {{- if $hasToml -}}
                 {{ partial "settings-example-tab-button.html" $tomlTabData }}
+            {{- end -}}
+            {{- if $hasYaml -}}
+                {{ partial "settings-example-tab-button.html" $yamllTabData }}
             {{- end -}}
             {{- if $hasApiClient -}}
                 {{ partial "settings-example-tab-button.html" $apiclientTabData }}
@@ -81,6 +104,9 @@
         <div class="tab-content" id="{{ $setting_id }}ExampleContent">
             {{- if $hasToml -}}
                 {{ partial "settings-example-tab-pane.html" $tomlTabData }}
+            {{- end -}}
+            {{- if $hasYaml -}}
+                {{ partial "settings-example-tab-pane.html" $yamllTabData }}
             {{- end -}}
             {{- if $hasApiClient -}}
                 {{ partial "settings-example-tab-pane.html" $apiclientTabData }}
