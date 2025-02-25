@@ -98,6 +98,7 @@ Hash links and references would still use  `bar-index-baz`.
     * Direct (TOML and shell): A free form representation that will be rendered as written in a syntax highlighter.
       * `direct_toml` (optional, string) A string representation of TOML. Will be put through the [Chroma](https://github.com/alecthomas/chroma) TOML highlighter and placed under a “TOML” tab or heading.
       * `direct_shell` A string representation of apiclient. Will be put through the [Chroma](https://github.com/alecthomas/chroma) shell highlighter and placed under a “apiclient” tab or heading.
+      * `direct_yaml` A string representation of yaml. Will be put through the [Chroma](https://github.com/alecthomas/chroma) yaml highlighter and placed under a “YAML” tab or heading.
 
 ## Adding tags/topics
 
