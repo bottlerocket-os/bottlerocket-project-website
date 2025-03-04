@@ -2,11 +2,11 @@
 {{- $setting_full_name := .Get "full_name" -}}
 {{- $setting_prefix := .Get "prefix" -}}
 {{- $active_tab := cond (eq (.Get "active") true) "show active" "" -}}
-{{- $example_toml_or_apiclient := cond (eq (.Get "toml") true) "TOML" "apiclient" -}}
-{{- $highlighter_type := cond (eq (.Get "toml") true) "toml" "shell" -}}
+{{- $example_type := cond (eq (.Get "toml") true) "TOML" (cond (eq (.Get "yaml") true) "YAML" "apiclient") -}}
+{{- $highlighter_type := cond (eq (.Get "toml") true) "toml" (cond (eq (.Get "yaml") true) "yaml" "shell") -}}
 {{- $examples := .Get "example" -}}
 
-<div class="tab-pane fade {{ $active_tab }}" id="{{ $setting_id  }}Example{{ $example_toml_or_apiclient }}Pane" role="tabpanel" aria-labelledby="{{ $setting_id }}-example-{{ $example_toml_or_apiclient }}-tab">
+<div class="tab-pane fade {{ $active_tab }}" id="{{ $setting_id  }}Example{{ $example_type }}Pane" role="tabpanel" aria-labelledby="{{ $setting_id }}-example-{{ $example_type }}-tab">
 {{ range $examples }}
     {{ $example_scratch := newScratch }}
     {{ $example := . }}
@@ -30,6 +30,15 @@
         {{ else }}
             {{ $example_scratch.Add "out" (print "[" $setting_prefix "]\n")}}
             {{ $example_scratch.Add "out" (print $setting_id " = " $example.value) }}
+        {{ end }}
+    {{ else if (eq $highlighter_type "yaml") }}
+        {{ if isset $example "comment" }}
+            {{ $example_scratch.Add "out" (print "# " $example.comment "\n") }}
+        {{ end }}
+        {{ if isset $example "direct_yaml"}}
+            {{ if (gt (len $example.direct_yaml) 0 )}}
+                {{ $example_scratch.Add "out" $example.direct_yaml }}
+            {{ end }}
         {{ end }}
     {{ else }}
         {{ if isset $example "direct_shell"}}
