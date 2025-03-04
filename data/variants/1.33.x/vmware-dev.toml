@@ -1,0 +1,53 @@
+# Extracted from https://github.com/bottlerocket-os/bottlerocket/variants/vmware-dev/Cargo.toml
+[package]
+name = "vmware-dev"
+version = "0.1.0"
+edition = "2021"
+publish = false
+build = "../build.rs"
+# Don't rebuild crate just because of changes to README.
+exclude = ["README.md"]
+
+[package.metadata.build-variant.image-layout]
+partition-plan = "unified"
+
+[package.metadata.build-variant.image-features]
+grub-set-private-var = true
+xfs-data-partition = true
+uefi-secure-boot = true
+systemd-networkd = true
+
+[package.metadata.build-variant]
+image-format = "vmdk"
+supported-arches = ["x86_64"]
+kernel-parameters = [
+    "console=tty1",
+    # Only reserve if there are at least 2GB
+    "crashkernel=2G-:256M",
+    "net.ifnames=0",
+    "netdog.default-interface=eth0:dhcp4,dhcp6?",
+    "quiet",
+]
+included-packages = [
+# core
+    "release",
+    "kernel-6.1",
+    "open-vm-tools",
+# docker
+    "docker-cli",
+    "docker-engine",
+    "docker-init",
+# tools
+    "login",
+    "iputils",
+    "strace",
+    "chrony-tools",
+]
+
+[lib]
+path = "../variants.rs"
+
+[build-dependencies]
+settings-defaults = { path = "../../packages/settings-defaults" }
+settings-plugins = { path = "../../packages/settings-plugins" }
+settings-migrations = { path = "../../packages/settings-migrations" }
