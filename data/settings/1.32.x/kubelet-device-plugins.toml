@@ -1,0 +1,152 @@
+[[docs.tag.nvidia]]
+heading = "Settings related to k8 nvidia device plugin"
+description = """
+See the [nvidia-k8s-device-plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#with-cuda-time-slicing) for more details.
+"""
+
+[[docs.tag.nvidia-time-slicing]]
+heading = "NVIDIA Time-Slicing"
+description = """
+Bottlerocket supports NVIDIA GPU time-slicing on Kubernetes nodes through the [nvidia-k8s-device-plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#with-cuda-time-slicing). 
+This functionality enables system administrators to allocate a set of replicas on the node's GPU(s), which can then be assigned to individual pods for executing various workloads. \
+To learn more about Time-Slicing and its options, please take a look at the NVIDIA documentation, like their [Kubernetes plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#with-cuda-time-slicing) and [technical blog](https://developer.nvidia.com/blog/improving-gpu-utilization-in-kubernetes/).
+
+<h5>Lifecycle</h5>
+
+When time-slicing configuration is defined on a Bottlerocket Kubernetes node with NVIDIA GPU variants, the configuration is applied to all GPUs present on the node. 
+Modifications to the time-slicing configuration will affect the advertised resources available on the node. 
+Existing pods that were already running and consuming the GPU are not automatically removed or restarted. 
+Therefore, it is recommended to configure time-slicing settings before deploying pods to ensure consistency across all GPU workloads.
+
+<h5>Use Cases</h5>
+
+The time-slicing feature is disabled by default in Bottlerocket. This feature does not provide memory or fault isolation between replicas, and has unique resource request behavior as described [here](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#with-cuda-time-slicing). 
+According to [NVIDIA](https://developer.nvidia.com/blog/improving-gpu-utilization-in-kubernetes/#virtualization_with_vgpu), this feature is best used for over subscribing the GPU when needing to run multiple applications that are not latency-sensitive or can tolerate jitter.
+
+<h5>Example Usage</h5>
+
+In a Bottlerocket Kubernetes NVIDIA variant, if the below configuration were applied to a node with 8 GPUs on it, the plugin would now advertise 80 `nvidia.com/gpu.shared` resources to Kubernetes instead of 8 (8 GPU’s x 10 replicas = 80).
+The nvidia-k8s-device-plugin creates 10 references to each GPU and distributes them to any requestor. For behavior details, please refer to [NVIDIA documentation](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-sharing.html#about-configuring-gpu-time-slicing). 
+"""
+
+tag_name = "nvidia-time-slicing"
+example = [{ type = "toml", tab = "TOML", source = '''
+[settings.kubelet-device-plugins.nvidia]
+device-sharing-strategy = "time-slicing"
+
+[settings.kubelet-device-plugins.nvidia.time-slicing]
+replicas = 10
+''' }, { type = "shell", tab = "Shell", source = '''
+apiclient set --json '{
+  "settings": {
+    "kubelet-device-plugins": {
+      "nvidia": {
+        "device-sharing-strategy": "time-slicing",
+        "time-slicing": {
+            "replicas": 10
+        }
+      }
+    }
+  }
+}'
+''' }]
+
+[[docs.ref.nvidia-device-id-strategy]]
+name_override = "nvidia.device-id-strategy"
+description = "Specifies the desired strategy for passing device IDs to the container."
+default = "`index`"
+accepted_values = ["`index`", "`uuid`"]
+see = [
+    [
+        "[NVIDIA K8 Device Plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#configuration-option-details)",
+    ],
+]
+tags = ["nvidia"]
+
+[[docs.ref.nvidia-device-list-strategy]]
+name_override = "nvidia.device-list-strategy"
+description = """
+Specifies the desired strategy for passing the device list to the container. If the value is set to:
+* `volume-mounts`, the list of devices is passed as a set of volume mounts instead of as an environment variable to instruct the NVIDIA Container Runtime to inject the devices. 
+* `envvar`, the `NVIDIA_VISIBLE_DEVICES` environment variable is used to select the devices that are to be injected by the NVIDIA Container Runtime.
+"""
+default = "`volume-mounts`"
+accepted_values = ["`volume-mounts`", "`envvar`"]
+see = [
+    [
+        "[NVIDIA K8 Device Plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#configuration-option-details)",
+    ],
+    [
+        "[Read list of GPU devices from volume mounts instead of NVIDIA_VISIBLE_DEVICES](https://docs.google.com/document/d/1uXVF-NWZQXgP1MLb87_kMkQvidpnkNWicdpO2l9g-fw/edit?tab=t.0#heading=h.xtqvwyv8lv4c)",
+    ],
+]
+tags = ["nvidia"]
+
+[[docs.ref.nvidia-device-sharing-strategy]]
+name_override = "nvidia.device-sharing-strategy"
+description = "Specifies the desired sharing strategy of of the GPU resource."
+default = "`none`"
+accepted_values = ["`none`", "`time-slicing`"]
+see = [
+    [
+        "[NVIDIA K8 Device Plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#configuration-option-details)",
+    ],
+]
+tags = ["nvidia", "nvidia-time-slicing"]
+
+[[docs.ref.nvidia-pass-device-specs]]
+name_override = "nvidia.pass-device-specs"
+description = "Specifies passing the paths and desired device node permissions for any NVIDIA devices being allocated to the container. "
+default = "`true`"
+accepted_values = ["`true`", "`false`"]
+see = [
+    [
+        "[NVIDIA K8 Device Plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#configuration-option-details)",
+    ],
+]
+tags = ["nvidia"]
+
+[[docs.ref.nvidia-time-slicing-replicas]]
+name_override = "nvidia.time-slicing.replicas"
+description = "Specifies the desired sharing strategy of of the GPU resource."
+default = "`2` when `settings.kubelet-device-plugins.nvidia.device-sharing-strategy` is set to `time-slicing`."
+accepted_values = ["positive integer number `>=2`"]
+see = [
+    [
+        "[NVIDIA K8 Device Plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#configuration-option-details)",
+    ],
+]
+tags = ["nvidia", "nvidia-time-slicing"]
+
+[[docs.ref.nvidia-time-slicing-rename-by-default]]
+name_override = "nvidia.time-slicing.rename-by-default"
+description = """
+Specifies the Kubernetes advertised resource as `<resource-name>.shared` instead of `<resource-name>`.
+
+For example, if this field is set to `true` the nodes that are configured for time-sliced GPU access then advertise the resource as `nvidia.com/gpu.shared`. Setting this field to true can be helpful if you want to schedule pods on GPUs with shared access by specifying `<resource-name>.shared` in the resource request. When this field is set to `false`, the advertised resource name is not modified, such as `nvidia.com/gpu`.
+"""
+default = "`true` when `settings.kubelet-device-plugins.nvidia.device-sharing-strategy` is set to `time-slicing`."
+accepted_values = ["`true`", "`false`"]
+see = [
+    [
+        "[NVIDIA K8 Device Plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#with-cuda-time-slicing)",
+    ],
+]
+tags = ["nvidia", "nvidia-time-slicing"]
+
+[[docs.ref.nvidia-time-slicing-fail-requests-greater-than-one]]
+name_override = "nvidia.time-slicing.fail-requests-greater-than-one"
+description = """
+Specifies the resource request handling behavior when a request has more than one GPU replica. 
+
+As described by [NVIDIA](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#with-cuda-time-slicing), the purpose of this field is to enforce awareness that requesting more than one GPU replica does not result in receiving more proportional access to the GPU. When set to `true`, a resource request for more than one GPU fails with an `UnexpectedAdmissionError`. In this case, you must manually delete the pod, update the resource request, and redeploy.
+
+"""
+default = "`true` when `settings.kubelet-device-plugins.nvidia.device-sharing-strategy` is set to `time-slicing`."
+accepted_values = ["`true`", "`false`"]
+see = [
+    [
+        "[NVIDIA K8 Device Plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#with-cuda-time-slicing)",
+    ],
+]
+tags = ["nvidia", "nvidia-time-slicing"]
