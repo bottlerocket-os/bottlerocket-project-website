@@ -1,0 +1,47 @@
+{{ $project_version := .Page.Scratch.Get "projectVer" }}
+{{ with  $.Site.Data.variants }}
+    {{ $release_variants := index $.Site.Data.variants $project_version }}
+    <table class="table table-rowspan">
+        <thead>
+            <tr>
+                <th scope="col">Variant</th>
+                <th scope="col">FIPS modules</th>
+            </tr>
+        </thead>
+        <tbody>
+          {{ range $release_variants }}
+            {{ if strings.Contains .package.name "fips"}}
+              <tr>
+                <td rowspan="2">
+                  <code>{{ replace .package.name "_" "." }}</code>
+                </td>
+                <td>
+                  {{/* Access "build-variant" with "index" because "-" is "invalid" */}}
+                  {{ with index .package.metadata "build-variant"}}
+                    {{ range index . "included-packages" }}
+                      {{ if strings.Contains . "kernel" }}
+                        {{/* The kernel version is at index 7 */}}
+                        {{ $version := substr . 7 }}
+                        <a href="{{ index $.Site.Data.fips.modules.kernels $version }}">
+                          Amazon Linux Kernel
+                        </a>
+                      {{ end }}
+                    {{ end }}
+                  {{end}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  {{ with index $.Site.Data.fips.modules "aws-lc" }}
+                    {{/* There is only one AWS LC version */}}
+                    <a href="{{ index . "3.0.0" }}">
+                      AWS LC
+                    </a>
+                  {{ end }}
+                </td>
+              </tr>
+            {{ end }}
+          {{ end }}
+        </tbody>
+    </table>
+{{ end }}
