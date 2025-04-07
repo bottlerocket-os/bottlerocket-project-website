@@ -17,6 +17,24 @@ You can currently generate reports on your Bottlerocket nodes against two differ
 - [Bottlerocket CIS Benchmark](./cis/)
 - [Kubernetes CIS Benchmark](./cis-k8s)
 
+## FIPS 140-3 for Bottlerocket
+
+Bottlerocket supports running workloads through the Bottlerocket FIPS [variants].
+These variants constrain the kernel and userspace components to the use of cryptographic modules that have been submitted to the FIPS 140-3 [Cryptographic Module Validation Program] \(CMVP\).
+
+This includes the [Amazon Linux 2023 Kernel Cryptographic API] and the [AWS-LC Cryptographic Module].
+In FIPS variants, modules are configured based on their respective security policies.
+You can generate a [Bottlerocket FIPS report] to verify the configuration.
+
+Per the [FedRAMP Policy for Cryptographic Module Selection and Use], Bottlerocket ships the **_updated streams_** for these modules, with the latest patches and updates applied to the software, regardless of the FIPS-validation status of the changed software.
+
+[variants]: ../../concepts/variants
+[Cryptographic Module Validation Program]: https://csrc.nist.gov/projects/cryptographic-module-validation-program/fips-140-3-standards
+[Amazon Linux 2023 Kernel Cryptographic API]: https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4808
+[AWS-LC Cryptographic Module]: https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4631
+[Bottlerocket FIPS report]: ./fips
+[FedRAMP Policy for Cryptographic Module Selection and Use]: https://www.fedramp.gov/rev5/fips/
+
 ## Running a report
 
 You will need to be running the [control container](../../concepts/shell-less-host/#control-container) or, alternately, mount the `apiclient` binary and the Bottlerocket API unix socket into a container as well as have the appropriate SELinux permissions.
