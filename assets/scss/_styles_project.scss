@@ -705,3 +705,20 @@ nav.foldable-nav .with-child.depad {
     margin-left: 0;
     padding-bottom: 1.5rem;
 }
+
+/* Tables with rowspans > 1 */
+.table-rowspan {
+  tbody {
+    /* Remove stripes from tables for columns with large rowspans */
+    tr:nth-of-type(#{$table-striped-order}) {
+      background-color: transparent !important;
+    }
+
+    /* Center the text for large cells */
+    tr {
+      td {
+        vertical-align: middle;
+      }
+    }
+  }
+}
