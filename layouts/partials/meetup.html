@@ -1,0 +1,7 @@
+<div class="resource-list">
+    <h3 id="{{ .id }}"><a href="{{.meetup.url}}" target="#">{{ .meetup.title }}</a></h3>
+    <div>
+        <small>Type: {{ .meetup.type}}</small>
+    </div>
+    <p>{{ .meetup.description | markdownify }}</p>
+</div>
