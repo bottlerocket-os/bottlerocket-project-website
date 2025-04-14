@@ -50,7 +50,11 @@ When referencing variants in writing, `bottlerocket-` and the commit are typical
 
 ## Flavors
 
-Variants may also package in drivers for specific hardware called a “flavor.” Currently, the only flavor is 'nvidia', which adds support for Nvidia GPUs.
+Variant flavors are used to identify when a variant is built for a specific purpose. The supported flavors include:
+
+- `nvidia`: adds support for NVIDIA GPUs.
+- `fips`: adds support for FIPS 140-3 workloads.
+
 
 ## Variants, updating, & migrating
 
