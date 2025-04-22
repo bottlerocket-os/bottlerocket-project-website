@@ -1,0 +1,5 @@
+top_level= true
+[[docs.ref]]
+description= "Changes the message of the day by writing out value to `/etc/motd`. Useful, low-risk way to try out the API."
+[[docs.ref.example]]
+value = "\"This is a mesage of the day.\""
