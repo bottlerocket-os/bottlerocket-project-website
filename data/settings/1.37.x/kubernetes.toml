@@ -1,0 +1,653 @@
+[[docs.tag.labels-and-taints]]
+heading = "Node labels & taints"
+description = "You can use these optional settings to customize the node labels and taints."
+
+
+[[docs.tag.required-vmware]]
+heading = "Settings needed for `vmware-k8s-*` variants"
+description = """
+Required settings for Kubernetes VMware variants.
+These settings are typically specified in [user data](https://github.com/bottlerocket-os/bottlerocket#using-user-data).
+
+See the [VMware setup guide](https://github.com/bottlerocket-os/bottlerocket/blob/develop/QUICKSTART-VMWARE.md) for more information.
+"""
+
+[[docs.tag.required-eks]]
+heading = "Settings needed for `aws-k8s-*` variants"
+description = """
+Required settings for Kubernetes variants in AWS.
+These settings are typically specified in [user data](https://github.com/bottlerocket-os/bottlerocket#using-user-data).
+
+See the [EKS Quickstart](https://bottlerocket.dev/en/os/latest/#/install/quickstart/aws/k8s/) and the [EKS setup guide](https://github.com/bottlerocket-os/bottlerocket/blob/develop/QUICKSTART-EKS.md) for more details on setting up Bottlerocket and Kubernetes on Amazon EKS.
+"""
+# [[docs.tag.required-eks.example]]
+# tab = "TOML Example"
+# type = "toml"
+# source = """
+# [foo]
+# bar = "baz"
+# """
+
+[[docs.tag.required-metal]]
+heading = "Settings needed for `metal-k8s-*` variants"
+description = """
+Required settings for Kubernetes bare metal variants.
+These settings are typically specified in [user data](https://github.com/bottlerocket-os/bottlerocket#using-user-data).
+
+See [metal provisioning guide](https://github.com/bottlerocket-os/bottlerocket/blob/develop/PROVISIONING-METAL.md) for more information.
+"""
+
+[[docs.tag.static-pods]]
+heading = "Static Pods & standalone mode"
+description = """
+You can also optionally specify [static pods](https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/) for your node.
+Static pods can be particularly useful when running in standalone mode.
+"""
+
+[[docs.ref.api-server]]
+description = "The cluster's Kubernetes API endpoint. This is typically specified in [user data](https://github.com/bottlerocket-os/bottlerocket#using-user-data)."
+tags = [
+    "required-eks",
+    "required-vmware",
+    "required-metal"
+]
+[[docs.ref.cluster-certificate]]
+description = "The base64-encoded certificate authority of the cluster."
+tags = [
+    "required-eks",
+    "required-vmware",
+    "required-metal"
+]
+[[docs.ref.cluster-name]]
+description = "The cluster name you chose during setup."
+tags= [
+    "required-eks"
+]
+[[docs.ref.bootstrap-token]]
+description = """
+The token to use for [TLS bootstrapping](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/).
+Only used when `settings.kubernetes.authentication-mode` is set to `tls` (ignored otherwise).
+"""
+tags = ["required-vmware", "required-metal"]
+see = [
+    [ "settings", "kubernetes", "authentication-mode" ],
+    [ "[TLS bootstrapping](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/) "]
+]
+
+
+[[docs.ref.node-labels]]
+description = "[Labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) in the form of key, value pairs added when registering the node in the cluster."
+tags = [
+    "labels-and-taints"
+]
+note = "Remember to quote keys (since they often contain `.`) and to quote all values."
+
+see = [
+    ["[Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)"]
+]
+
+[[docs.ref.node-labels.example]]
+[[docs.ref.node-labels.example.multiline]]
+"label1" = "foo"
+"label2" = "bar"
+
+
+[[docs.ref.node-taints]]
+description = "[Taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/) in the form of key, values and effects entries added when registering the node in the cluster."
+tags = [
+    "labels-and-taints"
+]
+note = "Remember to quote keys (since they often contain `.`) and to quote all values."
+see = [
+    ["[Taints and Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)"]
+]
+
+[[docs.ref.node-taints.example]]
+[[docs.ref.node-taints.example.multiline]]
+"dedicated" = '["experimental:PreferNoSchedule", "experimental:NoExecute"]'
+"special" = '["true:NoSchedule"]'
+
+[[docs.ref.cluster-dns-ip]]
+description = """
+The IP of the DNS service running in the cluster.
+On AWS variants, this is derived from the EKS Service IP CIDR or the CIDR block of the primary network interface.
+This value can be set as a string containing a single IP address, or as a list containing multiple IP addresses.
+"""
+see = [
+    ["[`clusterDNS`  in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["[`--cluster-dns` in Kubelet Options](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/#options)"]
+]
+
+[[docs.ref.cluster-dns-ip.example]]
+comment = "Valid, single IP"
+value = "\"10.0.0.1\""
+[[docs.ref.cluster-dns-ip.example]]
+comment = "Also valid, multiple nameserver IPs"
+value = "[\"10.0.0.1\", \"10.0.0.2\"]"
+
+[[docs.ref.allowed-unsafe-sysctls]]
+description= "Enables specified list of unsafe sysctls."
+see = [
+    [ "[Using sysctls in a Kubernetes Cluster](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/)" ],
+    [ "[`allowedUnsafeSysctls` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]
+
+[[docs.ref.allowed-unsafe-sysctls.example]]
+value = "[\"net.core.somaxconn\", \"net.ipv4.ip_local_port_range\"]"
+[[docs.ref.authentication-mode]]
+description = "The authentication method kubelet should use to connect to the API server, and for incoming requests."
+default = "`aws` for AWS variants, `tls` for other variants"
+see = [
+    ["settings", "kubernetes", "bootstrap-token" ]
+]
+
+[[docs.ref.cloud-provider]]
+description= "The cloud provider for the cluster."
+default= "`aws` for AWS variants, `external` for other variants"
+see = [
+    [ "[kubernetes/cloud-provider](https://github.com/kubernetes/cloud-provider)"],
+    [ "[`--cloud-provider` in Kubelet Options](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/#options)"]
+]
+
+[[docs.ref.cluster-domain]]
+description= "The DNS domain for the cluster, allowing all Kubernetes-run containers to search this domain before the host's search domains"
+default= "`cluster.local`"
+see = [
+    ["[`clusterDomain` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["[`--cluster-domain` in Kubelet Options](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/#options)"]
+]
+
+
+[[docs.ref.container-log-max-files]]
+description= "The maximum number of container log files that can be present for a container."
+see = [
+    [ "[`containerLogMaxFiles` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    [ "[Logging Architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation)"]
+]
+
+[[docs.ref.container-log-max-size]]
+description= "The maximum size of container log file before it is rotated."
+see = [
+    [ "[`containerLogMaxSize` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    [ "[Logging Architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation)"]
+]
+
+[[docs.ref.cpu-cfs-quota-enforced]]
+description= "Whether CPU CFS quotas are enforced"
+default= "`true`"
+see = [
+    [ "[`cpuCFSQuota` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]
+[[docs.ref.cpu-manager-policy]]
+description= """
+Specifies the CPU manager policy.
+If you want to allow pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node, you can set this setting to `static`.
+You should reboot if you change this setting after startup - try `apiclient reboot`
+"""
+accepted_values = [
+    "`static`",
+    "`none`"
+]
+default = "`none`"
+see  = [
+    ["[`cpuManagerPolicy` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    [ "settings", "kubernetes","cpu-manager-policy-options" ]
+]
+
+[[docs.ref.cpu-manager-policy-options]]
+description = """
+Policy options to apply when `settings.kubernetes.cpu-manager-policy` is set to `static`.
+There currently there is only one allowed option, so the default is implict if not the setting is not defined.
+"""
+see = [
+    ["[Static policy options](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/#static-policy-options)"],
+    ["[`cpuManagerPolicyOptions` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["settings", "kubernetes", "cpu-manager-policy-options"],
+]
+accepted_values = [
+    "`full-pcpus-only`"
+]
+
+[[docs.ref.cpu-manager-policy-options.example]]
+comment = "When `settings.kubernetes.cpu-manager-policy` is set to `static`"
+value = "[\"full-pcpus-only\"]"
+
+[[docs.ref.cpu-manager-reconcile-period]]
+description = """
+Specifies the CPU manager reconcile period, which controls how often updated CPU assignments are written to cgroupfs.
+The value is a duration like `30s` for 30 seconds or `1h5m` for 1 hour and 5 minutes.
+"""
+see = [
+    ["[`cpuManagerReconcilePeriod` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]
+
+[[docs.ref.credential-providers]]
+description = """
+Contains a collection of Kubelet image credential provider settings.
+Each key under this setting is the name of the plugin to configure. See Example 1 below.
+The `ecr-credential-provider` plugin can also be used for AWS IAM Roles Anywhere support.
+IAM Roles Anywhere is configured using the [`settings.aws.config`](../aws#config) setting.
+The content of that setting needs to configure the `credential_process` using the `aws_signing_helper` using your IAM Roles Anywhere settings, see Example 2 below.
+"""
+note = "`ecr-credential-provider` is currently the only supported provider. To manage its AWS credentials, see the `settings.aws.config` and `settings.aws.credentials` settings."
+
+see = [
+    ["[Roles Anywhere documentation on `aws_signing_helper` arguments](https://docs.aws.amazon.com/rolesanywhere/latest/userguide/credential-helper.html)"]
+]
+
+[[docs.ref.credential-providers.example]]
+direct_toml = """
+# Example 1: user data for configuring the `ecr-credential-provider` credential provider plug-in
+[settings.kubernetes.credential-providers.ecr-credential-provider]
+enabled = true
+# (optional - defaults to "12h")
+cache-duration = "30m"
+image-patterns = [
+  # One or more URL paths to match an image prefix. Supports globbing of subdomains.
+  "*.dkr.ecr.us-east-2.amazonaws.com",
+  "*.dkr.ecr.us-west-2.amazonaws.com"
+]
+
+[settings.kubernetes.credential-providers.ecr-credential-provider.environment]
+# The following are not used with ecr-credential-provider, but are provided for illustration
+"KEY" = "abc123xyz"
+"GOMAXPROCS" = "2"
+"""
+
+[[docs.ref.credential-providers.example]]
+direct_toml = """
+# Example 2: `credential_process` using the `aws_signing_helper`
+[default]
+region = us-west-2
+credential_process = aws_signing_helper credential-process \
+   --certificate /var/lib/kubelet/pki/kubelet-client-current.pem \
+   --private-key /var/lib/kubelet/pki/kubelet-client-current.pem \
+   --profile-arn [profile ARN]
+   --role-arn [role ARN]
+   --trust-anchor-arn [trust anchor ARN]
+"""
+
+
+
+
+[[docs.ref.event-burst]]
+description = "The maximum size of a burst of event creations."
+see = [
+    [ "[`eventBurst` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+[[docs.ref.event-qps]]
+description = "The maximum event creations per second."
+see = [
+    [ "[`eventRecordQPS` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+
+[[docs.ref.image-gc-high-threshold-percent]]
+description = """
+The percent of disk usage after which image garbage collection is always run, expressed as an integer from 0-100 inclusive.
+
+If you downgrade from 1.14.0 to an earlier version, the values will be automatically converted to strings.
+"""
+see = [
+    ["[`imageGCHighThresholdPercent` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    [ "settings", "kubernetes", "image-gc-low-threshold-percent"]
+]
+
+[[docs.ref.image-gc-high-threshold-percent.example]]
+comment = "After 1.14.0, the value can be represented as a integer or string for backwards compatiblity."
+value = 85
+[[docs.ref.image-gc-high-threshold-percent.example]]
+comment = "Before 1.14.0, the value must be represented as a string."
+value = "\"85\""
+
+[[docs.ref.kube-api-burst]]
+description = "The burst to allow while talking with kubernetes."
+see = [
+    ["[`kubeAPIBurst` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+[[docs.ref.kube-api-qps]]
+description = " The QPS to use while talking with kubernetes apiserver."
+see = [
+    ["[`kubeAPIQPS` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+[[docs.ref.log-level]]
+description = "The logging verbosity of the kubelet process. Higher numbers enabling more verbose logging."
+default = "2"
+see = [
+    ["[`--v Level` in Kubelet Options](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/#options)"]
+]
+
+[[docs.ref.memory-manager-policy]]
+description = """
+The memory management policy to use: `None` or `Static`.
+When using the `Static` policy you should also set `settings.kubernetes.memory-manager-reserved-memory` values.
+"""
+default = "`None`"
+see = [
+    [ "[`memoryManagerPolicy` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    [ "settings", "kubernetes","memory-manager-reserved-memory"]
+]
+
+
+[[docs.ref.memory-manager-reserved-memory]]
+description = """
+Set the total amount of reserved memory for a node.
+`settings.kubernetes.memory-manager-reserved-memory` is set per NUMA node.
+These settings are used to configure memory manager policy when `settings.kubernetes.memory-manager-policy` is set to `Static`.
+"""
+warning = """
+`memory-manager-reserved-memory` settings are an advanced configuration and requires a clear understanding of what you are setting.
+Misconfiguration of reserved memory settings may cause the Kubernetes `kubelet` process to fail.
+It can be very difficult to recover from configuration errors.
+Use the memory reservation information from `kubectl describe node` and make sure you understand the Kubernetes documentation related to the [memory manager](https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/) and [how to reserve compute resources for system daemons](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/).
+"""
+see = [
+    ["[Utilizing the NUMA-aware Memory Manager](https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/#reserved-memory-flag)"]
+]
+[[docs.ref.memory-manager-reserved-memory.example]]
+direct_toml = """
+[settings.kubernetes]
+"memory-manager-policy" = "Static"
+
+[settings.kubernetes.memory-manager-reserved-memory.0]
+# Reserve a single 1GiB huge page along with 674MiB of memory
+"enabled" = true
+"memory" = "674Mi"
+"hugepages-1Gi" = "1Gi"
+
+[settings.kubernetes.memory-manager-reserved-memory.1]
+# Reserve 1,074 2MiB huge pages
+"enabled" = true
+"hugepages-2Mi" = "2148Mi"
+"""
+
+[[docs.ref.image-gc-low-threshold-percent]]
+description = """
+The percent of disk usage before which image garbage collection is never run, expressed as an integer from 0-100 inclusive.
+
+If you downgrade from 1.14.0 to an earlier version, the values will be automatically converted to strings.
+"""
+see = [
+    ["[`imageGCLowThresholdPercent` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    [ "settings", "kubernetes", "image-gc-high-threshold-percent"]
+]
+[[docs.ref.image-gc-low-threshold-percent.example]]
+comment = "After 1.14.0, the value can be represented as a integer or string for backwards compatiblity."
+value = 80
+
+
+[[docs.ref.image-gc-low-threshold-percent.example]]
+comment = "Before 1.14.0, the value must be represented as a string."
+value = "\"80\""
+
+[[docs.ref.pod-pids-limit]]
+description = "The maximum number of processes per pod."
+see = [
+    [ "[`podPidsLimit` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+[[docs.ref.provider-id]]
+description = "The way an external provider identifies a node."
+see = [
+   [ "[`providerID` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+[[docs.ref.registry-burst]]
+description = "The maximum size of bursty pulls."
+see = [
+    [ "[`registryBurst` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+[[docs.ref.registry-qps]]
+description = "The registry pull QPS."
+see = [
+    [ "[`registryPullQPS` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+[[docs.ref.server-tls-bootstrap]]
+description = """
+Enables or disables server certificate bootstrap.
+When enabled, the kubelet will request a certificate from the certificates.k8s.io API.
+This requires an approver to approve the certificate signing requests (CSR).
+"""
+default = "`true`"
+see = [
+    [ "[`serverTLSBootstrap`  in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+[[docs.ref.shutdown-grace-period]]
+description = "Delay the node should wait for pod termination before shutdown."
+default = "`0s`"
+see = [
+    [ "[`shutdownGracePeriod` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+[[docs.ref.shutdown-grace-period-for-critical-pods]]
+description = "The portion of the shutdown delay that should be dedicated to critical pod shutdown. Default is 0s."
+default = "`false`"
+see = [
+    [ "[`shutdownGracePeriodCriticalPods` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+[[docs.ref.system-reserved]]
+description = "Resources reserved for system components."
+see = [
+    [ "[`systemReserved` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+[[docs.ref.system-reserved.example]]
+comment = "Example user data for setting up system reserved"
+[[docs.ref.system-reserved.example.multiline]]
+cpu = "\"10m\""
+memory = "\"100Mi\""
+ephemeral-storage= "\"1Gi\""
+
+[[docs.ref.server-certificate]]
+description = "The base64 encoded content of an x509 certificate for the kubelet web server, which is used for retrieving logs and executing commands."
+see = [
+    ["[`--tls-cert-file` in Kubelet Options](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/#options)"]
+]
+
+[[docs.ref.server-key]]
+description = "The base64 encoded content of an x509 private key for the kubelet web server."
+see = [
+    ["[`--tls-key-file` in Kubelet Options](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/#options)"]
+]
+
+[[docs.ref.topology-manager-policy]]
+description = """
+Specifies the topology manager policy.
+"""
+default = "`none`"
+see = [
+    ["[`topologyManagerPolicy` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["[Utilizing the NUMA-aware Memory Manager](https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/#reserved-memory-flag)"]
+]
+accepted_values = [
+    "`none`",
+    "`restricted`",
+    "`best-effort`",
+    "`single-numa-node`"
+]
+
+[[docs.ref.topology-manager-scope]]
+description = """
+Specifies the topology manager scope.
+If you want to group all containers in a pod to a common set of NUMA nodes, you can set this setting to pod.
+"""
+default = "`container`"
+see = [
+    ["[`topologyManagerPolicy` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["[Utilizing the NUMA-aware Memory Manager](https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/#reserved-memory-flag)"]
+]
+accepted_values = [
+    "`container`",
+    "`pod`"
+]
+
+[[docs.ref.eviction-hard]]
+description = """
+The signals and thresholds that trigger pod eviction.
+Keys are signals and must be quoted since they contain a dot (`.`).
+"""
+see = [
+    ["[`evictionHard` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["settings", "kubernetes", "eviction-soft"]
+]
+
+[[docs.ref.eviction-hard.example]]
+[[docs.ref.eviction-hard.example.multiline]]
+"\"memory.available\"" = "\"15%\""
+
+
+[[docs.ref.eviction-max-pod-grace-period]]
+description = "Maximum grace period, in seconds, to wait for pod termination before soft eviction."
+default = "0"
+see = [
+    ["[`evictionMaxPodGracePeriod` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["settings", "kubernetes", "eviction-soft"]
+]
+[[docs.ref.eviction-max-pod-grace-period.example]]
+value= 40
+
+
+[[docs.ref.eviction-soft]]
+description = "The signals and thresholds that trigger pod eviction with a provided grace period (`settings.kubernetes.eviction-soft-grace-period`). Keys are signals and must be quoted since they contain a dot (`.`)."
+see = [
+    ["[`evictionSoft` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["settings", "kubernetes", "eviction-hard"],
+    ["settings", "kubernetes", "eviction-max-pod-grace-period"],
+    ["settings", "kubernetes", "eviction-soft-grace-period"]
+]
+
+[[docs.ref.eviction-soft.example]]
+[[docs.ref.eviction-soft.example.multiline]]
+"\"memory.available\"" = "\"12%\""
+
+
+[[docs.ref.eviction-soft-grace-period]]
+description = """
+Delay for each signal to wait for pod termination before eviction.
+Keys are signals and must be quoted since they contain a dot (`.`).
+"""
+see = [
+    ["[`evictionSoftGracePeriod` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["settings", "kubernetes", "eviction-soft"]
+]
+
+[[docs.ref.eviction-soft-grace-period.example]]
+[[docs.ref.eviction-soft-grace-period.example.multiline]]
+"\"memory.available\"" = "\"30s\""
+
+[[docs.ref.standalone-mode]]
+description = """
+It `true`, kubelet runs in standalone mode without connecting to an API server.
+"""
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+tags = [
+    "static-pods"
+]
+default = "`false`"
+
+[[docs.ref.customid_enabled]]
+description= "Whether the static pod is enabled."
+name_override="static-pods.<custom identifier>.enabled"
+tags = [
+    "static-pods"
+]
+see = [
+    [ "settings", "kubernetes", "customid_manifest" ]
+]
+
+[[docs.ref.customid_manifest]]
+description= "A base64-encoded pod manifest."
+name_override="static-pods.<custom identifier>.manifest"
+tags = [
+    "static-pods"
+]
+see = [
+    [ "settings", "kubernetes", "customid_enabled" ]
+]
+
+[[docs.ref.kube-reserved]]
+description = """
+Resources reserved for node components. The following keys are valid:
+- `cpu`: in millicores from the total number of vCPUs available on the instance.
+- `memory`: in mebibytes from the max num of pods on the instance. `memory_to_reserve = max_num_pods * 11 + 255`.
+- `ephemeral-storage`: defaults to `1Gi`.
+"""
+see = [
+    [ "[`kubeReserved` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+
+[[docs.ref.node-ip]]
+description = "The IP address of the node."
+
+[[docs.ref.pod-infra-container-image]]
+description = "The URI of the 'pause' container."
+see = [
+    [ "[`--pod-infra-container-image` in Kubelet Options](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/#options)" ]
+]
+
+[[docs.ref.max-pods]]
+description = "The maximum number of pods that can be scheduled on this node (limited by number of available IPv4 addresses)."
+see = [
+    [ "[`maxPods` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+[[docs.ref.hostname-override]]
+description = "The node name kubelet uses as identification instead of the hostname or the name determined by the in-tree cloud provider if that's enabled."
+warning = """
+Changing this setting at runtime (not via user-data) can cause issues with kubelet registration, as hostname is closely tied to the identity of the system for both registration and certificates/authorization purposes.
+
+Most users don't need to change this setting.
+If left unset, the system hostname will be used instead. The `settings.network.hostname` setting can be used to specify the value for both kubelet and the host.
+Only set this override if you intend for the kubelet to register with a different name than the host.
+
+For `aws-k8s-1.26` variants, which use the "external" cloud provider, a hostname override will be automatically generated by querying the EC2 API for the private DNS name of the instance. This is done for backwards compatibility with the deprecated "aws" cloud provider, which adjusted the hostname in a similar way. Future `aws-k8s-*` variants may remove this behavior.
+"""
+
+see = [
+    ["[`--hostname-override` in Kubelet Options](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/#options)"]
+]
+
+[[docs.ref.seccomp-default]]
+description = "Enable `RuntimeDefault` as the default seccomp profile for all workloads via `kubelet-configuration`"
+default= "`false`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+
+[[docs.ref.device-ownership-from-security-context]]
+description = """
+Bottlerocket `v1.30.0`+ supports device ownership using the security context provided in the Kubernetes specfile.
+To allow a container to take ownership, you will need to enable ownership through the `apiclient` setting as well as define the `runAsUser` and `runAsGroup` in the securityContext (See sample below)
+"""
+default = "`true` for k8s-1.32+ variants, `false` for other variants"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    [ "[Kubernetes' documentation](https://kubernetes.io/blog/2021/11/09/non-root-containers-and-devices/) "]
+]
+
+[[docs.ref.device-ownership-from-security-context.example]]
+comment = "Sample securityContext in a specfile to allow device ownership"
+direct_yaml = """
+...
+spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 2000
+    fsGroup: 3000
+...
+"""
