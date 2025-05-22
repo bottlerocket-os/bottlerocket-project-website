@@ -1,0 +1,92 @@
+[[docs.tag.proxy-settings]]
+description = """
+The proxy settings configure the behaviour of several services depending on your variant:
+
+- On **all variants** proxy settings affect [containerd.service](https://github.com/bottlerocket-os/bottlerocket/blob/develop/packages/containerd/containerd.service) and [host-containerd.service](https://github.com/bottlerocket-os/bottlerocket/blob/develop/packages/host-ctr/host-containerd.service).
+- On **Kubernetes variants** (`*-k8s-*`) proxy settings also affect the [kubelet.service](https://github.com/bottlerocket-os/bottlerocket/blob/develop/packages/kubernetes-1.18/kubelet.service).
+- On **ECS variants** (`*-ecs-*` and `*-ecs-2-*`) proxy settings also affect the [docker.service](https://github.com/bottlerocket-os/bottlerocket/blob/develop/packages/docker-engine/docker.service) and the [ecs.service](https://github.com/bottlerocket-os/bottlerocket/blob/develop/packages/ecs-agent/ecs.service).
+"""
+heading = "Proxy Settings"
+
+[[docs.ref.hostname]]
+description = """
+Sets the hostname of the node to the defined value.
+
+Typically, you do not need to change this setting; in the majority of the cases the default will suffice.
+"""
+default = """
+If unset, DNS reverse lookup determines the hostname.
+If DNS reverse lookup fails, the hostname is the IP address of the node.
+"""
+warning = """
+On Kubernetes variants changing `settings.network.hostname` at runtime (as opposed to with user data) may cause issues with kubelet registration.
+"""
+
+[[docs.ref.hosts]]
+description = """
+A mapping of IP addresses to domain names.
+This setting modifies the node's `/etc/hosts` file.
+"""
+note = "This setting does not typically impact name resolution for orchestrated containers."
+see = [
+    ["[Name resolution for ECS](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_HostEntry.html) orchestrated containers."],
+    ["[Name resolution for Kubernetes](https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/) orchestrated containers."]
+]
+[[docs.ref.hosts.example]]
+direct_toml = """
+[settings.network]
+hosts =[
+    ["10.0.0.0", ["test.example.com", "test1.example.com"] ],
+    ["10.1.1.1", ["test2.example.com"] ]
+]
+
+# results in a `/etc/hosts` file:
+# 10.0.0.0 test.example.com test1.example.com
+# 10.1.1.1 test2.example.com
+"""
+[[docs.ref.hosts.example]]
+direct_toml = """
+# Repeated entries are merged (including loopback entries), with the first aliases listed taking precedence.
+
+[settings.network]
+hosts = [
+ ["10.0.0.0", ["test.example.com", "test1.example.com"]],
+ ["10.1.1.1", ["test2.example.com"]],
+ ["10.0.0.0", ["test3.example.com"]],
+]
+
+# results in `/etc/hosts` file:
+# 10.0.0.0 test.example.com test1.example.com test3.example.com
+# 10.1.1.1 test2.example.com
+"""
+
+[[docs.ref.https-proxy]]
+description = """
+The HTTPS proxy server used by services listed under [proxy settings](#tag-proxy-settings) section.
+"""
+accepted_values = [
+    "A host name (with an optional port number)",
+    "An IP address (with an optional port number)"
+]
+tags = [
+    "proxy-settings"
+]
+[[docs.ref.https-proxy.example]]
+value = "\"1.2.3.4:8080\""
+
+[[docs.ref.no-proxy]]
+description = """
+A list of hosts that Bottlerocket will excluded from proxying.
+
+The no-proxy list automatically includes entries for `localhost`.
+
+On Kubernetes variants (`*-k8s-*`) the no-proxy lists includes the Kubernetes API server endpoint as well as other commonly used Kubernetes DNS suffixes.
+"""
+accepted_values = [
+    "List of host names and IP addresses"
+]
+tags = [
+    "proxy-settings"
+]
+[[docs.ref.no-proxy.example]]
+value = "[\"localhost\", \"127.0.0.1\"]"
