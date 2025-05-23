@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir $1/$2
+mkdir -p $1/$2
 
 cat << EOF > $1/$2/index.markdown
 +++
