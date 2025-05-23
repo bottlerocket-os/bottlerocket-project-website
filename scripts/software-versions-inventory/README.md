@@ -22,7 +22,15 @@ On macOS with `brew`, run `brew install rpm` to get the `rpmspec` command.
 
 ## Running the script
 
-1. Run `./software-versions-inventory.sh PATH_TO_BOTTLEROCKET_OS_REPO > packages.markdown`, where `PATH_TO_BOTTLEROCKET_OS_REPO` is the path to the Bottlerocket OS repository from which you want to extract package versions.
+1. software-versions-index.sh
+
+    `./software-versions-index.sh BOTTLEROCKET_RELEASE_VERSION PATH_TO_BOTTLEROCKET_OS_REPO > _index.markdown`
+
+1. software-versions-inventory.sh
+
+    `./software-versions-inventory.sh BOTTLEROCKET_RELEASE_VERSION PATH_TO_BOTTLEROCKET_OS_REPO > packages.markdown`
+
+Where `PATH_TO_BOTTLEROCKET_OS_REPO` is the path to the Bottlerocket OS repository from which you want to extract package versions.
 
 ## Script output
 
