@@ -1,7 +1,7 @@
 ---
-title: "1.32.0"
+title: "Core Kit Version 6.0.2"
 type: "docs"
-description: "Package Versions in Bottlerocket Release 1.32.0"
+description: "Core Kit Package Versions in Bottlerocket Release 1.34.0"
 packages:
   - package: amazon-ecs-cni-plugins
     version: 2024.09.0
@@ -40,7 +40,10 @@ packages:
     patches:
       - "0001-disable-RPC-helper.patch"
   - package: containerd
-    version: 1.7.24
+    version: 1.7.25
+    patches:
+      - "0002-fix-fatal-error-concurrent-map-iteration-and-map-wri.patch"
+      - "0001-fix-master-tty-leak-due-to-leaking-init-container-ob.patch"
   - package: coreutils
     version: 9.5
   - package: dbus-broker
@@ -172,8 +175,6 @@ packages:
     version: 1.6.1
   - package: kmod
     version: 33
-  - package: kubernetes-1.24
-    version: 1.24.17
   - package: kubernetes-1.25
     version: 1.25.16
   - package: kubernetes-1.26

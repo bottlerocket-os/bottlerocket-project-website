@@ -1,7 +1,7 @@
 ---
-title: "1.30.0"
+title: "Core Kit Version 5.0.0"
 type: "docs"
-description: "Package Versions in Bottlerocket Release 1.30.0"
+description: "Core Kit Package Versions in Bottlerocket Release 1.29.0"
 packages:
   - package: amazon-ecs-cni-plugins
     version: 2020.09.0
@@ -14,7 +14,7 @@ packages:
   - package: amazon-vpc-cni-plugins
     version: 1.3
   - package: aws-iam-authenticator
-    version: 0.6.28
+    version: 0.6.26
   - package: aws-otel-collector
     version: 0.41.1
     patches:
@@ -30,17 +30,17 @@ packages:
   - package: binutils
     version: 2.41
   - package: chrony
-    version: 4.6.1
+    version: 4.5
   - package: cni
     version: 1.2.3
   - package: cni-plugins
-    version: 1.6.1
+    version: 1.5.1
   - package: conntrack-tools
     version: 1.4.8
     patches:
       - "0001-disable-RPC-helper.patch"
   - package: containerd
-    version: 1.7.24
+    version: 1.7.22
   - package: coreutils
     version: 9.5
   - package: dbus-broker
@@ -65,15 +65,13 @@ packages:
   - package: ecr-credential-provider
     version: 1.25.16
   - package: ecr-credential-provider-1.27
-    version: 1.27.10
+    version: 1.27.9
   - package: ecr-credential-provider-1.29
-    version: 1.29.7
+    version: 1.29.6
   - package: ecr-credential-provider-1.30
-    version: 1.30.6
+    version: 1.30.3
   - package: ecr-credential-provider-1.31
-    version: 1.31.4
-  - package: ecr-credential-provider-1.32
-    version: 1.32.0
+    version: 1.31.0
   - package: ecs-agent
     version: 1.88.0
     patches:
@@ -92,78 +90,128 @@ packages:
   - package: findutils
     version: 4.10.0
   - package: glibc
-    version: 2.40
+    version: 2.38
     patches:
-      - "0041-Fix-strtod-subnormal-rounding-bug-30220.patch"
-      - "0020-x86-64-Remove-sysdeps-x86_64-x32-dl-machine.h.patch"
-      - "0038-Add-tests-of-fread.patch"
-      - "0055-nptl-initialize-rseq-area-prior-to-registration.patch"
-      - "0054-elf-handle-addition-overflow-in-_dl_find_object_upda.patch"
-      - "0021-x32-cet-Support-shadow-stack-during-startup-for-Linu.patch"
-      - "0004-manual-Do-not-mention-STATIC_TLS-in-dynamic-linker-h.patch"
-      - "0026-stdio-common-Add-test-for-vfscanf-with-matches-longe.patch"
-      - "0045-powerpc64le-Build-new-strtod-tests-with-long-double-.patch"
+      - "0047-sparc-Fix-broken-memset-for-sparc32-BZ-31068.patch"
+      - "0093-resolv-Fix-tst-resolv-short-response-for-older-GCC-b.patch"
+      - "0059-AArch64-Cleanup-emag-memset.patch"
+      - "0090-mremap-Update-manual-entry.patch"
+      - "0016-elf-Remove-unused-l_text_end-field-from-struct-link_.patch"
+      - "0011-sysdeps-tst-bz21269-fix-Wreturn-type.patch"
+      - "0101-posix-Use-support-check.h-facilities-in-tst-truncate.patch"
+      - "0018-NEWS-Add-the-2.38.1-bug-list.patch"
+      - "0085-Linux-Make-__rseq_size-useful-for-feature-detection-.patch"
+      - "0027-tunables-Terminate-if-end-of-input-is-reached-CVE-20.patch"
+      - "0008-malloc-Remove-bin-scanning-from-memalign-bug-30723.patch"
+      - "0099-ungetc-Fix-uninitialized-read-when-putting-into-unus.patch"
+      - "0103-libio-Attempt-wide-backup-free-only-for-non-legacy-c.patch"
+      - "0066-iconv-ISO-2022-CN-EXT-fix-out-of-bound-writes-when-w.patch"
+      - "0100-ungetc-Fix-backup-buffer-leak-on-program-exit-BZ-278.patch"
+      - "0088-resolv-Track-single-request-fallback-via-_res._flags.patch"
+      - "0057-AArch64-Add-support-for-MOPS-memcpy-memmove-memset.patch"
+      - "0068-login-Check-default-sizes-of-structs-utmp-utmpx-last.patch"
+      - "0007-malloc-Enable-merging-of-remainders-in-memalign-bug-.patch"
+      - "0042-syslog-Fix-heap-buffer-overflow-in-__vsyslog_interna.patch"
+      - "0024-Fix-leak-in-getaddrinfo-introduced-by-the-fix-for-CV.patch"
+      - "0105-elf-Change-ldconfig-auxcache-magic-number-bug-32231.patch"
+      - "0087-resolv-Do-not-wait-for-non-existing-second-DNS-respo.patch"
       - "9001-move-ldconfig-cache-to-ephemeral-storage.patch"
-      - "0005-Fix-version-number-in-NEWS-file.patch"
-      - "0039-Test-errno-setting-on-strtod-overflow-in-tst-strtod-.patch"
-      - "0032-elf-Clarify-and-invert-second-argument-of-_dl_alloca.patch"
-      - "0052-Mitigation-for-clone-on-sparc-might-fail-with-EFAULT.patch"
+      - "0055-LoongArch-Correct-__ieee754-_-_scalb-__ieee754-_-_sc.patch"
+      - "0076-elf-Also-compile-dl-misc.os-with-rtld-early-cflags.patch"
+      - "0017-elf-Move-l_init_called_next-to-old-place-of-l_text_e.patch"
+      - "0021-iconv-restore-verbosity-with-unrecognized-encoding-n.patch"
+      - "0094-Fix-name-space-violation-in-fortify-wrappers-bug-320.patch"
+      - "0032-elf-Fix-wrong-break-removal-from-8ee878592c.patch"
+      - "0058-AArch64-Cleanup-ifuncs.patch"
+      - "0075-CVE-2024-33601-CVE-2024-33602-nscd-netgroup-Use-two-.patch"
+      - "0043-syslog-Fix-heap-buffer-overflow-in-__vsyslog_interna.patch"
+      - "0023-manual-jobs.texi-Add-missing-item-EPERM-for-getpgid.patch"
+      - "0104-Add-crt1-2.0.o-for-glibc-2.0-compatibility-tests.patch"
+      - "0102-nptl-Use-support-check.h-facilities-in-tst-setuid3.patch"
+      - "0096-support-Add-FAIL-test-failure-helper.patch"
+      - "0081-misc-Add-support-for-Linux-uio.h-RWF_NOAPPEND-flag.patch"
+      - "0083-nptl-fix-potential-merge-of-__rseq_-relro-symbols.patch"
+      - "0020-getaddrinfo-Fix-use-after-free-in-getcanonname-CVE-2.patch"
+      - "0078-resolv-Fix-some-unaligned-accesses-in-resolver-BZ-30.patch"
+      - "0086-resolv-Allow-short-error-responses-to-match-any-quer.patch"
+      - "0030-Revert-elf-Move-l_init_called_next-to-old-place-of-l.patch"
+      - "0060-AArch64-Add-memset_zva64.patch"
+      - "0046-S390-Fix-building-with-disable-mutli-arch-BZ-31196.patch"
+      - "0005-x86_64-Fix-build-with-disable-multiarch-BZ-30721.patch"
+      - "0013-libio-Fix-oversized-__io_vtables.patch"
+      - "0038-NEWS-Mention-bug-fixes-for-29039-30694-30709-30721.patch"
       - "HACK-only-build-and-install-localedef.patch"
-      - "0033-elf-Avoid-re-initializing-already-allocated-TLS-in-d.patch"
-      - "0035-debug-Fix-read-error-handling-in-pcprofiledump.patch"
-      - "0011-Enhanced-test-coverage-for-strncmp-wcsncmp.patch"
-      - "0037-stdio-common-Add-new-test-for-fdopen.patch"
-      - "0030-posix-Use-support-check.h-facilities-in-tst-truncate.patch"
-      - "0017-Fix-name-space-violation-in-fortify-wrappers-bug-320.patch"
+      - "0054-linux-Use-rseq-area-unconditionally-in-sched_getcpu-.patch"
+      - "0036-x86-64-Fix-the-dtv-field-load-for-x32-BZ-31184.patch"
+      - "0052-malloc-Use-__get_nprocs-on-arena_get2-BZ-30945.patch"
+      - "0015-elf-Always-call-destructors-in-reverse-constructor-o.patch"
+      - "0028-Revert-elf-Remove-unused-l_text_end-field-from-struc.patch"
+      - "0025-Document-CVE-2023-4806-and-CVE-2023-5156-in-NEWS.patch"
+      - "0079-Force-DT_RPATH-for-enable-hardcoded-path-in-tests.patch"
+      - "0092-Update-syscall-lists-for-Linux-6.5.patch"
+      - "0063-aarch64-fix-check-for-SVE-support-in-assembler.patch"
+      - "0064-AArch64-Check-kernel-version-for-SVE-ifuncs.patch"
+      - "0029-Revert-elf-Always-call-destructors-in-reverse-constr.patch"
+      - "0065-powerpc-Fix-ld.so-address-determination-for-PCREL-mo.patch"
+      - "0009-sysdeps-tst-bz21269-fix-test-parameter.patch"
+      - "0051-arm-Remove-wrong-ldr-from-_dl_start_user-BZ-31339.patch"
       - "glibc-cs-path.patch"
-      - "0014-Add-mremap-tests.patch"
-      - "0050-Make-tst-strtod-underflow-type-generic.patch"
-      - "0019-support-Add-options-list-terminator-to-the-test-driv.patch"
-      - "0018-manual-stdio-Further-clarify-putc-putwc-getc-and-get.patch"
-      - "0051-elf-Change-ldconfig-auxcache-magic-number-bug-32231.patch"
-      - "0043-Improve-NaN-payload-testing.patch"
-      - "0003-resolv-Do-not-wait-for-non-existing-second-DNS-respo.patch"
-      - "0009-manual-make-setrlimit-description-less-ambiguous.patch"
-      - "0027-Make-tst-ungetc-use-libsupport.patch"
-      - "0025-support-Add-FAIL-test-failure-helper.patch"
-      - "0048-Add-tests-of-more-strtod-special-cases.patch"
-      - "0057-malloc-add-indirection-for-malloc-like-functions-in-.patch"
-      - "0016-x86-Tunables-may-incorrectly-set-Prefer_PMINUB_for_s.patch"
-      - "0056-nptl-initialize-cpu_id_start-prior-to-rseq-registrat.patch"
-      - "0008-manual-stdio-Clarify-putc-and-putwc.patch"
-      - "0001-Replace-advisories-directory.patch"
-      - "0024-string-strerror-strsignal-cannot-use-buffer-after-dl.patch"
-      - "0010-Enhance-test-coverage-for-strnlen-wcsnlen.patch"
-      - "0047-Add-more-tests-of-strtod-end-pointer.patch"
-      - "0031-nptl-Use-support-check.h-facilities-in-tst-setuid3.patch"
-      - "0036-libio-Attempt-wide-backup-free-only-for-non-legacy-c.patch"
-      - "0049-libio-Set-_vtable_offset-before-calling-_IO_link_in-.patch"
-      - "0028-ungetc-Fix-uninitialized-read-when-putting-into-unus.patch"
-      - "0040-More-thoroughly-test-underflow-errno-in-tst-strtod-r.patch"
-      - "0046-Make-tst-strtod2-and-tst-strtod5-type-generic.patch"
-      - "0022-x86-Fix-bug-in-strchrnul-evex512-BZ-32078.patch"
-      - "0053-linux-sparc-Fix-clone-for-LEON-sparcv8-BZ-31394.patch"
-      - "0015-resolv-Fix-tst-resolv-short-response-for-older-GCC-b.patch"
-      - "0007-malloc-add-multi-threaded-tests-for-aligned_alloc-ca.patch"
-      - "0029-ungetc-Fix-backup-buffer-leak-on-program-exit-BZ-278.patch"
-      - "0013-mremap-Update-manual-entry.patch"
-      - "0012-linux-Update-the-mremap-C-implementation-BZ-31968.patch"
-      - "0002-resolv-Allow-short-error-responses-to-match-any-quer.patch"
-      - "0034-elf-Fix-tst-dlopen-tlsreinit1.out-test-dependency.patch"
-      - "0044-Do-not-set-errno-for-overflowing-NaN-payload-in-strt.patch"
-      - "0023-Define-__libc_initial-for-the-static-libc.patch"
-      - "0006-malloc-avoid-global-locks-in-tst-aligned_alloc-lib.c.patch"
-      - "0042-Make-__strtod_internal-tests-type-generic.patch"
+      - "0034-elf-Fix-TLS-modid-reuse-generation-assignment-BZ-290.patch"
+      - "0039-NEWS-Mention-bug-fixes-for-30745-30843.patch"
+      - "0072-CVE-2024-33599-nscd-Stack-based-buffer-overflow-in-n.patch"
+      - "0067-sparc-Remove-64-bit-check-on-sparc32-wordsize-BZ-275.patch"
+      - "0045-x86_64-Optimize-ffsll-function-code-size.patch"
+      - "0091-Add-mremap-tests.patch"
+      - "0080-i386-Disable-Intel-Xeon-Phi-tests-for-GCC-15-and-abo.patch"
+      - "0031-sysdeps-sem_open-Clear-O_CREAT-when-semaphore-file-i.patch"
+      - "0004-x86-Fix-incorrect-scope-of-setting-shared_per_thread.patch"
+      - "0053-S390-Do-not-clobber-r7-in-clone-BZ-31402.patch"
+      - "0106-nptl-initialize-rseq-area-prior-to-registration.patch"
+      - "0041-libio-Check-remaining-buffer-size-in-_IO_wdo_write-b.patch"
+      - "0098-Make-tst-ungetc-use-libsupport.patch"
+      - "0019-CVE-2023-4527-Stack-read-overflow-with-large-TCP-res.patch"
+      - "0014-elf-Do-not-run-constructors-for-proxy-objects.patch"
+      - "0077-nscd-Use-time_t-for-return-type-of-addgetnetgrentX.patch"
+      - "0048-sparc64-Remove-unwind-information-from-signal-return.patch"
+      - "0082-s390x-Fix-segfault-in-wcsncmp-BZ-31934.patch"
+      - "0070-nptl-Fix-tst-cancel30-on-kernels-without-ppoll_time6.patch"
+      - "0071-i386-ulp-update-for-SSE2-disable-multi-arch-configur.patch"
+      - "0033-LoongArch-Delete-excessively-allocated-memory.patch"
+      - "0050-sparc-Remove-unwind-information-from-signal-return-s.patch"
+      - "0049-sparc-Fix-sparc64-memmove-length-comparison-BZ-31266.patch"
+      - "0044-syslog-Fix-integer-overflow-in-__vsyslog_internal-CV.patch"
+      - "0061-AArch64-Remove-Falkor-memcpy.patch"
+      - "0073-CVE-2024-33600-nscd-Do-not-send-missing-not-found-re.patch"
+      - "0035-elf-Add-TLS-modid-reuse-test-for-bug-29039.patch"
+      - "0062-aarch64-correct-CFI-in-rawmemchr-bug-31113.patch"
+      - "0095-x86-Fix-bug-in-strchrnul-evex512-BZ-32078.patch"
+      - "0012-io-Fix-record-locking-contants-for-powerpc64-with-__.patch"
+      - "0089-linux-Update-the-mremap-C-implementation-BZ-31968.patch"
+      - "0074-CVE-2024-33600-nscd-Avoid-null-pointer-crashes-after.patch"
+      - "0003-nscd-Do-not-rebuild-getaddrinfo-bug-30709.patch"
+      - "0010-sysdeps-tst-bz21269-handle-ENOSYS-skip-appropriately.patch"
+      - "0069-login-structs-utmp-utmpx-lastlog-_TIME_BITS-independ.patch"
+      - "0022-string-Fix-tester-build-with-fortify-enable-with-gcc.patch"
+      - "0037-x86-64-Fix-the-tcb-field-load-for-x32-BZ-31185.patch"
+      - "0040-getaddrinfo-translate-ENOMEM-to-EAI_MEMORY-bug-31163.patch"
+      - "0084-elf-Make-dl-rseq-symbols-Linux-only.patch"
+      - "0097-stdio-common-Add-test-for-vfscanf-with-matches-longe.patch"
+      - "0056-Add-HWCAP2_MOPS-from-Linux-6.5-to-AArch64-bits-hwcap.patch"
+      - "0107-nptl-initialize-cpu_id_start-prior-to-rseq-registrat.patch"
+      - "0002-x86-Fix-for-cache-computation-on-AMD-legacy-cpus.patch"
+      - "0026-Propagate-GLIBC_TUNABLES-in-setxid-binaries.patch"
+      - "0001-stdlib-Improve-tst-realpath-compatibility-with-sourc.patch"
+      - "0006-i686-Fix-build-with-disable-multiarch.patch"
   - package: grep
     version: 3.11
   - package: host-ctr
     version: 0.0
   - package: iproute
-    version: 6.12.0
+    version: 6.9.0
     patches:
       - "0001-skip-libelf-check.patch"
   - package: iptables
-    version: 1.8.11
+    version: 1.8.10
   - package: iputils
     version: 20240905
   - package: kexec-tools
@@ -183,15 +231,13 @@ packages:
   - package: kubernetes-1.27
     version: 1.27.16
   - package: kubernetes-1.28
-    version: 1.28.15
+    version: 1.28.14
   - package: kubernetes-1.29
-    version: 1.29.11
+    version: 1.29.9
   - package: kubernetes-1.30
-    version: 1.30.7
+    version: 1.30.5
   - package: kubernetes-1.31
-    version: 1.31.3
-  - package: kubernetes-1.32
-    version: 1.32.0
+    version: 1.31.1
   - package: libacl
     version: 2.3.2
   - package: libattr
@@ -207,7 +253,7 @@ packages:
   - package: libdbus
     version: 1.15.12
   - package: libelf
-    version: 0.192
+    version: 0.191
   - package: libexpat
     version: 2.6.4
   - package: libffi
@@ -215,9 +261,7 @@ packages:
   - package: libgcc
     version: 0.0
   - package: libglib
-    version: 2.83.0
-    patches:
-      - "0001-require-older-meson.patch"
+    version: 2.78.4
   - package: libinih
     version: 58
   - package: libiw
@@ -235,7 +279,7 @@ packages:
       - "ncurses-libs.patch"
       - "ncurses-urxvt.patch"
   - package: libnetfilter_conntrack
-    version: 1.1.0
+    version: 1.0.9
   - package: libnetfilter_cthelper
     version: 1.0.1
   - package: libnetfilter_cttimeout
@@ -247,7 +291,7 @@ packages:
   - package: libnftnl
     version: 1.2.8
   - package: libnl
-    version: 3.11.0
+    version: 3.10.0
   - package: libnvidia-container
     version: 1.17.3
     patches:
@@ -273,9 +317,9 @@ packages:
   - package: libstd-rust
     version: 0.0
   - package: libtirpc
-    version: 1.3.6
+    version: 1.3.5
   - package: liburcu
-    version: 0.14.1
+    version: 0.14.0
   - package: libxcrypt
     version: 4.4.36
   - package: libz
@@ -298,7 +342,7 @@ packages:
   - package: nvidia-container-toolkit
     version: 1.17.3
   - package: nvidia-k8s-device-plugin
-    version: 0.17.0
+    version: 0.16.2
   - package: nvme-cli
     version: 2.11
     patches:
@@ -330,17 +374,17 @@ packages:
   - package: release
     version: 0.0
   - package: runc
-    version: 1.1.15
+    version: 1.1.14
   - package: selinux-policy
     version: 0.0
   - package: socat
     version: 1.8.0.1
   - package: soci-snapshotter
-    version: 0.8.0
+    version: 0.7.0
   - package: static-pods
     version: 0.1
   - package: strace
-    version: 6.12
+    version: 6.11
   - package: systemd
     version: 252.22
     patches:

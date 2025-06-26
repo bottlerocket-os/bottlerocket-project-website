@@ -1,26 +1,26 @@
 ---
-title: "1.33.0"
+title: "Core Kit Version 8.0.0"
 type: "docs"
-description: "Package Versions in Bottlerocket Release 1.33.0"
+description: "Core Kit Package Versions in Bottlerocket Release 1.38.0"
 packages:
   - package: amazon-ecs-cni-plugins
     version: 2024.09.0
     patches:
       - "0001-bottlerocket-default-filesystem-locations.patch"
   - package: amazon-ssm-agent
-    version: 3.3.1345.0
+    version: 3.3.1957.0
     patches:
       - "0001-agent-Add-config-to-make-shell-optional.patch"
   - package: amazon-vpc-cni-plugins
     version: 1.3
   - package: aws-iam-authenticator
-    version: 0.6.28
+    version: 0.6.30
   - package: aws-otel-collector
-    version: 0.41.1
+    version: 0.43.1
     patches:
       - "0001-change-logger-and-extraconfig-file-paths.patch"
   - package: aws-signing-helper
-    version: 1.2.0
+    version: 1.4.0
   - package: bash
     version: 5.2.37
     patches:
@@ -28,34 +28,40 @@ packages:
       - "bash-4.4-no-loadable-builtins.patch"
       - "bash-5.0-patch-2.patch"
   - package: binutils
-    version: 2.41
+    version: 2.43.1
+    patches:
+      - "0001-PR32560-stack-buffer-overflow-at-objdump-disassemble.patch"
   - package: chrony
     version: 4.6.1
   - package: cni
     version: 1.2.3
   - package: cni-plugins
-    version: 1.6.1
+    version: 1.6.2
   - package: conntrack-tools
     version: 1.4.8
     patches:
       - "0001-disable-RPC-helper.patch"
   - package: containerd
-    version: 1.7.25
+    version: 1.7.27
     patches:
-      - "0002-fix-fatal-error-concurrent-map-iteration-and-map-wri.patch"
-      - "0001-fix-master-tty-leak-due-to-leaking-init-container-ob.patch"
+      - "1001-Use-Intel-ISA-L-s-igzip-if-available.patch"
+      - "1002-Skip-exec.LookPath-if-a-specific-gzip-implementation.patch"
   - package: coreutils
-    version: 9.5
+    version: 9.6
+  - package: cryptsetup
+    version: 2.7.5
+    patches:
+      - "0001-pbkdf-check-whether-FIPS-is-enabled-at-runtime.patch"
   - package: dbus-broker
     version: 36
     patches:
       - "0001-c-utf8-disable-strict-aliasing-optimizations.patch"
   - package: docker-cli
-    version: 25.0.5
+    version: 25.0.7
     patches:
       - "0001-non-tcp-host-header.patch"
   - package: docker-engine
-    version: 25.0.6
+    version: 25.0.8
     patches:
       - "0002-oci-inject-kmod-in-all-containers.patch"
       - "0001-Change-default-capabilities-using-daemon-config.patch"
@@ -65,20 +71,24 @@ packages:
     version: 1.47.1
   - package: early-boot-config
     version: 0.1
-  - package: ecr-credential-provider
-    version: 1.25.16
+  - package: ecr-credential-provider-1.26
+    version: 1.26.14
   - package: ecr-credential-provider-1.27
     version: 1.27.10
+  - package: ecr-credential-provider-1.28
+    version: 1.28.11
   - package: ecr-credential-provider-1.29
-    version: 1.29.7
+    version: 1.29.8
   - package: ecr-credential-provider-1.30
-    version: 1.30.6
+    version: 1.30.8
   - package: ecr-credential-provider-1.31
-    version: 1.31.4
+    version: 1.31.5
   - package: ecr-credential-provider-1.32
-    version: 1.32.0
+    version: 1.32.2
+  - package: ecr-credential-provider-1.33
+    version: 1.33.0
   - package: ecs-agent
-    version: 1.89.2
+    version: 1.91.2
     patches:
       - "0005-bottlerocket-change-execcmd-directories-for-Bottlero.patch"
       - "0006-containermetadata-don-t-use-dataDirOnHost-for-metada.patch"
@@ -95,68 +105,49 @@ packages:
   - package: findutils
     version: 4.10.0
   - package: glibc
-    version: 2.40
+    version: 2.41
     patches:
-      - "0041-Fix-strtod-subnormal-rounding-bug-30220.patch"
-      - "0020-x86-64-Remove-sysdeps-x86_64-x32-dl-machine.h.patch"
-      - "0038-Add-tests-of-fread.patch"
-      - "0055-nptl-initialize-rseq-area-prior-to-registration.patch"
-      - "0054-elf-handle-addition-overflow-in-_dl_find_object_upda.patch"
-      - "0021-x32-cet-Support-shadow-stack-during-startup-for-Linu.patch"
-      - "0004-manual-Do-not-mention-STATIC_TLS-in-dynamic-linker-h.patch"
-      - "0026-stdio-common-Add-test-for-vfscanf-with-matches-longe.patch"
-      - "0045-powerpc64le-Build-new-strtod-tests-with-long-double-.patch"
+      - "0029-configure-Fix-spelling-of-Wl-no-error-execstack-opti.patch"
+      - "0002-NEWS-start-new-section.patch"
+      - "0021-aarch64-Add-GCS-tests-for-dlopen.patch"
+      - "0034-nptl-PTHREAD_COND_INITIALIZER-compatibility-with-pre.patch"
+      - "0035-nptl-Check-if-thread-is-already-terminated-in-sigcan.patch"
+      - "0001-Remove-advisories-from-release-branch.patch"
+      - "0022-aarch64-Add-GCS-test-with-signal-handler.patch"
+      - "0012-RISC-V-Fix-IFUNC-resolver-cannot-access-gp-pointer.patch"
+      - "0019-aarch64-Add-tests-for-Guarded-Control-Stack.patch"
+      - "0020-aarch64-Add-GCS-tests-for-transitive-dependencies.patch"
+      - "0007-assert-Add-test-for-CVE-2025-0395.patch"
+      - "0030-posix-Move-environ-helper-variables-next-to-environ-.patch"
+      - "0026-Pass-Wl-no-error-execstack-for-tests-where-Wl-z-exec.patch"
+      - "0032-Linux-Remove-attribute-access-from-sched_getattr-bug.patch"
       - "9001-move-ldconfig-cache-to-ephemeral-storage.patch"
-      - "0005-Fix-version-number-in-NEWS-file.patch"
-      - "0039-Test-errno-setting-on-strtod-overflow-in-tst-strtod-.patch"
-      - "0032-elf-Clarify-and-invert-second-argument-of-_dl_alloca.patch"
-      - "0052-Mitigation-for-clone-on-sparc-might-fail-with-EFAULT.patch"
+      - "0009-x86-__HAVE_FLOAT128-Defined-to-0-for-Intel-SYCL-comp.patch"
+      - "0027-static-pie-Skip-the-empty-PT_LOAD-segment-at-offset-.patch"
+      - "0005-nptl-Correct-stack-size-attribute-when-stack-grows-u.patch"
+      - "0010-math-Fix-unknown-type-name-__float128-for-clang-3.4-.patch"
+      - "0003-math-Fix-log10p1f-internal-table-value-BZ-32626.patch"
+      - "0016-AArch64-Improve-codegen-for-SVE-pow.patch"
+      - "0031-math-Remove-an-extra-semicolon-in-math-function-decl.patch"
+      - "0011-math-Add-optimization-barrier-to-ensure-a1-u.d-is-no.patch"
+      - "0017-AArch64-Improve-codegen-for-SVE-powf.patch"
+      - "0037-x86_64-Add-sinh-with-FMA.patch"
       - "HACK-only-build-and-install-localedef.patch"
-      - "0033-elf-Avoid-re-initializing-already-allocated-TLS-in-d.patch"
-      - "0035-debug-Fix-read-error-handling-in-pcprofiledump.patch"
-      - "0011-Enhanced-test-coverage-for-strncmp-wcsncmp.patch"
-      - "0037-stdio-common-Add-new-test-for-fdopen.patch"
-      - "0030-posix-Use-support-check.h-facilities-in-tst-truncate.patch"
-      - "0017-Fix-name-space-violation-in-fortify-wrappers-bug-320.patch"
+      - "0004-math-Fix-sinhf-for-some-inputs-BZ-32627.patch"
+      - "0023-math-Improve-layout-of-exp-exp10-data.patch"
       - "glibc-cs-path.patch"
-      - "0014-Add-mremap-tests.patch"
-      - "0050-Make-tst-strtod-underflow-type-generic.patch"
-      - "0019-support-Add-options-list-terminator-to-the-test-driv.patch"
-      - "0018-manual-stdio-Further-clarify-putc-putwc-getc-and-get.patch"
-      - "0051-elf-Change-ldconfig-auxcache-magic-number-bug-32231.patch"
-      - "0043-Improve-NaN-payload-testing.patch"
-      - "0003-resolv-Do-not-wait-for-non-existing-second-DNS-respo.patch"
-      - "0009-manual-make-setrlimit-description-less-ambiguous.patch"
-      - "0027-Make-tst-ungetc-use-libsupport.patch"
-      - "0025-support-Add-FAIL-test-failure-helper.patch"
-      - "0048-Add-tests-of-more-strtod-special-cases.patch"
-      - "0057-malloc-add-indirection-for-malloc-like-functions-in-.patch"
-      - "0016-x86-Tunables-may-incorrectly-set-Prefer_PMINUB_for_s.patch"
-      - "0056-nptl-initialize-cpu_id_start-prior-to-rseq-registrat.patch"
-      - "0008-manual-stdio-Clarify-putc-and-putwc.patch"
-      - "0001-Replace-advisories-directory.patch"
-      - "0024-string-strerror-strsignal-cannot-use-buffer-after-dl.patch"
-      - "0010-Enhance-test-coverage-for-strnlen-wcsnlen.patch"
-      - "0047-Add-more-tests-of-strtod-end-pointer.patch"
-      - "0031-nptl-Use-support-check.h-facilities-in-tst-setuid3.patch"
-      - "0036-libio-Attempt-wide-backup-free-only-for-non-legacy-c.patch"
-      - "0049-libio-Set-_vtable_offset-before-calling-_IO_link_in-.patch"
-      - "0028-ungetc-Fix-uninitialized-read-when-putting-into-unus.patch"
-      - "0040-More-thoroughly-test-underflow-errno-in-tst-strtod-r.patch"
-      - "0046-Make-tst-strtod2-and-tst-strtod5-type-generic.patch"
-      - "0022-x86-Fix-bug-in-strchrnul-evex512-BZ-32078.patch"
-      - "0053-linux-sparc-Fix-clone-for-LEON-sparcv8-BZ-31394.patch"
-      - "0015-resolv-Fix-tst-resolv-short-response-for-older-GCC-b.patch"
-      - "0007-malloc-add-multi-threaded-tests-for-aligned_alloc-ca.patch"
-      - "0029-ungetc-Fix-backup-buffer-leak-on-program-exit-BZ-278.patch"
-      - "0013-mremap-Update-manual-entry.patch"
-      - "0012-linux-Update-the-mremap-C-implementation-BZ-31968.patch"
-      - "0002-resolv-Allow-short-error-responses-to-match-any-quer.patch"
-      - "0034-elf-Fix-tst-dlopen-tlsreinit1.out-test-dependency.patch"
-      - "0044-Do-not-set-errno-for-overflowing-NaN-payload-in-strt.patch"
-      - "0023-Define-__libc_initial-for-the-static-libc.patch"
-      - "0006-malloc-avoid-global-locks-in-tst-aligned_alloc-lib.c.patch"
-      - "0042-Make-__strtod_internal-tests-type-generic.patch"
+      - "0008-Fix-tst-aarch64-pkey-to-handle-ENOSPC-as-not-support.patch"
+      - "0006-math-Fix-tanf-for-some-inputs-BZ-32630.patch"
+      - "0036-x86_64-Add-tanh-with-FMA.patch"
+      - "0018-aarch64-Add-configure-checks-for-GCS-support.patch"
+      - "0015-AArch64-Improve-codegen-for-SVE-erfcf.patch"
+      - "0028-elf-Check-if-__attribute__-aligned-65536-is-supporte.patch"
+      - "0033-nptl-clear-the-whole-rseq-area-before-registration.patch"
+      - "0025-AArch64-Use-prefer_sve_ifuncs-for-SVE-memset.patch"
+      - "0013-Aarch64-Improve-codegen-in-SVE-asinh.patch"
+      - "0024-AArch64-Add-SVE-memset.patch"
+      - "0038-x86_64-Add-atanh-with-FMA.patch"
+      - "0014-Aarch64-Improve-codegen-in-SVE-exp-and-users-and-upd.patch"
   - package: grep
     version: 3.11
   - package: host-ctr
@@ -170,13 +161,11 @@ packages:
   - package: iputils
     version: 20240905
   - package: kexec-tools
-    version: 2.0.29
+    version: 2.0.30
   - package: keyutils
     version: 1.6.1
   - package: kmod
     version: 33
-  - package: kubernetes-1.25
-    version: 1.25.16
   - package: kubernetes-1.26
     version: 1.26.15
   - package: kubernetes-1.27
@@ -184,41 +173,55 @@ packages:
   - package: kubernetes-1.28
     version: 1.28.15
   - package: kubernetes-1.29
-    version: 1.29.12
+    version: 1.29.14
   - package: kubernetes-1.30
-    version: 1.30.8
+    version: 1.30.10
   - package: kubernetes-1.31
-    version: 1.31.4
+    version: 1.31.6
   - package: kubernetes-1.32
-    version: 1.32.0
+    version: 1.32.2
+  - package: kubernetes-1.33
+    version: 1.33.0
   - package: libacl
     version: 2.3.2
+  - package: libaio
+    version: 0.3.113
   - package: libattr
     version: 2.5.2
   - package: libaudit
-    version: 4.0.2
+    version: 4.0.3
   - package: libbpf
-    version: 1.4.5
+    version: 1.5.0
   - package: libcap
-    version: 2.70
+    version: 2.75
     patches:
       - "9001-dont-test-during-install.patch"
+  - package: libcrypto
+    version: 3.0.0
+    patches:
+      - "0001-Cherry-pick-BORINGSSL_bcm_text_hash-Go-utility-2221.patch"
+      - "0002-Cherry-pick-Fix-out-of-bound-OOB-input-read-in-AES-X.patch"
+      - "0003-Cherry-pick-support-for-CMake-4.0-to-fips-2024-09-27.patch"
   - package: libdbus
-    version: 1.15.12
+    version: 1.16.2
+  - package: libdevmapper
+    version: 2.03.31
   - package: libelf
     version: 0.192
   - package: libexpat
-    version: 2.6.4
+    version: 2.7.0
   - package: libffi
-    version: 3.4.6
+    version: 3.4.7
   - package: libgcc
     version: 0.0
   - package: libglib
-    version: 2.83.0
-    patches:
-      - "0001-require-older-meson.patch"
+    version: 2.84.0
   - package: libinih
     version: 58
+  - package: libisal
+    version: 2.31.1
+    patches:
+      - "0001-igzip-increase-stdin-and-stdout-pipe-sizes.patch"
   - package: libiw
     version: 29
     patches:
@@ -250,15 +253,16 @@ packages:
   - package: libnvidia-container
     version: 1.17.4
     patches:
-      - "0004-Use-NVIDIA_PATH-to-look-up-binaries.patch"
       - "0002-use-prefix-from-environment.patch"
       - "0001-use-shared-libtirpc.patch"
+      - "0004-makefile-avoid-ldconfig-when-cross-compiling.patch"
       - "0003-keep-debug-symbols.patch"
-      - "0005-makefile-avoid-ldconfig-when-cross-compiling.patch"
   - package: libnvme
-    version: 1.11
+    version: 1.11.1
   - package: libpcre
     version: 10.44
+  - package: libpopt
+    version: 1.19
   - package: libseccomp
     version: 2.5.5
   - package: libselinux
@@ -273,18 +277,20 @@ packages:
     version: 0.0
   - package: libtirpc
     version: 1.3.6
+  - package: libtss2
+    version: 4.1.3
   - package: liburcu
-    version: 0.14.1
+    version: 0.15.1
   - package: libxcrypt
-    version: 4.4.36
+    version: 4.4.38
   - package: libz
-    version: 1.3.1
+    version: 2.2.4
   - package: libzstd
-    version: 1.5.6
+    version: 1.5.7
   - package: login
     version: 0.0.1
   - package: makedumpfile
-    version: 1.7.5
+    version: 1.7.6
     patches:
       - "0000-fix-strip-invocation-for-TARGET-env-variable.patch"
       - "0001-do-not-overlink-with-bzip2.patch"
@@ -302,8 +308,6 @@ packages:
     version: 2.11
     patches:
       - "0001-plugins-amzn-add-stats-support.patch"
-  - package: oci-add-hooks
-    version: 1.0.0
   - package: open-vm-tools
     version: 12.5.0
     patches:
@@ -319,27 +323,27 @@ packages:
   - package: policycoreutils
     version: 3.7
   - package: procps
-    version: 4.0.4
+    version: 4.0.5
   - package: rdma-core
-    version: 54.0
+    version: 56.0
   - package: readline
-    version: 8.2
+    version: 8.2.13
     patches:
       - "readline-8.2-shlib.patch"
   - package: release
     version: 0.0
   - package: runc
-    version: 1.1.15
+    version: 1.2.6
   - package: selinux-policy
     version: 0.0
   - package: socat
-    version: 1.8.0.1
+    version: 1.8.0.3
   - package: soci-snapshotter
-    version: 0.8.0
+    version: 0.9.0
   - package: static-pods
     version: 0.1
   - package: strace
-    version: 6.12
+    version: 6.13
   - package: systemd
     version: 252.22
     patches:
@@ -357,10 +361,16 @@ packages:
       - "9008-sysctl-do-not-set-rp_filter-via-wildcard.patch"
       - "9001-use-absolute-path-for-var-run-symlink.patch"
       - "9005-mount-setup-apply-noexec-to-more-mounts.patch"
+      - "9015-allow-lookups-of-local-domains-using-unicast-DNS.patch"
       - "9003-machine-id-setup-generate-stable-ID-under-Xen-and-VM.patch"
       - "1002-sd-netlink-make-the-default-timeout-configurable-by-.patch"
+  - package: tpm2-tools
+    version: 5.7
+    patches:
+      - "0001-tpm2-tools-disable-SM2-and-SM3-checks.patch"
+      - "0002-tpm2-tools-disable-tpm2_getekcertificate.patch"
   - package: util-linux
-    version: 2.40.2
+    version: 2.40.4
   - package: wicked
     version: 0.6.68
     patches:
