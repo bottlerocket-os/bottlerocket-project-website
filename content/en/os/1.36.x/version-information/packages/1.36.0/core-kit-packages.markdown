@@ -1,14 +1,14 @@
 ---
-title: "1.39.0"
+title: "Core Kit Version 6.2.0"
 type: "docs"
-description: "Package Versions in Bottlerocket Release 1.39.0"
+description: "Core Kit Package Versions in Bottlerocket Release 1.36.0"
 packages:
   - package: amazon-ecs-cni-plugins
     version: 2024.09.0
     patches:
       - "0001-bottlerocket-default-filesystem-locations.patch"
   - package: amazon-ssm-agent
-    version: 3.3.1957.0
+    version: 3.3.1802.0
     patches:
       - "0001-agent-Add-config-to-make-shell-optional.patch"
   - package: amazon-vpc-cni-plugins
@@ -16,7 +16,7 @@ packages:
   - package: aws-iam-authenticator
     version: 0.6.30
   - package: aws-otel-collector
-    version: 0.43.1
+    version: 0.41.1
     patches:
       - "0001-change-logger-and-extraconfig-file-paths.patch"
   - package: aws-signing-helper
@@ -29,8 +29,6 @@ packages:
       - "bash-5.0-patch-2.patch"
   - package: binutils
     version: 2.43.1
-    patches:
-      - "0001-PR32560-stack-buffer-overflow-at-objdump-disassemble.patch"
   - package: chrony
     version: 4.6.1
   - package: cni
@@ -41,31 +39,23 @@ packages:
     version: 1.4.8
     patches:
       - "0001-disable-RPC-helper.patch"
-  - package: containerd-1.7
+  - package: containerd
     version: 1.7.27
     patches:
       - "1001-Use-Intel-ISA-L-s-igzip-if-available.patch"
       - "1002-Skip-exec.LookPath-if-a-specific-gzip-implementation.patch"
-  - package: containerd-2.0
-    version: 2.0.5
-    patches:
-      - "1001-Revert-Don-t-allow-io_uring-related-syscalls-in-the-.patch"
   - package: coreutils
     version: 9.6
-  - package: cryptsetup
-    version: 2.7.5
-    patches:
-      - "0001-pbkdf-check-whether-FIPS-is-enabled-at-runtime.patch"
   - package: dbus-broker
     version: 36
     patches:
       - "0001-c-utf8-disable-strict-aliasing-optimizations.patch"
   - package: docker-cli
-    version: 25.0.7
+    version: 25.0.5
     patches:
       - "0001-non-tcp-host-header.patch"
   - package: docker-engine
-    version: 25.0.8
+    version: 25.0.6
     patches:
       - "0002-oci-inject-kmod-in-all-containers.patch"
       - "0001-Change-default-capabilities-using-daemon-config.patch"
@@ -75,6 +65,8 @@ packages:
     version: 1.47.1
   - package: early-boot-config
     version: 0.1
+  - package: ecr-credential-provider-1.25
+    version: 1.25.16
   - package: ecr-credential-provider-1.26
     version: 1.26.14
   - package: ecr-credential-provider-1.27
@@ -88,11 +80,9 @@ packages:
   - package: ecr-credential-provider-1.31
     version: 1.31.5
   - package: ecr-credential-provider-1.32
-    version: 1.32.2
-  - package: ecr-credential-provider-1.33
-    version: 1.33.0
+    version: 1.32.1
   - package: ecs-agent
-    version: 1.91.2
+    version: 1.89.2
     patches:
       - "0005-bottlerocket-change-execcmd-directories-for-Bottlero.patch"
       - "0006-containermetadata-don-t-use-dataDirOnHost-for-metada.patch"
@@ -170,6 +160,8 @@ packages:
     version: 1.6.1
   - package: kmod
     version: 33
+  - package: kubernetes-1.25
+    version: 1.25.16
   - package: kubernetes-1.26
     version: 1.26.15
   - package: kubernetes-1.27
@@ -184,12 +176,8 @@ packages:
     version: 1.31.6
   - package: kubernetes-1.32
     version: 1.32.2
-  - package: kubernetes-1.33
-    version: 1.33.0
   - package: libacl
     version: 2.3.2
-  - package: libaio
-    version: 0.3.113
   - package: libattr
     version: 2.5.2
   - package: libaudit
@@ -200,16 +188,8 @@ packages:
     version: 2.75
     patches:
       - "9001-dont-test-during-install.patch"
-  - package: libcrypto
-    version: 3.0.0
-    patches:
-      - "0001-Cherry-pick-BORINGSSL_bcm_text_hash-Go-utility-2221.patch"
-      - "0002-Cherry-pick-Fix-out-of-bound-OOB-input-read-in-AES-X.patch"
-      - "0003-Cherry-pick-support-for-CMake-4.0-to-fips-2024-09-27.patch"
   - package: libdbus
     version: 1.16.2
-  - package: libdevmapper
-    version: 2.03.31
   - package: libelf
     version: 0.192
   - package: libexpat
@@ -257,16 +237,15 @@ packages:
   - package: libnvidia-container
     version: 1.17.4
     patches:
+      - "0004-Use-NVIDIA_PATH-to-look-up-binaries.patch"
       - "0002-use-prefix-from-environment.patch"
       - "0001-use-shared-libtirpc.patch"
-      - "0004-makefile-avoid-ldconfig-when-cross-compiling.patch"
       - "0003-keep-debug-symbols.patch"
+      - "0005-makefile-avoid-ldconfig-when-cross-compiling.patch"
   - package: libnvme
     version: 1.11.1
   - package: libpcre
     version: 10.44
-  - package: libpopt
-    version: 1.19
   - package: libseccomp
     version: 2.5.5
   - package: libselinux
@@ -281,8 +260,6 @@ packages:
     version: 0.0
   - package: libtirpc
     version: 1.3.6
-  - package: libtss2
-    version: 4.1.3
   - package: liburcu
     version: 0.15.1
   - package: libxcrypt
@@ -290,7 +267,7 @@ packages:
   - package: libz
     version: 2.2.4
   - package: libzstd
-    version: 1.5.7
+    version: 1.5.6
   - package: login
     version: 0.0.1
   - package: makedumpfile
@@ -312,6 +289,8 @@ packages:
     version: 2.11
     patches:
       - "0001-plugins-amzn-add-stats-support.patch"
+  - package: oci-add-hooks
+    version: 1.0.0
   - package: open-vm-tools
     version: 12.5.0
     patches:
@@ -337,7 +316,7 @@ packages:
   - package: release
     version: 0.0
   - package: runc
-    version: 1.2.6
+    version: 1.1.15
   - package: selinux-policy
     version: 0.0
   - package: socat
@@ -365,14 +344,8 @@ packages:
       - "9008-sysctl-do-not-set-rp_filter-via-wildcard.patch"
       - "9001-use-absolute-path-for-var-run-symlink.patch"
       - "9005-mount-setup-apply-noexec-to-more-mounts.patch"
-      - "9015-allow-lookups-of-local-domains-using-unicast-DNS.patch"
       - "9003-machine-id-setup-generate-stable-ID-under-Xen-and-VM.patch"
       - "1002-sd-netlink-make-the-default-timeout-configurable-by-.patch"
-  - package: tpm2-tools
-    version: 5.7
-    patches:
-      - "0001-tpm2-tools-disable-SM2-and-SM3-checks.patch"
-      - "0002-tpm2-tools-disable-tpm2_getekcertificate.patch"
   - package: util-linux
     version: 2.40.4
   - package: wicked
