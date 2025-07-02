@@ -79,7 +79,7 @@ Children:
   * a 2 or 3 element array of string that represents another setting split by `.`.
   Example (to `setting.foo.mysetting`): `[ "settings", "foo", "mysetting" ]`
 * `note` (optional, [string](https://toml.io/en/v1.0.0#string), markdownified): A non-dangerous, context setting piece of information.
-Will have the heading “Note” andis  rendered separately after the `description`
+Will have the heading “Note” and is  rendered separately after the `description`
 * `warning` (optional, [string](https://toml.io/en/v1.0.0#string), markdownified): Information that warns the reader of potentially dangerous outcomes.
 Will have the heading “Warning” and is rendered separately after the `description`
 * `accepted_values` (optional, [array](https://toml.io/en/v1.0.0#array) of [string](https://toml.io/en/v1.0.0#string), each string is markdownified): A representation of allowed values, typically for enums where there are specific allowable strings in a setting value.
