@@ -1,7 +1,7 @@
 ---
-title: "Kernel Kit Verion 1.0.0"
+title: "Kernel Kit Version 1.0.0"
 type: "docs"
-description: "Kernel Kit Package Versions in Bottlerocket Release 1.29.0
+description: "Kernel Kit Package Versions in Bottlerocket Release 1.29.0"
 packages:
   - package: grub
     version: 2.06

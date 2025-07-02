@@ -1,7 +1,7 @@
 ---
 title: "Kernel Kit Version 1.1.2"
 type: "docs"
-description: "Kernel Kit Package Versions in Bottlerocket Release 1.33.0
+description: "Kernel Kit Package Versions in Bottlerocket Release 1.33.0"
 packages:
   - package: grub
     version: 2.06
