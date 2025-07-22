@@ -1,3 +1,176 @@
+[[docs.tag.nvidia-cdi]]
+heading = "Supported NVIDIA Container Runtime modes"
+description = """
+Bottlerocket supports both the [Legacy] and the [Container Device Interface] (CDI) modes provided by NVIDIA.
+
+##### Setting the default CRI runtime mode
+
+To enable the CDI mode for the default CRI runtime and disable the legacy runtime, you can set `device-list-strategy` of the `nvidia-k8s-device-plugin` to `cdi-cri`. Setting either `volume-mounts` or `envvar` will enable the Legacy mode for the default CRI runtime.
+Refer to the Examples section for code samples to configure the CRI runtimes.
+
+##### Enabling both Legacy and CDI modes
+
+Bottlerocket supports enabling both the Legacy and CDI modes at the same time. 
+This is useful if you need to run pods using a combinations of both the Legacy and the CDI modes. 
+To support this use case, Bottlerocket provides the following CRI runtimes:
+* `nvidia` (default CRI runtime used by the kubelet)
+* `nvidia-cdi`
+* `nvidia-legacy`
+
+In order to use either `nvidia-cdi` or `nvidia-legacy`, you must create the corresponding [Runtime Classes] in your cluster so that they are available for your pods. 
+You can use the following runtime class definition examples to create the runtimes in your cluster:
+
+```yaml
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: nvidia-cdi
+handler: nvidia-cdi
+---
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: nvidia-legacy
+handler: nvidia-legacy
+```
+
+After you have created the runtime classes, you can enable them by setting multiple device list strategies in the `nvidia-k8s-device-plugin`. 
+When enabling both modes keep in mind that:
+* Only a subset of configurations enable both modes (e.g. providing `["envvar", "volume-mounts"]` doesn't enable both modes)
+* The mode of the default runtime is selected based off the first element in the list of device list strategy
+
+This table summarizes how you can enable either CDI for the default runtime, or both CDI and Legacy modes:
+
+<table class="table table-stripped">
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>default-runtime</th>
+      <th>nvidia-cdi</th>
+      <th>nvidia-legacy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>cdi-cri</code></td>
+      <td>CDI</td>
+      <td>enabled</td>
+      <td>disabled</td>
+    </tr>
+    <tr>
+      <td><code>["cdi-cri", "envvar"]</code></td>
+      <td>CDI</td>
+      <td>enabled</td>
+      <td>enabled</td>
+    </tr>
+    <tr>
+      <td><code>["cdi-cri", "volume-mounts"]</code></td>
+      <td>CDI</td>
+      <td>enabled</td>
+      <td>enabled</td>
+    </tr>
+    <tr>
+      <td><code>["cdi-cri", "volume-mounts", "envvar"]</code></td>
+      <td>CDI</td>
+      <td>enabled</td>
+      <td>enabled</td>
+    </tr>
+    <tr>
+      <td><code>["volume-mounts", "cdi-cri"]</code></td>
+      <td>Legacy</td>
+      <td>enabled</td>
+      <td>enabled</td>
+    </tr>
+    <tr>
+      <td><code>["envvar", "cdi-cri"]</code></td>
+      <td>Legacy</td>
+      <td>enabled</td>
+      <td>enabled</td>
+    </tr>
+    <tr>
+      <td><code>["volume-mounts", "envvar", "cdi-cri"]</code></td>
+      <td>Legacy</td>
+      <td>enabled</td>
+      <td>enabled</td>
+    </tr>
+  </tbody>
+</table>
+
+[Legacy]: https://github.com/NVIDIA/nvidia-container-toolkit/tree/a78a7f866fb02faf1ef4051241f4233737873ef4/cmd/nvidia-container-runtime#legacy-mode
+[Container Device Interface]: https://github.com/cncf-tags/container-device-interface
+[Runtime Classes]: https://kubernetes.io/docs/concepts/containers/runtime-class/
+
+##### Examples
+"""
+
+tag_name = "nvidia-cdi"
+example = [{ type = "toml", tab = "TOML", source = '''
+# Use the CDI mode only
+[settings.kubelet-device-plugins.nvidia]
+device-list-strategy = "cdi-cri"
+
+# Enable both modes with CDI as default runtime
+[settings.kubelet-device-plugins.nvidia]
+device-list-strategy = ["cdi-cri", "volume-mounts"]
+
+# Use the Legacy mode with volume-mounts
+[settings.kubelet-device-plugins.nvidia]
+device-list-strategy = "volume-mounts"
+
+# Use Legacy mode with envvar
+[settings.kubelet-device-plugins.nvidia]
+device-list-strategy = "envvar"
+
+# Enable both modes with Legacy as default runtime
+[settings.kubelet-device-plugins.nvidia]
+device-list-strategy = ["volume-mounts", "cdi-cri"]
+'''}, 
+{ type = "shell", tab = "Shell", source = '''
+# Use the CDI mode only
+apiclient set --json '{
+  "settings": {
+    "kubelet-device-plugins": {
+      "nvidia": {
+        "device-list-strategy": "cdi-cri"
+      }
+    }
+  }
+}'
+
+# Enable both modes with CDI as default runtime
+apiclient set --json '{
+  "settings": {
+    "kubelet-device-plugins": {
+      "nvidia": {
+        "device-list-strategy": ["cdi-cri", "volume-mounts"]
+      }
+    }
+  }
+}'
+
+# Use the Legacy mode with volume-mounts
+apiclient set --json '{
+  "settings": {
+    "kubelet-device-plugins": {
+      "nvidia": {
+        "device-list-strategy": "volume-mounts"
+      }
+    }
+  }
+}'
+
+# Enable both modes with Legacy as default runtime
+apiclient set --json '{
+  "settings": {
+    "kubelet-device-plugins": {
+      "nvidia": {
+        "device-list-strategy": ["volume-mounts", "cdi-cri"]
+      }
+    }
+  }
+}'
+'''}]
+
 [[docs.tag.nvidia-mig]]
 heading = "NVIDIA Multi-Instance GPU (MIG)"
 description = """
@@ -117,9 +290,15 @@ description = """
 Specifies the desired strategy for passing the device list to the container. If the value is set to:
 * `volume-mounts`, the list of devices is passed as a set of volume mounts instead of as an environment variable to instruct the NVIDIA Container Runtime to inject the devices.
 * `envvar`, the `NVIDIA_VISIBLE_DEVICES` environment variable is used to select the devices that are to be injected by the NVIDIA Container Runtime.
+* `cdi-cri`, the list of devices is passed as CDI Devices (supported starting with Bottlerocket 1.40, and Kubernetes >= 1.31.0).
 """
 default = "`volume-mounts`"
-accepted_values = ["`volume-mounts`", "`envvar`"]
+accepted_values = ["a single strategy or a list of strategies"]
+warning = """
+You can use `cdi-cri` starting with Kubernetes 1.31.0.
+CDI is supported in Kubernetes 1.29 and 1.30 as a beta feature, proceed with caution if you use CDI in any of these versions.
+CDI is not supported in versions below 1.29.
+"""
 see = [
     [
         "[NVIDIA K8 Device Plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#configuration-option-details)",
@@ -128,7 +307,7 @@ see = [
         "[Read list of GPU devices from volume mounts instead of NVIDIA_VISIBLE_DEVICES](https://docs.google.com/document/d/1uXVF-NWZQXgP1MLb87_kMkQvidpnkNWicdpO2l9g-fw/edit?tab=t.0#heading=h.xtqvwyv8lv4c)",
     ],
 ]
-tags = ["nvidia"]
+tags = ["nvidia-cdi"]
 
 [[docs.ref.nvidia-device-partitioning-strategy]]
 name_override = "nvidia.device-partitioning-strategy"
