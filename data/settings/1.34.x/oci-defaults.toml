@@ -690,7 +690,7 @@ accepted_values = [
     "Setting a limit: `0` to `9223372036854775807` (i.e. `int64::MAX`)",
     "Removing a limit: `-1` or `\"unlimited\"`"
 ]
-default = "`soft-limit` is `65536` and `hard-limit` is `1048576`"
+default = "For Kubernetes variants: `soft-limit` is `65536` and `hard-limit` is `1048576`. For ECS variants: `soft-limit` is `1024` and `hard-limit` is `4096`."
 see = [
     ["`RLIMIT_NOFILE` on the [Linux `getrlimit` manual page](https://man7.org/linux/man-pages/man2/getrlimit.2.html)"]
 ]
