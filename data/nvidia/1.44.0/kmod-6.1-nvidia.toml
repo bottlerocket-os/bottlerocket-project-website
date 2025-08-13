@@ -1,0 +1,46 @@
+# Extracted from https://github.com/bottlerocket-os/bottlerocket/tree/develop/packages/kmod-6.1-nvidia/Cargo.toml
+[package]
+name = "kmod-6_1-nvidia"
+version = "0.1.0"
+edition = "2021"
+publish = false
+build = "../build.rs"
+
+[lib]
+path = "../packages.rs"
+
+[package.metadata.build-package]
+package-name = "kmod-6.1-nvidia"
+releases-url = "https://docs.nvidia.com/datacenter/tesla/"
+
+[[package.metadata.build-package.external-files]]
+url = "https://s3.amazonaws.com/EULA/NVidiaEULAforAWS.pdf"
+sha512 = "e1926fe99afc3ab5b2f2744fcd53b4046465aefb2793e2e06c4a19455a3fde895e00af1415ff1a5804c32e6a2ed0657e475de63da6c23a0e9c59feeef52f3f58"
+
+[[package.metadata.build-package.external-files]]
+url = "https://us.download.nvidia.com/tesla/535.261.03/NVIDIA-Linux-x86_64-535.261.03.run"
+sha512 = "52ac6db0a057977652f56a279c6e5482fd602d1c637b22e7bb8ae5e5f5a9fbddb8492196371c2bdcacfbd9e7c1bf3954c22254e842f413cb6af1b3c79a6e7ec2"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://us.download.nvidia.com/tesla/535.261.03/NVIDIA-Linux-aarch64-535.261.03.run"
+sha512 = "3bc4a141fc159e88a3cda19519d325ddfc03fdcd328a50b5a0c6c9f06089ff2a97edb03dbfd1d23ec0e60a4fc549a8f0143e0c4d6beb98771ad8c243ef699faf"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://developer.download.nvidia.com/compute/cuda/repos/rhel9/x86_64/nvidia-fabric-manager-535.261.03-1.x86_64.rpm"
+sha512 = "23aad5d8f7bfe6a3befdc3e5f1da568d680817f11318f14f590365031630e0d0abc5f10c8b963698475bfbe44ca6d1a35873a0c6065748e786822c39a3634283"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://developer.download.nvidia.com/compute/cuda/repos/rhel9/sbsa/nvidia-fabric-manager-535.261.03-1.aarch64.rpm"
+sha512 = "4fc1ab6eea583abed447e3ad7ed68e201a1c4b683ac5295efba13ee195f65201ed77829c241928c1c2108f7ba0400e12e540f05e35d70852e607815c4b7687e1"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://raw.githubusercontent.com/NVIDIA/open-gpu-kernel-modules/535/COPYING"
+sha512 = "f9cee68cbb12095af4b4e92d01c210461789ef41c70b64efefd6719d0b88468b7a67a3629c432d4d9304c730b5d1a942228a5bcc74a03ab1c411c77c758cd938"
+force-upstream = true
+
+[build-dependencies]
+kernel-6_1 = { path = "../kernel-6.1" }
