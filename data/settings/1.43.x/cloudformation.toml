@@ -1,0 +1,25 @@
+[[docs.ref.logical-resource-id]]
+description = """
+The logical ID of the AutoScalingGroup resource that you want to signal.
+"""
+see = [
+    ["[Logical IDs in the AWS CloudFormation documentation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html#resources-section-structure-logicalid)"]
+]
+
+[[docs.ref.should-signal]]
+description = """
+Controls if signals should be sent to CloudFormation.
+"""
+note = """
+If `settings.cloudformation.should-signal` is `true`, both `settings.cloudformation.stack-name` and `settings.cloudformation.logical-resource-id` are required.
+"""
+default = "`false`"
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+
+[[docs.ref.stack-name]]
+description = """
+Name of the CloudFormation Stack to signal.
+"""
