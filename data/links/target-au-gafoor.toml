@@ -1,0 +1,8 @@
+date = "2023-10-10"
+title = "Reducing compute capacity by 40% on EKS with Bottlerocket and Karpenter"
+description = """
+A Kube.fm interview with Gazal Gafoor on how and why they used Bottlerocket with Karpenter at Target Australia.
+"""
+url = "https://kube.fm/gazal-eks-bottlerocket-karpenter"
+type = "video"
+tags = [ "interview" ]
