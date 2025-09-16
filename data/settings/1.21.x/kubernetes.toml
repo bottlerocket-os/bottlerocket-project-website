@@ -407,6 +407,16 @@ see = [
     [ "[`registryPullQPS` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
 ]
 
+[[docs.ref.reserved-cpus]]
+description = "The specific CPU cores to reserve exclusively for system processes. Follows the `cpuset` format."
+see = [
+    [ "[`reservedSystemCPUs` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
+]
+
+[[docs.ref.reserved-cpus.example]]
+comment = "Example user data for reserving cores 0, 3, 4, 5, and 8"
+value = "\"0,3-5,8\""
+
 [[docs.ref.server-tls-bootstrap]]
 description = """
 Enables or disables server certificate bootstrap.
