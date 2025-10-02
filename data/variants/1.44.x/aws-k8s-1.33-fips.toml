@@ -37,6 +37,8 @@ kernel-parameters = [
     "net.ifnames=0",
     "netdog.default-interface=eth0:dhcp4,dhcp6?",
     "quiet",
+    "kernel.fips=1",
+    "init.systemd.unit=fipscheck.target",
 ]
 
 [lib]
