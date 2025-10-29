@@ -635,3 +635,12 @@ accepted_values = [
     "`true`",
     "`false`"
 ]
+
+[[docs.ref.hostname-override-source]]
+description = "The source of identification for the Kubernetes node name. This defaults to the private DNS name, but can be changed to allow for a name based on the EC2 instance ID."
+warning = "Prior to using the `instance-id` value, users must either create an EKS cluster access entry or update the `kube-system/aws-auth` ConfigMap so the node can successfully register to EKS."
+default= "`private-dns-name`"
+accepted_values = [
+    "`private-dns-name`",
+    "`instance-id`"
+]
