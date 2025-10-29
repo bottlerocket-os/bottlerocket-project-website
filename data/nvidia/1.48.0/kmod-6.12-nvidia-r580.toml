@@ -1,0 +1,57 @@
+# Extracted from https://github.com/bottlerocket-os/bottlerocket/tree/develop/packages/kmod-6.12-nvidia-r580/Cargo.toml
+[package]
+name = "kmod-6_12-nvidia-r580"
+version = "0.1.0"
+edition = "2021"
+publish = false
+build = "../build.rs"
+
+[lib]
+path = "../packages.rs"
+
+[package.metadata.build-package]
+package-name = "kmod-6.12-nvidia-r580"
+releases-url = "https://docs.nvidia.com/datacenter/tesla/"
+
+[[package.metadata.build-package.external-files]]
+url = "https://s3.amazonaws.com/EULA/NVidiaEULAforAWS.pdf"
+sha512 = "e1926fe99afc3ab5b2f2744fcd53b4046465aefb2793e2e06c4a19455a3fde895e00af1415ff1a5804c32e6a2ed0657e475de63da6c23a0e9c59feeef52f3f58"
+
+[[package.metadata.build-package.external-files]]
+url = "https://us.download.nvidia.com/tesla/580.65.06/NVIDIA-Linux-x86_64-580.65.06.run"
+sha512 = "e9149873cc83c250f601be58ea919cbdc891773157587366d78f505ee1db96bf392bc5e689d39ce8fa339287699118897b8d6eba2b2a9caf163126a9bb2a6044"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://us.download.nvidia.com/tesla/580.65.06/NVIDIA-Linux-aarch64-580.65.06.run"
+sha512 = "c4f2902412e9f47006e50c7f687e8f3cfc4580877c945b5da35c9e3a00f5e72eba8b0aaf250ff51d382fcf611177c9115f72f23b7858a520f0a7e1b27354d3e6"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://developer.download.nvidia.com/compute/cuda/repos/rhel9/x86_64/nvidia-fabricmanager-580.65.06-1.x86_64.rpm"
+sha512 = "da9df788ddc5eac1f18930c1f4f20cabb2313a2159604b7eb460baff80ecd7076a90c714198b6a0a953e0d4523edd79ede6a8f07ae8c9d8d4e9c917dd8555e13"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://developer.download.nvidia.com/compute/cuda/repos/rhel9/sbsa/nvidia-fabricmanager-580.65.06-1.aarch64.rpm"
+sha512 = "f28faa3c4b6e4052746aa526966b36ccfdc64f84677fb808dc1ddd8f80e586d228d2190a926bf41251790e2817bc0c3162e6f599a5844e0d57ded5e1551ac099"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://developer.download.nvidia.com/compute/cuda/repos/rhel9/x86_64/nvidia-imex-580.65.06-1.x86_64.rpm"
+sha512 = "7cfcaf3a7752a8d8f3949948321949356ef31209a1dd35b41b164c416eaf5df6ce720bf63af2ff58bca6184e8ebadf36fbfa3c5978436ef000b845a22862a797"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://developer.download.nvidia.com/compute/cuda/repos/rhel9/sbsa/nvidia-imex-580.65.06-1.aarch64.rpm"
+sha512 = "5468ac57e3827e83690f78f02ca0517b5b51e398a3eb30580e7e27a46277052761f6b13c4e9c70042f8ed8e81277ffb224c9771085d2463645199689e817ebc5"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+# No 580 branch yet, we should shift to that when available
+url = "https://raw.githubusercontent.com/NVIDIA/open-gpu-kernel-modules/570/COPYING"
+sha512 = "f9cee68cbb12095af4b4e92d01c210461789ef41c70b64efefd6719d0b88468b7a67a3629c432d4d9304c730b5d1a942228a5bcc74a03ab1c411c77c758cd938"
+force-upstream = true
+
+[build-dependencies]
+kernel-6_12 = { path = "../kernel-6.12" }
