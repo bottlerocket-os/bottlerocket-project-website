@@ -601,10 +601,11 @@ see = [
 description = "The IP address of the node."
 
 [[docs.ref.pod-infra-container-image]]
-description = "The URI of the 'pause' container."
-see = [
-    [ "[`--pod-infra-container-image` in Kubelet Options](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/#options)" ]
-]
+deprecated = true
+description = """
+Bottlerocket ships the pause container image as of v1.21.0, so this setting provides no functionality.
+The setting still exists for backwards compatibility.
+"""
 
 [[docs.ref.max-pods]]
 description = "The maximum number of pods that can be scheduled on this node (limited by number of available IPv4 addresses)."
