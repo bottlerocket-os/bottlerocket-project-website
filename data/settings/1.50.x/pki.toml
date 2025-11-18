@@ -1,0 +1,37 @@
+[[docs.ref.pki_bundle-name_data]]
+name_override = "<bundle-name>.data"
+description = "A Base64-encoded PEM-formatted certificate bundle; this setting can contain more than one certificate."
+note = """
+Defining a certificate bundle with `data` but without [`trusted`](#pki_bundle-name_trusted) results in an untrusted bundle.
+"""
+[[docs.ref.pki_bundle-name_data.example]]
+direct_toml = """
+[settings.pki.some-bundle]
+data="W3N..."
+"""
+direct_shell = """
+apiclient set \
+  pki.some-bundle.data="W3N..."
+"""
+
+[[docs.ref.pki_bundle-name_trusted]]
+name_override = "<bundle-name>.trusted"
+description = "Defines if the bundle in `<bundle-name>` should be trusted."
+default = "`false`"
+[[docs.ref.pki_bundle-name_trusted.example]]
+direct_toml = """
+[settings.pki.my-trusted-bundle]
+data="W3N..."
+trusted=true
+
+[settings.pki.dont-trust-these]
+data="W3N..."
+trusted=false
+"""
+direct_shell = """
+apiclient set \\
+  pki.my-trusted-bundle.data="W3N..." \\
+  pki.my-trusted-bundle.trusted=true  \\
+  pki.dont-trust-these.data="N3W..."  \\
+  pki.dont-trust-there.trusted=false
+"""
