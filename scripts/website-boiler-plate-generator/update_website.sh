@@ -203,16 +203,17 @@ copy_content() {
     log_info "Copying content from ${PREV_MAJOR_MINOR_X} to ${MAJOR_MINOR_X}"
 
     mkdir "${BOTTLEROCKET_WEBSITE_REPO_DIR}/content/en/os/${MAJOR_MINOR_X}"
+    mkdir "${BOTTLEROCKET_WEBSITE_REPO_DIR}/data/settings/${MAJOR_MINOR_X}"
 
     # Copy directories
     log_info "Copying content directory"
     cp -R \
-        "${BOTTLEROCKET_WEBSITE_REPO_DIR}/content/en/os/${PREV_MAJOR_MINOR_X}/" \
+        "${BOTTLEROCKET_WEBSITE_REPO_DIR}/content/en/os/${PREV_MAJOR_MINOR_X}/"* \
         "${BOTTLEROCKET_WEBSITE_REPO_DIR}/content/en/os/${MAJOR_MINOR_X}/"
 
     log_info "Copying settings directory"
     cp -R \
-        "${BOTTLEROCKET_WEBSITE_REPO_DIR}/data/settings/${PREV_MAJOR_MINOR_X}/" \
+        "${BOTTLEROCKET_WEBSITE_REPO_DIR}/data/settings/${PREV_MAJOR_MINOR_X}/"* \
         "${BOTTLEROCKET_WEBSITE_REPO_DIR}/data/settings/${MAJOR_MINOR_X}/"
 
     # Clean up old content
