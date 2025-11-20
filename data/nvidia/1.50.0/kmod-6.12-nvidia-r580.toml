@@ -1,0 +1,66 @@
+# Extracted from https://github.com/bottlerocket-os/bottlerocket/tree/develop/packages/kmod-6.12-nvidia-r580/Cargo.toml
+[package]
+name = "kmod-6_12-nvidia-r580"
+version = "0.1.0"
+edition = "2021"
+publish = false
+build = "../build.rs"
+
+[lib]
+path = "../packages.rs"
+
+[package.metadata.build-package]
+package-name = "kmod-6.12-nvidia-r580"
+releases-url = "https://docs.nvidia.com/datacenter/tesla/"
+
+[[package.metadata.build-package.external-files]]
+url = "https://s3.amazonaws.com/EULA/NVidiaEULAforAWS.pdf"
+sha512 = "e1926fe99afc3ab5b2f2744fcd53b4046465aefb2793e2e06c4a19455a3fde895e00af1415ff1a5804c32e6a2ed0657e475de63da6c23a0e9c59feeef52f3f58"
+
+[[package.metadata.build-package.external-files]]
+url = "https://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX"
+sha512 = "915d76bc26f7b39202883b6f902ebde1194d1f3e45e6c858ee42ac48615e4b315c658ba78d24bd72a3011289c2ea888ee17089f674497f1cba58d0e0c8f37c7a"
+
+[[package.metadata.build-package.external-files]]
+url = "https://us.download.nvidia.com/tesla/580.95.05/NVIDIA-Linux-x86_64-580.95.05.run"
+sha512 = "21e8076f593ce255c8e96dd456524f700e76b230130659ed73a279432dd9f2aa60735411c6fc906e9f60882e905cc1c5b91aaf80d5d5e64d317b1dd27f6e4c13"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://us.download.nvidia.com/tesla/580.95.05/NVIDIA-Linux-aarch64-580.95.05.run"
+sha512 = "e07b31824f7e6dd485df5c73e3a58f85962239ea20a92f18d82b9c55564d69309fe5bb279f39ed8ef152ccdbffc6d0fdf7bccfa3c794e4ecd9fac83bcfbb91a9"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://developer.download.nvidia.com/compute/cuda/repos/amzn2023/x86_64/nvidia-fabricmanager-580.95.05-1.x86_64.rpm"
+sha512 = "38cb3a7cbe5aa687f396809c4a43511a7f6885b22f2c08c5c2c82cd2dc33103340d0771248b3150f797123294b564323525ed51b46d84584d29f7f4307f74490"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://developer.download.nvidia.com/compute/cuda/repos/amzn2023/sbsa/nvidia-fabricmanager-580.95.05-1.aarch64.rpm"
+sha512 = "333cd4e54df830e59a7a2507b64d626b29d78aafd88ffc1da4ee24739abcea93885ee524119ea930100dd3dce395b71049905389858ddae1ab0dbb74b97a6bfa"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://developer.download.nvidia.com/compute/cuda/repos/amzn2023/x86_64/nvidia-imex-580.95.05-1.x86_64.rpm"
+sha512 = "8bc09565558404366382d81d02db8f4f5dfe16556200846ea7e1d8f43d408b7a02627995b3a73bbf6b74a26067f30500b7c9f3f9ecabca789d296722bccfd2d7"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://developer.download.nvidia.com/compute/cuda/repos/amzn2023/sbsa/nvidia-imex-580.95.05-1.aarch64.rpm"
+sha512 = "7cdfbaab907fc64d3f58a85fffd8fc47d137be70d62274fbbbe15bf6f27b5ad17eee3d78e506437f391fd448a918176890293c212eaea94390668c4ac531673c"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://s3.amazonaws.com/ec2-linux-nvidia-drivers/grid-19.2/NVIDIA-Linux-x86_64-580.95.05-grid-aws.run"
+sha512 = "fdc8279a147a491a2cfed6a7883515ddd824108b4003d70b97b43a70ab5912285d832ccd8102f7d2c7bf88911e507f1bab6a770bd40e45dacd9a7e1855716457"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+# No 580 branch yet, we should shift to that when available
+url = "https://raw.githubusercontent.com/NVIDIA/open-gpu-kernel-modules/570/COPYING"
+sha512 = "f9cee68cbb12095af4b4e92d01c210461789ef41c70b64efefd6719d0b88468b7a67a3629c432d4d9304c730b5d1a942228a5bcc74a03ab1c411c77c758cd938"
+force-upstream = true
+
+[build-dependencies]
+kernel-6_12 = { path = "../kernel-6.12" }
