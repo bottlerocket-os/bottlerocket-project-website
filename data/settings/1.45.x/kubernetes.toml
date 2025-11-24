@@ -631,7 +631,7 @@ see = [
 
 [[docs.ref.seccomp-default]]
 description = "Enable `RuntimeDefault` as the default seccomp profile for all workloads via `kubelet-configuration`"
-default= "`false`"
+default= "`true` for k8s-1.33+ variants, `false` for other variants"
 accepted_values = [
     "`true`",
     "`false`"
