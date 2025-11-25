@@ -172,6 +172,34 @@ see = [
     [ "[Logging Architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation)"]
 ]
 
+[[docs.ref.container-log-max-workers]]
+description = """
+The maximum number of concurrent workers to spawn for performing container log rotate operations.
+This setting is only available for Kubernetes 1.30 and later variants.
+"""
+see = [
+    ["[`containerLogMaxWorkers` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["[Logging Architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/)"]
+]
+
+[[docs.ref.container-log-max-workers.example]]
+comment = "Set maximum container log workers to 3 (K8s 1.30+ only)"
+value = "3"
+
+[[docs.ref.container-log-monitor-interval]]
+description = """
+The interval at which the kubelet monitors container logs for rotation and cleanup.
+This setting is only available for Kubernetes 1.30 and later variants.
+"""
+see = [
+    ["[`containerLogMonitorInterval` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["[Logging Architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/)"]
+]
+
+[[docs.ref.container-log-monitor-interval.example]]
+comment = "Set container log monitor interval to 20 seconds (K8s 1.30+ only)"
+value = "\"20s\""
+
 [[docs.ref.cpu-cfs-quota-enforced]]
 description= "Whether CPU CFS quotas are enforced"
 default= "`true`"
