@@ -699,3 +699,23 @@ accepted_values = [
     "`private-dns-name`",
     "`instance-id`"
 ]
+
+[[docs.ref.single-process-oom-kill]]
+description = """
+Controls single-process OOM killing behavior for Kubernetes pods.
+If true, prevents the memory.oom.group flag from being set for container cgroups in cgroups v2, causing processes in the container to be OOM killed individually instead of as a group.
+When enabled, the OOM killing behavior aligns with cgroups v1 behavior.
+This setting is only available for Kubernetes 1.32 and later variants.
+"""
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["[`singleProcessOOMKill` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["[Managing Resources for Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)"]
+]
+
+[[docs.ref.single-process-oom-kill.example]]
+comment = "Enable single-process OOM killing (K8s 1.32+ only)"
+value = "true"
