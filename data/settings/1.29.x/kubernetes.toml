@@ -88,8 +88,8 @@ see = [
 
 [[docs.ref.node-labels.example]]
 [[docs.ref.node-labels.example.multiline]]
-"label1" = "foo"
-"label2" = "bar"
+"\"label1\"" = "\"foo\""
+"\"label2\"" = "\"bar\""
 
 
 [[docs.ref.node-taints]]
