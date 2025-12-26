@@ -671,3 +671,26 @@ accepted_values = [
     "`private-dns-name`",
     "`instance-id`"
 ]
+
+[[docs.ref.container-log-max-workers]]
+description = "The maximum number of concurrent workers for container log processing."
+see = [
+  ["[`containerLogMaxWorkers` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]
+
+[[docs.ref.container-log-monitor-interval]]
+description = "The interval at which the kubelet monitors container logs."
+see = [
+  ["[`containerLogMonitorInterval` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]
+
+[[docs.ref.single-process-oom-kill]]
+description = "When enabled, only the container's main process is OOM killed instead of the entire cgroup."
+default = "`false`"
+accepted_values = [
+  "`true`",
+  "`false`"
+]
+see = [
+  ["[`singleProcessOOMKill` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]

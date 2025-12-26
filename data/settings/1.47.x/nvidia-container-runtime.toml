@@ -1,0 +1,22 @@
+[docs]
+title = "NVIDIA Container Runtime"
+description = """
+Settings for the NVIDIA Container Toolkit runtime configuration.
+These settings control how NVIDIA GPU devices are exposed to containers.
+"""
+
+[[docs.ref.visible-devices-as-volume-mounts]]
+description = "Controls whether to accept `NVIDIA_VISIBLE_DEVICES` as volume mounts. When enabled, GPU devices can be specified via volume mount syntax."
+default = "`true`"
+accepted_values = [
+  "`true`",
+  "`false`"
+]
+
+[[docs.ref.visible-devices-envvar-when-unprivileged]]
+description = "Controls whether to accept the `NVIDIA_VISIBLE_DEVICES` environment variable when running unprivileged containers."
+default = "`false`"
+accepted_values = [
+  "`true`",
+  "`false`"
+]

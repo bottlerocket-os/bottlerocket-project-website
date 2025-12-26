@@ -1,5 +1,6 @@
 [kernels]
 "6.1" = "https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4808"
+"6.12" = "https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4808"
 
 [aws-lc]
 "3.0.0" = "https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4631"
