@@ -426,6 +426,18 @@ value = 80
 comment = "Before 1.14.0, the value must be represented as a string."
 value = "\"80\""
 
+[[docs.ref.image-minimum-gc-age]]
+description = "Minimum age for an unused image before it is garbage collected. Value is a duration like `2m` for 2 minutes."
+see = [
+    ["[`imageMinimumGCAge` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]
+
+[[docs.ref.image-maximum-gc-age]]
+description = "Maximum age an image can be unused before it is garbage collected. Set to 0 to disable. Value is a duration like `0s` to disable or `24h` for 24 hours."
+see = [
+    ["[`imageMaximumGCAge` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]
+
 [[docs.ref.pod-pids-limit]]
 description = "The maximum number of processes per pod."
 see = [
@@ -486,7 +498,13 @@ see = [
 ]
 
 [[docs.ref.system-reserved]]
-description = "Resources reserved for system components."
+description = """
+Resources reserved for system components. The following keys are valid:
+- `cpu`: in millicores.
+- `memory`: in mebibytes.
+- `ephemeral-storage`: in storage units.
+- `pid`: PIDs reserved for system components.
+"""
 see = [
     [ "[`systemReserved` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
 ]
@@ -634,6 +652,7 @@ Resources reserved for node components. The following keys are valid:
 - `cpu`: in millicores from the total number of vCPUs available on the instance.
 - `memory`: in mebibytes from the max num of pods on the instance. `memory_to_reserve = max_num_pods * 11 + 255`.
 - `ephemeral-storage`: defaults to `1Gi`.
+- `pid`: PIDs reserved for kubernetes components.
 """
 see = [
     [ "[`kubeReserved` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
