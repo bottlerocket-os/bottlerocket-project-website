@@ -80,7 +80,22 @@ description = "[Labels](https://kubernetes.io/docs/concepts/overview/working-wit
 tags = [
     "labels-and-taints"
 ]
-note = "Remember to quote keys (since they often contain `.`) and to quote all values."
+note = """
+For label keys: With TOML, if the key contains a dot (.) or slash (/), it must be quoted. With apiclient, if the key contains a dot (.), it must be set with the `--json` flag like:
+```
+apiclient set --json '{
+  "settings": {
+    "kubernetes": {
+      "node-labels": {
+        "label1.a": "foo"
+      }
+    }
+  }
+}'
+```
+
+For label values: With TOML, all values must be quoted. With apiclient, quotes are optional.
+"""
 
 see = [
     ["[Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)"]
@@ -88,8 +103,8 @@ see = [
 
 [[docs.ref.node-labels.example]]
 [[docs.ref.node-labels.example.multiline]]
-"label1" = "foo"
-"label2" = "bar"
+"\"label1/a\"" = "\"foo\""
+"label2" = "\"bar\""
 
 
 [[docs.ref.node-taints]]
