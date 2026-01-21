@@ -1,0 +1,8 @@
+name = "Join us at re:Invent 2023"
+start_date = "2023-11-27"
+end_date = "2023-12-01"
+description = """
+Join Bottlerocket at re:Invent 2023! The Bottlerocket team is presenting [a workshop](https://hub.reinvent.awsevents.com/attendee-portal/catalog/?search=OPN202), 
+will be avaliable at [the Modern Applications zone in the expo hall](https://hub.reinvent.awsevents.com/attendee-portal/catalog/?search=ACT167), and [available to meet
+for conversations](https://github.com/bottlerocket-os/bottlerocket/discussions/3573).
+"""
