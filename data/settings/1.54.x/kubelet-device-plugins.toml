@@ -194,6 +194,8 @@ According to [NVIDIA](https://docs.nvidia.com/datacenter/cloud-native/kubernetes
 
 When MIG is enabled, NVLinks are <b>NOT</b> supported as mentioned in [NVIDIA Documentation](https://docs.nvidia.com/datacenter/tesla/fabric-manager-user-guide/index.html#interoperability-with-mig).
 
+⚠️ MPS and MIG are mutually exclusive. If `device-sharing-strategy="mps"` is also configured, the device plugin will not start successfully and gpu resources will not be offered by the node.
+
 <h5>Example Usage</h5>
 
 In a node with Bottlerocket Kubernetes NVIDIA variant, if the following configuration were applied, the plugin would enable MIG and apply `2g.10gb` profile on nodes with <b>NVIDIA A100 40GB</b> GPUs (3 partitions) and apply `1g.20gb` profile on nodes with <b>NVIDIA H100 80GB</b> GPUs (4 partitions).
@@ -273,6 +275,56 @@ apiclient set --json '{
 }'
 ''' }]
 
+[[docs.tag.nvidia-mps]]
+heading = "NVIDIA Multi-Process Service (MPS)"
+description = """
+Bottlerocket supports NVIDIA GPU Multi-Process Service (MPS) on Kubernetes nodes through the [nvidia-k8s-device-plugin](https://github.com/NVIDIA/k8s-device-plugin).
+This functionality enables system administrators to allocate a set of replicas on the node's GPU(s), which can then be assigned to individual pods for executing various workloads.
+To learn more about MPS and its options, please take a look at the NVIDIA documentation, like their [Kubernetes plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#with-cuda-mps) and [technical blog](https://developer.nvidia.com/blog/improving-gpu-utilization-in-kubernetes/).
+
+<h5>Lifecycle</h5>
+
+When MPS configuration is defined on a Bottlerocket Kubernetes node with NVIDIA GPU variants, the configuration is applied to all GPUs present on the node.
+Modifications to the MPS configuration will affect the advertised resources available on the node.
+Existing pods that were already running and consuming the GPU are not automatically removed or restarted.
+Therefore, it is recommended to configure MPS settings before deploying pods to ensure consistency across all GPU workloads.
+
+<h5>Use Cases</h5>
+
+The MPS feature is disabled by default in Bottlerocket. This feature does not provide memory or fault isolation between replicas, and has unique resource request behavior as described [here](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#with-cuda-mps).
+According to [NVIDIA](https://developer.nvidia.com/blog/improving-gpu-utilization-in-kubernetes/#virtualization_with_vgpu), this feature is best used for over subscribing the GPU when needing to run multiple applications in parallel but can deal with limited resiliency.
+
+<h5>Customer Advisory</h5>
+
+⚠️ MPS and MIG are mutually exclusive. If `device-sharing-strategy="mps"` is also configured, the device plugin will not start successfully and gpu resources will not be offered by the node.
+
+<h5>Example Usage</h5>
+
+In a Bottlerocket Kubernetes NVIDIA variant, if the below configuration were applied to a node with 8 GPUs on it, the plugin would now advertise 32 nvidia.com/gpu.shared resources to Kubernetes instead of 8.
+"""
+
+tag_name = "nvidia-mps"
+example = [{ type = "toml", tab = "TOML", source = '''
+[settings.kubelet-device-plugins.nvidia]
+device-sharing-strategy = "mps"
+
+[settings.kubelet-device-plugins.nvidia.mps]
+replicas = 4
+''' }, { type = "shell", tab = "Shell", source = '''
+apiclient set --json '{
+  "settings": {
+    "kubelet-device-plugins": {
+      "nvidia": {
+        "device-sharing-strategy": "mps",
+        "mps": {
+          "replicas": 4
+        }
+      }
+    }
+  }
+}'
+''' }]
+
 [[docs.ref.nvidia-device-id-strategy]]
 name_override = "nvidia.device-id-strategy"
 description = "Specifies the desired strategy for passing device IDs to the container."
@@ -340,13 +392,13 @@ direct_toml = """
 name_override = "nvidia.device-sharing-strategy"
 description = "Specifies the desired sharing strategy of of the GPU resource."
 default = "`none`"
-accepted_values = ["`none`", "`time-slicing`"]
+accepted_values = ["`none`", "`time-slicing`", "`mps`"]
 see = [
     [
         "[NVIDIA K8 Device Plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#configuration-option-details)",
     ],
 ]
-tags = ["nvidia-time-slicing"]
+tags = ["nvidia-time-slicing", "nvidia-mps"]
 
 [[docs.ref.nvidia-pass-device-specs]]
 name_override = "nvidia.pass-device-specs"
@@ -403,3 +455,23 @@ see = [
     ],
 ]
 tags = ["nvidia-time-slicing"]
+
+
+[[docs.ref.nvidia-mps-replicas]]
+name_override = "nvidia.mps.replicas"
+description = "Specifies the number of MPS replicas to advertise per GPU when using MPS device sharing."
+default = "`2`"
+accepted_values = ["Integer from `2` to `48`"]
+see = [
+    [
+        "[NVIDIA MPS Documentation](https://docs.nvidia.com/deploy/mps/)",
+    ],
+]
+tags = ["nvidia-mps"]
+
+[[docs.ref.nvidia-mps-rename-by-default]]
+name_override = "nvidia.mps.rename-by-default"
+description = "When enabled, GPU resources are advertised as `nvidia.com/gpu.shared` instead of `nvidia.com/gpu`."
+default = "`true`"
+accepted_values = ["`true`", "`false`"]
+tags = ["nvidia-mps"]
