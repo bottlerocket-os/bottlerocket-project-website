@@ -486,7 +486,13 @@ see = [
 ]
 
 [[docs.ref.system-reserved]]
-description = "Resources reserved for system components."
+description = """
+Resources reserved for system components. The following keys are valid:
+- `cpu`: in millicores.
+- `memory`: in mebibytes.
+- `ephemeral-storage`: in storage units.
+- `pid`: PIDs reserved for system components.
+"""
 see = [
     [ "[`systemReserved` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
 ]
@@ -634,6 +640,7 @@ Resources reserved for node components. The following keys are valid:
 - `cpu`: in millicores from the total number of vCPUs available on the instance.
 - `memory`: in mebibytes from the max num of pods on the instance. `memory_to_reserve = max_num_pods * 11 + 255`.
 - `ephemeral-storage`: defaults to `1Gi`.
+- `pid`: PIDs reserved for kubernetes components.
 """
 see = [
     [ "[`kubeReserved` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
