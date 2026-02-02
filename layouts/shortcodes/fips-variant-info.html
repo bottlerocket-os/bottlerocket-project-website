@@ -32,11 +32,18 @@
               </tr>
               <tr>
                 <td>
-                  {{ with index $.Site.Data.fips.modules "aws-lc" }}
-                    {{/* There is only one AWS LC version */}}
-                    <a href="{{ index . "3.0.0" }}">
-                      AWS LC
-                    </a>
+                  {{ with index $.Site.Data.fips.modules $project_version }}
+                    {{ with index . "go-crypto" }}
+                      <a href="{{ index . "1.0" }}">
+                        Go Cryptographic Module
+                      </a>
+                    {{ else }}
+                      {{ with index . "aws-lc" }}
+                        <a href="{{ index . "3.0.0" }}">
+                          AWS LC
+                        </a>
+                      {{ end }}
+                    {{ end }}
                   {{ end }}
                 </td>
               </tr>
