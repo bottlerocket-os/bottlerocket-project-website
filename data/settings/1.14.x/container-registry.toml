@@ -34,6 +34,8 @@ The credential fields map to [containerd's registry credential fields](https://g
 
 warning = "Avoid storing plain text credentials in external systems. As an alternative, programmatically apply these settings via `apiclient` using a bootstrap or host container."
 
+note = "Credentials set via this setting are not automatically rotated. You are responsible for managing credential rotation."
+
 [[docs.ref.credentials.example]]
 direct_toml = """
 [[settings.container-registry.credentials]]

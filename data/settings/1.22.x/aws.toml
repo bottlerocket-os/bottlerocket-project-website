@@ -2,6 +2,7 @@
 description = """
 The base64-encoded representation of data used to populate `~/.aws/config`
 """
+note = "If your encoded data includes credentials, they are not automatically rotated. You are responsible for managing credential rotation."
 warning = """
 Avoid adding a `[profile default]` section.
 Recent versions of `aws-iam-authenticator` (and perhaps other components) pick up the default credential settings when `settings.aws.profile` is set to `default`.
@@ -14,6 +15,7 @@ see = [
 description = """
 The base64-encoded representation of data used to populate `~/.aws/credentials`
 """
+note = "Credentials set via this setting are not automatically rotated. You are responsible for managing credential rotation."
 
 [[docs.ref.profile]]
 description = """
