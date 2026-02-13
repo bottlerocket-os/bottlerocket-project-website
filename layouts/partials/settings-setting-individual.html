@@ -12,6 +12,7 @@
 {{- $tagHeadings := .Get "tagHeadings" -}}
 {{- $setting_deprecated := .Get "deprecated" -}}
 {{- $setting_accepted_values := .Get "accepted_values" -}}
+{{- $pageUrl := .Get "pageUrl" -}}
 <div class="setting-individual">
     <h3 id="{{ $setting_id }}"><code>{{ $setting_full_name }}</code>
     {{ if $setting_deprecated }}
@@ -126,7 +127,9 @@
             {{- if eq (len $see) 3 -}}
                 <li><a href="../../{{ index $see 0 }}/{{ index $see 1 }}/#{{ index $see 2}}"><code>{{ delimit $see "." }}</code></a></li>
             {{- else -}}
-                <li>{{ (index $see 0) | markdownify }}</li>
+                {{- $mdContent := (index $see 0) | markdownify -}}
+                {{- $fixedContent := $mdContent | replaceRE `href="/[^/]*/#([^"]+)"` (printf `href="%s#$1"` $pageUrl) -}}
+                <li>{{ $fixedContent | safeHTML }}</li>
             {{- end -}}
         {{- end -}}
     {{ end }}

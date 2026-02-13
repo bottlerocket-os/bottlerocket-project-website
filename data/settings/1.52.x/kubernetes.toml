@@ -80,7 +80,22 @@ description = "[Labels](https://kubernetes.io/docs/concepts/overview/working-wit
 tags = [
     "labels-and-taints"
 ]
-note = "Remember to quote keys (since they often contain `.`) and to quote all values."
+note = """
+For label keys: With TOML, if the key contains a dot (.) or slash (/), it must be quoted. With apiclient, if the key contains a dot (.), it must be set with the `--json` flag like:
+```
+apiclient set --json '{
+  "settings": {
+    "kubernetes": {
+      "node-labels": {
+        "label1.a": "foo"
+      }
+    }
+  }
+}'
+```
+
+For label values: With TOML, all values must be quoted. With apiclient, quotes are optional.
+"""
 
 see = [
     ["[Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)"]
@@ -88,8 +103,8 @@ see = [
 
 [[docs.ref.node-labels.example]]
 [[docs.ref.node-labels.example.multiline]]
-"label1" = "foo"
-"label2" = "bar"
+"\"label1/a\"" = "\"foo\""
+"label2" = "\"bar\""
 
 
 [[docs.ref.node-taints]]
@@ -171,6 +186,34 @@ see = [
     [ "[`containerLogMaxSize` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
     [ "[Logging Architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation)"]
 ]
+
+[[docs.ref.container-log-max-workers]]
+description = """
+The maximum number of concurrent workers to spawn for performing container log rotate operations.
+This setting is only available for Kubernetes 1.30 and later variants.
+"""
+see = [
+    ["[`containerLogMaxWorkers` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["[Logging Architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/)"]
+]
+
+[[docs.ref.container-log-max-workers.example]]
+comment = "Set maximum container log workers to 3 (K8s 1.30+ only)"
+value = "3"
+
+[[docs.ref.container-log-monitor-interval]]
+description = """
+The interval at which the kubelet monitors container logs for rotation and cleanup.
+This setting is only available for Kubernetes 1.30 and later variants.
+"""
+see = [
+    ["[`containerLogMonitorInterval` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["[Logging Architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/)"]
+]
+
+[[docs.ref.container-log-monitor-interval.example]]
+comment = "Set container log monitor interval to 20 seconds (K8s 1.30+ only)"
+value = "\"20s\""
 
 [[docs.ref.cpu-cfs-quota-enforced]]
 description= "Whether CPU CFS quotas are enforced"
@@ -383,6 +426,33 @@ value = 80
 comment = "Before 1.14.0, the value must be represented as a string."
 value = "\"80\""
 
+[[docs.ref.image-minimum-gc-age]]
+description = "Minimum age for an unused image before it is garbage collected. Value is a duration like `2m` for 2 minutes."
+see = [
+    ["[`imageMinimumGCAge` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]
+
+[[docs.ref.image-maximum-gc-age]]
+description = "Maximum age an image can be unused before it is garbage collected. Set to 0 to disable. Value is a duration like `0s` to disable or `24h` for 24 hours."
+see = [
+    ["[`imageMaximumGCAge` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]
+
+[[docs.ref.max-parallel-image-pulls]]
+description = "Maximum number of image pulls that can be in progress at the same time."
+see = [
+    ["[`maxParallelImagePulls` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]
+
+[[docs.ref.ids-per-pod]]
+description = """
+Number of UIDs/GIDs allocated for each user namespace.
+This setting is only available for Kubernetes 1.33 and later variants.
+"""
+see = [
+    ["[User Namespaces](https://kubernetes.io/docs/concepts/workloads/pods/user-namespaces/#id-count-for-each-of-pods)"]
+]
+
 [[docs.ref.pod-pids-limit]]
 description = "The maximum number of processes per pod."
 see = [
@@ -443,7 +513,13 @@ see = [
 ]
 
 [[docs.ref.system-reserved]]
-description = "Resources reserved for system components."
+description = """
+Resources reserved for system components. The following keys are valid:
+- `cpu`: in millicores.
+- `memory`: in mebibytes.
+- `ephemeral-storage`: in storage units.
+- `pid`: PIDs reserved for system components.
+"""
 see = [
     [ "[`systemReserved` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
 ]
@@ -591,6 +667,7 @@ Resources reserved for node components. The following keys are valid:
 - `cpu`: in millicores from the total number of vCPUs available on the instance.
 - `memory`: in mebibytes from the max num of pods on the instance. `memory_to_reserve = max_num_pods * 11 + 255`.
 - `ephemeral-storage`: defaults to `1Gi`.
+- `pid`: PIDs reserved for kubernetes components.
 """
 see = [
     [ "[`kubeReserved` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
@@ -671,3 +748,23 @@ accepted_values = [
     "`private-dns-name`",
     "`instance-id`"
 ]
+
+[[docs.ref.single-process-oom-kill]]
+description = """
+Controls single-process OOM killing behavior for Kubernetes pods.
+If true, prevents the memory.oom.group flag from being set for container cgroups in cgroups v2, causing processes in the container to be OOM killed individually instead of as a group.
+When enabled, the OOM killing behavior aligns with cgroups v1 behavior.
+This setting is only available for Kubernetes 1.32 and later variants.
+"""
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+see = [
+    ["[`singleProcessOOMKill` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["[Managing Resources for Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)"]
+]
+
+[[docs.ref.single-process-oom-kill.example]]
+comment = "Enable single-process OOM killing (K8s 1.32+ only)"
+value = "true"
