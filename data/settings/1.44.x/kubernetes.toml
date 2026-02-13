@@ -396,15 +396,9 @@ direct_toml = """
 "memory-manager-policy" = "Static"
 
 [settings.kubernetes.memory-manager-reserved-memory.0]
-# Reserve a single 1GiB huge page along with 674MiB of memory
+# Reserve 674MiB of memory for NUMA node 0
 "enabled" = true
 "memory" = "674Mi"
-"hugepages-1Gi" = "1Gi"
-
-[settings.kubernetes.memory-manager-reserved-memory.1]
-# Reserve 1,074 2MiB huge pages
-"enabled" = true
-"hugepages-2Mi" = "2148Mi"
 """
 
 [[docs.ref.image-gc-low-threshold-percent]]
