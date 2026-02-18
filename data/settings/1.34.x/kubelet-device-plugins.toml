@@ -1,3 +1,6 @@
+[[docs.tag.nvidia]]
+deleted = true
+
 [[docs.tag.nvidia-mig]]
 heading = "NVIDIA Multi-Instance GPU (MIG)"
 description = """
@@ -63,6 +66,7 @@ see = [
         "[NVIDIA K8 Device Plugin](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#configuration-option-details)",
     ],
 ]
+tags = ["nvidia-mig"]
 
 [[docs.ref.nvidia-device-partitioning-strategy]]
 name_override = "nvidia.device-partitioning-strategy"
