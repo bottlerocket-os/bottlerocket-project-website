@@ -1,0 +1,26 @@
+{{/*
+  _version-lte.html - Check if version v is <= target version
+  
+  INPUTS:
+    .version      - Version string to check (e.g., "1.34.x")
+    .target - Target version string (e.g., "1.31.x")
+  
+  RETURNS: true if version <= target, false otherwise
+*/}}
+
+{{- $v_parts := split .version "." -}}
+{{- $t_parts := split .target "." -}}
+
+{{- $v_major := index $v_parts 0 | int -}}
+{{- $v_minor := index $v_parts 1 | int -}}
+{{- $t_major := index $t_parts 0 | int -}}
+{{- $t_minor := index $t_parts 1 | int -}}
+
+{{- $result := true -}}
+{{- if gt $v_major $t_major -}}
+  {{- $result = false -}}
+{{- else if and (eq $v_major $t_major) (gt $v_minor $t_minor) -}}
+  {{- $result = false -}}
+{{- end -}}
+
+{{- return $result -}}

@@ -1,0 +1,33 @@
+{{/*
+  _merge-docs.html - Merge docs.ref and docs.tag from .source into .target
+  Returns merged settings_file dict
+*/}}
+{{- $t := .target -}}
+{{- $s := .source -}}
+
+{{- with $s.docs -}}
+  {{- if $t.docs -}}
+    {{- $ref := $t.docs.ref | default dict -}}
+    {{- with .ref -}}
+      {{- $ref = merge $ref . -}}
+    {{- end -}}
+    
+    {{- $tag := $t.docs.tag | default dict -}}
+    {{- with .tag -}}
+      {{- $tag = merge $tag . -}}
+    {{- end -}}
+    
+    {{- $docs := dict "ref" $ref -}}
+    {{- if $tag -}}
+      {{- $docs = merge $docs (dict "tag" $tag) -}}
+    {{- end -}}
+    {{- $t = merge $t (dict "docs" $docs) -}}
+  {{- else -}}
+    {{- $t = merge $t (dict "docs" .) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- with $s.top_level -}}
+  {{- $t = merge $t (dict "top_level" .) -}}
+{{- end -}}
+{{- return $t -}}

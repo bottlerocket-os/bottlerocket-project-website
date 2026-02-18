@@ -14,7 +14,7 @@
     {{- $version = index $parts 1 -}}
 {{- end -}}
 {{- $lang := print $.Page.Language -}}
-{{- $settings_at_version := index (index .Site.Data.settings $version) $ref }}
+{{- $settings_at_version := partial "merged-settings.html" (dict "version" $version "settings_root" $ref "Site" $.Site) }}
 {{- $page := . -}}
 {{- range $key, $value := $settings_at_version.docs.ref -}}
     {{- range $value -}}
