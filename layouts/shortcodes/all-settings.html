@@ -16,8 +16,8 @@
 
 <br />
 
-{{- $settings_file_new := index $.Site.Data.settings $current_version -}}
-{{- $settings_file_old := index $.Site.Data.settings $old_version -}}
+{{- $settings_file_new := partial "merged-settings.html" (dict "version" $current_version "Site" .Site) -}}
+{{- $settings_file_old := partial "merged-settings.html" (dict "version" $old_version "Site" .Site) -}}
 
 {{- range $settings_category, $settings_ref := $settings_file_new -}}
     {{- range $setting_name, $setting_details := $settings_ref.docs.ref -}} 
