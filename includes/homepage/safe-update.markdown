@@ -8,7 +8,7 @@ When you’re ready to update, let your orchestrator drain the node and then tel
 Bottlerocket will swap the partitions and boot with the new version atomically.
 
 {{< stackedfigure caption="Bottlerocket uses multiple partitions to manage updates. Changeover occurs atomically at reboot." >}}
-    {{% readfile "includes/homepage/update.svg" %}}
+    {{< os-readfile "includes/homepage/update.svg" >}}
 {{</ stackedfigure>}}
 
 Because system settings are accomplished through an API, Bottlerocket knows how to migrate these settings between versions.
