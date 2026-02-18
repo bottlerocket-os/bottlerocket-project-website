@@ -16,7 +16,7 @@
 <div class="setting-individual">
     <h3 id="{{ $setting_id }}"><code>{{ $setting_full_name }}</code>
     {{ if $setting_deprecated }}
-        <span class="badge badge-secondary">Deprecated</span>
+        <span class="badge bg-warning">Deprecated</span>
     {{ end }}
     </h3>
     <p>{{ $setting_description | markdownify }}</p>

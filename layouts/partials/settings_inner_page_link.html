@@ -5,6 +5,6 @@
 <li>
     <a href="#{{ $setting_link }}"><code>settings.{{$setting_root}}.{{ or $values.name_override $setting_name}}</code></a>
     {{ if $values.deprecated }}
-        <span class="badge badge-secondary">Deprecated</span>
+        <span class="badge bg-warning">Deprecated</span>
     {{ end }}
 </li>
