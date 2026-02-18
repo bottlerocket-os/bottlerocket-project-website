@@ -264,55 +264,6 @@ see = [
     ["[`cpuManagerReconcilePeriod` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
 ]
 
-[[docs.ref.credential-providers]]
-description = """
-Contains a collection of Kubelet image credential provider settings.
-Each key under this setting is the name of the plugin to configure. See Example 1 below.
-The `ecr-credential-provider` plugin can also be used for AWS IAM Roles Anywhere support.
-IAM Roles Anywhere is configured using the [`settings.aws.config`](../aws#config) setting.
-The content of that setting needs to configure the `credential_process` using the `aws_signing_helper` using your IAM Roles Anywhere settings, see Example 2 below.
-"""
-note = "`ecr-credential-provider` is currently the only supported provider. To manage its AWS credentials, see the `settings.aws.config` and `settings.aws.credentials` settings."
-
-see = [
-    ["[Roles Anywhere documentation on `aws_signing_helper` arguments](https://docs.aws.amazon.com/rolesanywhere/latest/userguide/credential-helper.html)"]
-]
-
-[[docs.ref.credential-providers.example]]
-direct_toml = """
-# Example 1: user data for configuring the `ecr-credential-provider` credential provider plug-in
-[settings.kubernetes.credential-providers.ecr-credential-provider]
-enabled = true
-# (optional - defaults to "12h")
-cache-duration = "30m"
-image-patterns = [
-  # One or more URL paths to match an image prefix. Supports globbing of subdomains.
-  "*.dkr.ecr.us-east-2.amazonaws.com",
-  "*.dkr.ecr.us-west-2.amazonaws.com"
-]
-
-[settings.kubernetes.credential-providers.ecr-credential-provider.environment]
-# The following are not used with ecr-credential-provider, but are provided for illustration
-"KEY" = "abc123xyz"
-"GOMAXPROCS" = "2"
-"""
-
-[[docs.ref.credential-providers.example]]
-direct_toml = """
-# Example 2: `credential_process` using the `aws_signing_helper`
-[default]
-region = us-west-2
-credential_process = aws_signing_helper credential-process \
-   --certificate /var/lib/kubelet/pki/kubelet-client-current.pem \
-   --private-key /var/lib/kubelet/pki/kubelet-client-current.pem \
-   --profile-arn [profile ARN]
-   --role-arn [role ARN]
-   --trust-anchor-arn [trust anchor ARN]
-"""
-
-
-
-
 [[docs.ref.event-burst]]
 description = "The maximum size of a burst of event creations."
 see = [
@@ -595,39 +546,6 @@ see = [
 [[docs.ref.eviction-soft-grace-period.example.multiline]]
 "\"memory.available\"" = "\"30s\""
 
-[[docs.ref.standalone-mode]]
-description = """
-It `true`, kubelet runs in standalone mode without connecting to an API server.
-"""
-accepted_values = [
-    "`true`",
-    "`false`"
-]
-tags = [
-    "static-pods"
-]
-default = "`false`"
-
-[[docs.ref.customid_enabled]]
-description= "Whether the static pod is enabled."
-name_override="static-pods.<custom identifier>.enabled"
-tags = [
-    "static-pods"
-]
-see = [
-    [ "settings", "kubernetes", "customid_manifest" ]
-]
-
-[[docs.ref.customid_manifest]]
-description= "A base64-encoded pod manifest."
-name_override="static-pods.<custom identifier>.manifest"
-tags = [
-    "static-pods"
-]
-see = [
-    [ "settings", "kubernetes", "customid_enabled" ]
-]
-
 [[docs.ref.kube-reserved]]
 description = """
 Resources reserved for node components. The following keys are valid:
@@ -679,32 +597,6 @@ accepted_values = [
     "`true`",
     "`false`"
 ]
-
-[[docs.ref.device-ownership-from-security-context]]
-description = """
-Bottlerocket `v1.30.0`+ supports device ownership using the security context provided in the Kubernetes specfile.
-To allow a container to take ownership, you will need to enable ownership through the `apiclient` setting as well as define the `runAsUser` and `runAsGroup` in the securityContext (See sample below)
-"""
-default = "`true` for k8s-1.32+ variants, `false` for other variants"
-accepted_values = [
-    "`true`",
-    "`false`"
-]
-see = [
-    [ "[Kubernetes' documentation](https://kubernetes.io/blog/2021/11/09/non-root-containers-and-devices/) "]
-]
-
-[[docs.ref.device-ownership-from-security-context.example]]
-comment = "Sample securityContext in a specfile to allow device ownership"
-direct_yaml = """
-...
-spec:
-  securityContext:
-    runAsUser: 1000
-    runAsGroup: 2000
-    fsGroup: 3000
-...
-"""
 
 [[docs.ref.hostname-override-source]]
 description = "The source of identification for the Kubernetes node name. This defaults to the private DNS name, but can be changed to allow for a name based on the EC2 instance ID."
