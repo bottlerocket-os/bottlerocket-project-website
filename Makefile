@@ -4,14 +4,14 @@ preview:
 	docker run --rm -it \
 		-v "${PWD}":/src \
 		-p 1313:1313 \
-		hugomods/hugo:exts-0.123.8 \
+		hugomods/hugo:exts-0.156.0 \
 		hugo server -w --bind=0.0.0.0
 
 preview_finch:
 	finch run --rm -it \
 		-v "${PWD}":/src \
 		-p 1313:1313 \
-		hugomods/hugo:exts-0.123.8 \
+		hugomods/hugo:exts-0.156.0 \
 		hugo server -w --bind=0.0.0.0 --poll 700ms
 
 mdlint:

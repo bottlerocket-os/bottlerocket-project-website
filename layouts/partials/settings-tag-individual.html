@@ -12,8 +12,8 @@
                         <button 
                             class="nav-link {{ if (eq $count 0) }} active {{ end }}" 
                             id="{{ $tag_name }}-example-{{ $value.type }}-tab" 
-                            data-toggle="tab" 
-                            data-target="#{{ $tag_name }}Example{{ $value.type }}Pane" 
+                            data-bs-toggle="tab" 
+                            data-bs-target="#{{ $tag_name }}Example{{ $value.type }}Pane" 
                             type="button" 
                             role="tab" 
                             aria-controls="{{ $value.tab  }}" 

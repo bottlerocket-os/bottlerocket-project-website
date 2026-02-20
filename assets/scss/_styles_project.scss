@@ -722,3 +722,9 @@ nav.foldable-nav .with-child.depad {
     }
   }
 }
+
+// Restore badge-secondary styling with project orange
+.badge-secondary {
+  background-color: $light-orange;
+  color: #fff;
+}

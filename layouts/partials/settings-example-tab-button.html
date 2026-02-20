@@ -5,5 +5,5 @@
 {{- $active_tab := cond (eq (.Get "active") true) "active" "" -}}
 {{- $aria_selected := (eq (.Get "active") true) -}}
 <li class="nav-item" role="presentation">
-    <button class="nav-link {{ $active_tab }}" id="{{ $setting_id }}-example-{{$example_type}}-tab" data-toggle="tab" data-target="#{{ $setting_id }}Example{{$example_type}}Pane" type="button" role="tab" aria-controls="{{ $example_type }}" aria-selected="{{ $aria_selected }}">{{  $example_type }}</button>
+    <button class="nav-link {{ $active_tab }}" id="{{ $setting_id }}-example-{{$example_type}}-tab" data-bs-toggle="tab" data-bs-target="#{{ $setting_id }}Example{{$example_type}}Pane" type="button" role="tab" aria-controls="{{ $example_type }}" aria-selected="{{ $aria_selected }}">{{  $example_type }}</button>
 </li>
