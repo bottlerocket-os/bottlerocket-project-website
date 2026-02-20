@@ -1,0 +1,91 @@
+[[docs.ref.lockdown]]
+description = """
+Sets the mode for the lockdown Linux security module. 
+"""
+warning = "Changing this setting from `confidentiality` to `integrity` or `integrity` to `none` requires a reboot to take effect."
+accepted_values = [
+    """
+`confidentiality` : blocks most methods of reading kernel memory from userspace.
+Tools that rely on reading kernel memory may not work in this mode.
+""",
+    """
+`integrity` : blocks most methods for overwriting kernel memory or modifying kernel code. 
+This mode prevents unsigned kernel modules from loading.
+""",
+    "`none` : disables protection by the Lockdown security module.",
+]
+default = "`integrity` except for `nvidia` and `dev` variant flavours which use `none`"
+see = [
+    ["[`kernel_lockdown` Linux Manual Page](https://man7.org/linux/man-pages/man7/kernel_lockdown.7.html)"],
+    ["Bottlerocket [Security Gudiance on GitHub](https://github.com/bottlerocket-os/bottlerocket/blob/develop/SECURITY_GUIDANCE.md#enable-kernel-lockdown)"],
+    ["[Linux kernel lockdown, integrity, and confidentiality](https://mjg59.dreamwidth.org/55105.html)"]
+]
+
+[[docs.ref.modules_allowed]]
+name_override = "modules.<name>.allowed"
+warning = "This setting only affects *loading* of kernel modules at boot time. Changing the setting of already loaded (running) kernel modules to `false` has no affect until reboot."
+description = """
+Allows (`true`) or disallows (`false`) the loading of kernel module `<name>`. 
+"""
+see = [
+    [ "settings", "boot", "kernel-parameters" ]
+]
+note = """
+Use [`settings.boot.kernel-parameters`](../boot/#kernel-parameters) to set module parameters through the kernel command line.
+"""
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+[[docs.ref.modules_allowed.example]]
+direct_toml = """
+[settings.kernel.modules.sctp]
+allowed = false
+
+[settings.kernel.modules.udf]
+allowed = true
+"""
+direct_shell = """
+apiclient set settings.kernel.modules.sctp.allowed=false
+
+apiclient set settings.kernel.modules.udf.allowed=true
+"""
+
+[[docs.ref.sysctl]]
+description = "Sets kernel parameters."
+note = "Add quotes (`\"`) around keys as they often contain dots (`.`) as well as around values."
+see = [
+    ["[`sysctl` Linux Manual Page](https://man7.org/linux/man-pages/man8/sysctl.8.html)"]
+]
+[[docs.ref.sysctl.example]]
+direct_toml = """
+[settings.kernel.sysctl]
+"user.max_user_namespaces" = "16384"
+"vm.max_map_count" = "262144"
+"""
+
+[[docs.ref.modules_autoload]]
+name_override = "modules.<name>.autoload"
+description = "If `true`, the kernel `<name>` module loads automatically on boot."
+see = [
+    [ "settings", "boot", "kernel-parameters" ]
+]
+note = """
+You must use this setting in conjuction with [`settings.kernel.modules.<name>.allowed`](#modules_allowed) on the same module.
+This ensures that the OS doesn't auto-load a blocked module. 
+
+Use [`settings.boot.kernel-parameters`](../boot/#kernel-parameters) to set module parameters through the kernel command line.
+"""
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+[[docs.ref.modules_autoload.example]]
+direct_toml = """
+[settings.kernel.modules.ip_vs_lc]
+allowed = true
+autoload = true
+"""
+direct_shell = """
+apiclient set settings.kernel.modules.ip_vs_lc.allowed=true settings.kernel.modules.ip_vs_lc.autoload=true
+"""

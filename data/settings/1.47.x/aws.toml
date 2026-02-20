@@ -32,6 +32,9 @@ use_fips_endpoint=false
 ```
 
 [AWS FIPS endpoints]: https://docs.aws.amazon.com/general/latest/gr/rande.html#FIPS-endpoints
+
+If your encoded data includes credentials, they are not automatically rotated.
+You are responsible for managing credential rotation.
 """
 
 warning = """
@@ -46,6 +49,7 @@ see = [
 description = """
 The base64-encoded representation of data used to populate `~/.aws/credentials`
 """
+note = "Credentials set via this setting are not automatically rotated. You are responsible for managing credential rotation."
 
 [[docs.ref.profile]]
 description = """

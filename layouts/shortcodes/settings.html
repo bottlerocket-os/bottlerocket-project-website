@@ -1,5 +1,6 @@
 {{- /* get the path of the doc calling the shortcode */ -}}
 {{- $currentPath := print .Page.File.Dir -}}
+{{- $pageUrl := .Page.RelPermalink -}}
 {{- /* break apart the path */ -}}
 {{- $parts := split $currentPath "/" -}}
 {{- /* 2nd (base 0) index has the version */ -}}
@@ -27,6 +28,7 @@
             {{- else -}}
                 {{- $settingData.Set "has_example" false -}}
             {{- end -}}
+            {{- $settingData.Set "pageUrl" $pageUrl -}}
             {{- partial "settings-setting-individual.html" $settingData -}}
         {{- end -}}
 {{- else -}}
@@ -129,6 +131,7 @@
                     {{- else -}}
                         {{- $settingData.Set "has_example" false -}}
                     {{- end -}}
+                    {{- $settingData.Set "pageUrl" $pageUrl -}}
                     {{- partial "settings-setting-individual.html" $settingData -}}
                 {{- end -}}
             {{- end -}}

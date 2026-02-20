@@ -1,7 +1,7 @@
 +++
 title="Settings Reference"
 type="docs"
-description="Individual settings avaliable for the `/settings` endpoint"
+description="Individual settings available for the `/settings` endpoint"
 +++
 
 {{% alert title="Note" color="warning" %}}
