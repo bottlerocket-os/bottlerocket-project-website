@@ -12,5 +12,5 @@ The root filesystem of Bottlerocket is immutable.
 Additionally, Bottlerocket has an always-enabled, enforced, restrictive [SELinux](https://selinuxproject.org/page/Main_Page) policy for the mutable filesystem that helps prevent containers from executing dangerous operations, even when running as root.
 
 {{< twocolfigure  alt="Diagram of storage security"  caption="Bottlerocket has many layers of protection against unintended changes to the system." >}}
-    {{% readfile "includes/homepage/dm-verity-selinux.svg" %}}
+    {{< os-readfile "includes/homepage/dm-verity-selinux.svg" >}}
 {{</ twocolfigure>}}

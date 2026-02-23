@@ -2,17 +2,17 @@
 
 preview:
 	docker run --rm -it \
-		-v "${PWD}":/src \
+		-v "${PWD}":/project \
 		-p 1313:1313 \
-		hugomods/hugo:exts-0.123.8 \
-		hugo server -w --bind=0.0.0.0
+		ghcr.io/gohugoio/hugo:v0.156.0 \
+		server -w --bind=0.0.0.0
 
 preview_finch:
 	finch run --rm -it \
-		-v "${PWD}":/src \
+		-v "${PWD}":/project \
 		-p 1313:1313 \
-		hugomods/hugo:exts-0.123.8 \
-		hugo server -w --bind=0.0.0.0 --poll 700ms
+		ghcr.io/gohugoio/hugo:v0.156.0 \
+		server -w --bind=0.0.0.0 --poll 700ms
 
 mdlint:
 	docker run --rm \
