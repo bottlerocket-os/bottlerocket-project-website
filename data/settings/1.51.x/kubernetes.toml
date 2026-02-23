@@ -240,15 +240,17 @@ see  = [
 [[docs.ref.cpu-manager-policy-options]]
 description = """
 Policy options to apply when `settings.kubernetes.cpu-manager-policy` is set to `static`.
-There currently there is only one allowed option, so the default is implict if not the setting is not defined.
 """
 see = [
-    ["[Static policy options](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/#static-policy-options)"],
+    ["[CPU Policy Static Options](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/#cpu-policy-static--options)"],
     ["[`cpuManagerPolicyOptions` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
     ["settings", "kubernetes", "cpu-manager-policy-options"],
 ]
 accepted_values = [
-    "`full-pcpus-only`"
+    "`full-pcpus-only`",
+    "`strict-cpu-reservation`",
+    "`distribute-cpus-across-numa`",
+    "`prefer-align-cpus-by-uncorecache`"
 ]
 
 [[docs.ref.cpu-manager-policy-options.example]]
@@ -396,15 +398,9 @@ direct_toml = """
 "memory-manager-policy" = "Static"
 
 [settings.kubernetes.memory-manager-reserved-memory.0]
-# Reserve a single 1GiB huge page along with 674MiB of memory
+# Reserve 674MiB of memory for NUMA node 0
 "enabled" = true
 "memory" = "674Mi"
-"hugepages-1Gi" = "1Gi"
-
-[settings.kubernetes.memory-manager-reserved-memory.1]
-# Reserve 1,074 2MiB huge pages
-"enabled" = true
-"hugepages-2Mi" = "2148Mi"
 """
 
 [[docs.ref.image-gc-low-threshold-percent]]
@@ -425,6 +421,33 @@ value = 80
 [[docs.ref.image-gc-low-threshold-percent.example]]
 comment = "Before 1.14.0, the value must be represented as a string."
 value = "\"80\""
+
+[[docs.ref.image-minimum-gc-age]]
+description = "Minimum age for an unused image before it is garbage collected. Value is a duration like `2m` for 2 minutes."
+see = [
+    ["[`imageMinimumGCAge` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]
+
+[[docs.ref.image-maximum-gc-age]]
+description = "Maximum age an image can be unused before it is garbage collected. Set to 0 to disable. Value is a duration like `0s` to disable or `24h` for 24 hours."
+see = [
+    ["[`imageMaximumGCAge` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]
+
+[[docs.ref.max-parallel-image-pulls]]
+description = "Maximum number of image pulls that can be in progress at the same time."
+see = [
+    ["[`maxParallelImagePulls` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]
+
+[[docs.ref.ids-per-pod]]
+description = """
+Number of UIDs/GIDs allocated for each user namespace.
+This setting is only available for Kubernetes 1.33 and later variants.
+"""
+see = [
+    ["[User Namespaces](https://kubernetes.io/docs/concepts/workloads/pods/user-namespaces/#id-count-for-each-of-pods)"]
+]
 
 [[docs.ref.pod-pids-limit]]
 description = "The maximum number of processes per pod."
@@ -486,7 +509,13 @@ see = [
 ]
 
 [[docs.ref.system-reserved]]
-description = "Resources reserved for system components."
+description = """
+Resources reserved for system components. The following keys are valid:
+- `cpu`: in millicores.
+- `memory`: in mebibytes.
+- `ephemeral-storage`: in storage units.
+- `pid`: PIDs reserved for system components.
+"""
 see = [
     [ "[`systemReserved` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]
 ]
@@ -634,6 +663,7 @@ Resources reserved for node components. The following keys are valid:
 - `cpu`: in millicores from the total number of vCPUs available on the instance.
 - `memory`: in mebibytes from the max num of pods on the instance. `memory_to_reserve = max_num_pods * 11 + 255`.
 - `ephemeral-storage`: defaults to `1Gi`.
+- `pid`: PIDs reserved for kubernetes components.
 """
 see = [
     [ "[`kubeReserved` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)" ]

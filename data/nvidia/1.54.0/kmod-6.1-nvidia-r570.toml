@@ -1,0 +1,55 @@
+# Extracted from https://github.com/bottlerocket-os/bottlerocket/tree/develop/packages/kmod-6.1-nvidia-r570/Cargo.toml
+[package]
+name = "kmod-6_1-nvidia-r570"
+version = "0.1.0"
+edition = "2021"
+publish = false
+build = "../build.rs"
+
+[lib]
+path = "../packages.rs"
+
+[package.metadata.build-package]
+package-name = "kmod-6.1-nvidia-r570"
+releases-url = "https://docs.nvidia.com/datacenter/tesla/"
+
+[[package.metadata.build-package.external-files]]
+url = "https://s3.amazonaws.com/EULA/NVidiaEULAforAWS.pdf"
+sha512 = "e1926fe99afc3ab5b2f2744fcd53b4046465aefb2793e2e06c4a19455a3fde895e00af1415ff1a5804c32e6a2ed0657e475de63da6c23a0e9c59feeef52f3f58"
+
+[[package.metadata.build-package.external-files]]
+url = "https://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX"
+sha512 = "915d76bc26f7b39202883b6f902ebde1194d1f3e45e6c858ee42ac48615e4b315c658ba78d24bd72a3011289c2ea888ee17089f674497f1cba58d0e0c8f37c7a"
+
+[[package.metadata.build-package.external-files]]
+url = "https://us.download.nvidia.com/tesla/570.211.01/NVIDIA-Linux-x86_64-570.211.01.run"
+sha512 = "3e751d90a8f126e369c5167e2d5ba8b218dd306ccf00907290ae70fb1c3f752f0ad0b973ce356a1a24cd0f19c31a07169cfd5705613a6bbb5918881635650839"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://us.download.nvidia.com/tesla/570.211.01/NVIDIA-Linux-aarch64-570.211.01.run"
+sha512 = "22816d8f798d6ce141ff2ce750b5df1ca4fef9b1ba79762157fd7f93c1ea905c74f421dc6ac2b7bf5b383192d2baa735d7a7d240523be815defb68be54c4a6be"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://developer.download.nvidia.com/compute/cuda/repos/amzn2023/x86_64/nvidia-fabric-manager-570.211.01-1.x86_64.rpm"
+sha512 = "21be6fdfbda1fabad20cc9a0bdabb1fdbf104e0627bb7cf5b51ca7e5da0608240d665bc8a4f5bf9cde5adc16526c195999f47d4ed79130e7c65cc972f92a5182"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://developer.download.nvidia.com/compute/cuda/repos/amzn2023/sbsa/nvidia-fabric-manager-570.211.01-1.aarch64.rpm"
+sha512 = "8e89fd4e7983b2ea430a884bd53e58827020c22e604161501570e21d33128431f14a43b05091f401977ed4da046ceb8f0c5015a200d2ad8877870b426b106398"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://s3.amazonaws.com/ec2-linux-nvidia-drivers/grid-18.6/NVIDIA-Linux-x86_64-570.211.01-grid-aws.run"
+sha512 = "940e96ddc744e76a17f7eb196553264b3aaba16bd2f7e20bbd608b4f9958173d24644b7bcba303b8889c875658ce948c07c55d00cf5709bc69b9e21a86188845"
+force-upstream = true
+
+[[package.metadata.build-package.external-files]]
+url = "https://raw.githubusercontent.com/NVIDIA/open-gpu-kernel-modules/570/COPYING"
+sha512 = "f9cee68cbb12095af4b4e92d01c210461789ef41c70b64efefd6719d0b88468b7a67a3629c432d4d9304c730b5d1a942228a5bcc74a03ab1c411c77c758cd938"
+force-upstream = true
+
+[build-dependencies]
+kernel-6_1 = { path = "../kernel-6.1" }
