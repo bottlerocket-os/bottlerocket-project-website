@@ -43,7 +43,7 @@ $tan-link: #e96f00;
 $light: #fff;
 $light-text: #0a4158;
 $light-link: #e96f00;
-
+$yellow: #ffa630;
 /* replacement for black */
 $dark: #020e13;
 
@@ -58,7 +58,9 @@ $font-weight-bold: 600;
 
 $primary: $light;
 $body-color: $dark;
-
+// Restore bg-warning color avoiding docsy's bug where warning and danger
+// have the same colour
+$warning: $yellow;
 
 $td-sidebar-bg-color: $light;
 $td-sidebar-tree-root-color: $dark;
