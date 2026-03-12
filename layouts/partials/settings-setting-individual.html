@@ -22,7 +22,7 @@
     <p>{{ $setting_description | markdownify }}</p>
 
     {{ if $setting_warning }}
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-danger" role="alert">
             <h4 class="alert-heading">Warning</h4>
             <p>{{ $setting_warning | markdownify}}</p>
         </div>

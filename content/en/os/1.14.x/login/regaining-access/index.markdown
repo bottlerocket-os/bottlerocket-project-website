@@ -13,7 +13,7 @@ In some cases where both the admin and control containers are disabled, it is st
 
 In general, the solution is to mount the [API client](https://github.com/bottlerocket-os/bottlerocket/blob/develop/sources/api/apiclient/README.md) and API socket into a container on the Bottlerocket node and use the API client to re-enable the admin container, control container, or both.
 
-{{% alert title="Warning" color="warning" %}}
+{{% alert title="Warning" color="danger" %}}
 The solutions on this page provide a minimal overview.
 It involves mounting critical resources into containers with elevated privileges.
 Use carefully, only run as long as necessary, and clean up afterwards.
