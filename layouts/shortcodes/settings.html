@@ -7,7 +7,8 @@
 {{- $version := index $parts 1 -}}
 {{- /* 5th (base 0) index has the `root` of the settings */ -}}
 {{- $settings_root := index $parts 4 -}}
-{{- $settings_file := index $.Site.Data.settings $version $settings_root -}}
+
+{{- $settings_file := partial "merged-settings.html" (dict "Site" .Site "version" $version "settings_root" $settings_root) -}}
 
 {{- if isset $settings_file "top_level"  -}}
     {{- $docs := $settings_file.docs.ref -}}
@@ -41,9 +42,11 @@
         {{- range $tag_name, $value := $tags -}}
             {{- if reflect.IsSlice $value -}}
                 {{- range . -}}
-                    {{- $heading := .heading }}
-                    {{- $tagHeadings.Set $tag_name $heading -}}
-                    <li><a href="#tag-{{ $tag_name }}"> {{ $heading | markdownify }} </a></li>
+                    {{- if not .deleted -}}
+                        {{- $heading := .heading }}
+                        {{- $tagHeadings.Set $tag_name $heading -}}
+                        <li><a href="#tag-{{ $tag_name }}"> {{ $heading | markdownify }} </a></li>
+                    {{- end -}}
                 {{- end -}}
             {{- end -}}
         {{- end -}}
@@ -69,8 +72,9 @@
         <h2 id="tagged">Topics</h2>
             {{- range $tag_name, $value := $tags -}}
                 {{- if reflect.IsSlice $value -}}
+                    {{- range . -}}
+                        {{- if not .deleted -}}
                     <div class="tag-group">
-                        {{- range . -}}
                             {{- $tagData := newScratch -}}
                             {{- $tagData.Set "heading" .heading -}}
                             {{- $tagData.Set "tag_name" $tag_name -}}
@@ -95,8 +99,9 @@
                                 {{- end -}}
                             {{- end -}}
                             </ul>
-                        {{- end -}}
                     </div>
+                        {{- end -}}
+                    {{- end -}}
                 {{- end -}}
             {{- end -}}
     </div>
