@@ -1,0 +1,26 @@
+# Extracted from https://github.com/bottlerocket-os/bottlerocket/tree/develop/packages/kmod-6.1-efa/Cargo.toml
+[package]
+name = "kmod-6_1-efa"
+version = "0.1.0"
+edition = "2021"
+publish = false
+build = "../build.rs"
+
+[lib]
+path = "../packages.rs"
+
+[package.metadata.build-package]
+package-name = "kmod-6.1-efa"
+releases-url = "https://github.com/amzn/amzn-drivers/releases"
+
+[[package.metadata.build-package.external-files]]
+url = "https://efa-installer.amazonaws.com/aws-efa-installer-1.44.0.tar.gz"
+sha512 = "eaa336d8eb2affed5f5960a133af9f98b2b113c2dde17246c51947324f2318710012e7bced124e73f7113c8261748aaa0f4856063d71340b2d85a7f089551526"
+
+[[package.metadata.build-package.external-files]]
+# The installer doesn't ship with the COPYING file
+url = "https://raw.githubusercontent.com/amzn/amzn-drivers/745ad6b502dba1d7f53c22d4974a41eacc238706/kernel/linux/efa/COPYING"
+sha512 = "118f66163b6ca87ac5e1bb65b627c23dc736f0bf09c7304d44417d858b7a3e95bb9b91ffa2099d8db7a481099fbb30262866f377da806cfb6c89561ffb62941a"
+
+[build-dependencies]
+kernel-6_1 = { path = "../kernel-6.1" }
