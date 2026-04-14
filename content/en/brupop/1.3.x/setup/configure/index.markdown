@@ -16,7 +16,7 @@ If you choose to not use helm, refer to the {{< github-link-at-version url="http
 
 ### Label nodes
 
-{{% alert title="Warning" color="warning" %}}
+{{% alert title="Warning" color="danger" %}}
 You can fully install Brupop but if you do not apply the proper node labels the operator will not update your nodes.
 {{% /alert %}}
 

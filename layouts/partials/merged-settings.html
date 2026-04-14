@@ -1,0 +1,58 @@
+{{/*
+  merged-settings.html - Merges settings TOML data across versions
+  
+  INPUTS:
+    .version       - Target version (e.g., "1.31.x") to build settings for
+    .settings_root - Optional: specific settings file (e.g., "kubernetes") 
+    .Site          - Hugo site object for accessing data files
+
+*/}}
+
+{{- $version := .version -}}
+{{- $settings_root := .settings_root -}}
+{{- $Site := .Site -}}
+
+{{/* Collect and sort version directories */}}
+{{- $versions := slice -}}
+{{- range $k, $_ := $Site.Data.settings -}}
+  {{- $versions = $versions | append $k -}}
+{{- end -}}
+{{- $versions = sort $versions -}}
+
+{{- $result := dict -}}
+
+{{- if $settings_root -}}
+  {{/* Merge a specific settings file */}}
+  {{- $settings_file := dict -}}
+  
+  {{- range $versions -}}
+    {{- if partial "_version-lte.html" (dict "version" . "target" $version) -}}
+      {{- with index $Site.Data.settings . $settings_root -}}
+        {{- $settings_file = partial "_merge-docs.html" (dict "target" $settings_file "source" .) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  
+  {{- $result = $settings_file -}}
+
+{{- else -}}
+  {{/* Merge ALL settings files */}}
+  {{- $all_settings := dict -}}
+  
+  {{- range $versions -}}
+    {{- $v := . -}}
+    {{- if partial "_version-lte.html" (dict "version" $v "target" $version) -}}
+      {{- with index $Site.Data.settings $v -}}
+        {{- range $root, $data := . -}}
+          {{- $current := index $all_settings $root | default dict -}}
+          {{- $merged := partial "_merge-docs.html" (dict "target" $current "source" $data) -}}
+          {{- $all_settings = merge $all_settings (dict $root $merged) -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  
+  {{- $result = $all_settings -}}
+{{- end -}}
+
+{{- return $result -}}
