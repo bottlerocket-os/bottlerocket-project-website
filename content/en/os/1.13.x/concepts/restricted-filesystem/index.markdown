@@ -27,11 +27,11 @@ At a high level, dm-verity works like this:
 
 dm-verity saves the root block digest and compares it after every write with the new root block digest.
 
-{{% readfile "/includes/os/1.13.x/dm-verity-without-change.markdown" %}}
+{{% os-readfile "/includes/os/1.13.x/dm-verity-without-change.markdown" %}}
 
 If a physical block changes, this causes each subsequent layer to produce a different digest resulting in a different root block digest.
 
-{{% readfile "/includes/os/1.13.x/dm-verity-with-change.markdown" %}}
+{{% os-readfile "/includes/os/1.13.x/dm-verity-with-change.markdown" %}}
 
 The kernel will trigger a reboot if the root block digest changes.
 
