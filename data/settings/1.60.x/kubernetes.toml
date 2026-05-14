@@ -1,0 +1,17 @@
+[[docs.ref.topology-manager-policy-options]]
+description = """
+The following Topology manager policy options are available:
+- `prefer-closest-numa-nodes`: `boolean` (available Kubernetes 1.32 onwards)
+- `max-allowable-numa-nodes`: `uint` >= 8 (available Kubernetes 1.35 onwards)
+"""
+see = [
+    ["[Topology Manager Policy Options](https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/#topology-manager-policy-options)"],
+    ["[`topologyManagerPolicyOptions` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"]
+]
+
+[[docs.ref.topology-manager-policy-options.example]]
+comment = "Enable prefer-closest-numa-nodes (K8s 1.32+ only) and set max-allowable-numa-nodes to 8 (K8s 1.35+ only)"
+[[docs.ref.topology-manager-policy-options.example.multiline]]
+prefer-closest-numa-nodes = "true"
+max-allowable-numa-nodes = "\"8\""
+
