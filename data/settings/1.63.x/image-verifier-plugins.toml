@@ -1,0 +1,55 @@
+[[docs.ref.digestion]]
+description = """
+Configuration for digest-based image verification.
+"""
+
+[[docs.ref.digestion-trustpolicy]]
+name_override = "digestion.trustpolicy"
+description = """
+Base64 encoded trust policy for digest verification.
+The trust policy lists the image digests that are allowed to be pulled.
+The decoded JSON has the format:
+```json
+{
+  "version": "1.0",
+  "trustedDigests": [
+    "sha256:...",
+    "sha256:...",
+    ...
+  ]
+}
+```
+"""
+accepted_values = [
+    "Base64 encoded JSON string"
+]
+
+[[docs.ref.digestion-trustpolicy.example]]
+value = "\"eyJ2ZXJzaW9uIjogIjEuMCIsICJ0cnVzdGVkRGlnZXN0cyI6IFsic2hhMjU2OmFiYzEyMy4uLiJdfQ==\""
+comment = "Base64 encoded digestion trust policy"
+
+[[docs.ref.custom-verifier]]
+name_override = "<custom-verifier>"
+description = """
+Configuration for custom verifier plugins.
+A bootstrap container with a custom image can be used to install a custom verifier binary to the host at boot.
+Custom verifier binaries must be installed to `/opt/civ/bin` and configuration files for a custom verifier can be provided at `/var/lib`.
+"""
+see = [
+    ["[Bootstrap Containers](../../../concepts/bootstrap-containers/)"],
+    ["[containerd Image Verification](https://github.com/containerd/containerd/blob/main/docs/image-verification.md)"]
+]
+
+[[docs.ref.custom-verifier-trustpolicy]]
+name_override = "<custom-verifier>.trustpolicy"
+description = """
+Base64 encoded trust policy for a custom verifier plugin.
+The trust policy is written to the host for the custom verifier to consume; its format is defined by the custom verifier.
+"""
+accepted_values = [
+    "Base64 encoded JSON string"
+]
+
+[[docs.ref.custom-verifier-trustpolicy.example]]
+value = "\"eyJjdXN0b21Db25maWciOiAidmFsdWUifQ==\""
+comment = "Base64 encoded custom configuration"
