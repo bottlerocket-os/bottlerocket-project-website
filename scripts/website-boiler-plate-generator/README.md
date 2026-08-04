@@ -16,21 +16,23 @@ There is one script in this directory:
 
 ### Usage
 
-The script uses flag-based arguments:
+The script takes a single flag-based argument:
 - `-b`: Bottlerocket version in X.Y.Z format
-- `-c`: Core Kit version in X.Y.Z format  
-- `-k`: Kernel Kit version in X.Y.Z format
 - `-h`: Show help message
 
-For example, if you want to update the website for Bottlerocket version 1.40.0 with Core Kit version 8.2.0 and Kernel Kit version 2.5.1:
+The core-kit and kernel-kit versions are automatically extracted from the `Twoliter.toml` file in the Bottlerocket repository at the specified version tag.
+
+For example, if you want to update the website for Bottlerocket version 1.40.0:
 
 ```bash
-./update_website.sh -b 1.40.0 -c 8.2.0 -k 2.5.1
+./update_website.sh -b 1.40.0
 ```
 
 The script will:
-1. Clone the necessary repositories at the specified versions
-2. Copy content from the previous minor version (e.g., 1.25.x to 1.26.x)
-3. Update version labels in the content
-4. Generate new package version data, NVIDIA information, and kernel version information
-5. Clean up temporary files when complete
+1. Clone the Bottlerocket repository at the specified version tag
+2. Extract `bottlerocket-core-kit` and `bottlerocket-kernel-kit` versions from `Twoliter.toml`
+3. Clone the core-kit and kernel-kit repositories at the extracted versions
+4. Copy content from the previous minor version (e.g., 1.39.x to 1.40.x)
+5. Update version labels in the content
+6. Generate new package version data, NVIDIA information, and kernel version information
+7. Clean up temporary files when complete
