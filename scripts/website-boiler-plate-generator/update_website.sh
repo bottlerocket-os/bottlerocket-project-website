@@ -279,11 +279,31 @@ update_version_labels() {
     perform_sed "s/title=\"${PREV_MAJOR_MINOR_X} (Current)\"/title=\"${MAJOR_MINOR_X} (Current)\"/g" \
         "${BOTTLEROCKET_WEBSITE_REPO_DIR}/content/en/os/${MAJOR_MINOR_X}/_index.markdown"
 
-    perform_sed "s/minor = ${PREV_MINOR}/minor = ${MINOR}/g" \
-        "${BOTTLEROCKET_WEBSITE_REPO_DIR}/data/versions/current.toml"
+}
 
-    perform_sed "s/m-enos${MAJOR}${PREV_MINOR}x-check/m-enos${MAJOR}${MINOR}x-check/g" \
-        "${BOTTLEROCKET_WEBSITE_REPO_DIR}/data/versions/current.toml"
+#######################################
+# Update the [os] version in data/versions/current.toml
+# Only keys inside the [os] table are rewritten so the brupop and
+# ecs-updater versions are left untouched.
+#######################################
+update_current_toml() {
+    local toml_file="${BOTTLEROCKET_WEBSITE_REPO_DIR}/data/versions/current.toml"
+    local tmp_file="${toml_file}.tmp"
+
+    log_info "Updating [os] version in current.toml to ${NEW_BOTTLEROCKET_VERSION}"
+
+    awk -v major="${MAJOR}" -v minor="${MINOR}" -v patch="${PATCH}" '
+        /^[[:space:]]*\[/ { in_os = ($0 ~ /^[[:space:]]*\[os\][[:space:]]*$/) }
+        in_os && /^[[:space:]]*major[[:space:]]*=/ { sub(/=.*/, "= " major) }
+        in_os && /^[[:space:]]*minor[[:space:]]*=/ { sub(/=.*/, "= " minor) }
+        in_os && /^[[:space:]]*patch[[:space:]]*=/ { sub(/=.*/, "= " patch) }
+        in_os && /^[[:space:]]*foldable_check_id[[:space:]]*=/ {
+            sub(/=.*/, "= \"#m-enos" major minor "x-check\"")
+        }
+        { print }
+    ' "${toml_file}" >"${tmp_file}"
+
+    mv "${tmp_file}" "${toml_file}"
 }
 
 #######################################
@@ -355,10 +375,15 @@ main() {
     validate_version "${BOTTLEROCKET_CORE_KIT_VERSION}" || exit 1
     validate_version "${BOTTLEROCKET_KERNEL_KIT_VERSION}" || exit 1
 
-    if [[ IS_PATCH_UPDATE -ne 0 ]]; then
+    if [[ "${IS_PATCH_UPDATE}" -ne 0 ]]; then
         copy_content
         update_version_labels
     fi
+
+    # current.toml always tracks the newly released version, whether the
+    # release is a minor bump or a patch on the current minor version.
+    update_current_toml
+
     generate_new_content
 
     cleanup
