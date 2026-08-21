@@ -24,3 +24,28 @@ This setting is only available for Kubernetes 1.33 and later variants.
 see = [
     ["[User Namespaces](https://kubernetes.io/docs/concepts/workloads/pods/user-namespaces/#id-count-for-each-of-pods)"]
 ]
+
+[[docs.ref.cpu-manager-policy-options]]
+description = """
+Policy options to apply when `settings.kubernetes.cpu-manager-policy` is set to `static`.
+This setting is optional; when omitted all options default to disabled.
+"""
+note = """
+Not all combinations of policy options are valid.
+Refer to the [upstream Kubernetes documentation](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/#cpu-policy-static--options) for details on which options can be used together.
+"""
+see = [
+    ["[Static policy options](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/#cpu-policy-static--options)"],
+    ["[`cpuManagerPolicyOptions` in Kubelet Configuration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)"],
+    ["settings", "kubernetes", "cpu-manager-policy"]
+]
+accepted_values = [
+    "`full-pcpus-only`",
+    "`distribute-cpus-across-numa`",
+    "`strict-cpu-reservation`",
+    "`prefer-align-cpus-by-uncorecache`"
+]
+
+[[docs.ref.cpu-manager-policy-options.example]]
+comment = "When `settings.kubernetes.cpu-manager-policy` is set to `static`"
+value = "[\"full-pcpus-only\", \"distribute-cpus-across-numa\"]"

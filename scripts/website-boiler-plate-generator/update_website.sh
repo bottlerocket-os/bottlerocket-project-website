@@ -28,18 +28,18 @@ log_error() {
 #######################################
 show_help() {
     cat <<EOF
-Usage: $(basename "$0") -b <bottlerocket-version> -c <core-kit-version> -k <kernel-kit-version>
+Usage: $(basename "$0") -b <bottlerocket-version>
 
 Copy files from previous Bottlerocket version and generate new content.
+Core kit and kernel kit versions are automatically extracted from the
+Twoliter.toml file in the Bottlerocket repository.
 
 Options:
     -b    Bottlerocket version number in X.Y.Z format
-    -c    Core kit version in X.Y.Z format
-    -k    Kernel kit version in X.Y.Z format
     -h    Show this help message
 
 Example:
-    $(basename "$0") -b 1.2.3 -c 1.0.1 -k 1.1.0
+    $(basename "$0") -b 1.40.0
 EOF
 }
 
@@ -48,16 +48,10 @@ EOF
 #######################################
 parse_args() {
     # Parse command line arguments
-    while getopts "b:c:k:h" opt; do
+    while getopts "b:h" opt; do
         case ${opt} in
         b)
             NEW_BOTTLEROCKET_VERSION=$OPTARG
-            ;;
-        c)
-            BOTTLEROCKET_CORE_KIT_VERSION=$OPTARG
-            ;;
-        k)
-            BOTTLEROCKET_KERNEL_KIT_VERSION=$OPTARG
             ;;
         h)
             show_help
@@ -70,9 +64,9 @@ parse_args() {
         esac
     done
 
-    # Check if all required arguments are provided
-    if [ -z "${NEW_BOTTLEROCKET_VERSION:-}" ] || [ -z "${BOTTLEROCKET_CORE_KIT_VERSION:-}" ] || [ -z "${BOTTLEROCKET_KERNEL_KIT_VERSION:-}" ]; then
-        log_error "All version arguments are required"
+    # Check if required argument is provided
+    if [ -z "${NEW_BOTTLEROCKET_VERSION:-}" ]; then
+        log_error "Bottlerocket version argument is required"
         show_help
         exit 1
     fi
@@ -147,6 +141,36 @@ git_clone_version() {
 }
 
 #######################################
+# Extract kit version from Twoliter.toml
+# Arguments:
+#   Kit name (e.g., "bottlerocket-core-kit")
+#   Path to Twoliter.toml
+# Outputs:
+#   Version string
+#######################################
+extract_kit_version() {
+    local kit_name=$1
+    local toml_file=$2
+    local version
+
+    version=$(awk -v kit="$kit_name" '
+        /^\[\[kit\]\]/ { in_kit=1; name=""; ver="" ; next }
+        in_kit && /^name[[:space:]]*=/ { gsub(/.*=[[:space:]]*"|"/, ""); name=$0 }
+        in_kit && /^version[[:space:]]*=/ { gsub(/.*=[[:space:]]*"|"/, ""); ver=$0 }
+        in_kit && name != "" && ver != "" {
+            if (name == kit) { print ver; exit }
+            in_kit=0
+        }
+    ' "$toml_file")
+
+    if [ -z "$version" ]; then
+        log_error "Could not extract version for ${kit_name} from ${toml_file}"
+        exit 1
+    fi
+    echo "$version"
+}
+
+#######################################
 # Setup temporary directories and clone repositories
 #######################################
 setup_repositories() {
@@ -155,17 +179,29 @@ setup_repositories() {
     log_info "Created temporary directory: ${TEMP_DIR}"
 
     # Repository URLs
-    readonly BOTTLEROCKET_REPO_URL="git@github.com:bottlerocket-os/bottlerocket.git"
-    readonly BOTTLEROCKET_CORE_KIT_REPO_URL="git@github.com:bottlerocket-os/bottlerocket-core-kit.git"
-    readonly BOTTLEROCKET_KERNEL_KIT_REPO_URL="git@github.com:bottlerocket-os/bottlerocket-kernel-kit.git"
+    readonly BOTTLEROCKET_REPO_URL="https://github.com/bottlerocket-os/bottlerocket.git"
+    readonly BOTTLEROCKET_CORE_KIT_REPO_URL="https://github.com/bottlerocket-os/bottlerocket-core-kit.git"
+    readonly BOTTLEROCKET_KERNEL_KIT_REPO_URL="https://github.com/bottlerocket-os/bottlerocket-kernel-kit.git"
 
-    # Clone Bottlerocket repository
+    # Clone Bottlerocket repository first to extract kit versions
     readonly BOTTLEROCKET_REPO_DIR="${TEMP_DIR}/bottlerocket"
     mkdir "${BOTTLEROCKET_REPO_DIR}"
     log_info "Setting up Bottlerocket repository"
     git_clone_version "${BOTTLEROCKET_REPO_URL}" \
         "${BOTTLEROCKET_REPO_DIR}" \
         "${NEW_BOTTLEROCKET_VERSION}"
+
+    # Extract kit versions from Twoliter.toml
+    local twoliter_toml="${BOTTLEROCKET_REPO_DIR}/Twoliter.toml"
+    if [ ! -f "${twoliter_toml}" ]; then
+        log_error "Twoliter.toml not found in Bottlerocket repository"
+        exit 1
+    fi
+
+    BOTTLEROCKET_CORE_KIT_VERSION=$(extract_kit_version "bottlerocket-core-kit" "${twoliter_toml}")
+    BOTTLEROCKET_KERNEL_KIT_VERSION=$(extract_kit_version "bottlerocket-kernel-kit" "${twoliter_toml}")
+    log_info "Extracted core-kit version: ${BOTTLEROCKET_CORE_KIT_VERSION}"
+    log_info "Extracted kernel-kit version: ${BOTTLEROCKET_KERNEL_KIT_VERSION}"
 
     # Clone Core Kit repository
     readonly BOTTLEROCKET_CORE_KIT_REPO_DIR="${TEMP_DIR}/bottlerocket-core-kit"
@@ -243,11 +279,31 @@ update_version_labels() {
     perform_sed "s/title=\"${PREV_MAJOR_MINOR_X} (Current)\"/title=\"${MAJOR_MINOR_X} (Current)\"/g" \
         "${BOTTLEROCKET_WEBSITE_REPO_DIR}/content/en/os/${MAJOR_MINOR_X}/_index.markdown"
 
-    perform_sed "s/minor = ${PREV_MINOR}/minor = ${MINOR}/g" \
-        "${BOTTLEROCKET_WEBSITE_REPO_DIR}/data/versions/current.toml"
+}
 
-    perform_sed "s/m-enos${MAJOR}${PREV_MINOR}x-check/m-enos${MAJOR}${MINOR}x-check/g" \
-        "${BOTTLEROCKET_WEBSITE_REPO_DIR}/data/versions/current.toml"
+#######################################
+# Update the [os] version in data/versions/current.toml
+# Only keys inside the [os] table are rewritten so the brupop and
+# ecs-updater versions are left untouched.
+#######################################
+update_current_toml() {
+    local toml_file="${BOTTLEROCKET_WEBSITE_REPO_DIR}/data/versions/current.toml"
+    local tmp_file="${toml_file}.tmp"
+
+    log_info "Updating [os] version in current.toml to ${NEW_BOTTLEROCKET_VERSION}"
+
+    awk -v major="${MAJOR}" -v minor="${MINOR}" -v patch="${PATCH}" '
+        /^[[:space:]]*\[/ { in_os = ($0 ~ /^[[:space:]]*\[os\][[:space:]]*$/) }
+        in_os && /^[[:space:]]*major[[:space:]]*=/ { sub(/=.*/, "= " major) }
+        in_os && /^[[:space:]]*minor[[:space:]]*=/ { sub(/=.*/, "= " minor) }
+        in_os && /^[[:space:]]*patch[[:space:]]*=/ { sub(/=.*/, "= " patch) }
+        in_os && /^[[:space:]]*foldable_check_id[[:space:]]*=/ {
+            sub(/=.*/, "= \"#m-enos" major minor "x-check\"")
+        }
+        { print }
+    ' "${toml_file}" >"${tmp_file}"
+
+    mv "${tmp_file}" "${toml_file}"
 }
 
 #######################################
@@ -309,17 +365,25 @@ main() {
     readonly BOTTLEROCKET_WEBSITE_REPO_DIR
     log_info "Website repository directory: ${BOTTLEROCKET_WEBSITE_REPO_DIR}"
 
-    # Validate all versions
-    for version in "${NEW_BOTTLEROCKET_VERSION}" "${BOTTLEROCKET_CORE_KIT_VERSION}" "${BOTTLEROCKET_KERNEL_KIT_VERSION}"; do
-        validate_version "${version}" || exit 1
-    done
+    # Validate bottlerocket version
+    validate_version "${NEW_BOTTLEROCKET_VERSION}" || exit 1
 
     parse_version
     setup_repositories
-    if [[ IS_PATCH_UPDATE -ne 0 ]]; then
+
+    # Validate extracted kit versions
+    validate_version "${BOTTLEROCKET_CORE_KIT_VERSION}" || exit 1
+    validate_version "${BOTTLEROCKET_KERNEL_KIT_VERSION}" || exit 1
+
+    if [[ "${IS_PATCH_UPDATE}" -ne 0 ]]; then
         copy_content
         update_version_labels
     fi
+
+    # current.toml always tracks the newly released version, whether the
+    # release is a minor bump or a patch on the current minor version.
+    update_current_toml
+
     generate_new_content
 
     cleanup
