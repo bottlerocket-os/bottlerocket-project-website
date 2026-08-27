@@ -1,4 +1,25 @@
 {{ $project_version := .Page.Scratch.Get "projectVer" }}
+
+{{/*
+  Resolve the FIPS crypto-module data for this version. The data files are
+  deduplicated: a version only ships a data file when its modules change from
+  the previous version. Walk every version <= the current one and keep the
+  newest match, mirroring the dedupe done in merged-settings.html.
+  ("kernels" and any other non-version keys are skipped.)
+*/}}
+{{ $fips_module := dict }}
+{{ $module_versions := slice }}
+{{ range $k, $_ := $.Site.Data.fips.modules }}
+  {{ if findRE `^\d+\.\d+\.x$` $k }}
+    {{ $module_versions = $module_versions | append $k }}
+  {{ end }}
+{{ end }}
+{{ range sort $module_versions }}
+  {{ if partial "_version-lte.html" (dict "version" . "target" $project_version) }}
+    {{ $fips_module = index $.Site.Data.fips.modules . }}
+  {{ end }}
+{{ end }}
+
 {{ with  $.Site.Data.variants }}
     {{ $release_variants := index $.Site.Data.variants $project_version }}
     <table class="table table-rowspan">
@@ -32,7 +53,7 @@
               </tr>
               <tr>
                 <td>
-                  {{ with index $.Site.Data.fips.modules $project_version }}
+                  {{ with $fips_module }}
                     {{ with index . "go-crypto" }}
                       <a href="{{ index . "1.0" }}">
                         Go Cryptographic Module
