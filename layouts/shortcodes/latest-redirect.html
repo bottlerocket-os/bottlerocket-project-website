@@ -34,10 +34,20 @@
         {{- end -}}
         {{/* new `currentVersion` contains only the valid pages in the correct section/langauge/version */}}
         var docs_location;
+        var final_hash = "";
+        var last_hash_location;
         {{/* do we have a hash in the URL? */}}
         if (window.location && window.location.hash) {
             {{/* get the hash portion and snip off the first character (will always be #) */}}
             docs_location = window.location.hash.slice(1); 
+            {{/* get the last hash value for any incoming hash links */}}
+            last_hash_location = docs_location.lastIndexOf("#");
+            {{/* if the last hash value exists, put it in `final_hash` and change docs_location to remove it */}}
+            if (last_hash_location !== -1) {
+                final_hash = window.location.hash.slice(last_hash_location+1);
+                docs_location = window.location.hash.slice(1, last_hash_location+1);
+            }
+
             {{/* does it have a trailing slash? If not, add one to match the Hugo output */}}
             if (docs_location[docs_location.length-1] !== '/') { 
                 docs_location = docs_location + '/';
@@ -45,10 +55,10 @@
             {{/* Is the passed URL fragment in the array? */}}
             if (currentVersion.indexOf(docs_location) !== -1) {
                 {{/* reconstruct the URL with the latest version */}}
-                location.assign(currentURLPrefix + docs_location);
+                location.assign(currentURLPrefix + docs_location + final_hash);
             } else {
                 {{/* otherwise just go to the top of the current version */}}
-                location.assign(currentURLPrefix);
+                location.assign(currentURLPrefix + final_hash);
             }
         }
     })();
