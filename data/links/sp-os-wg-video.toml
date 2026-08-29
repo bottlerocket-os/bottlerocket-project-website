@@ -1,0 +1,8 @@
+date = "2023-10-03"
+title = "Bottlerocket at TAG Runtime Special Purpose Operating System Working Group (sp-os-wg)"
+description = """
+In this video, Bottlerocket is introduced to the CNCF TAG Runtime Special Purpose OS working group.
+"""
+url = "https://www.youtube.com/watch?v=zLP2JUR2xUg"
+type = "video"
+tags = [ "introduction" ]

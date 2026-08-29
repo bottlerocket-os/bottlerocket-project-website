@@ -1,0 +1,11 @@
+{{ $meetups_with_id := slice }}
+{{ range $k, $v := $.Site.Data.meetups }}
+    {{ $meetups_with_id = $meetups_with_id | append (dict "meetup" $v "id" $k "date" $v.date) }}
+{{ end }}
+
+{{ $meetups := sort $meetups_with_id "date" "desc" }}
+
+
+{{ range $meetups }}
+    {{- partial "meetup.html" . -}}
+{{ end }}

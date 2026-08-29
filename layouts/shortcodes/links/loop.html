@@ -1,0 +1,11 @@
+{{ $links_with_id := slice }}
+{{ range $k, $v := $.Site.Data.links }}
+    {{ $links_with_id = $links_with_id | append (dict "link" $v "id" $k "date" $v.date) }}
+{{ end }}
+
+{{ $links := sort $links_with_id "date" "desc" }}
+
+
+{{ range $links }}
+    {{- partial "link.html" . -}}
+{{ end }}

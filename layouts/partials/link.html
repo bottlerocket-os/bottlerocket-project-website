@@ -1,0 +1,7 @@
+<div class="resource-list">
+    <h3 id="{{ .id }}"><a href="{{.link.url}}" target="#">{{ .link.title }}</a></h3>
+    <div>
+        <small>Date: {{ .link.date}} / Type: {{ .link.type}}</small>
+    </div>
+    <p>{{ .link.description | markdownify }}</p>
+</div>
