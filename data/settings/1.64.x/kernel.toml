@@ -1,0 +1,176 @@
+# Huge pages settings, introduced in Bottlerocket v1.64.0
+# (bottlerocket-core-kit v14.9.0 / bottlerocket-settings-models 0.25.0).
+# These entries are merged on top of the earlier kernel settings via version
+# inheritance, so only the newly added settings are defined here.
+
+[[docs.ref.hugepages_static_count]]
+name_override = "hugepages.static.<size>.count"
+tags = [
+    "hugepages"
+]
+description = """
+Reserves a pool of huge pages of the given `<size>` at boot time.
+`<size>` is the huge page size and `count` is the number of pages to reserve.
+Changes to this setting only take effect on boot.
+"""
+note = """
+`<size>` must be a positive integer followed by an IEC binary unit (`Ki`, `Mi`, `Gi`, or `Ti`) whose byte value is a power of two, for example `2Mi` or `1Gi`.
+The size must also be supported by the kernel and CPU architecture; unsupported sizes cause the reservation to fail.
+`count` is a string that is either a single non-negative integer (a global total) or a comma-separated list of `<node>:<pages>` pairs to allocate per NUMA node.
+Larger page sizes are reserved before smaller ones to reduce the chance of memory fragmentation preventing allocation.
+"""
+see = [
+    [ "settings", "kernel", "hugepages_static_essential" ],
+    [ "settings", "kernel", "hugepages_transparent_enabled" ],
+    ["[HugeTLB Pages (Linux kernel documentation)](https://docs.kernel.org/admin-guide/mm/hugetlbpage.html)"]
+]
+[[docs.ref.hugepages_static_count.example]]
+comment = "Reserve 512 pages of 2 MiB (1 GiB total) across all NUMA nodes."
+direct_toml = """
+[settings.kernel.hugepages.static]
+"2Mi" = { count = "512" }
+"""
+direct_shell = """
+apiclient apply <<EOF
+[settings.kernel.hugepages.static."2Mi"]
+count="512"
+EOF
+"""
+[[docs.ref.hugepages_static_count.example]]
+comment = "Reserve 1 GiB pages per NUMA node: 2 pages on node 0 and 2 pages on node 1."
+direct_toml = """
+[settings.kernel.hugepages.static]
+"1Gi" = { count = "0:2,1:2" }
+"""
+direct_shell = """
+apiclient apply <<EOF
+[settings.kernel.hugepages.static."1Gi"]
+count = "0:2,1:2"
+EOF
+"""
+
+[[docs.ref.hugepages_static_essential]]
+name_override = "hugepages.static.essential"
+tags = [
+    "hugepages"
+]
+description = """
+Controls whether a shortfall in the requested static huge page reservation is fatal at boot.
+"""
+warning = "When set to `true`, the host fails to boot if the full number of requested huge pages cannot be reserved."
+note = """
+When `false`, an unmet reservation is logged as a warning and boot continues with however many pages could be reserved.
+Errors other than a reservation shortfall (such as an unsupported page size or NUMA node) always fail the boot regardless of this setting.
+"""
+accepted_values = [
+    "`true`",
+    "`false`"
+]
+default = "`false`"
+see = [
+    [ "settings", "kernel", "hugepages_static_count" ]
+]
+[[docs.ref.hugepages_static_essential.example]]
+comment = "Require the full reservation; fail to boot otherwise."
+direct_toml = """
+[settings.kernel.hugepages.static]
+essential = true
+"1Gi" = { count = "4" }
+"""
+direct_shell = """
+apiclient apply <<EOF
+[settings.kernel.hugepages.static]
+essential = true
+"1Gi" = { count = "4" }
+EOF
+"""
+
+[[docs.ref.hugepages_transparent_enabled]]
+name_override = "hugepages.transparent.enabled"
+tags = [
+    "hugepages"
+]
+description = """
+Sets the Transparent Huge Pages (THP) policy, which controls when the kernel automatically backs memory with huge pages.
+"""
+accepted_values = [
+    "`always` : the kernel tries to use transparent huge pages for all eligible memory.",
+    "`madvise` : the kernel uses transparent huge pages only for memory regions that request them via `madvise(MADV_HUGEPAGE)`.",
+    "`never` : disables transparent huge pages."
+]
+default = "`madvise`"
+see = [
+    [ "settings", "kernel", "hugepages_transparent_defrag" ],
+    ["[Transparent Hugepage Support (Linux kernel documentation)](https://docs.kernel.org/admin-guide/mm/transhuge.html)"]
+]
+[[docs.ref.hugepages_transparent_enabled.example]]
+direct_toml = """
+[settings.kernel.hugepages.transparent]
+enabled = "always"
+"""
+direct_shell = """
+apiclient set settings.kernel.hugepages.transparent.enabled="always"
+"""
+
+[[docs.ref.hugepages_transparent_defrag]]
+name_override = "hugepages.transparent.defrag"
+tags = [
+    "hugepages"
+]
+description = """
+Controls how much effort the kernel spends defragmenting memory to satisfy a transparent huge page allocation.
+"""
+note = "When unset, the defrag policy is derived from `hugepages.transparent.enabled` (`always` and `madvise` map to `madvise`, `never` maps to `never`)."
+accepted_values = [
+    "`always` : stall the allocating task until huge pages are available.",
+    "`defer` : wake the background reclaim/compaction daemons and fall back to smaller pages for now.",
+    "`defer+madvise` : behave like `defer`, but stall for regions that used `madvise(MADV_HUGEPAGE)`.",
+    "`madvise` : stall only for regions that used `madvise(MADV_HUGEPAGE)`.",
+    "`never` : do not defragment for transparent huge pages."
+]
+default = "derived from `hugepages.transparent.enabled`, which defaults to `madvise`"
+see = [
+    [ "settings", "kernel", "hugepages_transparent_enabled" ]
+]
+[[docs.ref.hugepages_transparent_defrag.example]]
+direct_toml = """
+[settings.kernel.hugepages.transparent]
+enabled = "always"
+defrag = "defer+madvise"
+"""
+direct_shell = """
+apiclient set settings.kernel.hugepages.transparent.enabled="always"
+apiclient set settings.kernel.hugepages.transparent.defrag="defer+madvise"
+"""
+
+[[docs.tag.hugepages]]
+heading = "Huge pages"
+description = """
+Huge pages let the kernel manage memory in larger blocks than the default page size, reducing translation lookaside buffer (TLB) pressure for memory-intensive workloads.
+Bottlerocket exposes two independent families under `settings.kernel.hugepages`: `static` reserves a fixed pool of HugeTLB pages at boot, while `transparent` tunes the kernel's Transparent Huge Pages (THP) behavior at runtime.
+Static reservations are applied once during early boot and require a reboot to change.
+"""
+[[docs.tag.hugepages.example]]
+tab = "TOML"
+type = "toml"
+source = """
+[settings.kernel.hugepages.static]
+essential = true
+"2Mi" = { count = "512" }
+"1Gi" = { count = "4" }
+
+[settings.kernel.hugepages.transparent]
+enabled = "always"
+defrag = "defer+madvise"
+"""
+[[docs.tag.hugepages.example]]
+tab = "apiclient"
+type = "shell"
+source = """
+apiclient set \\
+  settings.kernel.hugepages.static.essential=true \\
+  settings.kernel.hugepages.static.2Mi.count="512" \\
+  settings.kernel.hugepages.static.1Gi.count="4" \\
+  settings.kernel.hugepages.transparent.enabled="always" \\
+  settings.kernel.hugepages.transparent.defrag="defer+madvise"
+"""
