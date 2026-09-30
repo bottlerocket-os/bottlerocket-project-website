@@ -1,0 +1,8 @@
+date = "2023-02-23"
+title = "Bottlerocket OS - a container-optimized Linux"
+description = """
+A recording of the Bottlerocket talk at FOSDEM 23 which provides an introduction to the container optimized-space and an overview of Bottlerocket.
+"""
+url = "https://archive.fosdem.org/2023/schedule/event/container_bottlerocket_os/"
+type = "video"
+tags = [ "introduction" ]

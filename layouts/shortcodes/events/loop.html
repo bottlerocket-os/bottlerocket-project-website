@@ -1,0 +1,65 @@
+<div class="btn-group" role="group" aria-label="Show Events">
+    <button id="future_only" type="button" class="btn btn-success select-buttons">Future only</button>
+    <button id="all" type="button" class="btn select-buttons">All</button>
+    <button id="past_only" type="button" class="btn select-buttons">Past only</button>
+</div>
+
+{{ $events_with_id := slice }}
+{{ range $k, $v := $.Site.Data.events }}
+    {{ $events_with_id = $events_with_id | append (dict "event" $v "id" $k "start_date" $v.start_date) }}
+{{ end }}
+
+{{ $events := sort $events_with_id "start_date" "desc" }}
+
+<div id="event_list" class="future_only">
+{{ range $events }}
+    {{- partial "event.html" . -}}
+{{ end }}
+</div>
+
+<script>
+    $(document).ready(function() {
+        var $eventList = $("#event_list"),
+            $events = $eventList.find('.event'),
+            $selectButtons = $('.select-buttons'),
+            selected_class = "btn-success",
+            past = "past",
+            future = "future",
+            only = "_only",
+            all = "all";
+
+        
+        
+
+        $events.each(function() {
+            var $thisEvent = $(this),
+                start_date = $thisEvent.find(".start-date").text(),
+                end_date = $thisEvent.find(".end-date").text(),
+                event_date = new Date((end_date ? end_date : start_date) + " 23:59:59");
+
+            if (event_date < new Date()) {
+                $thisEvent.addClass(past);
+            } else {
+                $thisEvent.addClass(future);
+            }
+        });
+
+        $selectButtons.click(function() {
+            var $this = $(this);
+            $selectButtons.removeClass(selected_class);
+
+            $this.addClass(selected_class);
+            
+            $eventList.removeClass(future_only +" "+all+" "+ past_only).addClass($this.attr("id"));
+        });
+
+        if ($eventList.find("."+future).length === 0) {
+            $("#" + future + only).attr("disabled", true).removeClass(selected_class);
+            $('#' + all).addClass(selected_class);
+            $eventList.removeClass(future + only).addClass(all);
+        } 
+        if ($eventList.find("."+past).length === 0) {
+            $("#" + past + only).attr("disabled", true).removeClass(selected_class);
+        }
+    });
+</script>

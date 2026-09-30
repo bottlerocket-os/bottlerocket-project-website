@@ -1,0 +1,9 @@
+<div class="event">
+    <h3 id="{{ .id }}"><a href="{{.event.url}}" target="#">{{ .event.name }}</a></h3>
+    <div>
+        <small>Date: <span class="start-date">{{.event.start_date}}</span> 
+        {{ if (isset .event "end_date") }} - <span class="end-date">{{.event.end_date}}</span>
+        {{end}} </small>
+    </div>
+    <p>{{ .event.description | markdownify }}</p>
+</div>
