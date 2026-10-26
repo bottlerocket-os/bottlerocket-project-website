@@ -55,6 +55,10 @@ Variant flavors are used to identify when a variant is built for a specific purp
 - `nvidia`: adds support for NVIDIA GPUs.
 - `fips`: adds support for FIPS 140-3 workloads.
 
+The `aws-k8s-1.37+` NVIDIA variants include two NVIDIA driver branches, and Bottlerocket selects one branch at boot.
+To learn how Bottlerocket selects the branch, see [`settings.kernel.drivers.nvidia.branch`](../../api/settings/kernel/#drivers_nvidia_branch).
+To find the driver versions in each variant, see [GPU Driver Versions](../../version-information/gpu-drivers/).
+
 
 ## Variants, updating, & migrating
 
