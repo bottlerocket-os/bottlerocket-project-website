@@ -1,0 +1,8 @@
+date = "2022-07-20"
+title = "Using Fluent Bit and OpenSearch with Bottlerocket and Kubelet logs"
+description = """
+A walk through of capturing Bottlerocket's kubelet logs with Fluent Bit and sending them to OpenSearch. 
+"""
+url = "https://opensearch.org/blog/bottlerocket-k8s-fluent-bit/"
+type = "blog"
+tags = [ "walk-through" ]
