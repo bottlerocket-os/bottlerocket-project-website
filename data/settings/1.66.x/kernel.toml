@@ -1,0 +1,58 @@
+# NVIDIA driver branch setting, introduced in Bottlerocket v1.66.0
+# (bottlerocket-core-kit v17.0.0 / bottlerocket-kernel-kit v9.2.0 / bottlerocket-settings-models 0.29.0).
+# These entries are merged on top of the earlier kernel settings via version
+# inheritance, so only the newly added settings are defined here.
+
+[[docs.ref.drivers_nvidia_branch]]
+name_override = "drivers.nvidia.branch"
+tags = [
+    "nvidia-driver-branch"
+]
+description = """
+Selects the NVIDIA driver branch that Bottlerocket activates at boot on dual-branch variants.
+A dual-branch variant includes two NVIDIA driver branches in one image.
+If you do not set this setting, Bottlerocket selects the branch from the NVIDIA GPUs that it finds on the host.
+"""
+accepted_values = [
+    "`lts` : the long-term support branch.",
+    "`pb` : the product branch."
+]
+default = "unset. Bottlerocket selects the branch from the NVIDIA GPUs on the host."
+note = """
+This setting has an effect only on the `aws-k8s-1.37+` NVIDIA variants.
+Other NVIDIA variants include one driver branch and ignore this setting.
+Bottlerocket reads this setting once per boot, before it loads the NVIDIA drivers.
+If you change the setting on a running host, reboot the host to apply the change.
+To use a branch from the first boot, put the setting in user data.
+"""
+warning = """
+If you set this setting, Bottlerocket does not do GPU detection.
+"""
+see = [
+    ["[GPU driver versions](../../../version-information/gpu-drivers/)"]
+]
+[[docs.ref.drivers_nvidia_branch.example]]
+comment = "Use the product branch on every boot."
+direct_toml = """
+[settings.kernel.drivers.nvidia]
+branch = "pb"
+"""
+direct_shell = """
+apiclient set settings.kernel.drivers.nvidia.branch="pb"
+"""
+
+[[docs.tag.nvidia-driver-branch]]
+heading = "NVIDIA driver branch selection"
+description = """
+The `aws-k8s-1.37+` NVIDIA variants include two NVIDIA driver branches: the long-term support branch (`lts`) and the product branch (`pb`).
+At boot, the `nvidia-select-branch.service` unit selects one branch, and Bottlerocket loads only the drivers from that branch.
+
+The unit selects the branch in this order:
+
+1. If `settings.kernel.drivers.nvidia.branch` is `lts` or `pb`, the unit uses that branch.
+1. If the setting is unset, the unit uses `pb` when a GPU on the host requires the product branch.
+1. In all other cases, the unit uses `lts`.
+
+If the unit cannot read the setting from the Bottlerocket API, the unit fails and Bottlerocket does not load an NVIDIA driver.
+Bottlerocket does not fall back to GPU detection in this case, because detection can select a different branch than the one that you set.
+"""

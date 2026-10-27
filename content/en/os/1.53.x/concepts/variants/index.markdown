@@ -113,6 +113,33 @@ The Bottlerocket build process generates an `applications.json` file at `/var/li
 `Publisher` and `ApplicationType` are “Bottlerocket” and “Unspecified” (respectively) for all packages across all variants.
 `Version`, `Release`, `InstalledTime`, and `Architecture` are a consistent value for each object in the `Content` array in a given release as they represent data about the build and variant of Bottlerocket, not individual packages.
 
+### Software Bill of Materials (SBOM)
+
+Starting with Bottlerocket v1.53.0, each image also ships a complete Software Bill of Materials (SBOM) that inventories the packages built into the running OS.
+Where `applications.json` describes Bottlerocket's own build-time packages, the SBOM is emitted in two industry-standard formats so it can be consumed directly by vulnerability scanners and other supply-chain tooling.
+
+The SBOM is written to the host file system in both formats:
+
+- `/usr/share/bottlerocket/spdx-sbom.json` — [SPDX](https://spdx.dev/) 2.3, JSON encoding.
+- `/usr/share/bottlerocket/cyclonedx-sbom.json` — [CycloneDX](https://cyclonedx.org/) 1.6, JSON encoding.
+
+Both files describe the same set of components, so you can use whichever format your tooling supports.
+The SBOM is assembled at build time by merging the per-package SBOMs that are generated (with [Syft](https://github.com/anchore/syft), via the SDK's `sbomtool`) as each package is built.
+Because packages cannot change after an image is built, the SBOM is fixed for a given version and variant, just like the software inventory above.
+
+You can read the SBOM from the host file system.
+From the admin container the host root is mounted under `/.bottlerocket/rootfs/`, so, for example, to list every package name and version recorded in the SPDX SBOM:
+
+```bash
+jq -r '.packages[] | "\(.name) \(.versionInfo)"' /.bottlerocket/rootfs/usr/share/bottlerocket/spdx-sbom.json
+```
+
+To scan the image against known vulnerabilities, point a compatible scanner such as [Grype](https://github.com/anchore/grype) at either file:
+
+```bash
+grype sbom:/.bottlerocket/rootfs/usr/share/bottlerocket/spdx-sbom.json
+```
+
 ### Security Advisories
 
 Bottlerocket publishes security advisories on [the repo’s GitHub’s Security tab](https://github.com/bottlerocket-os/bottlerocket/security/advisories) and a gzipped `updateinfo.xml` file at advisories.bottlerocket.aws (make sure you follow redirects: e.g. use `curl -LO https://advisories.bottlerocket.aws/updateinfo.xml.gz`).  

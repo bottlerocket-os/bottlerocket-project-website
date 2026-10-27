@@ -26,44 +26,63 @@
         {{- if (strings.Contains $variant_name "nvidia") -}}
         <tr>
             <td><code>{{ $variant_name }}</code></td>
-            {{- $packages := (index (index (index (index $variant_info "package" ) "metadata") "build-variant") "included-packages") -}}
+            {{- $build_variant := index (index (index $variant_info "package" ) "metadata") "build-variant" -}}
+            {{- $packages := index $build_variant "included-packages" -}}
+            {{- $image_features := index $build_variant "image-features" | default dict -}}
             {{- $kernel := "" -}}
-            {{- $nvidia_driver := "" -}}
-            {{- range $packages -}}
-                {{- if (strings.Contains . "kmod-") -}}
-                    {{- $kmod_parts := split . "-" -}}
-                    {{- $kernel = index $kmod_parts 1 -}}
-                    {{- /* nvidia kmod package name format changed from kmod-5.10-nvidia-tesla-470 to kmod-6.12-nvidia-r570-tesla */ -}}
-                    {{- if (strings.Contains (index $kmod_parts 3) "tesla") -}}
-                        {{- $nvidia_driver = index $kmod_parts 4 -}}
-                    {{- else -}}
-                        {{- $nvidia_driver = index $kmod_parts 3 -}}
+            {{- $nvidia_drivers := slice -}}
+            {{- if (index $image_features "nvidia-dual-branch") -}}
+                {{- /* dual-branch variants do not list a kmod package; the nvidia-dual-branch image feature pulls in every branch for the kernel */ -}}
+                {{- range $packages -}}
+                    {{- if (hasPrefix . "kernel-") -}}
+                        {{- $kernel = strings.TrimPrefix "kernel-" . -}}
+                        {{ break }}
                     {{- end -}}
-                    {{ break }}
+                {{- end -}}
+                {{- $kmod_prefix := printf "kmod-%s-nvidia-" $kernel -}}
+                {{- range $kmod_name, $_ := $kmod_data -}}
+                    {{- if (hasPrefix $kmod_name $kmod_prefix) -}}
+                        {{- $nvidia_drivers = $nvidia_drivers | append (strings.TrimPrefix $kmod_prefix $kmod_name) -}}
+                    {{- end -}}
+                {{- end -}}
+            {{- else -}}
+                {{- range $packages -}}
+                    {{- if (strings.Contains . "kmod-") -}}
+                        {{- $kmod_parts := split . "-" -}}
+                        {{- $kernel = index $kmod_parts 1 -}}
+                        {{- /* nvidia kmod package name format changed from kmod-5.10-nvidia-tesla-470 to kmod-6.12-nvidia-r570-tesla */ -}}
+                        {{- if (strings.Contains (index $kmod_parts 3) "tesla") -}}
+                            {{- $nvidia_drivers = $nvidia_drivers | append (index $kmod_parts 4) -}}
+                        {{- else -}}
+                            {{- $nvidia_drivers = $nvidia_drivers | append (index $kmod_parts 3) -}}
+                        {{- end -}}
+                        {{ break }}
+                    {{- end -}}
                 {{- end -}}
             {{- end -}}
-            {{- $nvidia_driver_kmod_file := "" -}}
-            {{- $nvidia_driver_version := "" -}}
-            {{- if (strings.Contains $nvidia_driver "r" ) -}}
-                {{- $nvidia_driver_kmod_file = printf "kmod-%s-nvidia-%s" $kernel $nvidia_driver -}}
-            {{- else -}}
-                {{- $nvidia_driver_kmod_file = printf "kmod-%s-nvidia" $kernel -}}
-            {{- end -}}
-            {{- range $kmod_data -}}
-                {{- $external_files := index (index (index (index (index $kmod_data $nvidia_driver_kmod_file) "package") "metadata") "build-package") "external-files" -}}
-                {{- range $external_files }}
-                    {{- /* nvidia gpu drivers are self-extracting archives with .run extension */ -}}
-                    {{- /* find the exact driver version using the major version from the package */ -}}
-                    {{- if (and (hasSuffix .url ".run") (strings.Contains .url (strings.TrimLeft "r" $nvidia_driver))) }}
-                        {{- $url := .url -}}
-                        {{- $nvidia_driver_version = (path.Split (path.Dir $url)).File -}}
-                        {{- break -}}
+            {{- $nvidia_driver_versions := slice -}}
+            {{- range $nvidia_driver := $nvidia_drivers -}}
+                {{- $nvidia_driver_kmod_file := "" -}}
+                {{- if (strings.Contains $nvidia_driver "r" ) -}}
+                    {{- $nvidia_driver_kmod_file = printf "kmod-%s-nvidia-%s" $kernel $nvidia_driver -}}
+                {{- else -}}
+                    {{- $nvidia_driver_kmod_file = printf "kmod-%s-nvidia" $kernel -}}
+                {{- end -}}
+                {{- with index $kmod_data $nvidia_driver_kmod_file -}}
+                    {{- $external_files := index (index (index . "package") "metadata") "build-package" "external-files" -}}
+                    {{- range $external_files }}
+                        {{- /* nvidia gpu drivers are self-extracting archives with .run extension */ -}}
+                        {{- /* find the exact driver version using the major version from the package */ -}}
+                        {{- if (and (hasSuffix .url ".run") (strings.Contains .url (strings.TrimLeft "r" $nvidia_driver))) }}
+                            {{- $nvidia_driver_versions = $nvidia_driver_versions | append (path.Split (path.Dir .url)).File -}}
+                            {{- break -}}
+                        {{- end }}
                     {{- end }}
-                {{- end }}
+                {{- end -}}
             {{- end -}}
-            {{- /* warnf "DEBUG: Final values - minor_bottlerocket_version_parts: %s variant_name: %s, kernel: %s, nvidia_driver: %s nvidia_driver_version: %s \n" $minor_bottlerocket_version_parts $variant_name $kernel $nvidia_driver $nvidia_driver_version */ -}}
+            {{- /* warnf "DEBUG: Final values - minor_bottlerocket_version_parts: %s variant_name: %s, kernel: %s, nvidia_drivers: %s nvidia_driver_versions: %s \n" $minor_bottlerocket_version_parts $variant_name $kernel $nvidia_drivers $nvidia_driver_versions */ -}}
             <td>{{ $kernel }}</td>
-            <td>{{ $nvidia_driver_version }}</td>
+            <td>{{ delimit $nvidia_driver_versions "<br>" | safeHTML }}</td>
         </tr>
         {{- end -}}
     {{- end -}}
