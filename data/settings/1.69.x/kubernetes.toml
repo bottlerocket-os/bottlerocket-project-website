@@ -1,8 +1,3 @@
-# merge-default-eviction-settings, introduced in Bottlerocket v1.69.0
-# (bottlerocket-core-kit v18.0.0 / bottlerocket-settings-models 0.33.0).
-# These entries are merged on top of the earlier Kubernetes settings via version
-# inheritance, so only the newly added settings are defined here.
-
 [[docs.ref.merge-default-eviction-settings]]
 description = """
 Controls whether kubelet keeps its default thresholds for hard-eviction signals that you do not set in `settings.kubernetes.eviction-hard`.

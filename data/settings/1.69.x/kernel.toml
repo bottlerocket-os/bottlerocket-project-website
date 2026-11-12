@@ -1,15 +1,8 @@
-# zram swap size setting, introduced in Bottlerocket v1.69.0
-# (bottlerocket-core-kit v18.0.0 / bottlerocket-settings-models 0.33.0).
-# These entries are merged on top of the earlier kernel settings via version
-# inheritance, so only the newly added settings are defined here.
-
 [[docs.ref.zram_size]]
 name_override = "zram.size"
 description = """
 Sets the size of the zram swap device that Bottlerocket creates at boot.
 The size is the uncompressed capacity of the device, so the memory it uses is smaller.
-Bottlerocket reads this setting once per boot.
-If you change the setting on a running host, reboot the host to apply the change.
 """
 accepted_values = [
     "A number of bytes, optionally followed by an IEC binary unit (`Ki`, `Mi`, `Gi`, or `Ti`), for example `512Mi` or `2Gi`. Non-zero sizes must be at least `1Mi`.",
@@ -20,6 +13,8 @@ default = "`1Gi`"
 note = """
 This setting has an effect only on the `aws-k8s-1.35+` and `vmware-k8s-1.35+` variants, which include zram swap.
 Bottlerocket limits the size to the host's total memory.
+Bottlerocket reads this setting once per boot.
+If you change the setting on a running host, reboot the host to apply the change.
 """
 warning = """
 Setting the size to `0` or `0%` creates no zram device.
