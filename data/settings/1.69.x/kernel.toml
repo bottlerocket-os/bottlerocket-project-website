@@ -45,5 +45,5 @@ direct_toml = """
 size = "0"
 """
 direct_shell = """
-apiclient set settings.kernel.zram.size="0"
+apiclient set --json '{"kernel":{"zram":{"size":"0"}}}'
 """
