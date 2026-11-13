@@ -1,0 +1,49 @@
+[[docs.ref.zram_size]]
+name_override = "zram.size"
+description = """
+Sets the size of the zram swap device that Bottlerocket creates at boot.
+The size is the uncompressed capacity of the device, so the memory it uses is smaller.
+"""
+accepted_values = [
+    "A number of bytes, optionally followed by an IEC binary unit (`Ki`, `Mi`, `Gi`, or `Ti`), for example `512Mi` or `2Gi`. Non-zero sizes must be at least `1Mi`.",
+    "A whole-number percentage of the host's memory from `0%` to `100%`, for example `25%`.",
+    "`0` or `0%` to create no zram device."
+]
+default = "`1Gi`"
+note = """
+This setting has an effect only on the `aws-k8s-1.35+` and `vmware-k8s-1.35+` variants, which include zram swap.
+Bottlerocket limits the size to the host's total memory.
+Bottlerocket reads this setting once per boot.
+If you change the setting on a running host, reboot the host to apply the change.
+"""
+warning = """
+Setting the size to `0` or `0%` creates no zram device.
+Bootstrap containers that run `swapoff /dev/zram0` without first checking `/proc/swaps` for an active zram swap device will then fail.
+"""
+[[docs.ref.zram_size.example]]
+comment = "Use a 512 MiB zram swap device."
+direct_toml = """
+[settings.kernel.zram]
+size = "512Mi"
+"""
+direct_shell = """
+apiclient set settings.kernel.zram.size="512Mi"
+"""
+[[docs.ref.zram_size.example]]
+comment = "Size the zram swap device at a quarter of the host's memory."
+direct_toml = """
+[settings.kernel.zram]
+size = "25%"
+"""
+direct_shell = """
+apiclient set settings.kernel.zram.size="25%"
+"""
+[[docs.ref.zram_size.example]]
+comment = "Create no zram swap device."
+direct_toml = """
+[settings.kernel.zram]
+size = "0"
+"""
+direct_shell = """
+apiclient set settings.kernel.zram.size="0"
+"""
