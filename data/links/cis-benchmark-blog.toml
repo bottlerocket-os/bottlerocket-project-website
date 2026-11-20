@@ -1,0 +1,8 @@
+date = "2023-02-02"
+title = "Validating Amazon EKS optimized Bottlerocket AMI against the CIS Benchmark"
+description = """
+This blog post describes how to validate Bottlerocket EKS variants using the CIS Benchmark.
+"""
+url = "https://aws.amazon.com/blogs/containers/validating-amazon-eks-optimized-bottlerocket-ami-against-the-cis-benchmark/"
+type = "blog"
+tags = [ "deep-dive" ]
